@@ -1,16 +1,17 @@
 # Documentación del paquete `io.github.philbone.javadocmd.exporter`
 
-## Clase: DocExporter
+## Interface: DocExporter
 
 ## Métodos
 
 - `String export(DocPackage docPackage)`
-## Clase: MarkdownExporter
+## Class: MarkdownExporter
 
 ## Métodos
 
 - `String export(DocPackage docPackage)`
-## Clase: MarkdownBuilder
+- `String capitalize(String s)`
+## Class: MarkdownBuilder
 
 ## Métodos
 

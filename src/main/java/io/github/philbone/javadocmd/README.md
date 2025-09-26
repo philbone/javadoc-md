@@ -1,6 +1,6 @@
 # Documentación del paquete `io.github.philbone.javadocmd`
 
-## Clase: JavadocMd
+## Class: JavadocMd
 
 Clase JavadocMd
 

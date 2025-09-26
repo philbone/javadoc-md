@@ -1,14 +1,15 @@
 # Documentación del paquete `io.github.philbone.javadocmd.model`
 
-## Clase: DocClass
+## Class: DocClass
 
 ## Métodos
 
 - `String getName()`
 - `String getDescription()`
+- `String getKind()`
 - `List<DocMethod> getMethods()`
 - `void addMethod(DocMethod method)`
-## Clase: DocMethod
+## Class: DocMethod
 
 ## Métodos
 
@@ -16,7 +17,7 @@
 - `String getDescription()`
 - `List<String> getParameters()`
 - `String getReturnType()`
-## Clase: DocPackage
+## Class: DocPackage
 
 ## Métodos
 

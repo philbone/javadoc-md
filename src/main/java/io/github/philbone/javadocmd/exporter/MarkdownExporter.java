@@ -14,7 +14,7 @@ public class MarkdownExporter implements DocExporter
 
         // Recorrer clases
         for (DocClass docClass : docPackage.getClasses()) {
-            builder.subtitle("Clase: " + docClass.getName());
+            builder.subtitle(capitalize(docClass.getKind()) + ": " + docClass.getName());
 
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
                 builder.paragraph(docClass.getDescription());
@@ -36,5 +36,9 @@ public class MarkdownExporter implements DocExporter
         }
 
         return builder.build();
+    }
+    
+    private String capitalize(String s) {
+        return s.substring(0,1).toUpperCase() + s.substring(1);
     }
 }

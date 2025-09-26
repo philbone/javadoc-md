@@ -1,6 +1,6 @@
 # Documentación del paquete `io.github.philbone.javadocmd.extractor`
 
-## Clase: JavadocExtractorVisitor
+## Class: JavadocExtractorVisitor
 
 ## Métodos
 

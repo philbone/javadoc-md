@@ -33,16 +33,16 @@ import java.util.*;
 public class JavadocMd
 {
     private static String outFileName = "README.md";
-//    private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";
-//    private static String outputPath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/";
+    private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";
+    private static String outputPath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/";
     
     public static void main(String[] args) {
         
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Source Path:");
-        String sourcePath = sc.nextLine();
-        System.out.println("Output Path");
-        String outputPath = sc.nextLine();
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Source Path:");
+//        String sourcePath = sc.nextLine();
+//        System.out.println("Output Path");
+//        String outputPath = sc.nextLine();
         generateDocs(sourcePath, outputPath);
     }
     

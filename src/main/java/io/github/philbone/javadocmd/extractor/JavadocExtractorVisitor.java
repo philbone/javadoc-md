@@ -16,23 +16,20 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
     public void visit(ClassOrInterfaceDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
 
-        // Extraer Javadoc de la clase
-        String description = "";
-        Optional<JavadocComment> javadocComment = n.getComment()
+        // Extraer descripción
+        String description = n.getComment()
                 .filter(c -> c instanceof JavadocComment)
-                .map(c -> (JavadocComment) c);
-        if (javadocComment.isPresent()) {
-            Javadoc javadoc = javadocComment.get().parse();
-            description = javadoc.getDescription().toText();
-        }
+                .map(c -> ((JavadocComment) c).parse().getDescription().toText())
+                .orElse("");
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description);
+        // Detectar si es clase o interfaz
+        String kind = n.isInterface() ? "interface" : "class";
+
+        DocClass docClass = new DocClass(n.getNameAsString(), description, kind);
         docPackage.addClass(docClass);
 
-        // Ahora recorremos los métodos manualmente
-        n.getMethods().forEach(m -> {
-            visitMethod(m, docClass);
-        });
+        // Recorrer métodos manualmente
+        n.getMethods().forEach(m -> visitMethod(m, docClass));
     }
 
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
