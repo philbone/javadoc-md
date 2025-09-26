@@ -30,7 +30,7 @@ import java.util.*;
 /**
  * Clase JavadocMd
  */
-public class JavadocMd
+public abstract class JavadocMd
 {
     private static String outFileName = "README.md";
     private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";

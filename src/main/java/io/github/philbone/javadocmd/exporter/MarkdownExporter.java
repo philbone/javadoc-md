@@ -12,7 +12,7 @@ public class MarkdownExporter implements DocExporter
         // Encabezado principal
         builder.title("Documentación del paquete `" + docPackage.getName() + "`");
 
-        // Recorrer clases
+        // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
             builder.subtitle(capitalize(docClass.getKind()) + ": " + docClass.getName());
 
@@ -37,8 +37,9 @@ public class MarkdownExporter implements DocExporter
 
         return builder.build();
     }
-    
+
     private String capitalize(String s) {
+        if (s == null || s.isEmpty()) return s;
         return s.substring(0,1).toUpperCase() + s.substring(1);
     }
 }
