@@ -5,12 +5,6 @@
 ## 🧮 Métodos
 
 - #### `String export(DocPackage docPackage)`
-## Class: MarkdownExporter
-
-## 🧮 Métodos
-
-- #### `String export(DocPackage docPackage)`
-- #### `String capitalize(String s)`
 ## Class: MarkdownBuilder
 
 ## 🧮 Métodos

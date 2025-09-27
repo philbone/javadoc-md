@@ -6,7 +6,7 @@
 
 - #### `String getName()`
 - #### `String getDescription()`
-- #### `String getKind()`
+- #### `Kind getKind()`
 - #### `List<DocMethod> getMethods()`
 - #### `void addMethod(DocMethod method)`
 ## Class: DocMethod
@@ -36,6 +36,8 @@
 - #### `String getName()`
 - #### `List<DocClass> getClasses()`
 - #### `void addClass(DocClass docClass)`
+## Enum: Kind
+
 ## Class: DocException
 
 ## 🧮 Métodos

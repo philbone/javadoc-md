@@ -25,13 +25,13 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 .map(c -> ((JavadocComment) c).parse().getDescription().toText())
                 .orElse("");
 
-        String kind;
+        Kind kind;
         if (n.isInterface()) {
-            kind = "interface";
+            kind = Kind.INTERFACE;
         } else if (n.isAbstract()) {
-            kind = "abstract class";
+            kind = Kind.ABSTRACT_CLASS;
         } else {
-            kind = "class";
+            kind = Kind.CLASS;
         }
 
         DocClass docClass = new DocClass(n.getNameAsString(), description, kind);
@@ -49,7 +49,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 .map(c -> ((JavadocComment) c).parse().getDescription().toText())
                 .orElse("");
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description, "enum");
+        DocClass docClass = new DocClass(n.getNameAsString(), description, Kind.ENUM);
         docPackage.addClass(docClass);
 
         n.getMembers().stream()
@@ -67,7 +67,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 .map(c -> ((JavadocComment) c).parse().getDescription().toText())
                 .orElse("");
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description, "record");
+        DocClass docClass = new DocClass(n.getNameAsString(), description, Kind.RECORD);
         docPackage.addClass(docClass);
 
         n.getMembers().stream()

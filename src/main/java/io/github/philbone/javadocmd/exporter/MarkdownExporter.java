@@ -14,7 +14,7 @@ public class MarkdownExporter implements DocExporter
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            builder.subtitle(capitalize(docClass.getKind()) + ": " + docClass.getName());
+            builder.subtitle(formatKind(docClass.getKind()) + ": " + docClass.getName());
 
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
                 builder.paragraph(docClass.getDescription());
@@ -54,7 +54,24 @@ public class MarkdownExporter implements DocExporter
     }
 
     private String capitalize(String s) {
-        if (s == null || s.isEmpty()) return s;
-        return s.substring(0,1).toUpperCase() + s.substring(1);
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
+    private String formatKind(Kind kind) {
+        return switch (kind) {
+            case CLASS ->
+                "Class";
+            case ABSTRACT_CLASS ->
+                "Abstract Class";
+            case INTERFACE ->
+                "Interface";
+            case ENUM ->
+                "Enum";
+            case RECORD ->
+                "Record";
+        };
     }
 }
