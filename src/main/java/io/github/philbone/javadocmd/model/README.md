@@ -1,26 +1,44 @@
-# Documentación del paquete `io.github.philbone.javadocmd.model`
+# `io.github.philbone.javadocmd.model`
 
 ## Class: DocClass
 
-## Métodos
+## 🧮 Métodos
 
-- `String getName()`
-- `String getDescription()`
-- `String getKind()`
-- `List<DocMethod> getMethods()`
-- `void addMethod(DocMethod method)`
+- #### `String getName()`
+- #### `String getDescription()`
+- #### `String getKind()`
+- #### `List<DocMethod> getMethods()`
+- #### `void addMethod(DocMethod method)`
 ## Class: DocMethod
 
-## Métodos
+## 🧮 Métodos
 
-- `String getName()`
-- `String getDescription()`
-- `List<String> getParameters()`
-- `String getReturnType()`
+- #### `String getName()`
+- #### `String getReturnType()`
+- #### `List<String> getParameters()`
+- #### `String getDescription()`
+- #### `List<DocParameter> getDocParameters()`
+- #### `void addDocParameter(DocParameter param)`
+- #### `String getReturnDescription()`
+- #### `void setReturnDescription(String returnDescription)`
+- #### `List<DocException> getExceptions()`
+- #### `void addException(DocException exception)`
+## Class: DocParameter
+
+## 🧮 Métodos
+
+- #### `String getName()`
+- #### `String getDescription()`
 ## Class: DocPackage
 
-## Métodos
+## 🧮 Métodos
 
-- `String getName()`
-- `List<DocClass> getClasses()`
-- `void addClass(DocClass docClass)`
+- #### `String getName()`
+- #### `List<DocClass> getClasses()`
+- #### `void addClass(DocClass docClass)`
+## Class: DocException
+
+## 🧮 Métodos
+
+- #### `String getName()`
+- #### `String getDescription()`

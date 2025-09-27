@@ -36,6 +36,10 @@ public abstract class JavadocMd
     private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";
     private static String outputPath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/";
     
+    /**
+     * 
+     * @param args argumentos
+     */
     public static void main(String[] args) {
         
 //        Scanner sc = new Scanner(System.in);
@@ -46,6 +50,11 @@ public abstract class JavadocMd
         generateDocs(sourcePath, outputPath);
     }
     
+    /**
+     * 
+     * @param sourcePath texto, el directorio donde está el proyecto a documentar
+     * @param outputPath texto, el directorio donde será entregada la documentación de salida
+     */
     public static void generateDocs(String sourcePath, String outputPath) {
         try {
             // 1. Mapear paquetes → DocPackage

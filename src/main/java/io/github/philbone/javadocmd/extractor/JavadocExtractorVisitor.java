@@ -10,6 +10,8 @@ import com.github.javaparser.ast.comments.JavadocComment;
 import io.github.philbone.javadocmd.model.*;
 
 import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
 {
@@ -75,25 +77,60 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
     }
 
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
-        // Extraer Javadoc del método
         String description = "";
+        List<DocParameter> docParams = new ArrayList<>();
+        String returnDescription = null;
+        List<DocException> exceptions = new ArrayList<>();
+
         Optional<JavadocComment> javadocComment = n.getComment()
                 .filter(c -> c instanceof JavadocComment)
                 .map(c -> (JavadocComment) c);
+
         if (javadocComment.isPresent()) {
             Javadoc javadoc = javadocComment.get().parse();
             description = javadoc.getDescription().toText();
+
+            // Procesar etiquetas con for clásico (más flexible a futuro)
+            for (var tag : javadoc.getBlockTags()) {
+                switch (tag.getType()) {
+                    case PARAM -> {
+                        String paramName = tag.getName().orElse("unnamed");
+                        String paramDesc = tag.getContent().toText();
+                        docParams.add(new DocParameter(paramName, paramDesc));
+                    }
+                    case RETURN -> {
+                        returnDescription = tag.getContent().toText();
+                    }
+                    case THROWS, EXCEPTION -> {
+                        String excName = tag.getName().orElse("Exception");
+                        String excDesc = tag.getContent().toText();
+                        exceptions.add(new DocException(excName, excDesc));
+                    }
+                    default -> {
+                        // otras etiquetas se manejarán más adelante
+                    }
+                }
+            }
         }
 
+        // Crear DocMethod con la info básica
         DocMethod docMethod = new DocMethod(
                 n.getNameAsString(),
-                description,
+                n.getType().toString(),
                 n.getParameters().stream()
                         .map(p -> p.getType() + " " + p.getName())
                         .toList(),
-                n.getType().toString()
+                description
         );
+
+        // Agregar detalles documentados
+        docParams.forEach(docMethod::addDocParameter);
+        if (returnDescription != null) {
+            docMethod.setReturnDescription(returnDescription);
+        }
+        exceptions.forEach(docMethod::addException);
 
         docClass.addMethod(docMethod);
     }
+
 }

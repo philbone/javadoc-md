@@ -1,22 +1,22 @@
-# Documentación del paquete `io.github.philbone.javadocmd.exporter`
+# `io.github.philbone.javadocmd.exporter`
 
 ## Interface: DocExporter
 
-## Métodos
+## 🧮 Métodos
 
-- `String export(DocPackage docPackage)`
+- #### `String export(DocPackage docPackage)`
 ## Class: MarkdownExporter
 
-## Métodos
+## 🧮 Métodos
 
-- `String export(DocPackage docPackage)`
-- `String capitalize(String s)`
+- #### `String export(DocPackage docPackage)`
+- #### `String capitalize(String s)`
 ## Class: MarkdownBuilder
 
-## Métodos
+## 🧮 Métodos
 
-- `MarkdownBuilder title(String text)`
-- `MarkdownBuilder subtitle(String text)`
-- `MarkdownBuilder paragraph(String text)`
-- `MarkdownBuilder listItem(String text)`
-- `String build()`
+- #### `MarkdownBuilder title(String text)`
+- #### `MarkdownBuilder subtitle(String text)`
+- #### `MarkdownBuilder paragraph(String text)`
+- #### `MarkdownBuilder listItem(String text)`
+- #### `String build()`
