@@ -1,16 +1,23 @@
 # `io.github.philbone.javadocmd.exporter`
 
-## Interface: DocExporter
+---
+
+## Public Interface <span style="color:#d2691e">DocExporter</span>
 
 ## 🧮 Métodos
 
-- #### `String export(DocPackage docPackage)`
-## Class: MarkdownBuilder
+- #### `package-private String export(DocPackage docPackage)`
+---
 
+## Public Class <span style="color:#d2691e">MarkdownBuilder</span>
+
+## 📦 Campos
+
+- #### `private StringBuilder sb`
 ## 🧮 Métodos
 
-- #### `MarkdownBuilder title(String text)`
-- #### `MarkdownBuilder subtitle(String text)`
-- #### `MarkdownBuilder paragraph(String text)`
-- #### `MarkdownBuilder listItem(String text)`
-- #### `String build()`
+- #### `public MarkdownBuilder title(String text)`
+- #### `public MarkdownBuilder subtitle(String text)`
+- #### `public MarkdownBuilder paragraph(String text)`
+- #### `public MarkdownBuilder listItem(String text)`
+- #### `public String build()`

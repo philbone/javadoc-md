@@ -3,21 +3,21 @@ package io.github.philbone.javadocmd.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DocMethod 
+/**
+ * Representa un constructor documentado dentro de una clase.
+ */
+public class DocConstructor 
 {
     private final String name;
-    private final String returnType;
     private final List<String> parameters;
     private final String description;
     private final String visibility;
-    private final boolean isStatic;
-    private String returnDescription;
+    private final boolean isStatic; // casi siempre false, pero lo dejamos para consistencia
     private final List<DocParameter> docParameters = new ArrayList<>();
     private final List<DocException> exceptions = new ArrayList<>();
 
-    public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic) {
+    public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic) {
         this.name = name;
-        this.returnType = returnType;
         this.parameters = parameters;
         this.description = description;
         this.visibility = visibility;
@@ -25,14 +25,10 @@ public class DocMethod
     }
 
     public String getName() { return name; }
-    public String getReturnType() { return returnType; }
     public List<String> getParameters() { return parameters; }
     public String getDescription() { return description; }
     public String getVisibility() { return visibility; }
     public boolean isStatic() { return isStatic; }
-
-    public void setReturnDescription(String returnDescription) { this.returnDescription = returnDescription; }
-    public String getReturnDescription() { return returnDescription; }
 
     public void addDocParameter(DocParameter param) { docParameters.add(param); }
     public List<DocParameter> getDocParameters() { return docParameters; }

@@ -9,7 +9,7 @@ public class MarkdownBuilder
         return this;
     }
 
-    public MarkdownBuilder subtitle(String text) {
+    public MarkdownBuilder subtitle(String text) {        
         sb.append("## ").append(text).append("\n\n");
         return this;
     }

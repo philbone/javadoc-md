@@ -51,6 +51,25 @@ public abstract class JavadocMd
 
     /** Directorio base donde se escribirá la documentación generada. */
     private static String outputPath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/";
+
+    /**
+     * Contador global de ejecuciones del generador de documentación.
+     */
+    private static int executionCount = 0;
+
+    /** Bandera de depuración para imprimir trazas adicionales. */
+    private static boolean debug = false;
+
+    /**
+     * Constructor protegido por defecto.
+     * <p>
+     * Inicializa valores de configuración básicos.
+     *
+     * @throws IllegalStateException si la configuración inicial es inválida.
+     */
+    protected JavadocMd() throws IllegalStateException {
+        executionCount++;
+    }
     
     /**
      * Método principal que inicia el proceso de generación de documentación.

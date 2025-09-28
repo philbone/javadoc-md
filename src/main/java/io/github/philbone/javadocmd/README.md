@@ -1,6 +1,8 @@
 # `io.github.philbone.javadocmd`
 
-## Abstract Class: JavadocMd
+---
+
+## Public Abstract Class <span style="color:#d2691e">JavadocMd</span>
 
 Punto de entrada principal del programa <b>javadoc-md</b>.
 <p>
@@ -15,15 +17,40 @@ Esta clase se encarga de:
 <p>Actualmente soporta la exportación de documentación hacia un archivo <code>README.md</code>
 por cada paquete encontrado en el proyecto.</p>
 
+## 📦 Campos
+
+- #### `private static String outFileName`
+Nombre por defecto del archivo de salida que contendrá la documentación en cada paquete.
+
+- #### `private static String sourcePath`
+Directorio de entrada donde se encuentran las clases a documentar.
+
+- #### `private static String outputPath`
+Directorio base donde se escribirá la documentación generada.
+
+- #### `private static int executionCount`
+Contador global de ejecuciones del generador de documentación.
+
+- #### `private static boolean debug`
+Bandera de depuración para imprimir trazas adicionales.
+
+## 🛠️ Constructores
+
+- #### `protected JavadocMd()`
+Constructor protegido por defecto.
+<p>
+Inicializa valores de configuración básicos.
+
+- *@throws* **IllegalStateException** si la configuración inicial es inválida.
 ## 🧮 Métodos
 
-- #### `void main(String[] args)`
+- #### `public static void main(String[] args)`
 Método principal que inicia el proceso de generación de documentación.
 
 - *@param* **args** argumentos opcionales (no utilizados actualmente).
             Se planea en futuras versiones aceptar <code>sourcePath</code> y <code>outputPath</code>
             como parámetros desde consola.
-- #### `void generateDocs(String sourcePath, String outputPath)`
+- #### `public static void generateDocs(String sourcePath, String outputPath)`
 Genera la documentación en formato Markdown a partir del código fuente de un proyecto Java.
 <p>
 El proceso sigue los siguientes pasos:
