@@ -1,46 +1,166 @@
 # `io.github.philbone.javadocmd.model`
 
-## Class: DocClass
+---
 
+## Public Class <span style="color:#d2691e">DocConstructor</span>
+
+Representa un constructor documentado dentro de una clase.
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private List<String> parameters`
+- #### `private String description`
+- #### `private String visibility`
+- #### `private boolean isStatic`
+- #### `private List<DocParameter> docParameters`
+- #### `private List<DocException> exceptions`
+## 🛠️ Constructores
+
+- #### `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
 ## 🧮 Métodos
 
-- #### `String getName()`
-- #### `String getDescription()`
-- #### `Kind getKind()`
-- #### `List<DocMethod> getMethods()`
-- #### `void addMethod(DocMethod method)`
-## Class: DocMethod
+- #### `public String getName()`
+- #### `public List<String> getParameters()`
+- #### `public String getDescription()`
+- #### `public String getVisibility()`
+- #### `public boolean isStatic()`
+- #### `public void addDocParameter(DocParameter param)`
+- #### `public List<DocParameter> getDocParameters()`
+- #### `public void addException(DocException exception)`
+- #### `public List<DocException> getExceptions()`
+---
 
+## Public Class <span style="color:#d2691e">DocClass</span>
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private String description`
+- #### `private Kind kind`
+- #### `private String visibility`
+- #### `private boolean isStatic`
+- #### `private List<DocField> fields`
+- #### `private List<DocConstructor> constructors`
+- #### `private List<DocMethod> methods`
+## 🛠️ Constructores
+
+- #### `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
 ## 🧮 Métodos
 
-- #### `String getName()`
-- #### `String getReturnType()`
-- #### `List<String> getParameters()`
-- #### `String getDescription()`
-- #### `List<DocParameter> getDocParameters()`
-- #### `void addDocParameter(DocParameter param)`
-- #### `String getReturnDescription()`
-- #### `void setReturnDescription(String returnDescription)`
-- #### `List<DocException> getExceptions()`
-- #### `void addException(DocException exception)`
-## Class: DocParameter
+- #### `public String getName()`
+- #### `public String getDescription()`
+- #### `public Kind getKind()`
+- #### `public String getVisibility()`
+- #### `public boolean isStatic()`
+- #### `public void addField(DocField field)`
+- #### `public List<DocField> getFields()`
+- #### `public void addConstructor(DocConstructor constructor)`
+- #### `public List<DocConstructor> getConstructors()`
+- #### `public void addMethod(DocMethod method)`
+- #### `public List<DocMethod> getMethods()`
+---
 
+## Public Class <span style="color:#d2691e">DocMethod</span>
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private String returnType`
+- #### `private List<String> parameters`
+- #### `private String description`
+- #### `private String visibility`
+- #### `private boolean isStatic`
+- #### `private String returnDescription`
+- #### `private List<DocParameter> docParameters`
+- #### `private List<DocException> exceptions`
+## 🛠️ Constructores
+
+- #### `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic)`
 ## 🧮 Métodos
 
-- #### `String getName()`
-- #### `String getDescription()`
-## Class: DocPackage
+- #### `public String getName()`
+- #### `public String getReturnType()`
+- #### `public List<String> getParameters()`
+- #### `public String getDescription()`
+- #### `public String getVisibility()`
+- #### `public boolean isStatic()`
+- #### `public void setReturnDescription(String returnDescription)`
+- #### `public String getReturnDescription()`
+- #### `public void addDocParameter(DocParameter param)`
+- #### `public List<DocParameter> getDocParameters()`
+- #### `public void addException(DocException exception)`
+- #### `public List<DocException> getExceptions()`
+---
 
+## Public Class <span style="color:#d2691e">DocParameter</span>
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private String description`
+## 🛠️ Constructores
+
+- #### `public DocParameter(String name, String description)`
 ## 🧮 Métodos
 
-- #### `String getName()`
-- #### `List<DocClass> getClasses()`
-- #### `void addClass(DocClass docClass)`
-## Enum: Kind
+- #### `public String getName()`
+- #### `public String getDescription()`
+---
 
-## Class: DocException
+## Public Class <span style="color:#d2691e">DocPackage</span>
 
+## 📦 Campos
+
+- #### `private String name`
+- #### `private List<DocClass> classes`
+## 🛠️ Constructores
+
+- #### `public DocPackage(String name)`
 ## 🧮 Métodos
 
-- #### `String getName()`
-- #### `String getDescription()`
+- #### `public String getName()`
+- #### `public List<DocClass> getClasses()`
+- #### `public void addClass(DocClass docClass)`
+---
+
+## Public Enum <span style="color:#d2691e">Kind</span>
+
+---
+
+## Public Class <span style="color:#d2691e">DocException</span>
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private String description`
+## 🛠️ Constructores
+
+- #### `public DocException(String name, String description)`
+## 🧮 Métodos
+
+- #### `public String getName()`
+- #### `public String getDescription()`
+---
+
+## Public Class <span style="color:#d2691e">DocField</span>
+
+Representa un campo (atributo) documentado dentro de una clase.
+
+## 📦 Campos
+
+- #### `private String name`
+- #### `private String type`
+- #### `private String description`
+- #### `private String visibility`
+- #### `private boolean isStatic`
+## 🛠️ Constructores
+
+- #### `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
+## 🧮 Métodos
+
+- #### `public String getName()`
+- #### `public String getType()`
+- #### `public String getDescription()`
+- #### `public String getVisibility()`
+- #### `public boolean isStatic()`
