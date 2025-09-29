@@ -12,8 +12,21 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Visitor encargado de recorrer los nodos del AST de JavaParser y construir el
+ * modelo intermedio para la documentación en Markdown.
+ *
+ * <p>Este visitor:</p>
+ * <ul>
+ *   <li>Extrae descripciones de Javadoc.</li>
+ *   <li>Determina visibilidad y si un miembro es {@code static}.</li>
+ *   <li>Procesa herencia ({@code extends}) e interfaces ({@code implements}).</li>
+ *   <li>Registra métodos, constructores y campos de cada clase.</li>
+ * </ul>
+ */
 public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
 
+    // ========== CLASES E INTERFACES ========== //
     @Override
     public void visit(ClassOrInterfaceDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
@@ -26,15 +39,33 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description, kind, visibility, isStatic);
+        DocClass docClass = new DocClass(
+                n.getNameAsString(),
+                description,
+                kind,
+                visibility,
+                isStatic
+        );
+        System.out.println("Found class: " + n.getNameAsString());
+        // Procesar extends (una sola clase para Class, múltiples para Interface)
+        if (!n.getExtendedTypes().isEmpty()) {
+            n.getExtendedTypes().forEach(t -> docClass.setSuperClass(t.getNameAsString()));
+        }
+
+        // Procesar implements
+        if (!n.getImplementedTypes().isEmpty()) {
+            n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
+        }
+
         docPackage.addClass(docClass);
 
-        // métodos, constructores y campos
+        // miembros
         n.getMethods().forEach(m -> visitMethod(m, docClass));
         n.getConstructors().forEach(c -> visitConstructor(c, docClass));
         n.getFields().forEach(f -> visitField(f, docClass));
     }
 
+    // ========== ENUMS ========== //
     @Override
     public void visit(EnumDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
@@ -43,7 +74,19 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description, Kind.ENUM, visibility, isStatic);
+        DocClass docClass = new DocClass(
+                n.getNameAsString(),
+                description,
+                Kind.ENUM,
+                visibility,
+                isStatic
+        );
+
+        // enums pueden implementar interfaces
+        if (!n.getImplementedTypes().isEmpty()) {
+            n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
+        }
+
         docPackage.addClass(docClass);
 
         n.getMembers().forEach(m -> {
@@ -53,6 +96,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         });
     }
 
+    // ========== RECORDS ========== //
     @Override
     public void visit(RecordDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
@@ -61,7 +105,22 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
-        DocClass docClass = new DocClass(n.getNameAsString(), description, Kind.RECORD, visibility, isStatic);
+        DocClass docClass = new DocClass(
+                n.getNameAsString(),
+                description,
+                Kind.RECORD,
+                visibility,
+                isStatic
+        );
+
+        // records siempre extienden java.lang.Record
+        docClass.setSuperClass("Record");
+
+        // pueden implementar interfaces
+        if (!n.getImplementedTypes().isEmpty()) {
+            n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
+        }
+
         docPackage.addClass(docClass);
 
         n.getMembers().forEach(m -> {
@@ -71,7 +130,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         });
     }
 
-    // ---------- Métodos privados ---------- //
+    // ========== MÉTODOS PRIVADOS ========== //
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
         String description = "";
         List<DocParameter> docParams = new ArrayList<>();
@@ -149,7 +208,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
                 .toList();
 
         String visibility = extractVisibility(n);
-        boolean isStatic = extractIsStatic(n); // constructors normally are not static, but consistent API
+        boolean isStatic = extractIsStatic(n);
 
         DocConstructor docConstructor = new DocConstructor(
                 n.getNameAsString(),
@@ -182,7 +241,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         });
     }
 
-    // ---------- Utilidades ---------- //
+    // ========== UTILIDADES ========== //
     private String extractDescription(BodyDeclaration<?> n) {
         return n.getComment()
                 .filter(c -> c instanceof JavadocComment)
@@ -198,9 +257,10 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     }
 
     /**
-     * 
-     * @param n
-     * @return String la visibilidad del nodo. En nodos que no implementen NodeWithModifiers (casos raros), devuelve "package-private"
+     * Extrae la visibilidad de un nodo que posea modificadores.
+     *
+     * @param n nodo del AST.
+     * @return "public", "protected", "private" o "package-private".
      */
     private String extractVisibility(BodyDeclaration<?> n) {
         if (n instanceof NodeWithModifiers<?>) {
@@ -211,11 +271,12 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         }
         return "package-private";
     }
-    
+
     /**
-     * 
-     * @param n
-     * @return boolean En nodos que no implementen NodeWithModifiers (casos raros), devuelve false para static
+     * Verifica si un nodo tiene el modificador {@code static}.
+     *
+     * @param n nodo del AST.
+     * @return {@code true} si el nodo es estático, {@code false} en caso contrario.
      */
     private boolean extractIsStatic(BodyDeclaration<?> n) {
         if (n instanceof NodeWithModifiers<?>) {

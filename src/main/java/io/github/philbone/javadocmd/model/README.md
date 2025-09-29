@@ -41,8 +41,10 @@ Representa un constructor documentado dentro de una clase.
 - #### `private String visibility`
 - #### `private boolean isStatic`
 - #### `private List<DocField> fields`
-- #### `private List<DocConstructor> constructors`
 - #### `private List<DocMethod> methods`
+- #### `private List<DocConstructor> constructors`
+- #### `private String superClass`
+- #### `private List<String> interfaces`
 ## 🛠️ Constructores
 
 - #### `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
@@ -53,12 +55,16 @@ Representa un constructor documentado dentro de una clase.
 - #### `public Kind getKind()`
 - #### `public String getVisibility()`
 - #### `public boolean isStatic()`
-- #### `public void addField(DocField field)`
 - #### `public List<DocField> getFields()`
-- #### `public void addConstructor(DocConstructor constructor)`
-- #### `public List<DocConstructor> getConstructors()`
-- #### `public void addMethod(DocMethod method)`
 - #### `public List<DocMethod> getMethods()`
+- #### `public List<DocConstructor> getConstructors()`
+- #### `public void addField(DocField field)`
+- #### `public void addMethod(DocMethod method)`
+- #### `public void addConstructor(DocConstructor constructor)`
+- #### `public String getSuperClass()`
+- #### `public void setSuperClass(String superClass)`
+- #### `public List<String> getInterfaces()`
+- #### `public void addInterface(String iface)`
 ---
 
 ## Public Class <span style="color:#d2691e">DocMethod</span>
