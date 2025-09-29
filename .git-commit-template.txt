@@ -1,0 +1,15 @@
+<tipo>(<área>): <resumen corto en presente>
+Referencia: https://www.conventionalcommits.org
+🔹 Descripción extendida:
+- Explica qué se hizo y por qué.
+- Usa viñetas para detallar los cambios relevantes.
+- Sé claro y conciso.
+
+🔹 Contexto (opcional):
+- Explica el motivo o problema que originó el cambio.
+- Referencia issues, tareas o tickets si aplica (#123).
+
+🔹 Impacto (opcional):
+- Menciona si hay cambios en compatibilidad, comportamiento o dependencias.
+- Indica si requiere acciones adicionales (ej. migraciones, configuración).
+
