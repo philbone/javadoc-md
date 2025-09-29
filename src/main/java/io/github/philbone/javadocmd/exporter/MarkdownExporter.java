@@ -1,15 +1,25 @@
 package io.github.philbone.javadocmd.exporter;
 
-import io.github.philbone.javadocmd.model.*;
+import io.github.philbone.javadocmd.model.DocClass;
+import io.github.philbone.javadocmd.model.DocConstructor;
+import io.github.philbone.javadocmd.model.DocException;
+import io.github.philbone.javadocmd.model.DocField;
+import io.github.philbone.javadocmd.model.DocMethod;
+import io.github.philbone.javadocmd.model.DocPackage;
+import io.github.philbone.javadocmd.model.DocParameter;
+import io.github.philbone.javadocmd.model.Kind;
+
+import java.util.List;
 
 /**
  * Exportador que genera documentación en formato Markdown
- * a partir del modelo intermedio construido con {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
- * <p>
- * Renderiza:
+ * a partir del modelo intermedio construido con
+ * {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
+ *
+ * <p>Renderiza:</p>
  * <ul>
  *     <li>Firma de la clase (visibilidad, static, tipo, nombre).</li>
- *     <li>Extensiones (extends) e implementaciones (implements).</li>
+ *     <li>Extensiones ({@code extends}) e implementaciones ({@code implements}).</li>
  *     <li>Descripción general de la clase.</li>
  *     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
  * </ul>
@@ -25,8 +35,7 @@ public class MarkdownExporter implements DocExporter {
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            String classVisibility = docClass.getVisibility().substring(0, 1).toUpperCase()
-                    + docClass.getVisibility().substring(1);
+            String classVisibility = capitalize(docClass.getVisibility());
 
             String classSignature = classVisibility
                     + (docClass.isStatic() ? " static " : " ")
@@ -38,14 +47,15 @@ public class MarkdownExporter implements DocExporter {
 
             // Extends
             if (docClass.getSuperClass() != null) {
-                builder.listItem("**extends** `" + docClass.getSuperClass() + "`");
+                builder.paragraph("**extends** `" + docClass.getSuperClass() + "`");
             }
 
             // Implements
             if (!docClass.getInterfaces().isEmpty()) {
-                builder.listItem("**implements** " +
-                        String.join(", ", docClass.getInterfaces().stream()
-                                .map(i -> "`" + i + "`").toList()));
+                List<String> interfaces = docClass.getInterfaces().stream()
+                        .map(i -> "`" + i + "`")
+                        .toList();
+                builder.paragraph("**implements** " + String.join(", ", interfaces));
             }
 
             // Descripción
@@ -134,5 +144,10 @@ public class MarkdownExporter implements DocExporter {
             case ENUM -> "Enum";
             case RECORD -> "Record";
         };
+    }
+
+    private String capitalize(String s) {
+        if (s == null || s.isEmpty()) return s;
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 }

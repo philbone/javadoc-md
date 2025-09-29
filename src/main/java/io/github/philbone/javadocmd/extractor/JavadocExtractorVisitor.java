@@ -15,13 +15,16 @@ import java.util.List;
 /**
  * Visitor encargado de recorrer los nodos del AST de JavaParser y construir el
  * modelo intermedio para la documentación en Markdown.
- * <p>
- * Extrae descripciones, visibilidad, modificadores, herencia, interfaces,
- * métodos, constructores y campos.
- * </p>
+ *
+ * <p>Este visitor:</p>
+ * <ul>
+ *   <li>Extrae descripciones de Javadoc.</li>
+ *   <li>Determina visibilidad y si un miembro es {@code static}.</li>
+ *   <li>Procesa herencia ({@code extends}) e interfaces ({@code implements}).</li>
+ *   <li>Registra métodos, constructores y campos de cada clase.</li>
+ * </ul>
  */
-public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
-{
+public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
 
     // ========== CLASES E INTERFACES ========== //
     @Override
@@ -43,14 +46,12 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 visibility,
                 isStatic
         );
-
-        // herencia e interfaces
-        // Procesar extends
+        System.out.println("Found class: " + n.getNameAsString());
+        // Procesar extends (una sola clase para Class, múltiples para Interface)
         if (!n.getExtendedTypes().isEmpty()) {
-            // Java no soporta múltiples extends en clases, pero en interfaces sí
             n.getExtendedTypes().forEach(t -> docClass.setSuperClass(t.getNameAsString()));
         }
-        
+
         // Procesar implements
         if (!n.getImplementedTypes().isEmpty()) {
             n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
@@ -82,7 +83,6 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         );
 
         // enums pueden implementar interfaces
-        // Procesar implements
         if (!n.getImplementedTypes().isEmpty()) {
             n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
         }
@@ -90,15 +90,9 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         docPackage.addClass(docClass);
 
         n.getMembers().forEach(m -> {
-            if (m instanceof MethodDeclaration method) {
-                visitMethod(method, docClass);
-            }
-            if (m instanceof ConstructorDeclaration cons) {
-                visitConstructor(cons, docClass);
-            }
-            if (m instanceof FieldDeclaration field) {
-                visitField(field, docClass);
-            }
+            if (m instanceof MethodDeclaration method) visitMethod(method, docClass);
+            if (m instanceof ConstructorDeclaration cons) visitConstructor(cons, docClass);
+            if (m instanceof FieldDeclaration field) visitField(field, docClass);
         });
     }
 
@@ -123,7 +117,6 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         docClass.setSuperClass("Record");
 
         // pueden implementar interfaces
-        // Procesar implements
         if (!n.getImplementedTypes().isEmpty()) {
             n.getImplementedTypes().forEach(t -> docClass.addInterface(t.getNameAsString()));
         }
@@ -131,15 +124,9 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         docPackage.addClass(docClass);
 
         n.getMembers().forEach(m -> {
-            if (m instanceof MethodDeclaration method) {
-                visitMethod(method, docClass);
-            }
-            if (m instanceof ConstructorDeclaration cons) {
-                visitConstructor(cons, docClass);
-            }
-            if (m instanceof FieldDeclaration field) {
-                visitField(field, docClass);
-            }
+            if (m instanceof MethodDeclaration method) visitMethod(method, docClass);
+            if (m instanceof ConstructorDeclaration cons) visitConstructor(cons, docClass);
+            if (m instanceof FieldDeclaration field) visitField(field, docClass);
         });
     }
 
@@ -161,15 +148,13 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                         String paramDesc = tag.getContent().toText();
                         docParams.add(new DocParameter(paramName, paramDesc));
                     }
-                    case RETURN ->
-                        returnDescription = tag.getContent().toText();
+                    case RETURN -> returnDescription = tag.getContent().toText();
                     case THROWS, EXCEPTION -> {
                         String excName = tag.getName().orElse("Exception");
                         String excDesc = tag.getContent().toText();
                         exceptions.add(new DocException(excName, excDesc));
                     }
-                    default -> {
-                    }
+                    default -> {}
                 }
             }
         }
@@ -187,9 +172,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         );
 
         docParams.forEach(docMethod::addDocParameter);
-        if (returnDescription != null) {
-            docMethod.setReturnDescription(returnDescription);
-        }
+        if (returnDescription != null) docMethod.setReturnDescription(returnDescription);
         exceptions.forEach(docMethod::addException);
 
         docClass.addMethod(docMethod);
@@ -215,8 +198,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                         String excDesc = tag.getContent().toText();
                         exceptions.add(new DocException(excName, excDesc));
                     }
-                    default -> {
-                    }
+                    default -> {}
                 }
             }
         }
@@ -283,15 +265,9 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
     private String extractVisibility(BodyDeclaration<?> n) {
         if (n instanceof NodeWithModifiers<?>) {
             NodeWithModifiers<?> withMods = (NodeWithModifiers<?>) n;
-            if (withMods.hasModifier(Modifier.Keyword.PUBLIC)) {
-                return "public";
-            }
-            if (withMods.hasModifier(Modifier.Keyword.PROTECTED)) {
-                return "protected";
-            }
-            if (withMods.hasModifier(Modifier.Keyword.PRIVATE)) {
-                return "private";
-            }
+            if (withMods.hasModifier(Modifier.Keyword.PUBLIC)) return "public";
+            if (withMods.hasModifier(Modifier.Keyword.PROTECTED)) return "protected";
+            if (withMods.hasModifier(Modifier.Keyword.PRIVATE)) return "private";
         }
         return "package-private";
     }
@@ -300,8 +276,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
      * Verifica si un nodo tiene el modificador {@code static}.
      *
      * @param n nodo del AST.
-     * @return {@code true} si el nodo es estático, {@code false} en caso
-     * contrario.
+     * @return {@code true} si el nodo es estático, {@code false} en caso contrario.
      */
     private boolean extractIsStatic(BodyDeclaration<?> n) {
         if (n instanceof NodeWithModifiers<?>) {
