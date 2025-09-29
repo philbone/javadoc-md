@@ -2,6 +2,18 @@ package io.github.philbone.javadocmd.exporter;
 
 import io.github.philbone.javadocmd.model.*;
 
+/**
+ * Exportador que genera documentación en formato Markdown
+ * a partir del modelo intermedio construido con {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
+ * <p>
+ * Renderiza:
+ * <ul>
+ *     <li>Firma de la clase (visibilidad, static, tipo, nombre).</li>
+ *     <li>Extensiones (extends) e implementaciones (implements).</li>
+ *     <li>Descripción general de la clase.</li>
+ *     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
+ * </ul>
+ */
 public class MarkdownExporter implements DocExporter {
 
     @Override
@@ -13,15 +25,30 @@ public class MarkdownExporter implements DocExporter {
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            String classVisiblity = docClass.getVisibility().substring(0, 1).toUpperCase() + docClass.getVisibility().substring(1);
-            String classSignature = classVisiblity
-                    + (docClass.isStatic() ? " static " : " ") 
-                    + formatKind(docClass.getKind()) 
+            String classVisibility = docClass.getVisibility().substring(0, 1).toUpperCase()
+                    + docClass.getVisibility().substring(1);
+
+            String classSignature = classVisibility
+                    + (docClass.isStatic() ? " static " : " ")
+                    + formatKind(docClass.getKind())
                     + " <span style=\"color:#d2691e\">" + docClass.getName() + "</span>";
-            
+
             builder.paragraph("---");
             builder.subtitle(classSignature.trim());
 
+            // Extends
+            if (docClass.getSuperClass() != null) {
+                builder.listItem("**extends** `" + docClass.getSuperClass() + "`");
+            }
+
+            // Implements
+            if (!docClass.getInterfaces().isEmpty()) {
+                builder.listItem("**implements** " +
+                        String.join(", ", docClass.getInterfaces().stream()
+                                .map(i -> "`" + i + "`").toList()));
+            }
+
+            // Descripción
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
                 builder.paragraph(docClass.getDescription());
             }
@@ -94,8 +121,8 @@ public class MarkdownExporter implements DocExporter {
                     }
                 }
             }
-        }        
-        
+        }
+
         return builder.build();
     }
 
