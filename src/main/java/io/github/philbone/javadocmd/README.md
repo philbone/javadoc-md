@@ -2,7 +2,7 @@
 
 ---
 
-## Public Abstract Class <span style="color:#d2691e">JavadocMd</span>
+## 📕 Public Abstract Class `JavadocMd`
 
 Punto de entrada principal del programa <b>javadoc-md</b>.
 <p>

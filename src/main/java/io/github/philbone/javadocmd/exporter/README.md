@@ -2,23 +2,14 @@
 
 ---
 
-## Public Class <span style="color:#d2691e">PdfExporter</span>
-
-**implements** `DocExporter`
-
-## 🧮 Métodos
-
-- #### `public String export(DocPackage docPackage)`
----
-
-## Public Interface <span style="color:#d2691e">DocExporter</span>
+## 📗 Public Interface `DocExporter`
 
 ## 🧮 Métodos
 
 - #### `package-private String export(DocPackage docPackage)`
 ---
 
-## Public Class <span style="color:#d2691e">MarkdownExporter</span>
+## 📘 Public Class `MarkdownExporter`
 
 **implements** `DocExporter`
 
@@ -39,9 +30,10 @@ a partir del modelo intermedio construido con
 - #### `public String export(DocPackage docPackage)`
 - #### `private String formatKind(Kind kind)`
 - #### `private String capitalize(String s)`
+- #### `private String formatEmoji(Kind kind)`
 ---
 
-## Public Class <span style="color:#d2691e">MarkdownBuilder</span>
+## 📘 Public Class `MarkdownBuilder`
 
 ## 📦 Campos
 

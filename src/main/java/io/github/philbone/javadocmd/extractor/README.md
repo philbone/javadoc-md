@@ -2,7 +2,7 @@
 
 ---
 
-## Public Class <span style="color:#d2691e">JavadocExtractorVisitor</span>
+## 📘 Public Class `JavadocExtractorVisitor`
 
 **extends** `VoidVisitorAdapter`
 
@@ -37,9 +37,3 @@ Verifica si un nodo tiene el modificador {@code static}.
 
 - *@param* **n** nodo del AST.
 - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
----
-
-## Public Class <span style="color:#d2691e">NewClass</span>
-
-**extends** `JavadocExtractorVisitor`
-

@@ -2,7 +2,7 @@
 
 ---
 
-## Public Class <span style="color:#d2691e">DocConstructor</span>
+## 📘 Public Class `DocConstructor`
 
 Representa un constructor documentado dentro de una clase.
 
@@ -31,7 +31,7 @@ Representa un constructor documentado dentro de una clase.
 - #### `public List<DocException> getExceptions()`
 ---
 
-## Public Class <span style="color:#d2691e">DocClass</span>
+## 📘 Public Class `DocClass`
 
 ## 📦 Campos
 
@@ -67,7 +67,7 @@ Representa un constructor documentado dentro de una clase.
 - #### `public void addInterface(String iface)`
 ---
 
-## Public Class <span style="color:#d2691e">DocMethod</span>
+## 📘 Public Class `DocMethod`
 
 ## 📦 Campos
 
@@ -99,7 +99,7 @@ Representa un constructor documentado dentro de una clase.
 - #### `public List<DocException> getExceptions()`
 ---
 
-## Public Class <span style="color:#d2691e">DocParameter</span>
+## 📘 Public Class `DocParameter`
 
 ## 📦 Campos
 
@@ -114,7 +114,7 @@ Representa un constructor documentado dentro de una clase.
 - #### `public String getDescription()`
 ---
 
-## Public Class <span style="color:#d2691e">DocPackage</span>
+## 📘 Public Class `DocPackage`
 
 ## 📦 Campos
 
@@ -130,11 +130,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public void addClass(DocClass docClass)`
 ---
 
-## Public Enum <span style="color:#d2691e">Kind</span>
+## 📙 Public Enum `Kind`
 
 ---
 
-## Public Class <span style="color:#d2691e">DocException</span>
+## 📘 Public Class `DocException`
 
 ## 📦 Campos
 
@@ -149,7 +149,7 @@ Representa un constructor documentado dentro de una clase.
 - #### `public String getDescription()`
 ---
 
-## Public Class <span style="color:#d2691e">DocField</span>
+## 📘 Public Class `DocField`
 
 Representa un campo (atributo) documentado dentro de una clase.
 

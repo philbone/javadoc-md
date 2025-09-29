@@ -37,10 +37,12 @@ public class MarkdownExporter implements DocExporter {
         for (DocClass docClass : docPackage.getClasses()) {
             String classVisibility = capitalize(docClass.getVisibility());
 
-            String classSignature = classVisibility
+            String emoji = formatEmoji(docClass.getKind());
+            String classSignature = emoji + " "
+                    + capitalize(docClass.getVisibility())
                     + (docClass.isStatic() ? " static " : " ")
                     + formatKind(docClass.getKind())
-                    + " <span style=\"color:#d2691e\">" + docClass.getName() + "</span>";
+                    + " `" + docClass.getName() + "`";
 
             builder.paragraph("---");
             builder.subtitle(classSignature.trim());
@@ -150,4 +152,20 @@ public class MarkdownExporter implements DocExporter {
         if (s == null || s.isEmpty()) return s;
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
+    
+    private String formatEmoji(Kind kind) {
+        return switch (kind) {
+            case CLASS ->
+                "📘";
+            case ABSTRACT_CLASS ->
+                "📕";
+            case INTERFACE ->
+                "📗";
+            case ENUM ->
+                "📙";
+            case RECORD ->
+                "📒";
+        };
+    }
+
 }
