@@ -1,16 +1,21 @@
 # `io.github.philbone.javadocmd.exporter`
 
-## 📗 Public Interface `DocExporter`
+## 📗 Public Interface DocExporter
 
+```java
+public interface DocExporter
+```
 ## 🧮 Métodos
 
 - #### `package-private String export(DocPackage docPackage)`
 ---
 
-## 📘 Public Class `MarkdownExporter`
+## 📘 Public Class MarkdownExporter
 
-**implements** `DocExporter`
-
+```java
+public class MarkdownExporter
+implements DocExporter
+```
 Exportador que genera documentación en formato Markdown
 a partir del modelo intermedio construido con
 {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
@@ -31,8 +36,11 @@ a partir del modelo intermedio construido con
 - #### `private String formatEmoji(Kind kind)`
 ---
 
-## 📘 Public Class `MarkdownBuilder`
+## 📘 Public Class MarkdownBuilder
 
+```java
+public class MarkdownBuilder
+```
 ## 📦 Campos
 
 - #### `private StringBuilder sb`
@@ -43,3 +51,4 @@ a partir del modelo intermedio construido con
 - #### `public MarkdownBuilder paragraph(String text)`
 - #### `public MarkdownBuilder listItem(String text)`
 - #### `public String build()`
+- #### `public void codeBlock(String content, String codeLang)`

@@ -1,7 +1,10 @@
 # `io.github.philbone.javadocmd`
 
-## 📕 Public Abstract Class `JavadocMd`
+## 📕 Public Abstract Class JavadocMd
 
+```java
+public abstract class JavadocMd
+```
 Punto de entrada principal del programa <b>javadoc-md</b>.
 <p>
 Esta clase se encarga de:

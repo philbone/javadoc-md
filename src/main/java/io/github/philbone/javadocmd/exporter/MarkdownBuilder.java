@@ -27,4 +27,15 @@ public class MarkdownBuilder
     public String build() {
         return sb.toString();
     }
+
+    public void codeBlock(String content, String codeLang) {
+        sb.append("```");
+        if (codeLang != null && !codeLang.isBlank()) {
+            sb.append(codeLang);
+        }
+        sb.append("\n")
+                .append(content)
+                .append("\n```")
+                .append("\n");
+    }
 }

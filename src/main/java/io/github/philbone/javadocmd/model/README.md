@@ -1,7 +1,10 @@
 # `io.github.philbone.javadocmd.model`
 
-## 📘 Public Class `DocConstructor`
+## 📘 Public Class DocConstructor
 
+```java
+public class DocConstructor
+```
 Representa un constructor documentado dentro de una clase.
 
 ## 📦 Campos
@@ -29,8 +32,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public List<DocException> getExceptions()`
 ---
 
-## 📘 Public Class `DocClass`
+## 📘 Public Class DocClass
 
+```java
+public class DocClass
+```
 ## 📦 Campos
 
 - #### `private String name`
@@ -65,8 +71,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public void addInterface(String iface)`
 ---
 
-## 📘 Public Class `DocMethod`
+## 📘 Public Class DocMethod
 
+```java
+public class DocMethod
+```
 ## 📦 Campos
 
 - #### `private String name`
@@ -97,8 +106,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public List<DocException> getExceptions()`
 ---
 
-## 📘 Public Class `DocParameter`
+## 📘 Public Class DocParameter
 
+```java
+public class DocParameter
+```
 ## 📦 Campos
 
 - #### `private String name`
@@ -112,8 +124,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public String getDescription()`
 ---
 
-## 📘 Public Class `DocPackage`
+## 📘 Public Class DocPackage
 
+```java
+public class DocPackage
+```
 ## 📦 Campos
 
 - #### `private String name`
@@ -128,12 +143,18 @@ Representa un constructor documentado dentro de una clase.
 - #### `public void addClass(DocClass docClass)`
 ---
 
-## 📙 Public Enum `Kind`
+## 📙 Public Enum Kind
 
+```java
+public enum Kind
+```
 ---
 
-## 📘 Public Class `DocException`
+## 📘 Public Class DocException
 
+```java
+public class DocException
+```
 ## 📦 Campos
 
 - #### `private String name`
@@ -147,8 +168,11 @@ Representa un constructor documentado dentro de una clase.
 - #### `public String getDescription()`
 ---
 
-## 📘 Public Class `DocField`
+## 📘 Public Class DocField
 
+```java
+public class DocField
+```
 Representa un campo (atributo) documentado dentro de una clase.
 
 ## 📦 Campos

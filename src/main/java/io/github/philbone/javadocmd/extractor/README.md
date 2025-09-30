@@ -1,9 +1,11 @@
 # `io.github.philbone.javadocmd.extractor`
 
-## 📘 Public Class `JavadocExtractorVisitor`
+## 📘 Public Class JavadocExtractorVisitor
 
-**extends** `VoidVisitorAdapter`
-
+```java
+public class JavadocExtractorVisitor
+extends VoidVisitorAdapter
+```
 Visitor encargado de recorrer los nodos del AST de JavaParser y construir el
 modelo intermedio para la documentación en Markdown.
 
