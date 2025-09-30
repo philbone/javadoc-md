@@ -1,7 +1,5 @@
 # `io.github.philbone.javadocmd`
 
----
-
 ## 📕 Public Abstract Class `JavadocMd`
 
 Punto de entrada principal del programa <b>javadoc-md</b>.

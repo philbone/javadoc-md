@@ -1,7 +1,5 @@
 # `io.github.philbone.javadocmd.model`
 
----
-
 ## 📘 Public Class `DocConstructor`
 
 Representa un constructor documentado dentro de una clase.

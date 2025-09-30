@@ -1,7 +1,5 @@
 # `io.github.philbone.javadocmd.exporter`
 
----
-
 ## 📗 Public Interface `DocExporter`
 
 ## 🧮 Métodos

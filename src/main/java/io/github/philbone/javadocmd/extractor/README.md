@@ -1,7 +1,5 @@
 # `io.github.philbone.javadocmd.extractor`
 
----
-
 ## 📘 Public Class `JavadocExtractorVisitor`
 
 **extends** `VoidVisitorAdapter`

@@ -29,13 +29,17 @@ public class MarkdownExporter implements DocExporter {
     @Override
     public String export(DocPackage docPackage) {
         MarkdownBuilder builder = new MarkdownBuilder();
+        boolean firstClass = true;
 
         // Encabezado principal        
         builder.title("`" + docPackage.getName() + "`");
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            String classVisibility = capitalize(docClass.getVisibility());
+            if (!firstClass) {
+                builder.paragraph("---"); // separador entre clases
+            }
+            firstClass = false;
 
             String emoji = formatEmoji(docClass.getKind());
             String classSignature = emoji + " "
@@ -44,7 +48,6 @@ public class MarkdownExporter implements DocExporter {
                     + formatKind(docClass.getKind())
                     + " `" + docClass.getName() + "`";
 
-            builder.paragraph("---");
             builder.subtitle(classSignature.trim());
 
             // Extends
