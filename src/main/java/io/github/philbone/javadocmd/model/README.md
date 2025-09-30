@@ -5,7 +5,8 @@
 ```java
 public class DocConstructor
 ```
-Representa un constructor documentado dentro de una clase.
+> **Descripción**
+> Representa un constructor documentado dentro de una clase.
 
 ## 📦 Campos
 
@@ -37,38 +38,121 @@ Representa un constructor documentado dentro de una clase.
 ```java
 public class DocClass
 ```
+> **Descripción**
+> Representa la definición de una clase, interfaz, enum o record dentro
+> del modelo intermedio de documentación.
+> <p>
+> Esta entidad encapsula la información esencial que puede obtenerse de
+> una declaración de tipo en código fuente Java, incluyendo:
+> </p>
+> <ul>
+>   <li>Nombre, visibilidad y tipo (clase, interfaz, enum, record, abstracta).</li>
+>   <li>Descripción proveniente de la documentación Javadoc asociada.</li>
+>   <li>Lista de campos, métodos y constructores.</li>
+>   <li>Clase padre extendida y/o interfaces implementadas o extendidas.</li>
+>   <li>Indicador de si la clase es estática.</li>
+> </ul>
+> 
+> <p>
+> La información contenida en esta clase es utilizada por los exportadores
+> (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
+> </p>
+
 ## 📦 Campos
 
 - #### `private String name`
+> Nombre simple de la clase, interfaz, enum o record.
+
 - #### `private String description`
+> Descripción principal tomada del comentario Javadoc asociado.
+
 - #### `private Kind kind`
+> Tipo de elemento representado (clase, interfaz, enum, record, abstracta).
+
 - #### `private String visibility`
+> Nivel de visibilidad del tipo (public, protected, package-private, private).
+
 - #### `private boolean isStatic`
+> Indica si el tipo ha sido declarado como {@code static}.
+
 - #### `private List<DocField> fields`
+> Campos declarados dentro de la clase.
+
 - #### `private List<DocMethod> methods`
+> Métodos declarados dentro de la clase.
+
 - #### `private List<DocConstructor> constructors`
+> Constructores declarados dentro de la clase.
+
 - #### `private String superClass`
+> Nombre de la clase padre (superclase), si existe.
+
 - #### `private List<String> interfaces`
+> Interfaces implementadas (clases) o extendidas (interfaces).
+
 ## 🛠️ Constructores
 
 - #### `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
+> **Descripción**
+> Crea una nueva representación de clase en el modelo intermedio.
+
+> - *@param* `name`nombre simple de la clase
+> - *@param* `description`descripción principal (desde Javadoc)
+> - *@param* `kind`tipo del elemento (clase, interfaz, enum, record)
+> - *@param* `visibility`nivel de visibilidad (public, protected, package-private, private)
+> - *@param* `isStatic`indica si la clase fue declarada como {@code static}
 ## 🧮 Métodos
 
 - #### `public String getName()`
+> *@return* el nombre simple de la clase.
+
 - #### `public String getDescription()`
+> *@return* la descripción tomada del Javadoc.
+
 - #### `public Kind getKind()`
+> *@return* el tipo de elemento representado.
+
 - #### `public String getVisibility()`
+> *@return* la visibilidad del tipo (public, protected, etc.).
+
 - #### `public boolean isStatic()`
+> *@return* {@code true} si la clase fue declarada como estática.
+
 - #### `public List<DocField> getFields()`
+> *@return* lista inmutable de campos de la clase.
+
 - #### `public List<DocMethod> getMethods()`
+> *@return* lista inmutable de métodos de la clase.
+
 - #### `public List<DocConstructor> getConstructors()`
+> *@return* lista inmutable de constructores de la clase.
+
 - #### `public void addField(DocField field)`
+> Agrega un campo al modelo de la clase.
+
+> - *@param* **field** definición del campo
 - #### `public void addMethod(DocMethod method)`
+> Agrega un método al modelo de la clase.
+
+> - *@param* **method** definición del método
 - #### `public void addConstructor(DocConstructor constructor)`
+> Agrega un constructor al modelo de la clase.
+
+> - *@param* **constructor** definición del constructor
 - #### `public String getSuperClass()`
+> *@return* el nombre de la superclase, o {@code null} si no tiene.
+
 - #### `public void setSuperClass(String superClass)`
+> Define la superclase de este tipo.
+
+> - *@param* **superClass** nombre de la clase padre
 - #### `public List<String> getInterfaces()`
+> *@return* lista de interfaces implementadas (clases) o extendidas (interfaces).
+
 - #### `public void addInterface(String iface)`
+> Agrega una interfaz implementada o extendida.
+
+> - *@param* **iface** nombre de la interfaz
 ---
 
 ## 📘 Public Class DocMethod
@@ -173,7 +257,8 @@ public class DocException
 ```java
 public class DocField
 ```
-Representa un campo (atributo) documentado dentro de una clase.
+> **Descripción**
+> Representa un campo (atributo) documentado dentro de una clase.
 
 ## 📦 Campos
 

@@ -23,7 +23,7 @@ public class MarkdownBuilder
         sb.append("- ").append(text).append("\n");
         return this;
     }
-
+    
     public String build() {
         return sb.toString();
     }
@@ -37,5 +37,16 @@ public class MarkdownBuilder
                 .append(content)
                 .append("\n```")
                 .append("\n");
+    }
+    
+    public MarkdownBuilder blockquote(String text) {
+        sb.append("> ").append(text.replace("\n", "\n> ")).append("\n\n");
+        return this;
+    }
+    
+    // premite inyectar cualquier tag
+    public MarkdownBuilder tag(String tag) {
+        sb.append(tag);
+        return this;
     }
 }

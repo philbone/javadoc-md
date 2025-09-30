@@ -16,17 +16,18 @@ public interface DocExporter
 public class MarkdownExporter
 implements DocExporter
 ```
-Exportador que genera documentación en formato Markdown
-a partir del modelo intermedio construido con
-{@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
-
-<p>Renderiza:</p>
-<ul>
-    <li>Firma de la clase (visibilidad, static, tipo, nombre).</li>
-    <li>Extensiones ({@code extends}) e implementaciones ({@code implements}).</li>
-    <li>Descripción general de la clase.</li>
-    <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
-</ul>
+> **Descripción**
+> Exportador que genera documentación en formato Markdown
+> a partir del modelo intermedio construido con
+> {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
+> 
+> <p>Renderiza:</p>
+> <ul>
+>     <li>Firma de la clase (visibilidad, static, tipo, nombre).</li>
+>     <li>Extensiones ({@code extends}) e implementaciones ({@code implements}).</li>
+>     <li>Descripción general de la clase.</li>
+>     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
+> </ul>
 
 ## 🧮 Métodos
 
@@ -52,3 +53,5 @@ public class MarkdownBuilder
 - #### `public MarkdownBuilder listItem(String text)`
 - #### `public String build()`
 - #### `public void codeBlock(String content, String codeLang)`
+- #### `public MarkdownBuilder blockquote(String text)`
+- #### `public MarkdownBuilder tag(String tag)`
