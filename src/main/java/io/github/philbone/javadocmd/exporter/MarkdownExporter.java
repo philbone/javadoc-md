@@ -80,7 +80,7 @@ public class MarkdownExporter implements DocExporter {
                             + (field.isStatic() ? " static" : "")
                             + " " + field.getType()
                             + " " + field.getName();
-                    builder.listItem("#### `" + signatureField.trim() + "`");
+                    builder.listItem("`" + signatureField.trim() + "`");
                     
                     if (field.getDescription() != null && !field.getDescription().isEmpty()) {
                         builder.blockquote(field.getDescription());
@@ -96,7 +96,7 @@ public class MarkdownExporter implements DocExporter {
                             + (constructor.isStatic() ? " static " : " ")
                             + constructor.getName()
                             + "(" + String.join(", ", constructor.getParameters()) + ")";
-                    builder.listItem("#### `" + signatureCons.trim() + "`");
+                    builder.listItem("`" + signatureCons.trim() + "`");
 
                     if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
                         builder.blockquote("**Descripción**\n" + constructor.getDescription());
@@ -123,10 +123,9 @@ public class MarkdownExporter implements DocExporter {
                             + " " + method.getReturnType()
                             + " " + method.getName()
                             + "(" + String.join(", ", method.getParameters()) + ")";
-                    builder.listItem("#### `" + signatureMeth.trim() + "`");
+                    builder.listItem("`" + signatureMeth.trim() + "`");
 
-                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {
-                        //builder.paragraph(method.getDescription());
+                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {                        
                         builder.blockquote(method.getDescription());
                     }
 
@@ -136,13 +135,13 @@ public class MarkdownExporter implements DocExporter {
                     }
 
                     if (method.getReturnDescription() != null) {
-                        builder.blockquote("*@return* " + method.getReturnDescription());
+                        builder.tag("> ");
+                        builder.listItem("*@return* " + method.getReturnDescription());
                     }
 
                     for (DocException ex : method.getExceptions()) {                        
                         builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
-                        
+                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());                        
                     }
                 }
             }
