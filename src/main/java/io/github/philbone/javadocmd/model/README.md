@@ -1,11 +1,24 @@
 # `io.github.philbone.javadocmd.model`
 
+## Resumen de Clases
+|CLASE|DESCRIPCIÓN|
+|---|---|
+|[public class DocConstructor](#-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
+|[public class DocClass](#-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
+|[public class DocMethod](#-public-class-docmethod)|
+|[public class DocParameter](#-public-class-docparameter)|
+|[public class DocPackage](#-public-class-docpackage)|
+|[public enum Kind](#-public-enum-kind)|
+|[public class DocException](#-public-class-docexception)|
+|[public class DocField](#-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
+---
+
 ## 📘 Public Class DocConstructor
 
 ```java
 public class DocConstructor
 ```
-> **Descripción**
+> **Descripción:**
 > Representa un constructor documentado dentro de una clase.
 
 ## 📦 Campos
@@ -38,12 +51,10 @@ public class DocConstructor
 ```java
 public class DocClass
 ```
-> **Descripción**
-> Representa la definición de una clase, interfaz, enum o record dentro
-> del modelo intermedio de documentación.
+> **Descripción:**
+> Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
 > <p>
-> Esta entidad encapsula la información esencial que puede obtenerse de
-> una declaración de tipo en código fuente Java, incluyendo:
+> Esta entidad encapsula la información esencial que puede obtenerse de una declaración de tipo en código fuente Java, incluyendo:
 > </p>
 > <ul>
 >   <li>Nombre, visibilidad y tipo (clase, interfaz, enum, record, abstracta).</li>
@@ -52,10 +63,8 @@ public class DocClass
 >   <li>Clase padre extendida y/o interfaces implementadas o extendidas.</li>
 >   <li>Indicador de si la clase es estática.</li>
 > </ul>
-> 
 > <p>
-> La información contenida en esta clase es utilizada por los exportadores
-> (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
+> La información contenida en esta clase es utilizada por los exportadores (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
 > </p>
 
 ## 📦 Campos
@@ -93,7 +102,7 @@ public class DocClass
 ## 🛠️ Constructores
 
 - `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
-> **Descripción**
+> **Descripción:**
 > Crea una nueva representación de clase en el modelo intermedio.
 
 > - *@param* `name`nombre simple de la clase
@@ -247,7 +256,7 @@ public class DocException
 ```java
 public class DocField
 ```
-> **Descripción**
+> **Descripción:**
 > Representa un campo (atributo) documentado dentro de una clase.
 
 ## 📦 Campos

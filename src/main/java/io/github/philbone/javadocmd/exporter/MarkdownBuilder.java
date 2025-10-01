@@ -1,5 +1,9 @@
 package io.github.philbone.javadocmd.exporter;
 
+import io.github.philbone.javadocmd.model.DocClass;
+import io.github.philbone.javadocmd.model.DocPackage;
+import java.util.regex.Pattern;
+
 public class MarkdownBuilder
 {
     private StringBuilder sb = new StringBuilder();
@@ -74,4 +78,44 @@ public class MarkdownBuilder
         sb.append(tag);
         return this;
     }
+
+    public MarkdownBuilder toc(DocPackage docPackage) {
+        sb.append("## Resumen de Clases\n");
+        sb.append("|CLASE|DESCRIPCIÓN|\n");
+        sb.append("|---|---|\n");
+        for (DocClass docClass : docPackage.getClasses()) {            
+            String item = docClass.getVisibility()
+                    + (docClass.isStatic() ? " static " : " ")
+                    + docClass.getKind().toString().toLowerCase()
+                    + " " + docClass.getName();
+            
+            String itemUrl = "[" + item + "](#-" + item.replaceAll(" ", "-").toLowerCase() + ")";
+            String cleanDesc = sanitizeDescription(docClass.getDescription());
+            sb.append("|").append(itemUrl).append("|").append(cleanDesc).append("\n");
+        }
+        return this;
+    }
+    
+    private String sanitizeDescription(String raw) {
+        if (raw == null || raw.isBlank()) {
+            return "";
+        }
+
+        // 1. Quitar tags HTML
+        String clean = raw.replaceAll("<[^>]+>", " ").replaceAll("\\s+", " ").trim();
+
+        // 2. Cortar en primer punto final
+        int dotIndex = clean.indexOf('.');
+        if (dotIndex > 0) {
+            clean = clean.substring(0, dotIndex + 1);
+        }
+
+        // 3. Cortar en límite de longitud
+        if (clean.length() > 140) {
+            clean = clean.substring(0, 140) + "...";
+        }
+
+        return clean;
+    }
+
 }

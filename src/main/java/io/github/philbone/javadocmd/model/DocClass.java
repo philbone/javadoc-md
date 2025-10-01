@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representa la definición de una clase, interfaz, enum o record dentro
- * del modelo intermedio de documentación.
+ * Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
  * <p>
- * Esta entidad encapsula la información esencial que puede obtenerse de
- * una declaración de tipo en código fuente Java, incluyendo:
+ * Esta entidad encapsula la información esencial que puede obtenerse de una declaración de tipo en código fuente Java, incluyendo:
  * </p>
  * <ul>
  *   <li>Nombre, visibilidad y tipo (clase, interfaz, enum, record, abstracta).</li>
@@ -17,10 +15,8 @@ import java.util.List;
  *   <li>Clase padre extendida y/o interfaces implementadas o extendidas.</li>
  *   <li>Indicador de si la clase es estática.</li>
  * </ul>
- *
  * <p>
- * La información contenida en esta clase es utilizada por los exportadores
- * (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
+ * La información contenida en esta clase es utilizada por los exportadores (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
  * </p>
  *
  * @author Felipe M. philbone@focused.cl
