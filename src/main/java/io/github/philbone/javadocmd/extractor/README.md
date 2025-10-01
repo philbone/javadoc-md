@@ -1,5 +1,6 @@
 # `io.github.philbone.javadocmd.extractor`
 
+- [public class JavadocExtractorVisitor](#-public-class-javadocextractorvisitor)
 ## 📘 Public Class JavadocExtractorVisitor
 
 ```java

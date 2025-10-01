@@ -1,5 +1,8 @@
 package io.github.philbone.javadocmd.exporter;
 
+import io.github.philbone.javadocmd.model.DocClass;
+import io.github.philbone.javadocmd.model.DocPackage;
+
 public class MarkdownBuilder
 {
     private StringBuilder sb = new StringBuilder();
@@ -73,5 +76,17 @@ public class MarkdownBuilder
     public MarkdownBuilder tag(String tag) {
         sb.append(tag);
         return this;
+    }
+
+    void toc(DocPackage docPackage) {
+        for (DocClass docClass : docPackage.getClasses()) {            
+            String item = docClass.getVisibility()
+                    + (docClass.isStatic() ? " static " : " ")
+                    + docClass.getKind().toString().toLowerCase()
+                    + " " + docClass.getName();
+            
+            String itemUrl = "[" + item + "](#-" + item.replaceAll(" ", "-").toLowerCase() + ")";            
+            this.listItem(itemUrl);
+        }
     }
 }

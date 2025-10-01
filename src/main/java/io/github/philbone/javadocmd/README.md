@@ -1,5 +1,6 @@
 # `io.github.philbone.javadocmd`
 
+- [public abstract_class JavadocMd](#-public-abstract_class-javadocmd)
 ## 📕 Public Abstract Class JavadocMd
 
 ```java

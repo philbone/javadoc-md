@@ -1,5 +1,13 @@
 # `io.github.philbone.javadocmd.model`
 
+- [public class DocConstructor](#-public-class-docconstructor)
+- [public class DocClass](#-public-class-docclass)
+- [public class DocMethod](#-public-class-docmethod)
+- [public class DocParameter](#-public-class-docparameter)
+- [public class DocPackage](#-public-class-docpackage)
+- [public enum Kind](#-public-enum-kind)
+- [public class DocException](#-public-class-docexception)
+- [public class DocField](#-public-class-docfield)
 ## 📘 Public Class DocConstructor
 
 ```java

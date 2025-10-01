@@ -24,6 +24,9 @@ public class MarkdownExporter implements DocExporter {
 
         // Encabezado principal        
         builder.title("`" + docPackage.getName() + "`");
+        
+        // TOC
+        builder.toc(docPackage);
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {

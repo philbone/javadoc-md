@@ -1,5 +1,8 @@
 # `io.github.philbone.javadocmd.exporter`
 
+- [public interface DocExporter](#-public-interface-docexporter)
+- [public class MarkdownExporter](#-public-class-markdownexporter)
+- [public class MarkdownBuilder](#-public-class-markdownbuilder)
 ## 📗 Public Interface DocExporter
 
 ```java
@@ -75,3 +78,4 @@ public class MarkdownBuilder
 buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
+- `package-private void toc(DocPackage docPackage)`
