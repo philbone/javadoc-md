@@ -20,7 +20,7 @@ public class MarkdownExporter implements DocExporter {
     @Override
     public String export(DocPackage docPackage) {
         MarkdownBuilder builder = new MarkdownBuilder();
-        boolean firstClass = true;
+        //boolean firstClass = true;
 
         // Encabezado principal        
         builder.title("`" + docPackage.getName() + "`");
@@ -30,10 +30,10 @@ public class MarkdownExporter implements DocExporter {
 
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            if (!firstClass) {
+            //if (!firstClass) {
                 builder.paragraph("---"); // separador entre clases
-            }
-            firstClass = false;
+            //}
+            //firstClass = false;
 
             String emoji = formatEmoji(docClass.getKind());
             String header = emoji + " " 
@@ -72,7 +72,7 @@ public class MarkdownExporter implements DocExporter {
 
             // ========== Descripción ==========
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
-                builder.blockquote("**Descripción**\n" + docClass.getDescription());
+                builder.blockquote("**Descripción:**\n" + docClass.getDescription());
             }
 
             // 📦 Campos
@@ -102,7 +102,7 @@ public class MarkdownExporter implements DocExporter {
                     builder.listItem("`" + signatureCons.trim() + "`");
 
                     if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
-                        builder.blockquote("**Descripción**\n" + constructor.getDescription());
+                        builder.blockquote("**Descripción:**\n" + constructor.getDescription());
                     }
                                         
                     for (DocParameter param : constructor.getDocParameters()) {

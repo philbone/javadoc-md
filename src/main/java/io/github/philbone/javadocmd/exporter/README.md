@@ -1,8 +1,13 @@
 # `io.github.philbone.javadocmd.exporter`
 
-- [public interface DocExporter](#-public-interface-docexporter)
-- [public class MarkdownExporter](#-public-class-markdownexporter)
-- [public class MarkdownBuilder](#-public-class-markdownbuilder)
+## Resumen de Clases
+|CLASE|DESCRIPCIÓN|
+|---|---|
+|[public interface DocExporter](#-public-interface-docexporter)|
+|[public class MarkdownExporter](#-public-class-markdownexporter)|Exportador que genera documentación en formato Markdown a partir del modelo intermedio construido con {@link io.
+|[public class MarkdownBuilder](#-public-class-markdownbuilder)|
+---
+
 ## 📗 Public Interface DocExporter
 
 ```java
@@ -19,7 +24,7 @@ public interface DocExporter
 public class MarkdownExporter
 implements DocExporter
 ```
-> **Descripción**
+> **Descripción:**
 > Exportador que genera documentación en formato Markdown
 > a partir del modelo intermedio construido con
 > {@link io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor}.
@@ -78,4 +83,5 @@ public class MarkdownBuilder
 buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
-- `package-private void toc(DocPackage docPackage)`
+- `public MarkdownBuilder toc(DocPackage docPackage)`
+- `private String sanitizeDescription(String raw)`

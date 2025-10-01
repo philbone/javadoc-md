@@ -1,12 +1,17 @@
 # `io.github.philbone.javadocmd`
 
-- [public abstract_class JavadocMd](#-public-abstract_class-javadocmd)
+## Resumen de Clases
+|CLASE|DESCRIPCIÓN|
+|---|---|
+|[public abstract_class JavadocMd](#-public-abstract_class-javadocmd)|Punto de entrada principal del programa javadoc-md .
+---
+
 ## 📕 Public Abstract Class JavadocMd
 
 ```java
 public abstract class JavadocMd
 ```
-> **Descripción**
+> **Descripción:**
 > Punto de entrada principal del programa <b>javadoc-md</b>.
 > <p>
 > Esta clase se encarga de:
@@ -44,7 +49,7 @@ public abstract class JavadocMd
 ## 🛠️ Constructores
 
 - `protected JavadocMd()`
-> **Descripción**
+> **Descripción:**
 > Constructor protegido por defecto.
 > <p>
 > Inicializa valores de configuración básicos.
