@@ -22,6 +22,11 @@ public class MarkdownBuilder
         sb.append("### ").append(text).append("\n\n");
         return this;
     }
+    
+    public MarkdownBuilder h4(String text) {        
+        sb.append("#### ").append(text).append("\n\n");
+        return this;
+    }
 
     public MarkdownBuilder paragraph(String text) {
         sb.append(text).append("\n\n");
@@ -80,7 +85,7 @@ public class MarkdownBuilder
     }
 
     public MarkdownBuilder toc(DocPackage docPackage) {
-        h3("Resumen de Clases\n");
+        subtitle("Resumen de Clases\n");
         sb.append("|CLASE|DESCRIPCIÓN|\n");
         sb.append("|---|---|\n");
         for (DocClass docClass : docPackage.getClasses()) {            

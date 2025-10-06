@@ -2,7 +2,7 @@
 
 ## io.github.philbone.javadocmd.exporter
 
-### Resumen de Clases
+## Resumen de Clases
 
 
 |CLASE|DESCRIPCIÓN|
@@ -10,18 +10,14 @@
 |[public interface DocExporter](#-public-interface-docexporter)|
 |[public class MarkdownExporter](#-public-class-markdownexporter)|Exportador que genera documentación en formato Markdown a partir del modelo intermedio construido con {@link io.
 |[public class MarkdownBuilder](#-public-class-markdownbuilder)|
----
-
 ## 📗 Public Interface DocExporter
 
 ```java
 public interface DocExporter
 ```
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `package-private String export(DocPackage docPackage)`
----
-
 ## 📘 Public Class MarkdownExporter
 
 ```java
@@ -41,27 +37,32 @@ implements DocExporter
 >     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
 > </ul>
 
-## 🧮 Métodos
+### 📦 Campos
+
+- `private static int COLLAPSE_THRESHOLD`
+> Número mínimo de clases dentro de un paquete para activar el modo colapsable.
+> Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque <details>.
+
+### 🧮 Métodos
 
 - `public String export(DocPackage docPackage)`
 - `private String formatKind(Kind kind)`
 - `private String capitalize(String s)`
 - `private String formatEmoji(Kind kind)`
----
-
 ## 📘 Public Class MarkdownBuilder
 
 ```java
 public class MarkdownBuilder
 ```
-## 📦 Campos
+### 📦 Campos
 
 - `private StringBuilder sb`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public MarkdownBuilder title(String text)`
 - `public MarkdownBuilder subtitle(String text)`
 - `public MarkdownBuilder h3(String text)`
+- `public MarkdownBuilder h4(String text)`
 - `public MarkdownBuilder paragraph(String text)`
 - `public MarkdownBuilder listItem(String text)`
 - `public String build()`
