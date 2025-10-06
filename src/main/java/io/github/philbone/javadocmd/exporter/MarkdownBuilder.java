@@ -80,7 +80,7 @@ public class MarkdownBuilder
     }
 
     public MarkdownBuilder toc(DocPackage docPackage) {
-        sb.append("## Resumen de Clases\n");
+        h3("Resumen de Clases\n");
         sb.append("|CLASE|DESCRIPCIÓN|\n");
         sb.append("|---|---|\n");
         for (DocClass docClass : docPackage.getClasses()) {            

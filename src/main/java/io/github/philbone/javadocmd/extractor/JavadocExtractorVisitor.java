@@ -7,10 +7,12 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.ast.comments.JavadocComment;
 import io.github.philbone.javadocmd.model.*;
+import io.github.philbone.javadocmd.extractor.JavadocUtils;
 
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Visitor encargado de recorrer los nodos del AST de JavaParser y construir el
@@ -23,15 +25,22 @@ import java.util.List;
  *   <li>Procesa herencia ({@code extends}) e interfaces ({@code implements}).</li>
  *   <li>Registra métodos, constructores y campos de cada clase.</li>
  * </ul>
+ *
+ * @author Felipe M.
+ * @project JavadocMd
  */
-public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
-
+public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
+{
     // ========== CLASES E INTERFACES ========== //
     @Override
     public void visit(ClassOrInterfaceDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
 
-        String description = extractDescription(n);
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         Kind kind = n.isInterface()
                 ? Kind.INTERFACE
                 : (n.isAbstract() ? Kind.ABSTRACT_CLASS : Kind.CLASS);
@@ -46,7 +55,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
                 visibility,
                 isStatic
         );
-        System.out.println("Found class: " + n.getNameAsString());
+
         // Procesar extends (una sola clase para Class, múltiples para Interface)
         if (!n.getExtendedTypes().isEmpty()) {
             n.getExtendedTypes().forEach(t -> docClass.setSuperClass(t.getNameAsString()));
@@ -63,6 +72,8 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         n.getMethods().forEach(m -> visitMethod(m, docClass));
         n.getConstructors().forEach(c -> visitConstructor(c, docClass));
         n.getFields().forEach(f -> visitField(f, docClass));
+
+        extractProjectNameAndDescription(n, docPackage, docClass);
     }
 
     // ========== ENUMS ========== //
@@ -70,7 +81,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     public void visit(EnumDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
 
-        String description = extractDescription(n);
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
@@ -101,7 +116,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     public void visit(RecordDeclaration n, DocPackage docPackage) {
         super.visit(n, docPackage);
 
-        String description = extractDescription(n);
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
@@ -132,7 +151,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
 
     // ========== MÉTODOS PRIVADOS ========== //
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
-        String description = "";
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         List<DocParameter> docParams = new ArrayList<>();
         String returnDescription = null;
         List<DocException> exceptions = new ArrayList<>();
@@ -140,7 +163,6 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         Javadoc javadoc = extractJavadoc(n);
 
         if (javadoc != null) {
-            description = javadoc.getDescription().toText();
             for (var tag : javadoc.getBlockTags()) {
                 switch (tag.getType()) {
                     case PARAM -> {
@@ -179,13 +201,16 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     }
 
     private void visitConstructor(ConstructorDeclaration n, DocClass docClass) {
-        String description = "";
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         List<DocParameter> docParams = new ArrayList<>();
         List<DocException> exceptions = new ArrayList<>();
 
         Javadoc javadoc = extractJavadoc(n);
         if (javadoc != null) {
-            description = javadoc.getDescription().toText();
             for (var tag : javadoc.getBlockTags()) {
                 switch (tag.getType()) {
                     case PARAM -> {
@@ -225,7 +250,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     }
 
     private void visitField(FieldDeclaration n, DocClass docClass) {
-        String description = extractDescription(n);
+        String description = JavadocUtils.extractDescription(
+                n.getComment().filter(c -> c instanceof JavadocComment)
+                              .map(JavadocComment.class::cast)
+        );
+
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
 
@@ -242,13 +271,6 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
     }
 
     // ========== UTILIDADES ========== //
-    private String extractDescription(BodyDeclaration<?> n) {
-        return n.getComment()
-                .filter(c -> c instanceof JavadocComment)
-                .map(c -> ((JavadocComment) c).parse().getDescription().toText())
-                .orElse("");
-    }
-
     private Javadoc extractJavadoc(BodyDeclaration<?> n) {
         Optional<JavadocComment> javadocComment = n.getComment()
                 .filter(c -> c instanceof JavadocComment)
@@ -285,4 +307,46 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage> {
         }
         return false;
     }
+
+    private void extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass) {
+        Optional<JavadocComment> maybe = n.getComment()
+                .filter(c -> c instanceof JavadocComment)
+                .map(JavadocComment.class::cast);
+
+        // 1) extraer @project completo (si existe)
+        Optional<String> projectContentOpt = JavadocUtils.extractProjectTag(maybe);
+
+        // 2) si hay @project, separar primera línea → projectName, resto → candidateDescription
+        String candidateFromProject = null;
+        if (projectContentOpt.isPresent()) {
+            String projectContent = projectContentOpt.get(); // puede tener \n
+            String[] parts = projectContent.split("\\R", 2); // primer salto de línea
+            String projectName = parts[0].trim();
+            if (!projectName.isEmpty() && (docPackage.getProjectName() == null || docPackage.getProjectName().isEmpty())) {
+                docPackage.setProjectName(projectName);
+            }
+            if (parts.length > 1) {
+                candidateFromProject = parts[1].trim();
+            }
+        }
+
+        // 3) extraer descripción "normal" (preferida)
+        String description = JavadocUtils.extractDescription(maybe);
+
+        // 4) fallback: si no hay descripción y había texto extra en @project, usarlo
+        if ((description == null || description.isEmpty()) && candidateFromProject != null && !candidateFromProject.isEmpty()) {
+            description = candidateFromProject;
+        }
+
+        // 5) si aún vacío, ya que tenemos extractFullDescription, podemos considerar usarlo
+        //    como último recurso (opcional). Aquí lo dejamos como no obligatorio.
+        if (description == null || description.isEmpty()) {
+            // opcional: comentar o activar según prefieras
+            // description = JavadocUtils.extractFullDescription(maybe);
+        }
+
+        if (description != null && !description.isEmpty()) {
+            docClass.setDescription(description);
+        }
+    }    
 }

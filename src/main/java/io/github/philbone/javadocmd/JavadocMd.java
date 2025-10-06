@@ -43,6 +43,9 @@ import java.util.*;
  * <p>
  * Actualmente soporta la exportación de documentación hacia un archivo
  * <code>README.md</code> por cada paquete encontrado en el proyecto.</p>
+ * 
+ * @author Felipe M
+ * @project JavadocMd
  */
 public abstract class JavadocMd
 {
@@ -55,6 +58,7 @@ public abstract class JavadocMd
 
     /**
      * Directorio de entrada donde se encuentran las clases a documentar.
+     * @author Felipe M.
      */
     private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";
 
