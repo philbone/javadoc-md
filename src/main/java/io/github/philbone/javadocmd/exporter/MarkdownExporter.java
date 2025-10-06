@@ -17,7 +17,14 @@ import io.github.philbone.javadocmd.model.*;
  * 
  * @project JavadocMd
  */
-public class MarkdownExporter implements DocExporter {
+public class MarkdownExporter implements DocExporter
+{
+   /**
+    * 
+    * Número mínimo de clases dentro de un paquete para activar el modo colapsable.
+    * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque <details>.
+    */
+    private static final int COLLAPSE_THRESHOLD = 4;
 
     @Override
     public String export(DocPackage docPackage) {
@@ -34,19 +41,22 @@ public class MarkdownExporter implements DocExporter {
         // TOC
         builder.toc(docPackage);
 
+        // Determinar si se deben colapsar las clases
+        boolean collapseClasses = docPackage.getClasses().size() > COLLAPSE_THRESHOLD;
+
         // Recorrer clases / interfaces / enums / records
         for (DocClass docClass : docPackage.getClasses()) {
-            //if (!firstClass) {
-                builder.paragraph("---"); // separador entre clases
-            //}
-            //firstClass = false;
-
             String emoji = formatEmoji(docClass.getKind());
-            String header = emoji + " " 
+            String header = emoji + " "
                     + capitalize(docClass.getVisibility())
                     + (docClass.isStatic() ? " static " : " ")
                     + formatKind(docClass.getKind())
                     + " " + docClass.getName();
+
+            if (collapseClasses) {
+                builder.tag("<details>\n");
+                builder.tag("<summary> <strong>"+ header.trim() +"</strong> </summary>\n\n");
+            }
 
             builder.subtitle(header.trim());
 
@@ -83,7 +93,7 @@ public class MarkdownExporter implements DocExporter {
 
             // 📦 Campos
             if (!docClass.getFields().isEmpty()) {
-                builder.subtitle("📦 Campos");
+                builder.h3("📦 Campos");
                 for (DocField field : docClass.getFields()) {
                     String signatureField = field.getVisibility()
                             + (field.isStatic() ? " static" : "")
@@ -99,7 +109,7 @@ public class MarkdownExporter implements DocExporter {
 
             // 🛠️ Constructores
             if (!docClass.getConstructors().isEmpty()) {
-                builder.subtitle("🛠️ Constructores");
+                builder.h3("🛠️ Constructores");
                 for (DocConstructor constructor : docClass.getConstructors()) {
                     String signatureCons = constructor.getVisibility()
                             + (constructor.isStatic() ? " static " : " ")
@@ -125,7 +135,7 @@ public class MarkdownExporter implements DocExporter {
 
             // 🧮 Métodos
             if (!docClass.getMethods().isEmpty()) {
-                builder.subtitle("🧮 Métodos");
+                builder.h3("🧮 Métodos");
                 for (DocMethod method : docClass.getMethods()) {
                     String signatureMeth = method.getVisibility()
                             + (method.isStatic() ? " static" : "")
@@ -153,6 +163,10 @@ public class MarkdownExporter implements DocExporter {
                         builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());                        
                     }
                 }
+            }
+            
+            if (collapseClasses) {
+                builder.tag("\n</details>\n");
             }
         }
 

@@ -2,15 +2,13 @@
 
 ## io.github.philbone.javadocmd.extractor
 
-### Resumen de Clases
+## Resumen de Clases
 
 
 |CLASE|DESCRIPCIÓN|
 |---|---|
 |[public class JavadocExtractorVisitor](#-public-class-javadocextractorvisitor)|Visitor encargado de recorrer los nodos del AST de JavaParser y construir el modelo intermedio para la documentación en Markdown.
 |[public class JavadocUtils](#-public-class-javadocutils)|Utilidades para trabajar con JavadocComment de JavaParser.
----
-
 ## 📘 Public Class JavadocExtractorVisitor
 
 ```java
@@ -29,7 +27,7 @@ extends VoidVisitorAdapter
 >   <li>Registra métodos, constructores y campos de cada clase.</li>
 > </ul>
 
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public void visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
 - `public void visit(EnumDeclaration n, DocPackage docPackage)`
@@ -49,8 +47,6 @@ extends VoidVisitorAdapter
 > - *@param* **n** nodo del AST.
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
 - `private void extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
----
-
 ## 📘 Public Class JavadocUtils
 
 ```java
@@ -66,10 +62,10 @@ public class JavadocUtils
 >   <li>obtener una "descripción completa" que incluye los block tags (útil para debugging / fallback).</li>
 > </ul>
 
-## 📦 Campos
+### 📦 Campos
 
 - `private static List<String> TECHNICAL_TAGS`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `private static Javadoc parseCleaning(JavadocComment comment)`
 - `public static String extractDescription(Optional<JavadocComment> maybeComment)`
