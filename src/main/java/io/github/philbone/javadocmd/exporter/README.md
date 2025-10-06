@@ -10,6 +10,7 @@
 |[public interface DocExporter](#-public-interface-docexporter)|
 |[public class MarkdownExporter](#-public-class-markdownexporter)|Exportador que genera documentación en formato Markdown a partir del modelo intermedio construido con {@link io.
 |[public class MarkdownBuilder](#-public-class-markdownbuilder)|
+|[public class JavaApiLinker](#-public-class-javaapilinker)|Utilidad para convertir nombres de tipos de Java en enlaces a la documentación oficial de la API de Java SE.
 ---
 
 ## 📗 Public Interface DocExporter
@@ -89,3 +90,46 @@ buffer).
 llamadas.
 - `public MarkdownBuilder toc(DocPackage docPackage)`
 - `private String sanitizeDescription(String raw)`
+---
+
+## 📘 Public Class JavaApiLinker
+
+```java
+public class JavaApiLinker
+```
+> **Descripción:**
+> Utilidad para convertir nombres de tipos de Java en enlaces
+> a la documentación oficial de la API de Java SE.
+> 
+> <p>Ejemplo:</p>
+> <pre>{@code
+> JavaApiLinker.linkIfJavaType("List<String>");
+> // → [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String>
+> }</pre>
+
+## 📦 Campos
+
+- `private static String BASE_URL`
+> Versión base de la documentación de Java.
+
+- `private static Pattern GENERIC_PATTERN`
+> Patrón para detectar tipos genéricos (por ejemplo, List<String>)
+
+## 🧮 Métodos
+
+- `public static String linkIfJavaType(String type)`
+> Si el tipo pertenece al paquete estándar de Java (java.* o javax.*),
+> devuelve un enlace Markdown al Javadoc oficial.
+> De lo contrario, devuelve el tipo original sin enlace.
+
+- `private static String fqcnToUrl(String fqcn)`
+> Convierte un nombre de clase totalmente calificado en URL al Javadoc.
+
+- `private static String determineModule(String pkg)`
+> Determina el módulo de Java donde reside un paquete.
+> Esto cubre los módulos más usados en Java SE 17.
+
+- `private static String resolveToFQCN(String type)`
+> Intenta mapear un tipo simple (como "List") a su nombre de clase completo.
+> Solo incluye clases comunes de la API estándar.
+
