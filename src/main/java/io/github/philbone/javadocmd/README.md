@@ -32,20 +32,20 @@ public abstract class JavadocMd
 
 ### 📦 Campos
 
-- `private static String outFileName`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
 > Nombre por defecto del archivo de salida que contendrá la documentación
 > en cada paquete.
 
-- `private static String sourcePath`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
 > Directorio de entrada donde se encuentran las clases a documentar.
 
-- `private static String outputPath`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
 > Directorio base donde se escribirá la documentación generada.
 
-- `private static int executionCount`
+- `private static` int `executionCount`
 > Contador global de ejecuciones del generador de documentación.
 
-- `private static boolean debug`
+- `private static` boolean `debug`
 > Bandera de depuración para imprimir trazas adicionales.
 
 ### 🛠️ Constructores
@@ -59,13 +59,13 @@ public abstract class JavadocMd
 > - *@throws* **IllegalStateException** si la configuración inicial es inválida.
 ### 🧮 Métodos
 
-- `public static void main(String[] args)`
+- `public static` void `main(String[] args)`
 > Método principal que inicia el proceso de generación de documentación.
 
 > - *@param* **args** argumentos opcionales (no utilizados actualmente). Se planea
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
-- `public static void generateDocs(String sourcePath, String outputPath)`
+- `public static` void `generateDocs(String sourcePath, String outputPath)`
 > Genera la documentación en formato Markdown a partir del código fuente de
 > un proyecto Java.
 > <p>
@@ -86,4 +86,4 @@ Java a documentar.
 > - *@param* **outputPath** ruta del directorio donde se guardará la documentación
 generada. Si es <code>null</code> o vacío, la documentación se imprime en
 consola.
-- `public static void forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
+- `public static` void `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`

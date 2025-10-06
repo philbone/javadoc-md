@@ -14,30 +14,30 @@ import io.github.philbone.javadocmd.model.*;
  *     <li>Descripción general de la clase.</li>
  *     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
  * </ul>
- * 
+ *
  * @project JavadocMd
  */
 public class MarkdownExporter implements DocExporter
 {
-   /**
-    * 
-    * Número mínimo de clases dentro de un paquete para activar el modo colapsable.
-    * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque <details>.
-    */
+    /**
+     * Número mínimo de clases dentro de un paquete para activar el modo colapsable.
+     * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
+     */
     private static final int COLLAPSE_THRESHOLD = 4;
+
+    private final JavaApiLinker apiLinker = new JavaApiLinker();
 
     @Override
     public String export(DocPackage docPackage) {
         MarkdownBuilder builder = new MarkdownBuilder();
-        //boolean firstClass = true;
 
         // Encabezado principal
         if (docPackage.getProjectName() != null && !docPackage.getProjectName().isEmpty()) {
             builder.title(docPackage.getProjectName());
         }
-        
+
         builder.subtitle(docPackage.getName());
-        
+
         // TOC
         builder.toc(docPackage);
 
@@ -55,7 +55,7 @@ public class MarkdownExporter implements DocExporter
 
             if (collapseClasses) {
                 builder.tag("<details>\n");
-                builder.tag("<summary> <strong>"+ header.trim() +"</strong> </summary>\n\n");
+                builder.tag("<summary> <strong>" + header.trim() + "</strong> </summary>\n\n");
             }
 
             builder.subtitle(header.trim());
@@ -95,15 +95,16 @@ public class MarkdownExporter implements DocExporter
             if (!docClass.getFields().isEmpty()) {
                 builder.h3("📦 Campos");
                 for (DocField field : docClass.getFields()) {
-                    String signatureField = field.getVisibility()
-                            + (field.isStatic() ? " static" : "")
-                            + " " + field.getType()
-                            + " " + field.getName();
-                    builder.listItem("`" + signatureField.trim() + "`");
-                    
+                    String typeLinked = formatCodeOrLink(field.getType());
+                    String signatureField = " `" + field.getVisibility() 
+                            + (field.isStatic() ? " static`" : "`")
+                            + " " + typeLinked
+                            + " `" + field.getName() + "` ";
+                    builder.listItem(signatureField.trim());
+
                     if (field.getDescription() != null && !field.getDescription().isEmpty()) {
                         builder.blockquote(field.getDescription());
-                    }                    
+                    }
                 }
             }
 
@@ -120,15 +121,15 @@ public class MarkdownExporter implements DocExporter
                     if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
                         builder.blockquote("**Descripción:**\n" + constructor.getDescription());
                     }
-                                        
+
                     for (DocParameter param : constructor.getDocParameters()) {
                         builder.tag("> ");
-                        builder.listItem("*@param* `" + param.getName() + "`" + param.getDescription());                        
+                        builder.listItem("*@param* `" + param.getName() + "` " + param.getDescription());
                     }
 
                     for (DocException ex : constructor.getExceptions()) {
                         builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());                        
+                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
                     }
                 }
             }
@@ -137,14 +138,15 @@ public class MarkdownExporter implements DocExporter
             if (!docClass.getMethods().isEmpty()) {
                 builder.h3("🧮 Métodos");
                 for (DocMethod method : docClass.getMethods()) {
-                    String signatureMeth = method.getVisibility()
-                            + (method.isStatic() ? " static" : "")
-                            + " " + method.getReturnType()
-                            + " " + method.getName()
-                            + "(" + String.join(", ", method.getParameters()) + ")";
-                    builder.listItem("`" + signatureMeth.trim() + "`");
+                    String returnType = formatCodeOrLink(method.getReturnType());
+                    String signatureMeth = " `" + method.getVisibility()
+                            + (method.isStatic() ? " static`" : "`")
+                            + " " + returnType
+                            + " `" + method.getName()
+                            + "(" + String.join(", ", method.getParameters()) + ")`";
+                    builder.listItem(signatureMeth.trim());
 
-                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {                        
+                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {
                         builder.blockquote(method.getDescription());
                     }
 
@@ -158,19 +160,30 @@ public class MarkdownExporter implements DocExporter
                         builder.listItem("*@return* " + method.getReturnDescription());
                     }
 
-                    for (DocException ex : method.getExceptions()) {                        
+                    for (DocException ex : method.getExceptions()) {
                         builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());                        
+                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
                     }
                 }
             }
-            
+
             if (collapseClasses) {
                 builder.tag("\n</details>\n");
             }
         }
 
         return builder.build();
+    }
+
+    /** Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`. */
+    private String formatCodeOrLink(String type) {
+        if (type == null || type.isBlank()) return "";
+        String url = apiLinker.linkIfJavaType(type);
+        if (url != null) {
+            //return "[" + type + "](" + url + ")";
+            return url;
+        }
+        return "`" + type + "`";
     }
 
     private String formatKind(Kind kind) {
@@ -197,5 +210,4 @@ public class MarkdownExporter implements DocExporter
             case RECORD -> "📒";
         };
     }
-
 }
