@@ -14,6 +14,8 @@ import io.github.philbone.javadocmd.model.*;
  *     <li>Descripción general de la clase.</li>
  *     <li>Campos, constructores y métodos con sus firmas y documentación Javadoc.</li>
  * </ul>
+ * 
+ * @project JavadocMd
  */
 public class MarkdownExporter implements DocExporter {
 
@@ -22,8 +24,12 @@ public class MarkdownExporter implements DocExporter {
         MarkdownBuilder builder = new MarkdownBuilder();
         //boolean firstClass = true;
 
-        // Encabezado principal        
-        builder.title("`" + docPackage.getName() + "`");
+        // Encabezado principal
+        if (docPackage.getProjectName() != null && !docPackage.getProjectName().isEmpty()) {
+            builder.title(docPackage.getProjectName());
+        }
+        
+        builder.subtitle(docPackage.getName());
         
         // TOC
         builder.toc(docPackage);

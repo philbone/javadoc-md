@@ -28,10 +28,7 @@ import java.util.List;
 public class DocClass {
 
     /** Nombre simple de la clase, interfaz, enum o record. */
-    private final String name;
-
-    /** Descripción principal tomada del comentario Javadoc asociado. */
-    private final String description;
+    private final String name;   
 
     /** Tipo de elemento representado (clase, interfaz, enum, record, abstracta). */
     private final Kind kind;
@@ -56,6 +53,9 @@ public class DocClass {
 
     /** Interfaces implementadas (clases) o extendidas (interfaces). */
     private final List<String> interfaces = new ArrayList<>();
+    
+    /** Descripción principal tomada del comentario Javadoc asociado. */
+    private String description;
 
     /**
      * Crea una nueva representación de clase en el modelo intermedio.
@@ -148,4 +148,6 @@ public class DocClass {
      * @param iface nombre de la interfaz
      */
     public void addInterface(String iface) { this.interfaces.add(iface); }
+
+    public void setDescription(String description) { this.description = description; }
 }

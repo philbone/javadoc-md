@@ -1,13 +1,17 @@
-# `io.github.philbone.javadocmd.model`
+# JavadocMd
 
-## Resumen de Clases
+## io.github.philbone.javadocmd.model
+
+### Resumen de Clases
+
+
 |CLASE|DESCRIPCIÓN|
 |---|---|
 |[public class DocConstructor](#-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
 |[public class DocClass](#-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
 |[public class DocMethod](#-public-class-docmethod)|
 |[public class DocParameter](#-public-class-docparameter)|
-|[public class DocPackage](#-public-class-docpackage)|
+|[public class DocPackage](#-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
 |[public enum Kind](#-public-enum-kind)|
 |[public class DocException](#-public-class-docexception)|
 |[public class DocField](#-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
@@ -72,9 +76,6 @@ public class DocClass
 - `private String name`
 > Nombre simple de la clase, interfaz, enum o record.
 
-- `private String description`
-> Descripción principal tomada del comentario Javadoc asociado.
-
 - `private Kind kind`
 > Tipo de elemento representado (clase, interfaz, enum, record, abstracta).
 
@@ -98,6 +99,9 @@ public class DocClass
 
 - `private List<String> interfaces`
 > Interfaces implementadas (clases) o extendidas (interfaces).
+
+- `private String description`
+> Descripción principal tomada del comentario Javadoc asociado.
 
 ## 🛠️ Constructores
 
@@ -152,6 +156,7 @@ public class DocClass
 > Agrega una interfaz implementada o extendida.
 
 > - *@param* **iface** nombre de la interfaz
+- `public void setDescription(String description)`
 ---
 
 ## 📘 Public Class DocMethod
@@ -212,18 +217,67 @@ public class DocParameter
 ```java
 public class DocPackage
 ```
+> **Descripción:**
+> Representa un paquete de Java dentro del modelo intermedio de documentación.
+> <p>
+> Esta clase agrupa todas las {@link DocClass} (clases, interfaces, enums y records)
+> pertenecientes a un mismo paquete, junto con su nombre.
+> Es utilizada como unidad base por los exportadores para generar la documentación.
+> </p>
+> 
+> <h2>Responsabilidades:</h2>
+> <ul>
+>   <li>Almacenar el nombre del paquete analizado.</li>
+>   <li>Contener la colección de clases, interfaces, enums y records del paquete.</li>
+>   <li>Proveer métodos para acceder y agregar clases al paquete.</li>
+> </ul>
+> 
+> <h2>Uso típico:</h2>
+> Un {@code DocPackage} se crea durante la fase de extracción de Javadoc
+> y posteriormente es consumido por un {@code DocExporter} para generar la salida
+> (por ejemplo, en formato Markdown).
+> 
+> <pre>{@code
+> DocPackage pkg = new DocPackage("io.github.philbone.javadocmd.exporter");
+> pkg.addClass(new DocClass("MarkdownExporter", "...", Kind.CLASS, "public", false));
+> }</pre>
+
 ## 📦 Campos
 
 - `private String name`
+> Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
+
 - `private List<DocClass> classes`
+> Conjunto de clases, interfaces, enums y records pertenecientes al paquete.
+
+- `private String projectName`
 ## 🛠️ Constructores
 
 - `public DocPackage(String name)`
+> **Descripción:**
+> Crea un nuevo descriptor de paquete.
+
+> - *@param* `name`nombre del paquete en notación estándar de Java.
 ## 🧮 Métodos
 
 - `public String getName()`
+> Obtiene el nombre del paquete.
+
+> - *@return* nombre completo del paquete.
 - `public List<DocClass> getClasses()`
+> Devuelve la lista de clases, interfaces, enums y records que pertenecen al paquete.
+> <p>
+> La lista devuelta es la instancia interna; se recomienda usar
+> {@link #addClass(DocClass)} para agregar elementos en lugar de modificarla directamente.
+> </p>
+
+> - *@return* lista de clases del paquete.
 - `public void addClass(DocClass docClass)`
+> Agrega una nueva clase, interfaz, enum o record al paquete.
+
+> - *@param* **docClass** instancia de {@link DocClass} a agregar.
+- `public void setProjectName(String projectName)`
+- `public String getProjectName()`
 ---
 
 ## 📙 Public Enum Kind
