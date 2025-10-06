@@ -2,14 +2,12 @@
 
 ## io.github.philbone.javadocmd
 
-### Resumen de Clases
+## Resumen de Clases
 
 
 |CLASE|DESCRIPCIÓN|
 |---|---|
 |[public abstract_class JavadocMd](#-public-abstract_class-javadocmd)|Punto de entrada principal del programa javadoc-md .
----
-
 ## 📕 Public Abstract Class JavadocMd
 
 ```java
@@ -32,7 +30,7 @@ public abstract class JavadocMd
 > Actualmente soporta la exportación de documentación hacia un archivo
 > <code>README.md</code> por cada paquete encontrado en el proyecto.</p>
 
-## 📦 Campos
+### 📦 Campos
 
 - `private static String outFileName`
 > Nombre por defecto del archivo de salida que contendrá la documentación
@@ -50,7 +48,7 @@ public abstract class JavadocMd
 - `private static boolean debug`
 > Bandera de depuración para imprimir trazas adicionales.
 
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `protected JavadocMd()`
 > **Descripción:**
@@ -59,7 +57,7 @@ public abstract class JavadocMd
 > Inicializa valores de configuración básicos.
 
 > - *@throws* **IllegalStateException** si la configuración inicial es inválida.
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public static void main(String[] args)`
 > Método principal que inicia el proceso de generación de documentación.

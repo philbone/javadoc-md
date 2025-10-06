@@ -2,7 +2,7 @@
 
 ## io.github.philbone.javadocmd.model
 
-### Resumen de Clases
+## Resumen de Clases
 
 
 |CLASE|DESCRIPCIÓN|
@@ -15,7 +15,8 @@
 |[public enum Kind](#-public-enum-kind)|
 |[public class DocException](#-public-class-docexception)|
 |[public class DocField](#-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
----
+<details>
+<summary> <strong>📘 Public Class DocConstructor</strong> </summary>
 
 ## 📘 Public Class DocConstructor
 
@@ -25,7 +26,7 @@ public class DocConstructor
 > **Descripción:**
 > Representa un constructor documentado dentro de una clase.
 
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 - `private List<String> parameters`
@@ -34,10 +35,10 @@ public class DocConstructor
 - `private boolean isStatic`
 - `private List<DocParameter> docParameters`
 - `private List<DocException> exceptions`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 - `public List<String> getParameters()`
@@ -48,7 +49,10 @@ public class DocConstructor
 - `public List<DocParameter> getDocParameters()`
 - `public void addException(DocException exception)`
 - `public List<DocException> getExceptions()`
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocClass</strong> </summary>
 
 ## 📘 Public Class DocClass
 
@@ -71,7 +75,7 @@ public class DocClass
 > La información contenida en esta clase es utilizada por los exportadores (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
 > </p>
 
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 > Nombre simple de la clase, interfaz, enum o record.
@@ -103,7 +107,7 @@ public class DocClass
 - `private String description`
 > Descripción principal tomada del comentario Javadoc asociado.
 
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
 > **Descripción:**
@@ -114,7 +118,7 @@ public class DocClass
 > - *@param* `kind`tipo del elemento (clase, interfaz, enum, record)
 > - *@param* `visibility`nivel de visibilidad (public, protected, package-private, private)
 > - *@param* `isStatic`indica si la clase fue declarada como {@code static}
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 > - *@return* el nombre simple de la clase.
@@ -157,14 +161,17 @@ public class DocClass
 
 > - *@param* **iface** nombre de la interfaz
 - `public void setDescription(String description)`
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocMethod</strong> </summary>
 
 ## 📘 Public Class DocMethod
 
 ```java
 public class DocMethod
 ```
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 - `private String returnType`
@@ -175,10 +182,10 @@ public class DocMethod
 - `private String returnDescription`
 - `private List<DocParameter> docParameters`
 - `private List<DocException> exceptions`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic)`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 - `public String getReturnType()`
@@ -192,25 +199,31 @@ public class DocMethod
 - `public List<DocParameter> getDocParameters()`
 - `public void addException(DocException exception)`
 - `public List<DocException> getExceptions()`
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocParameter</strong> </summary>
 
 ## 📘 Public Class DocParameter
 
 ```java
 public class DocParameter
 ```
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 - `private String description`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocParameter(String name, String description)`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 - `public String getDescription()`
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocPackage</strong> </summary>
 
 ## 📘 Public Class DocPackage
 
@@ -242,7 +255,7 @@ public class DocPackage
 > pkg.addClass(new DocClass("MarkdownExporter", "...", Kind.CLASS, "public", false));
 > }</pre>
 
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 > Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
@@ -251,14 +264,14 @@ public class DocPackage
 > Conjunto de clases, interfaces, enums y records pertenecientes al paquete.
 
 - `private String projectName`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocPackage(String name)`
 > **Descripción:**
 > Crea un nuevo descriptor de paquete.
 
 > - *@param* `name`nombre del paquete en notación estándar de Java.
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 > Obtiene el nombre del paquete.
@@ -278,32 +291,41 @@ public class DocPackage
 > - *@param* **docClass** instancia de {@link DocClass} a agregar.
 - `public void setProjectName(String projectName)`
 - `public String getProjectName()`
----
+
+</details>
+<details>
+<summary> <strong>📙 Public Enum Kind</strong> </summary>
 
 ## 📙 Public Enum Kind
 
 ```java
 public enum Kind
 ```
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocException</strong> </summary>
 
 ## 📘 Public Class DocException
 
 ```java
 public class DocException
 ```
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 - `private String description`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocException(String name, String description)`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 - `public String getDescription()`
----
+
+</details>
+<details>
+<summary> <strong>📘 Public Class DocField</strong> </summary>
 
 ## 📘 Public Class DocField
 
@@ -313,20 +335,22 @@ public class DocField
 > **Descripción:**
 > Representa un campo (atributo) documentado dentro de una clase.
 
-## 📦 Campos
+### 📦 Campos
 
 - `private String name`
 - `private String type`
 - `private String description`
 - `private String visibility`
 - `private boolean isStatic`
-## 🛠️ Constructores
+### 🛠️ Constructores
 
 - `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
-## 🧮 Métodos
+### 🧮 Métodos
 
 - `public String getName()`
 - `public String getType()`
 - `public String getDescription()`
 - `public String getVisibility()`
 - `public boolean isStatic()`
+
+</details>
