@@ -183,6 +183,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
 
         String visibility = extractVisibility(n);
         boolean isStatic = extractIsStatic(n);
+        boolean  isVoid = extractIsVoid(n);
 
         DocMethod docMethod = new DocMethod(
                 n.getNameAsString(),
@@ -190,7 +191,8 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 n.getParameters().stream().map(p -> p.getType() + " " + p.getName()).toList(),
                 description,
                 visibility,
-                isStatic
+                isStatic,
+                isVoid
         );
 
         docParams.forEach(docMethod::addDocParameter);
@@ -304,6 +306,13 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         if (n instanceof NodeWithModifiers<?>) {
             NodeWithModifiers<?> withMods = (NodeWithModifiers<?>) n;
             return withMods.hasModifier(Modifier.Keyword.STATIC);
+        }
+        return false;
+    }
+    
+    private boolean extractIsVoid(MethodDeclaration n) {
+        if (n.getType().isVoidType()) {            
+            return true;
         }
         return false;
     }

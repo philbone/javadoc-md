@@ -18,7 +18,7 @@ public interface DocExporter
 ```
 ### 🧮 Métodos
 
-- `package-private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+- `package-private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
 ## 📘 Public Class MarkdownExporter
 
 ```java
@@ -47,13 +47,13 @@ implements DocExporter
 - `private` JavaApiLinker `apiLinker`
 ### 🧮 Métodos
 
-- `public` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatCodeOrLink(String type)`
+- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+- `private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatCodeOrLink(String type)`
 > Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`.
 
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
+- `private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
+- `private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
+- `private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
 ## 📘 Public Class MarkdownBuilder
 
 ```java
@@ -64,16 +64,16 @@ public class MarkdownBuilder
 - `private` StringBuilder `sb`
 ### 🧮 Métodos
 
-- `public` MarkdownBuilder `title(String text)`
-- `public` MarkdownBuilder `subtitle(String text)`
-- `public` MarkdownBuilder `h3(String text)`
-- `public` MarkdownBuilder `h4(String text)`
-- `public` MarkdownBuilder `paragraph(String text)`
-- `public` MarkdownBuilder `listItem(String text)`
-- `public` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
-- `public` void `codeBlock(String content, String codeLang)`
-- `public` MarkdownBuilder `blockquote(String text)`
-- `public` MarkdownBuilder `tag(String tag)`
+- `public`MarkdownBuilder `title(String text)`
+- `public`MarkdownBuilder `subtitle(String text)`
+- `public`MarkdownBuilder `h3(String text)`
+- `public`MarkdownBuilder `h4(String text)`
+- `public`MarkdownBuilder `paragraph(String text)`
+- `public`MarkdownBuilder `listItem(String text)`
+- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
+- `public` **void** `codeBlock(String content, String codeLang)`
+- `public`MarkdownBuilder `blockquote(String text)`
+- `public`MarkdownBuilder `tag(String tag)`
 > Inyecta una etiqueta arbitraria directamente en el flujo del Markdown.
 > <p>
 > Se utiliza principalmente como auxiliar para aplicar prefijos en las
@@ -93,8 +93,8 @@ public class MarkdownBuilder
 buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
-- `public` MarkdownBuilder `toc(DocPackage docPackage)`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
+- `public`MarkdownBuilder `toc(DocPackage docPackage)`
+- `private`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
 ## 📘 Public Class JavaApiLinker
 
 ```java
@@ -120,19 +120,19 @@ public class JavaApiLinker
 
 ### 🧮 Métodos
 
-- `public static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfJavaType(String type)`
+- `public static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfJavaType(String type)`
 > Si el tipo pertenece al paquete estándar de Java (java.* o javax.*),
 > devuelve un enlace Markdown al Javadoc oficial.
 > De lo contrario, devuelve el tipo original sin enlace.
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
+- `private static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
 > Convierte un nombre de clase totalmente calificado en URL al Javadoc.
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `determineModule(String pkg)`
+- `private static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `determineModule(String pkg)`
 > Determina el módulo de Java donde reside un paquete.
 > Esto cubre los módulos más usados en Java SE 17.
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `resolveToFQCN(String type)`
+- `private static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `resolveToFQCN(String type)`
 > Intenta mapear un tipo simple (como "List") a su nombre de clase completo.
 > Solo incluye clases comunes de la API estándar.
 
