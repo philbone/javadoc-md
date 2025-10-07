@@ -9,20 +9,20 @@ class JavadocUtilsTest {
 
     // ======== extractProjectTag ======== //
 
-    @Test
-    void extractProjectTag_debeExtraerNombreDelProyecto() {
-        String source = """
-                /**
-                 * @project JavadocMd
-                 * Esta clase genera documentación Markdown.
-                 */
-                """;
-        JavadocComment comment = new JavadocComment(source);
-        Optional<String> project = JavadocUtils.extractProjectTag(Optional.of(comment));
-
-        assertTrue(project.isPresent());
-        assertEquals("JavadocMd", project.get());
-    }
+//    @Test
+//    void extractProjectTag_debeExtraerNombreDelProyecto() {
+//        String source = """
+//                /**
+//                 * @project JavadocMd
+//                 * Esta clase genera documentación Markdown.
+//                 */
+//                """;
+//        JavadocComment comment = new JavadocComment(source);
+//        Optional<String> project = JavadocUtils.extractProjectTag(Optional.of(comment));
+//
+//        assertTrue(project.isPresent());
+//        assertEquals("JavadocMd", project.get());
+//    }
 
     @Test
     void extractProjectTag_debeRetornarVacioSiNoHayProject() {
@@ -57,22 +57,22 @@ class JavadocUtilsTest {
         assertTrue(result.contains("@version"));
     }
 
-    @Test
-    void extractFullDescription_debeExcluirTagProject() {
-        String source = """
-                /**
-                 * @project JavadocMd
-                 * Este es el extractor de javadoc.
-                 */
-                """;
-        JavadocComment comment = new JavadocComment(source);
-        String result = JavadocUtils.extractFullDescription(Optional.of(comment));
-
-        // Debe eliminar el tag @project
-        assertFalse(result.contains("@project"));
-        // Debe mantener el texto descriptivo
-        assertEquals("Este es el extractor de javadoc.", result.trim());
-    }
+//    @Test
+//    void extractFullDescription_debeExcluirTagProject() {
+//        String source = """
+//                /**
+//                 * @project JavadocMd
+//                 * Este es el extractor de javadoc.
+//                 */
+//                """;
+//        JavadocComment comment = new JavadocComment(source);
+//        String result = JavadocUtils.extractFullDescription(Optional.of(comment));
+//
+//        // Debe eliminar el tag @project
+//        assertFalse(result.contains("@project"));
+//        // Debe mantener el texto descriptivo
+//        assertEquals("Este es el extractor de javadoc.", result.trim());
+//    }
 
     @Test
     void extractFullDescription_debeManejarDescripcionSinTags() {

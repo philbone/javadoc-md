@@ -11,17 +11,19 @@ public class DocMethod
     private final String description;
     private final String visibility;
     private final boolean isStatic;
+    private final boolean isVoid;
     private String returnDescription;
     private final List<DocParameter> docParameters = new ArrayList<>();
     private final List<DocException> exceptions = new ArrayList<>();
 
-    public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic) {
+    public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid) {
         this.name = name;
         this.returnType = returnType;
         this.parameters = parameters;
         this.description = description;
         this.visibility = visibility;
         this.isStatic = isStatic;
+        this.isVoid = isVoid;
     }
 
     public String getName() { return name; }
@@ -30,6 +32,7 @@ public class DocMethod
     public String getDescription() { return description; }
     public String getVisibility() { return visibility; }
     public boolean isStatic() { return isStatic; }
+    public boolean isVoid() { return isVoid; }
 
     public void setReturnDescription(String returnDescription) { this.returnDescription = returnDescription; }
     public String getReturnDescription() { return returnDescription; }
