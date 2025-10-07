@@ -1,5 +1,6 @@
 package io.github.philbone.javadocmd.exporter;
 
+import io.github.philbone.javadocmd.extractor.JavadocUtils;
 import io.github.philbone.javadocmd.model.*;
 
 /**
@@ -88,7 +89,8 @@ public class MarkdownExporter implements DocExporter
 
             // ========== Descripción ==========
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
-                builder.blockquote("**Descripción:**\n" + docClass.getDescription());
+                String desc = JavadocUtils.normalizeImages(docClass.getDescription());
+                builder.blockquote("**Descripción:**\n" + desc);
             }
 
             // 📦 Campos
@@ -96,14 +98,15 @@ public class MarkdownExporter implements DocExporter
                 builder.h3("📦 Campos");
                 for (DocField field : docClass.getFields()) {
                     String typeLinked = formatCodeOrLink(field.getType());
-                    String signatureField = " `" + field.getVisibility() 
+                    String signatureField = " `" + field.getVisibility()
                             + (field.isStatic() ? " static`" : "`")
                             + " " + typeLinked
                             + " `" + field.getName() + "` ";
                     builder.listItem(signatureField.trim());
 
                     if (field.getDescription() != null && !field.getDescription().isEmpty()) {
-                        builder.blockquote(field.getDescription());
+                        String desc = JavadocUtils.normalizeImages(field.getDescription());
+                        builder.blockquote(desc);
                     }
                 }
             }
@@ -119,7 +122,8 @@ public class MarkdownExporter implements DocExporter
                     builder.listItem("`" + signatureCons.trim() + "`");
 
                     if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
-                        builder.blockquote("**Descripción:**\n" + constructor.getDescription());
+                        String desc = JavadocUtils.normalizeImages(constructor.getDescription());
+                        builder.blockquote("**Descripción:**\n" + desc);
                     }
 
                     for (DocParameter param : constructor.getDocParameters()) {
@@ -141,13 +145,14 @@ public class MarkdownExporter implements DocExporter
                     String returnType = formatCodeOrLink(method.getReturnType());
                     String signatureMeth = " `" + method.getVisibility()
                             + (method.isStatic() ? " static`" : "`")
-                            + (method.isVoid()   ? " **void**" : returnType)
+                            + (method.isVoid() ? " **void**" : returnType)
                             + " `" + method.getName()
                             + "(" + String.join(", ", method.getParameters()) + ")`";
                     builder.listItem(signatureMeth.trim());
 
                     if (method.getDescription() != null && !method.getDescription().isEmpty()) {
-                        builder.blockquote(method.getDescription());
+                        String desc = JavadocUtils.normalizeImages(method.getDescription());
+                        builder.blockquote(desc);
                     }
 
                     for (DocParameter param : method.getDocParameters()) {
@@ -180,8 +185,7 @@ public class MarkdownExporter implements DocExporter
         if (type == null || type.isBlank()) return "";
         String url = apiLinker.linkIfJavaType(type);
         if (url != null) {
-            //return "[" + type + "](" + url + ")";
-            return url;
+            return url; // ya viene como [String](https://...) etc.
         }
         return "`" + type + "`";
     }
