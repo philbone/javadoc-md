@@ -1,4 +1,4 @@
-# JavadocMd
+# JavadocMD
 
 ## io.github.philbone.javadocmd
 
@@ -32,21 +32,8 @@ public abstract class JavadocMd
 
 ### 📦 Campos
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
-> Nombre por defecto del archivo de salida que contendrá la documentación
-> en cada paquete.
-
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
-> Directorio de entrada donde se encuentran las clases a documentar.
-
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
-> Directorio base donde se escribirá la documentación generada.
-
 - `private static` int `executionCount`
 > Contador global de ejecuciones del generador de documentación.
-
-- `private static` boolean `debugMode`
-> Bandera de depuración para imprimir trazas adicionales.
 
 ### 🛠️ Constructores
 
@@ -65,7 +52,7 @@ public abstract class JavadocMd
 > - *@param* **args** argumentos opcionales (no utilizados actualmente). Se planea
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
-- `public static` **void** `generateDocs(String sourcePath, String outputPath)`
+- `public static` **void** `generateDocs(String sourcePath, String outputPath, String outFileName)`
 > Genera la documentación en formato Markdown a partir del código fuente de
 > un proyecto Java.
 > <p>
