@@ -1,0 +1,6 @@
+## YAML Template.
+---
+host: "mi-servidor.com"
+port: 9000
+username: "mi-usuario"
+debug: true
