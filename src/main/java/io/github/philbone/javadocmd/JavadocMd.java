@@ -16,13 +16,14 @@ package io.github.philbone.javadocmd;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import io.github.philbone.javadocmd.config.Config;
+import io.github.philbone.javadocmd.config.ConfigLoader;
 import io.github.philbone.javadocmd.model.DocPackage;
 import io.github.philbone.javadocmd.exporter.DocExporter;
 import io.github.philbone.javadocmd.exporter.MarkdownExporter;
 import io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor;
 
 import java.io.File;
-import java.util.Scanner;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -45,37 +46,14 @@ import java.util.*;
  * <code>README.md</code> por cada paquete encontrado en el proyecto.</p>
  * 
  * @author Felipe M
- * @project JavadocMd
+ * @project JavadocMD
  */
 public abstract class JavadocMd
 {
-
-    /**
-     * Nombre por defecto del archivo de salida que contendrá la documentación
-     * en cada paquete.
-     */
-    private static String outFileName = "README.md";
-
-    /**
-     * Directorio de entrada donde se encuentran las clases a documentar.
-     * @author Felipe M.
-     */
-    private static String sourcePath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/";
-
-    /**
-     * Directorio base donde se escribirá la documentación generada.
-     */
-    private static String outputPath = "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/";
-
     /**
      * Contador global de ejecuciones del generador de documentación.
      */
-    private static int executionCount = 0;
-
-    /**
-     * Bandera de depuración para imprimir trazas adicionales.
-     */
-    private static boolean debug = false;
+    private static int executionCount = 0;    
 
     /**
      * Constructor protegido por defecto.
@@ -99,8 +77,16 @@ public abstract class JavadocMd
         // Forzar Java 21
         forceJavaLevel(ParserConfiguration.LanguageLevel.JAVA_21);
         
+        // carga la configuración externa 
+        Config config = ConfigLoader.loadConfig();
+        // por ahora solo muestra los parámetros cargados
+        System.out.println( "source path: " + config.getSourcePath() );
+        System.out.println( "output path: " + config.getOutputPath() );
+        System.out.println( "output file: " + config.getOutFileName() );
+        System.out.println( "debug mode: " + config.isDebugMode() );
+        
         // Generar documentación
-        generateDocs(sourcePath, outputPath);
+        generateDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
     }
 
     /**
@@ -125,7 +111,7 @@ public abstract class JavadocMd
      * generada. Si es <code>null</code> o vacío, la documentación se imprime en
      * consola.
      */
-    public static void generateDocs(String sourcePath, String outputPath) {
+    public static void generateDocs(String sourcePath, String outputPath, String outFileName) {
         try {
             // 1. Mapear paquetes → DocPackage
             Map<String, DocPackage> packages = new HashMap<>();
@@ -170,6 +156,7 @@ public abstract class JavadocMd
                     // Guardar en archivo README.md dentro del outputPath
                     Path outDir = Paths.get(outputPath, docPackage.getName().replace('.', '/'));
                     Files.createDirectories(outDir);
+                    //Path outFile = outDir.resolve(outFileName);
                     Path outFile = outDir.resolve(outFileName);
                     Files.writeString(outFile, markdown);
                 }
