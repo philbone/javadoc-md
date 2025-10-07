@@ -65,10 +65,12 @@ Utilidades matemáticas.
   **return:** la suma de ambos números  
 
 ## 🧭 Roadmap
-  * [ ] Generar .md automáticamente por paquete.
-  * [ ] Soporte para documentación de constructores.
-  * [ ] Exportar también atributos con sus Javadocs.
+  * [x] Generar .md automáticamente por paquete.
+  * [x] Soporte para documentación de constructores.
+  * [x] Exportar también atributos con sus Javadocs.
   * [ ] Opción CLI para elegir entre salida consolidada (.md único) o por clase.
   * [ ] Opción CLI para cambiar el nombre del md.
   * [ ] Opción CLI para incluir un md el directorio raíz.
   * [ ] Posible extensión para BlueJ/NetBeans/Eclipse.
+
+<img width="100%" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHNnOHpuN3VvcjJzcHRmNGVwZzVwcW02ZTQ5MTk2a2Y5YXczNTExdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wwg1suUiTbCY8H8vIA/giphy.gif">

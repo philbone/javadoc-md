@@ -85,3 +85,17 @@ public class JavadocUtils
 > Devuelve la "descripción completa" del Javadoc, incluyendo los block tags
 > en forma textual, pero ignorando {@code @project}.
 
+- `public static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `normalizeImages(String description)`
+> Normaliza etiquetas HTML de imagen dentro de una descripción Javadoc.
+> <p>
+> Convierte etiquetas <img> en sintaxis Markdown:
+> <pre>{@code
+> ![Diagrama](docs/diagrama.png)
+> →
+> ![Diagrama](docs/diagrama.png)
+> }</pre>
+> 
+> Si no se encuentra atributo {@code alt}, se usa cadena vacía.
+
+> - *@param* **description** Texto a procesar (puede ser null)
+> - *@return* descripción con imágenes convertidas a sintaxis Markdown.

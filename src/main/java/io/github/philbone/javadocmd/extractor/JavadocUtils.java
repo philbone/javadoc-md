@@ -117,4 +117,51 @@ public class JavadocUtils
 
         return sb.toString().trim();
     }
+    
+    /**
+     * Normaliza etiquetas HTML de imagen dentro de una descripción Javadoc.
+     * <p>
+     * Convierte etiquetas <img> en sintaxis Markdown:
+     * <pre>{@code
+     * <img src="docs/diagrama.png" alt="Diagrama">
+     * →
+     * ![Diagrama](docs/diagrama.png)
+     * }</pre>
+     *
+     * Si no se encuentra atributo {@code alt}, se usa cadena vacía.
+     *
+     * @param description Texto a procesar (puede ser null)
+     * @return descripción con imágenes convertidas a sintaxis Markdown.
+     */
+    public static String normalizeImages(String description) {
+        if (description == null || description.isEmpty()) {
+            return description;
+        }
+
+        // Regex que captura src y alt opcional
+        String regex = "<img\\s+[^>]*src\\s*=\\s*\"([^\"]+)\"[^>]*>";
+        StringBuffer sb = new StringBuffer();
+
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile(regex, java.util.regex.Pattern.CASE_INSENSITIVE)
+                .matcher(description);
+
+        while (matcher.find()) {
+            String imgTag = matcher.group();
+            String src = matcher.group(1);
+
+            // Extraer alt si existe
+            String alt = "";
+            java.util.regex.Matcher altMatcher = java.util.regex.Pattern.compile("alt\\s*=\\s*\"([^\"]+)\"", java.util.regex.Pattern.CASE_INSENSITIVE)
+                    .matcher(imgTag);
+            if (altMatcher.find()) {
+                alt = altMatcher.group(1);
+            }
+
+            String replacement = "![" + alt + "](" + src + ")";
+            matcher.appendReplacement(sb, java.util.regex.Matcher.quoteReplacement(replacement));
+        }
+
+        matcher.appendTail(sb);
+        return sb.toString();
+    }    
 }
