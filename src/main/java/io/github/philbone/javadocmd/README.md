@@ -45,7 +45,7 @@ public abstract class JavadocMd
 - `private static` int `executionCount`
 > Contador global de ejecuciones del generador de documentación.
 
-- `private static` boolean `debug`
+- `private static` boolean `debugMode`
 > Bandera de depuración para imprimir trazas adicionales.
 
 ### 🛠️ Constructores

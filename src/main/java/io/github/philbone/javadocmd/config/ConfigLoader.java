@@ -1,17 +1,11 @@
 package io.github.philbone.javadocmd.config;
 
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.dataformat.yaml.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 
-/**
- * Esta clases se encarga de leer el fichero YAML con las opciones configurables por el usuario.
- * 
- * @project JavadocMd
- * @author Felipe M.
- */
-public class ConfigLoader
-{    
+public class ConfigLoader {
+    
     public static Config loadConfig() {
         Config defaultConfig = new Config();
         

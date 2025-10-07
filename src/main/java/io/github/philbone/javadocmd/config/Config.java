@@ -1,37 +1,29 @@
 package io.github.philbone.javadocmd.config;
 
-/**
- * @project JavadocMd
- * @author Felipe M.
- */
 public class Config
 {
-    private String sourcePath = "/directorio_default_fuente/src";
-    private String outputPath = "/directorio_default_salida/doc";
-
-    // Constructor público (importante)
+    private String sourcePath;
+    private String outputPath;
+    private String outFileName;
+    private boolean debugMode;
+    
+    // Constructor con valores por defecto
     public Config() {
-        // Constructor vacío necesario para Jackson
+        this.sourcePath = "/src";
+        this.outputPath = "/doc";
+        this.debugMode = false;
     }
+    
+    // Getters y setters con los mismos nombres que el YAML
+    public String getSourcePath() { return sourcePath; }
+    public void setSourcePath(String sourcePath) { this.sourcePath = sourcePath; }
+    
+    public String getOutputPath() { return outputPath; }
+    public void setOutputPath(String outputPath) { this.outputPath = outputPath; }
 
-    public String getConfigSourcePath() {
-        return sourcePath;
-    }
+    public String getOutFileName() { return outFileName; }
+    public void setOutFileName(String outFileName) { this.outFileName = outFileName; }
 
-    public void setConfigSourcePath(String sourcePath) {
-        this.sourcePath = sourcePath;
-    }
-
-    public String getConfigOutputPath() {
-        return outputPath;
-    }
-
-    public void setConfigOutputPath(String outputPath) {
-        this.outputPath = outputPath;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Config{sourcePath='%s', outputPath='%s'}", sourcePath, outputPath);
-    }
+    public boolean isDebugMode() { return debugMode; }
+    public void setDebugMode(boolean debugMode) { this.debugMode = debugMode; }
 }

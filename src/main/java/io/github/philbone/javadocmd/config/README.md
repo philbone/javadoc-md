@@ -1,5 +1,3 @@
-# JavadocMd
-
 ## io.github.philbone.javadocmd.config
 
 ## Resumen de Clases
@@ -7,16 +5,13 @@
 
 |CLASE|DESCRIPCIÓN|
 |---|---|
-|[public class ConfigLoader](#-public-class-configloader)|Esta clases se encarga de leer el fichero YAML con las opciones configurables por el usuario.
+|[public class ConfigLoader](#-public-class-configloader)|
 |[public class Config](#-public-class-config)|
 ## 📘 Public Class ConfigLoader
 
 ```java
 public class ConfigLoader
 ```
-> **Descripción:**
-> Esta clases se encarga de leer el fichero YAML con las opciones configurables por el usuario.
-
 ### 🧮 Métodos
 
 - `public static`Config `loadConfig()`
@@ -29,13 +24,18 @@ public class Config
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
+- `private` boolean `debugMode`
 ### 🛠️ Constructores
 
 - `public Config()`
 ### 🧮 Métodos
 
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getConfigSourcePath()`
-- `public` **void** `setConfigSourcePath(String sourcePath)`
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getConfigOutputPath()`
-- `public` **void** `setConfigOutputPath(String outputPath)`
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `toString()`
+- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
+- `public` **void** `setSourcePath(String sourcePath)`
+- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
+- `public` **void** `setOutputPath(String outputPath)`
+- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
+- `public` **void** `setOutFileName(String outFileName)`
+- `public`boolean `isDebugMode()`
+- `public` **void** `setDebugMode(boolean debugMode)`

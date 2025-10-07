@@ -76,7 +76,7 @@ public abstract class JavadocMd
     /**
      * Bandera de depuración para imprimir trazas adicionales.
      */
-    private static boolean debug = false;
+    private static boolean debugMode = false;
 
     /**
      * Constructor protegido por defecto.
@@ -100,9 +100,13 @@ public abstract class JavadocMd
         // Forzar Java 21
         forceJavaLevel(ParserConfiguration.LanguageLevel.JAVA_21);
         
+        // carga la configuración externa 
         Config config = ConfigLoader.loadConfig();
-        System.out.println( "source path: " + config.getConfigSourcePath() );
-        System.out.println( "output path: " + config.getConfigOutputPath() );
+        // por ahora solo muestra los parámetros cargados
+        System.out.println( "source path: " + config.getSourcePath() );
+        System.out.println( "output path: " + config.getOutputPath() );
+        System.out.println( "output file: " + config.getOutFileName() );
+        System.out.println( "debug mode: " + config.isDebugMode() );
         
         // Generar documentación
         generateDocs(sourcePath, outputPath);
