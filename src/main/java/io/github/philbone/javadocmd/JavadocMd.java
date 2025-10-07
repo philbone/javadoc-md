@@ -16,13 +16,14 @@ package io.github.philbone.javadocmd;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import io.github.philbone.javadocmd.config.Config;
+import io.github.philbone.javadocmd.config.ConfigLoader;
 import io.github.philbone.javadocmd.model.DocPackage;
 import io.github.philbone.javadocmd.exporter.DocExporter;
 import io.github.philbone.javadocmd.exporter.MarkdownExporter;
 import io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor;
 
 import java.io.File;
-import java.util.Scanner;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -98,6 +99,10 @@ public abstract class JavadocMd
     public static void main(String[] args) {
         // Forzar Java 21
         forceJavaLevel(ParserConfiguration.LanguageLevel.JAVA_21);
+        
+        Config config = ConfigLoader.loadConfig();
+        System.out.println( "source path: " + config.getConfigSourcePath() );
+        System.out.println( "output path: " + config.getConfigOutputPath() );
         
         // Generar documentación
         generateDocs(sourcePath, outputPath);
