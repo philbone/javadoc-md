@@ -27,6 +27,13 @@ public class Config
      * Bandera de depuración para imprimir trazas adicionales.
      */
     private boolean debugMode;
+    
+    /**
+     * Bandera para definir el modo de exportación
+     * false exportar un fichero por cada paquete
+     * true exportar un fichero de forma global.
+     */
+    private boolean combinePackagesMode;
 
     // Constructor con valores por defecto
     public Config() {
@@ -98,4 +105,22 @@ public class Config
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
+    
+    /**
+     * 
+     * @return
+     */
+    public boolean isCombinePackagesMode() {
+        return combinePackagesMode;
+    }
+    
+    /**
+     * 
+     * @param multiFileMode 
+     */
+    public void setCombinePackagesMode(boolean combinePackages) {
+        this.combinePackagesMode = combinePackages;
+    }
+    
+    
 }

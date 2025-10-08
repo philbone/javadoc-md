@@ -52,7 +52,7 @@ public abstract class JavadocMd
 > - *@param* **args** argumentos opcionales (no utilizados actualmente). Se planea
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
-- `public static` **void** `generateDocs(String sourcePath, String outputPath, String outFileName)`
+- `public static` **void** `generatePackageDocs(String sourcePath, String outputPath, String outFileName)`
 > Genera la documentación en formato Markdown a partir del código fuente de
 > un proyecto Java.
 > <p>
@@ -73,4 +73,11 @@ Java a documentar.
 > - *@param* **outputPath** ruta del directorio donde se guardará la documentación
 generada. Si es <code>null</code> o vacío, la documentación se imprime en
 consola.
+- `private static` **void** `generateDocsSingle(String sourcePath, String outputPath, String outFileName)`
+> generateDocs(String sourcePath, String outputPath, String outFileName)
+
+> - *@param* **sourcePath** 
+> - *@param* **outputPath** 
+> - *@param* **outFileName** 
+- `public static` **void** `generateCombinedDocs(String sourcePath, String outputPath, String outFileName)`
 - `public static` **void** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
