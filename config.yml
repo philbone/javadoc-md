@@ -3,4 +3,5 @@
 sourcePath: "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/"
 outputPath: "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/"
 outFileName: "README.md"
+combinePackagesMode: false
 debugMode: false

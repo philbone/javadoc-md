@@ -79,14 +79,13 @@ public abstract class JavadocMd
         
         // carga la configuración externa 
         Config config = ConfigLoader.loadConfig();
-        // por ahora solo muestra los parámetros cargados
-        System.out.println( "source path: " + config.getSourcePath() );
-        System.out.println( "output path: " + config.getOutputPath() );
-        System.out.println( "output file: " + config.getOutFileName() );
-        System.out.println( "debug mode: " + config.isDebugMode() );
         
         // Generar documentación
-        generateDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+        if (config.isCombinePackagesMode()) { // true genera una documentación unificada
+            generateCombinedDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+        } else { // false genera documentación por cada paquete
+            generatePackageDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+        }
     }
 
     /**
@@ -111,7 +110,7 @@ public abstract class JavadocMd
      * generada. Si es <code>null</code> o vacío, la documentación se imprime en
      * consola.
      */
-    public static void generateDocs(String sourcePath, String outputPath, String outFileName) {
+    public static void generatePackageDocs(String sourcePath, String outputPath, String outFileName) {
         try {
             // 1. Mapear paquetes → DocPackage
             Map<String, DocPackage> packages = new HashMap<>();
@@ -160,6 +159,63 @@ public abstract class JavadocMd
                     Path outFile = outDir.resolve(outFileName);
                     Files.writeString(outFile, markdown);
                 }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void generateCombinedDocs(String sourcePath, String outputPath, String outFileName) {
+        try {
+            // 1. Mapear paquetes → DocPackage
+            Map<String, DocPackage> packages = new HashMap<>();
+
+            // 2. Recorrer todos los .java
+            Files.walk(Paths.get(sourcePath))
+                    .filter(p -> p.toString().endsWith(".java"))
+                    .forEach(p -> {
+                        try {
+                            File file = p.toFile();
+                            CompilationUnit cu = StaticJavaParser.parse(file);
+
+                            // 3. Obtener nombre del paquete
+                            String packageName = cu.getPackageDeclaration()
+                                    .map(pd -> pd.getName().asString())
+                                    .orElse("default");
+
+                            // 4. Obtener/crear DocPackage
+                            DocPackage docPackage = packages.computeIfAbsent(
+                                    packageName,
+                                    DocPackage::new
+                            );
+
+                            // 5. Extraer info con Visitor
+                            JavadocExtractorVisitor visitor = new JavadocExtractorVisitor();
+                            visitor.visit(cu, docPackage);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+            // 6. Exportar todos los paquetes en un solo archivo unificado
+            DocExporter exporter = new MarkdownExporter();
+            StringBuilder combined = new StringBuilder();
+
+            for (DocPackage docPackage : packages.values()) {
+                String markdown = exporter.export(docPackage);
+                combined.append(markdown).append("\n\n---\n\n");
+            }
+
+            if (outputPath == null || outputPath.isEmpty()) {
+                System.out.println(combined.toString());
+            } else {
+                Path outDir = Paths.get(outputPath);
+                Files.createDirectories(outDir);
+                Path outFile = outDir.resolve(outFileName);
+                Files.writeString(outFile, combined.toString());
+                System.out.println("✅ Documentación combinada generada en: " + outFile);
             }
 
         } catch (IOException e) {
