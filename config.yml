@@ -1,7 +1,26 @@
-# sourcePath: "sourcepath/personalizado"
-# outputPath: "outputpath/personalizado"
+# el directorio donde está el código java cuya documentación debe ser extraida
 sourcePath: "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/io/github/philbone/javadocmd/"
+
+# el directorio donde será creado el fichero Markdown con la documentación
+# si combinePackagesMode: false, este será el directorio base
 outputPath: "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/"
+
+# el nombre del fichero que contiene la documentación
+# si combinePackagesMode: true, este será la etiqueta que irá al fianl del nombre del fichero
 outFileName: "README.md"
+
+# true: imprimrá un(1) solo documento en el outputPath.
+# false: imprimrá 1 documento por cada paquete.
 combinePackagesMode: false
+
+# true/false: incluye/exluye los miembros privados
+includePrivate: true
+
+# true/false: incluye/exluye los miembros protegidos
+includeProtected: true
+
+# true/false: incluye/exluye los miembros públicos
+includePublic: true
+
+# true/false: activa/desactiva el modo de depuración
 debugMode: false

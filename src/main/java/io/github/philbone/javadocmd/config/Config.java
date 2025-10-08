@@ -34,12 +34,18 @@ public class Config
      * true exportar un fichero de forma global.
      */
     private boolean combinePackagesMode;
+    
+    private boolean includePrivate;
+    private boolean includeProtected;
+    private boolean includePublic;
 
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "/src";
         this.outputPath = "/doc";
+        //this.outFileName = "README.md";
         this.debugMode = false;
+        this.combinePackagesMode = false;
     }
 
     /**
@@ -121,6 +127,32 @@ public class Config
     public void setCombinePackagesMode(boolean combinePackages) {
         this.combinePackagesMode = combinePackages;
     }
+
+    public boolean isIncludePrivate() {
+        return includePrivate;
+    }
+
+    public void setIncludePrivate(boolean includePrivate) {
+        this.includePrivate = includePrivate;
+    }
+
+    public boolean isIncludeProtected() {
+        return includeProtected;
+    }
+
+    public void setIncludeProtected(boolean includeProtected) {
+        this.includeProtected = includeProtected;
+    }
+
+    public boolean isIncludePublic() {
+        return includePublic;
+    }
+
+    public void setIncludePublic(boolean includePublic) {
+        this.includePublic = includePublic;
+    }
+    
+    
     
     
 }

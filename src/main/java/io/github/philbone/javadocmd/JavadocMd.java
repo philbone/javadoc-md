@@ -82,9 +82,10 @@ public abstract class JavadocMd
         
         // Generar documentación
         if (config.isCombinePackagesMode()) { // true genera una documentación unificada
-            generateCombinedDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+            generateCombinedDocs(config);
         } else { // false genera documentación por cada paquete
-            generatePackageDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+            //generatePackageDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
+            generatePackageDocs(config);
         }
     }
 
@@ -110,13 +111,14 @@ public abstract class JavadocMd
      * generada. Si es <code>null</code> o vacío, la documentación se imprime en
      * consola.
      */
-    public static void generatePackageDocs(String sourcePath, String outputPath, String outFileName) {
+    //public static void generatePackageDocs(String sourcePath, String outputPath, String outFileName, Config config) {
+    public static void generatePackageDocs(Config config) {
         try {
             // 1. Mapear paquetes → DocPackage
             Map<String, DocPackage> packages = new HashMap<>();
 
             // 2. Recorrer todos los .java
-            Files.walk(Paths.get(sourcePath))
+            Files.walk( Paths.get( config.getSourcePath() ) )
                     .filter(p -> p.toString().endsWith(".java"))
                     .forEach(p -> {
                         try {
@@ -144,19 +146,19 @@ public abstract class JavadocMd
                     });
 
             // 6. Exportar cada paquete
-            DocExporter exporter = new MarkdownExporter();
+            DocExporter exporter = new MarkdownExporter(config);
             for (DocPackage docPackage : packages.values()) {
                 String markdown = exporter.export(docPackage);
 
-                if (outputPath == null || outputPath.isEmpty()) {
+                if ( config.getOutputPath() == null || config.getOutputPath().isEmpty() ) {
                     // Mostrar en consola
                     System.out.println(markdown);
                 } else {
                     // Guardar en archivo README.md dentro del outputPath
-                    Path outDir = Paths.get(outputPath, docPackage.getName().replace('.', '/'));
+                    Path outDir = Paths.get( config.getOutputPath(), docPackage.getName().replace('.', '/'));
                     Files.createDirectories(outDir);
                     //Path outFile = outDir.resolve(outFileName);
-                    Path outFile = outDir.resolve(outFileName);
+                    Path outFile = outDir.resolve( config.getOutFileName() );
                     Files.writeString(outFile, markdown);
                 }
             }
@@ -166,13 +168,13 @@ public abstract class JavadocMd
         }
     }
 
-    public static void generateCombinedDocs(String sourcePath, String outputPath, String outFileName) {
+    public static void generateCombinedDocs(Config config) {
         try {
             // 1. Mapear paquetes → DocPackage
             Map<String, DocPackage> packages = new HashMap<>();
 
             // 2. Recorrer todos los .java
-            Files.walk(Paths.get(sourcePath))
+            Files.walk( Paths.get( config.getSourcePath() ) )
                     .filter(p -> p.toString().endsWith(".java"))
                     .forEach(p -> {
                         try {
@@ -200,7 +202,7 @@ public abstract class JavadocMd
                     });
 
             // 6. Exportar todos los paquetes en un solo archivo unificado
-            DocExporter exporter = new MarkdownExporter();
+            DocExporter exporter = new MarkdownExporter(config);
             StringBuilder combined = new StringBuilder();
 
             for (DocPackage docPackage : packages.values()) {
@@ -208,12 +210,12 @@ public abstract class JavadocMd
                 combined.append(markdown).append("\n\n---\n\n");
             }
 
-            if (outputPath == null || outputPath.isEmpty()) {
+            if ( config.getOutputPath() == null || config.getOutputPath().isEmpty() ) {
                 System.out.println(combined.toString());
             } else {
-                Path outDir = Paths.get(outputPath);
+                Path outDir = Paths.get( config.getOutputPath() );
                 Files.createDirectories(outDir);
-                Path outFile = outDir.resolve(outFileName);
+                Path outFile = outDir.resolve( config.getOutFileName() );
                 Files.writeString(outFile, combined.toString());
                 System.out.println("✅ Documentación combinada generada en: " + outFile);
             }

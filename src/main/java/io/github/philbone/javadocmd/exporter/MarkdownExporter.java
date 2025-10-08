@@ -1,5 +1,6 @@
 package io.github.philbone.javadocmd.exporter;
 
+import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.extractor.JavadocUtils;
 import io.github.philbone.javadocmd.model.*;
 
@@ -25,8 +26,13 @@ public class MarkdownExporter implements DocExporter
      * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
      */
     private static final int COLLAPSE_THRESHOLD = 4;
+    private final Config config;
 
     private final JavaApiLinker apiLinker = new JavaApiLinker();
+    
+    public MarkdownExporter(Config config) {
+        this.config = config;
+    }
 
     @Override
     public String export(DocPackage docPackage) {
@@ -68,11 +74,16 @@ public class MarkdownExporter implements DocExporter
                 signature.append("static ");
             }
             signature.append(switch (docClass.getKind()) {
-                case CLASS -> "class ";
-                case ABSTRACT_CLASS -> "abstract class ";
-                case INTERFACE -> "interface ";
-                case ENUM -> "enum ";
-                case RECORD -> "record ";
+                case CLASS ->
+                    "class ";
+                case ABSTRACT_CLASS ->
+                    "abstract class ";
+                case INTERFACE ->
+                    "interface ";
+                case ENUM ->
+                    "enum ";
+                case RECORD ->
+                    "record ";
             });
             signature.append(docClass.getName());
 
@@ -96,88 +107,129 @@ public class MarkdownExporter implements DocExporter
             // 📦 Campos
             if (!docClass.getFields().isEmpty()) {
                 builder.h3("📦 Campos");
+                int count = 0;
                 for (DocField field : docClass.getFields()) {
-                    String typeLinked = formatCodeOrLink(field.getType());
-                    String signatureField = " `" + field.getVisibility()
-                            + (field.isStatic() ? " static`" : "`")
-                            + " " + typeLinked
-                            + " `" + field.getName() + "` ";
-                    builder.listItem(signatureField.trim());
+                    
+                    if (isPrintable(field.getVisibility())) {
+                        String typeLinked = formatCodeOrLink(field.getType());
+                        String signatureField = " `" + field.getVisibility()
+                                + (field.isStatic() ? " static`" : "`")
+                                + " " + typeLinked
+                                + " `" + field.getName() + "` ";
+                        builder.listItem(signatureField.trim());
 
-                    if (field.getDescription() != null && !field.getDescription().isEmpty()) {
-                        String desc = JavadocUtils.normalizeImages(field.getDescription());
-                        builder.blockquote(desc);
+                        if (field.getDescription() != null && !field.getDescription().isEmpty()) {
+                            String desc = JavadocUtils.normalizeImages(field.getDescription());
+                            builder.blockquote(desc);
+                        }
+                        count++;
                     }
+                }
+                if (count == 0) {
+                    builder.tag("> _No hay campos visibles_\n");
                 }
             }
 
             // 🛠️ Constructores
             if (!docClass.getConstructors().isEmpty()) {
                 builder.h3("🛠️ Constructores");
+                int count = 0;
                 for (DocConstructor constructor : docClass.getConstructors()) {
-                    String signatureCons = constructor.getVisibility()
-                            + (constructor.isStatic() ? " static " : " ")
-                            + constructor.getName()
-                            + "(" + String.join(", ", constructor.getParameters()) + ")";
-                    builder.listItem("`" + signatureCons.trim() + "`");
+                    
+                    if (isPrintable(constructor.getVisibility())) {
+                        String signatureCons = constructor.getVisibility()
+                                + (constructor.isStatic() ? " static " : " ")
+                                + constructor.getName()
+                                + "(" + String.join(", ", constructor.getParameters()) + ")";
+                        builder.listItem("`" + signatureCons.trim() + "`");
 
-                    if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
-                        String desc = JavadocUtils.normalizeImages(constructor.getDescription());
-                        builder.blockquote("**Descripción:**\n" + desc);
-                    }
+                        if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
+                            String desc = JavadocUtils.normalizeImages(constructor.getDescription());
+                            builder.blockquote("**Descripción:**\n" + desc);
+                        }
 
-                    for (DocParameter param : constructor.getDocParameters()) {
-                        builder.tag("> ");
-                        builder.listItem("*@param* `" + param.getName() + "` " + param.getDescription());
-                    }
+                        for (DocParameter param : constructor.getDocParameters()) {
+                            builder.tag("> ");
+                            builder.listItem("*@param* `" + param.getName() + "` " + param.getDescription());
+                        }
 
-                    for (DocException ex : constructor.getExceptions()) {
-                        builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
-                    }
+                        for (DocException ex : constructor.getExceptions()) {
+                            builder.tag("> ");
+                            builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
+                        }
+                        count++;
+                    }                    
+                }
+                if (count == 0) {
+                    builder.tag("> _No hay constructores visibles_\n");
                 }
             }
 
             // 🧮 Métodos
             if (!docClass.getMethods().isEmpty()) {
                 builder.h3("🧮 Métodos");
+                int count = 0;
                 for (DocMethod method : docClass.getMethods()) {
-                    String returnType = formatCodeOrLink(method.getReturnType());
-                    String signatureMeth = " `" + method.getVisibility()
-                            + (method.isStatic() ? " static`" : "`")
-                            + (method.isVoid() ? " **void**" : returnType)
-                            + " `" + method.getName()
-                            + "(" + String.join(", ", method.getParameters()) + ")`";
-                    builder.listItem(signatureMeth.trim());
+                    if (isPrintable(method.getVisibility())) {
+                        String returnType = formatCodeOrLink(method.getReturnType());
+                        String signatureMeth = " `" + method.getVisibility() + " "
+                                + (method.isStatic() ? " static`" : "`")
+                                + (method.isVoid() ? " **void**" : returnType)
+                                + " `" + method.getName()
+                                + "(" + String.join(", ", method.getParameters()) + ")`";
+                        builder.listItem(signatureMeth.trim());
 
-                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {
-                        String desc = JavadocUtils.normalizeImages(method.getDescription());
-                        builder.blockquote(desc);
-                    }
+                        if (method.getDescription() != null && !method.getDescription().isEmpty()) {
+                            String desc = JavadocUtils.normalizeImages(method.getDescription());
+                            builder.blockquote(desc);
+                        }
 
-                    for (DocParameter param : method.getDocParameters()) {
-                        builder.tag("> ");
-                        builder.listItem("*@param* **" + param.getName() + "** " + param.getDescription());
-                    }
+                        for (DocParameter param : method.getDocParameters()) {
+                            builder.tag("> ");
+                            builder.listItem("*@param* **" + param.getName() + "** " + param.getDescription());
+                        }
 
-                    if (method.getReturnDescription() != null) {
-                        builder.tag("> ");
-                        builder.listItem("*@return* " + method.getReturnDescription());
-                    }
+                        if (method.getReturnDescription() != null) {
+                            builder.tag("> ");
+                            builder.listItem("*@return* " + method.getReturnDescription());
+                        }
 
-                    for (DocException ex : method.getExceptions()) {
-                        builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
+                        for (DocException ex : method.getExceptions()) {
+                            builder.tag("> ");
+                            builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
+                        }
+                        count++;
+
                     }
                 }
+                if (count == 0) {
+                    builder.tag("> _No hay métodos visibles_\n");
+                }
             }
-
             if (collapseClasses) {
                 builder.tag("\n</details>\n");
             }
         }
-
         return builder.build();
+    }
+    
+    /**
+     * Determina si la visibilidad es imprimible según la configuración.
+     * @param visibility la visiblidad a evaluar
+     * @return true si la visibilidad es imprimible
+     */
+    private boolean isPrintable(String visibility){
+        boolean r = true;
+        if ( visibility.equals("public") && !config.isIncludePublic() ) {
+            r = false;
+        }
+        if ( visibility.equals("private") && !config.isIncludePrivate()) {
+            r = false;
+        }
+        if ( visibility.equals("protected") && !config.isIncludeProtected() ) {
+            r = false;
+        }
+        return r;
     }
 
     /** Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`. */

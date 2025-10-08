@@ -21,7 +21,7 @@ public class ConfigLoader
 
 ### 🧮 Métodos
 
-- `public static`Config `loadConfig()`
+- `public  static`Config `loadConfig()`
 > - *@return* un objeto con los datos de configuracion iniciales.
 ## 📘 Public Class Config
 
@@ -45,33 +45,42 @@ public class Config
 
 - `private` boolean `combinePackagesMode`
 > Bandera para definir el modo de exportación
-> false exportara un fichero por cada paquete
-> true exportara un fichero de forma global.
+> false exportar un fichero por cada paquete
+> true exportar un fichero de forma global.
 
+- `private` boolean `includePrivate`
+- `private` boolean `includeProtected`
+- `private` boolean `includePublic`
 ### 🛠️ Constructores
 
 - `public Config()`
 ### 🧮 Métodos
 
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
 > Obtiene la ruta del código fuente a documentar.
 
 > - *@return* el directorio donde se encuentran el código fuente.
-- `public` **void** `setSourcePath(String sourcePath)`
+- `public ` **void** `setSourcePath(String sourcePath)`
 > - *@param* **sourcePath** 
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
 > - *@return* 
-- `public` **void** `setOutputPath(String outputPath)`
+- `public ` **void** `setOutputPath(String outputPath)`
 > - *@param* **outputPath** 
-- `public`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
 > - *@return* 
-- `public` **void** `setOutFileName(String outFileName)`
+- `public ` **void** `setOutFileName(String outFileName)`
 > - *@param* **outFileName** 
-- `public`boolean `isDebugMode()`
+- `public `boolean `isDebugMode()`
 > - *@return* 
-- `public` **void** `setDebugMode(boolean debugMode)`
+- `public ` **void** `setDebugMode(boolean debugMode)`
 > - *@param* **debugMode** 
-- `public`boolean `isCombinePackagesMode()`
+- `public `boolean `isCombinePackagesMode()`
 > - *@return* 
-- `public` **void** `setCombinePackagesMode(boolean combinePackages)`
+- `public ` **void** `setCombinePackagesMode(boolean combinePackages)`
 > - *@param* **multiFileMode** 
+- `public `boolean `isIncludePrivate()`
+- `public ` **void** `setIncludePrivate(boolean includePrivate)`
+- `public `boolean `isIncludeProtected()`
+- `public ` **void** `setIncludeProtected(boolean includeProtected)`
+- `public `boolean `isIncludePublic()`
+- `public ` **void** `setIncludePublic(boolean includePublic)`
