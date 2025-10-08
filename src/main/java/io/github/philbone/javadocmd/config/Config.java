@@ -38,7 +38,9 @@ public class Config
     private boolean includePrivate;
     private boolean includeProtected;
     private boolean includePublic;
-
+    
+    private boolean tableOfContent;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "/src";
@@ -46,6 +48,7 @@ public class Config
         //this.outFileName = "README.md";
         this.debugMode = false;
         this.combinePackagesMode = false;
+        this.tableOfContent = true;
     }
 
     /**
@@ -122,7 +125,7 @@ public class Config
     
     /**
      * 
-     * @param multiFileMode 
+     * @param combinePackages  
      */
     public void setCombinePackagesMode(boolean combinePackages) {
         this.combinePackagesMode = combinePackages;
@@ -151,8 +154,13 @@ public class Config
     public void setIncludePublic(boolean includePublic) {
         this.includePublic = includePublic;
     }
-    
-    
-    
+
+    public boolean isTableOfContent() {
+        return tableOfContent;
+    }
+
+    public void setTableOfContent(boolean tableOfContent) {
+        this.tableOfContent = tableOfContent;
+    }
     
 }

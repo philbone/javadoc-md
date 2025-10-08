@@ -37,7 +37,13 @@ public abstract class JavadocMd
 
 ### 🛠️ Constructores
 
-> _No hay constructores visibles_
+- `protected JavadocMd()`
+> **Descripción:**
+> Constructor protegido por defecto.
+> <p>
+> Inicializa valores de configuración básicos.
+
+> - *@throws* **IllegalStateException** si la configuración inicial es inválida.
 ### 🧮 Métodos
 
 - `public  static` **void** `main(String[] args)`

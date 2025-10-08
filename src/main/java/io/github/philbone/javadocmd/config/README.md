@@ -51,6 +51,7 @@ public class Config
 - `private` boolean `includePrivate`
 - `private` boolean `includeProtected`
 - `private` boolean `includePublic`
+- `private` boolean `tableOfContent`
 ### 🛠️ Constructores
 
 - `public Config()`
@@ -77,10 +78,12 @@ public class Config
 - `public `boolean `isCombinePackagesMode()`
 > - *@return* 
 - `public ` **void** `setCombinePackagesMode(boolean combinePackages)`
-> - *@param* **multiFileMode** 
+> - *@param* **combinePackages** 
 - `public `boolean `isIncludePrivate()`
 - `public ` **void** `setIncludePrivate(boolean includePrivate)`
 - `public `boolean `isIncludeProtected()`
 - `public ` **void** `setIncludeProtected(boolean includeProtected)`
 - `public `boolean `isIncludePublic()`
 - `public ` **void** `setIncludePublic(boolean includePublic)`
+- `public `boolean `isTableOfContent()`
+- `public ` **void** `setTableOfContent(boolean tableOfContent)`

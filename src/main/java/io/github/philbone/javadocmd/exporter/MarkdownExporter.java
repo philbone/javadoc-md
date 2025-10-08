@@ -46,7 +46,9 @@ public class MarkdownExporter implements DocExporter
         builder.subtitle(docPackage.getName());
 
         // TOC
-        builder.toc(docPackage);
+        if (config.isTableOfContent()) {
+            builder.toc(docPackage);
+        }
 
         // Determinar si se deben colapsar las clases
         boolean collapseClasses = docPackage.getClasses().size() > COLLAPSE_THRESHOLD;
