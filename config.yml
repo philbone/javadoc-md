@@ -24,3 +24,5 @@ includePublic: true
 
 # true/false: activa/desactiva el modo de depuración
 debugMode: false
+
+tableOfContent: true
