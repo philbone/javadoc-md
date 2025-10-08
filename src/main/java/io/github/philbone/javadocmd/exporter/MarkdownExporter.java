@@ -133,27 +133,35 @@ public class MarkdownExporter implements DocExporter
             // 🛠️ Constructores
             if (!docClass.getConstructors().isEmpty()) {
                 builder.h3("🛠️ Constructores");
+                int count = 0;
                 for (DocConstructor constructor : docClass.getConstructors()) {
-                    String signatureCons = constructor.getVisibility()
-                            + (constructor.isStatic() ? " static " : " ")
-                            + constructor.getName()
-                            + "(" + String.join(", ", constructor.getParameters()) + ")";
-                    builder.listItem("`" + signatureCons.trim() + "`");
+                    
+                    if (isPrintable(constructor.getVisibility())) {
+                        String signatureCons = constructor.getVisibility()
+                                + (constructor.isStatic() ? " static " : " ")
+                                + constructor.getName()
+                                + "(" + String.join(", ", constructor.getParameters()) + ")";
+                        builder.listItem("`" + signatureCons.trim() + "`");
 
-                    if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
-                        String desc = JavadocUtils.normalizeImages(constructor.getDescription());
-                        builder.blockquote("**Descripción:**\n" + desc);
-                    }
+                        if (constructor.getDescription() != null && !constructor.getDescription().isEmpty()) {
+                            String desc = JavadocUtils.normalizeImages(constructor.getDescription());
+                            builder.blockquote("**Descripción:**\n" + desc);
+                        }
 
-                    for (DocParameter param : constructor.getDocParameters()) {
-                        builder.tag("> ");
-                        builder.listItem("*@param* `" + param.getName() + "` " + param.getDescription());
-                    }
+                        for (DocParameter param : constructor.getDocParameters()) {
+                            builder.tag("> ");
+                            builder.listItem("*@param* `" + param.getName() + "` " + param.getDescription());
+                        }
 
-                    for (DocException ex : constructor.getExceptions()) {
-                        builder.tag("> ");
-                        builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
-                    }
+                        for (DocException ex : constructor.getExceptions()) {
+                            builder.tag("> ");
+                            builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
+                        }
+                        count++;
+                    }                    
+                }
+                if (count == 0) {
+                    builder.tag("> _No hay constructores visibles_\n");
                 }
             }
 
