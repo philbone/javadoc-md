@@ -26,7 +26,7 @@ public class MarkdownExporter implements DocExporter
      * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
      */
     private static final int COLLAPSE_THRESHOLD = 4;
-    private static Config config;
+    private final Config config;
 
     private final JavaApiLinker apiLinker = new JavaApiLinker();
     
@@ -107,18 +107,26 @@ public class MarkdownExporter implements DocExporter
             // 📦 Campos
             if (!docClass.getFields().isEmpty()) {
                 builder.h3("📦 Campos");
+                int count = 0;
                 for (DocField field : docClass.getFields()) {
-                    String typeLinked = formatCodeOrLink(field.getType());
-                    String signatureField = " `" + field.getVisibility()
-                            + (field.isStatic() ? " static`" : "`")
-                            + " " + typeLinked
-                            + " `" + field.getName() + "` ";
-                    builder.listItem(signatureField.trim());
+                    
+                    if (isPrintable(field.getVisibility())) {
+                        String typeLinked = formatCodeOrLink(field.getType());
+                        String signatureField = " `" + field.getVisibility()
+                                + (field.isStatic() ? " static`" : "`")
+                                + " " + typeLinked
+                                + " `" + field.getName() + "` ";
+                        builder.listItem(signatureField.trim());
 
-                    if (field.getDescription() != null && !field.getDescription().isEmpty()) {
-                        String desc = JavadocUtils.normalizeImages(field.getDescription());
-                        builder.blockquote(desc);
+                        if (field.getDescription() != null && !field.getDescription().isEmpty()) {
+                            String desc = JavadocUtils.normalizeImages(field.getDescription());
+                            builder.blockquote(desc);
+                        }
+                        count++;
                     }
+                }
+                if (count == 0) {
+                    builder.tag("> _No hay campos visibles_\n");
                 }
             }
 

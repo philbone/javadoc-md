@@ -44,7 +44,7 @@ implements DocExporter
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
-- `private static` Config `config`
+- `private` Config `config`
 - `private` JavaApiLinker `apiLinker`
 ### 🛠️ Constructores
 
@@ -52,7 +52,11 @@ implements DocExporter
 ### 🧮 Métodos
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
-- `private `boolean `isVisible(String visibility)`
+- `private `boolean `isPrintable(String visibility)`
+> Determina si la visibilidad es imprimible según la configuración.
+
+> - *@param* **visibility** la visiblidad a evaluar
+> - *@return* true si la visibilidad es imprimible
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatCodeOrLink(String type)`
 > Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`.
 
