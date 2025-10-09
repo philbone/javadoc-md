@@ -45,6 +45,7 @@ implements DocExporter
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
 - `private` Config `config`
+- `private` JavaApiLinker `apiLinker`
 ### 🛠️ Constructores
 
 - `public MarkdownExporter(Config config)`
@@ -69,7 +70,7 @@ public class MarkdownBuilder
 ```
 ### 📦 Campos
 
-- `private` StringBuilder `sb`
+- `private` StringBuilder `outPrint`
 ### 🧮 Métodos
 
 - `public `MarkdownBuilder `title(String text)`
