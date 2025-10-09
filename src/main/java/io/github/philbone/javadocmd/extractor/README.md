@@ -29,25 +29,19 @@ extends VoidVisitorAdapter
 
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public ` **void** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
 - `public ` **void** `visit(EnumDeclaration n, DocPackage docPackage)`
 - `public ` **void** `visit(RecordDeclaration n, DocPackage docPackage)`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private ` **void** `visitMethod(MethodDeclaration n, DocClass docClass)`
 - `private ` **void** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
@@ -107,9 +101,7 @@ public class JavadocUtils
 
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractDescription(Optional<JavadocComment> maybeComment)`
 > Extrae la descripción "preferida" desde un JavadocComment.
@@ -143,16 +135,12 @@ public class JavadocUtils
 > - *@return* descripción con imágenes convertidas a sintaxis Markdown.
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private  static`Javadoc `parseCleaning(JavadocComment comment)`
 </details>

@@ -273,7 +273,7 @@ public class MarkdownExporter implements DocExporter
     private String printMethods(DocClass docClass, String text) {
         MarkdownBuilder methodBuilder = new MarkdownBuilder();
         int methodCount = 0;
-        methodBuilder.tag("<details open>\n\n").tag("<summary>"+ capitalize(text) +"</summary>\n\n");
+        
         for (DocMethod method : docClass.getMethods()) {
 
             if (method.getVisibility().equals(text)) {
@@ -309,13 +309,19 @@ public class MarkdownExporter implements DocExporter
                     totalMethodsCount++;
                 }
             }
-            
+
         }
-        if (methodCount == 0) {
-            methodBuilder.tag("> _No hay métodos " + text + " visibles_\n");
+        // si no hay métodos, pero la configuración de usuario dice imprimir notificación de lista vacía
+        if (methodCount == 0 && config.isPrintEmptyNotify()) {
+            methodBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")                    
+                    .tag("> _No hay métodos " + text + " visibles_\n")
+                    .tag("</details>\n\n");
         }
-        
-        methodBuilder.tag("</details>\n\n");
+        // si hay métodos
+        if (methodCount >= 1) {
+            methodBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")
+                    .tag("</details>\n\n");
+        }// en cualquier otro caso ignora la impresión
         
         return methodBuilder.build();
     }

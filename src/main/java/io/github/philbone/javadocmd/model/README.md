@@ -60,9 +60,7 @@ public class DocConstructor
 - `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
@@ -75,16 +73,12 @@ public class DocConstructor
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -183,9 +177,7 @@ public class DocClass
 > - *@param* `isStatic` indica si la clase fue declarada como {@code static}
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 > - *@return* el nombre simple de la clase.
@@ -232,16 +224,12 @@ public class DocClass
 - `public ` **void** `setIndexOrder(int indexOrder)`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -293,9 +281,7 @@ public class DocMethod
 - `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid)`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnType()`
@@ -312,16 +298,12 @@ public class DocMethod
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -365,24 +347,18 @@ public class DocParameter
 - `public DocParameter(String name, String description)`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -460,9 +436,7 @@ public class DocPackage
 > - *@param* `name` nombre del paquete en notación estándar de Java.
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 > Obtiene el nombre del paquete.
@@ -484,16 +458,12 @@ public class DocPackage
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProjectName()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -547,24 +517,18 @@ public class DocException
 - `public DocException(String name, String description)`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -614,9 +578,7 @@ public class DocField
 - `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getType()`
@@ -625,16 +587,12 @@ public class DocField
 - `public `boolean `isStatic()`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>

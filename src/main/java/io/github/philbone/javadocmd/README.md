@@ -66,9 +66,7 @@ public abstract class JavadocMd
 > - *@throws* **IllegalStateException** si la configuración inicial es inválida.
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public  static` **void** `main(String[] args)`
 > Método principal que inicia el proceso de generación de documentación.
@@ -81,16 +79,12 @@ en futuras versiones aceptar <code>sourcePath</code> y
 - `public  static` **void** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
