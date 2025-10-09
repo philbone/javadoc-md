@@ -27,16 +27,16 @@ public interface DocExporter
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 ## #2 📘 Public Class MarkdownExporter
@@ -64,9 +64,9 @@ implements DocExporter
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PUBLIC`
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PRIVATE`
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PROTECTED`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PUBLIC`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PRIVATE`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PROTECTED`
 - `private` Config `config`
 - `private` int `totalMethodsCount`
 - `private` JavaApiLinker `apiLinker`
@@ -80,6 +80,13 @@ implements DocExporter
 <summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
@@ -98,13 +105,6 @@ implements DocExporter
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printMethods(DocClass docClass, String text)`
-</details>
-
-<details open>
-
-<summary>Protected</summary>
-
-> _No hay métodos protected visibles_
 </details>
 
 ## #3 📘 Public Class MarkdownBuilder
@@ -155,16 +155,16 @@ llamadas.
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
 </details>
 
 ## #4 📘 Public Class JavaApiLinker
@@ -205,6 +205,13 @@ public class JavaApiLinker
 
 <details open>
 
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open>
+
 <summary>Private</summary>
 
 - `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
@@ -218,12 +225,5 @@ public class JavaApiLinker
 > Intenta mapear un tipo simple (como "List") a su nombre de clase completo.
 > Solo incluye clases comunes de la API estándar.
 
-</details>
-
-<details open>
-
-<summary>Protected</summary>
-
-> _No hay métodos protected visibles_
 </details>
 

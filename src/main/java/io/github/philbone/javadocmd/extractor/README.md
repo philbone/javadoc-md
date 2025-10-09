@@ -40,6 +40,13 @@ extends VoidVisitorAdapter
 
 <details open>
 
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open>
+
 <summary>Private</summary>
 
 - `private ` **void** `visitMethod(MethodDeclaration n, DocClass docClass)`
@@ -58,13 +65,6 @@ extends VoidVisitorAdapter
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
 - `private `boolean `extractIsVoid(MethodDeclaration n)`
 - `private ` **void** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
-</details>
-
-<details open>
-
-<summary>Protected</summary>
-
-> _No hay métodos protected visibles_
 </details>
 
 ## #2 📘 Public Class JavadocUtils
@@ -125,15 +125,15 @@ public class JavadocUtils
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-- `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+- `private  static`Javadoc `parseCleaning(JavadocComment comment)`
 </details>
 

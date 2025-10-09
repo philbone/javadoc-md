@@ -178,8 +178,8 @@ public class MarkdownExporter implements DocExporter
                 builder.h3("🧮 Métodos");
                 // imprimir métodos en grupo
                 builder.tag( printMethods(docClass, VISIBILITY_PUBLIC) );
-                builder.tag( printMethods(docClass, VISIBILITY_PRIVATE) );
                 builder.tag( printMethods(docClass, VISIBILITY_PROTECTED) );
+                builder.tag( printMethods(docClass, VISIBILITY_PRIVATE) );                
                 // sino hay métodos imprimir notificación de lista vacía
                 if (totalMethodsCount == 0) {
                     builder.tag("> _No hay métodos visibles_\n");

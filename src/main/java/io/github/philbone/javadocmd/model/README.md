@@ -57,16 +57,16 @@ public class DocConstructor
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -194,16 +194,16 @@ public class DocClass
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -254,16 +254,16 @@ public class DocMethod
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -295,16 +295,16 @@ public class DocParameter
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -386,16 +386,16 @@ public class DocPackage
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -437,16 +437,16 @@ public class DocException
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 
@@ -487,16 +487,16 @@ public class DocField
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 

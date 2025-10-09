@@ -31,16 +31,16 @@ public class ConfigLoader
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
 ## #2 📘 Public Class Config
@@ -115,15 +115,15 @@ public class Config
 
 <details open>
 
-<summary>Private</summary>
+<summary>Protected</summary>
 
-> _No hay métodos private visibles_
+> _No hay métodos protected visibles_
 </details>
 
 <details open>
 
-<summary>Protected</summary>
+<summary>Private</summary>
 
-> _No hay métodos protected visibles_
+> _No hay métodos private visibles_
 </details>
 
