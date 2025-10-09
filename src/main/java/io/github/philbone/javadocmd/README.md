@@ -32,8 +32,28 @@ public abstract class JavadocMd
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private static` int `executionCount`
 > Contador global de ejecuciones del generador de documentación.
+
+</details>
 
 ### 🛠️ Constructores
 

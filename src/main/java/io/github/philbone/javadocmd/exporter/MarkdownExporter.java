@@ -33,6 +33,7 @@ public class MarkdownExporter implements DocExporter
     private final Config config;
     
     private int totalMethodsCount = 0;
+    private int totalFieldsCount = 0;
 
     private final JavaApiLinker apiLinker = new JavaApiLinker();
     
@@ -115,25 +116,12 @@ public class MarkdownExporter implements DocExporter
             // 📦 Campos
             if (!docClass.getFields().isEmpty()) {
                 builder.h3("📦 Campos");
-                int count = 0;
-                for (DocField field : docClass.getFields()) {
-                    
-                    if (isPrintable(field.getVisibility())) {
-                        String typeLinked = formatCodeOrLink(field.getType());
-                        String signatureField = " `" + field.getVisibility()
-                                + (field.isStatic() ? " static`" : "`")
-                                + " " + typeLinked
-                                + " `" + field.getName() + "` ";
-                        builder.listItem(signatureField.trim());
-
-                        if (field.getDescription() != null && !field.getDescription().isEmpty()) {
-                            String desc = JavadocUtils.normalizeImages(field.getDescription());
-                            builder.blockquote(desc);
-                        }
-                        count++;
-                    }
-                }
-                if (count == 0) {
+                // imprimir campos en grupo
+                builder.tag( printFields(docClass, VISIBILITY_PUBLIC) );
+                builder.tag( printFields(docClass, VISIBILITY_PROTECTED) );
+                builder.tag( printFields(docClass, VISIBILITY_PRIVATE) );
+                //si no hay campos imprimir notificación de lista vacía
+                if (totalFieldsCount == 0) {
                     builder.tag("> _No hay campos visibles_\n");
                 }
             }
@@ -191,6 +179,7 @@ public class MarkdownExporter implements DocExporter
                 builder.tag("\n</details>\n");
             }
         }
+        
         return builder.build();
     }
     
@@ -247,7 +236,40 @@ public class MarkdownExporter implements DocExporter
             case RECORD -> "📒";
         };
     }
+    
+    private String printFields(DocClass docClass, String text) {
+        MarkdownBuilder fieldBuilder = new MarkdownBuilder();
+        int fieldCount = 0;
+        fieldBuilder.tag("<details open>\n\n").tag("<summary>" + capitalize(text) + "</summary>\n\n");
+        for (DocField field : docClass.getFields()) {
+            
+            if (field.getVisibility().equals(text)) {
+                if (isPrintable(field.getVisibility())) {
+                    String typeLinked = formatCodeOrLink(field.getType());
+                    String signatureField = " `" + field.getVisibility()
+                            + (field.isStatic() ? " static`" : "`")
+                            + " " + typeLinked
+                            + " `" + field.getName() + "` ";
+                    fieldBuilder.listItem(signatureField.trim());
+
+                    if (field.getDescription() != null && !field.getDescription().isEmpty()) {
+                        String desc = JavadocUtils.normalizeImages(field.getDescription());
+                        fieldBuilder.blockquote(desc);
+                    }
+                    fieldCount++;
+                    totalFieldsCount++;
+                }
+            }
+        }
+        if (fieldCount == 0) {
+            fieldBuilder.tag("> _No hay campos " + text + " visibles_\n");
+        }
         
+        fieldBuilder.tag("</details>\n\n");
+        
+        return fieldBuilder.build();
+    }
+    
     private String printMethods(DocClass docClass, String text) {
         MarkdownBuilder methodBuilder = new MarkdownBuilder();
         int methodCount = 0;

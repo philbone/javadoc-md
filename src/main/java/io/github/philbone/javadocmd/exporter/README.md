@@ -60,6 +60,24 @@ implements DocExporter
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private static` int `COLLAPSE_THRESHOLD`
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
@@ -69,7 +87,10 @@ implements DocExporter
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PROTECTED`
 - `private` Config `config`
 - `private` int `totalMethodsCount`
+- `private` int `totalFieldsCount`
 - `private` JavaApiLinker `apiLinker`
+</details>
+
 ### 🛠️ Constructores
 
 - `public MarkdownExporter(Config config)`
@@ -104,6 +125,7 @@ implements DocExporter
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printFields(DocClass docClass, String text)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printMethods(DocClass docClass, String text)`
 </details>
 
@@ -114,7 +136,27 @@ public class MarkdownBuilder
 ```
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` StringBuilder `outPrint`
+</details>
+
 ### 🧮 Métodos
 
 <details open>
@@ -184,11 +226,31 @@ public class JavaApiLinker
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `BASE_URL`
 > Versión base de la documentación de Java.
 
 - `private static` Pattern `GENERIC_PATTERN`
 > Patrón para detectar tipos genéricos (por ejemplo, List<String>)
+
+</details>
 
 ### 🧮 Métodos
 
