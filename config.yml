@@ -9,8 +9,8 @@ outputPath: "/home/felipe/Documentos/proyectos/Java/javadocmd/src/main/java/"
 # si combinePackagesMode: true, este será la etiqueta que irá al fianl del nombre del fichero
 outFileName: "README.md"
 
-# true: imprimrá un(1) solo documento en el outputPath.
-# false: imprimrá 1 documento por cada paquete.
+# true: imprimirá un(1) solo documento en el outputPath con cada paquete Java encontrado.
+# false: imprimrá 1 documento por cada paquete Java encontrado.
 combinePackagesMode: false
 
 # true/false: incluye/exluye los miembros privados

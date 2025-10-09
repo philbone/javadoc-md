@@ -2,59 +2,58 @@ package io.github.philbone.javadocmd.exporter;
 
 import io.github.philbone.javadocmd.model.DocClass;
 import io.github.philbone.javadocmd.model.DocPackage;
-import java.util.regex.Pattern;
 
 public class MarkdownBuilder
 {
-    private StringBuilder sb = new StringBuilder();
+    private StringBuilder outPrint = new StringBuilder();
 
     public MarkdownBuilder title(String text) {
-        sb.append("# ").append(text).append("\n\n");
+        outPrint.append("# ").append(text).append("\n\n");
         return this;
     }
 
     public MarkdownBuilder subtitle(String text) {        
-        sb.append("## ").append(text).append("\n\n");
+        outPrint.append("## ").append(text).append("\n\n");
         return this;
     }
     
     public MarkdownBuilder h3(String text) {        
-        sb.append("### ").append(text).append("\n\n");
+        outPrint.append("### ").append(text).append("\n\n");
         return this;
     }
     
     public MarkdownBuilder h4(String text) {        
-        sb.append("#### ").append(text).append("\n\n");
+        outPrint.append("#### ").append(text).append("\n\n");
         return this;
     }
 
     public MarkdownBuilder paragraph(String text) {
-        sb.append(text).append("\n\n");
+        outPrint.append(text).append("\n\n");
         return this;
     }
 
     public MarkdownBuilder listItem(String text) {
-        sb.append("- ").append(text).append("\n");
+        outPrint.append("- ").append(text).append("\n");
         return this;
     }
     
     public String build() {
-        return sb.toString();
+        return outPrint.toString();
     }
 
     public void codeBlock(String content, String codeLang) {
-        sb.append("```");
+        outPrint.append("```");
         if (codeLang != null && !codeLang.isBlank()) {
-            sb.append(codeLang);
+            outPrint.append(codeLang);
         }
-        sb.append("\n")
+        outPrint.append("\n")
                 .append(content)
                 .append("\n```")
                 .append("\n");
     }
     
     public MarkdownBuilder blockquote(String text) {
-        sb.append("> ").append(text.replace("\n", "\n> ")).append("\n\n");
+        outPrint.append("> ").append(text.replace("\n", "\n> ")).append("\n\n");
         return this;
     }
     
@@ -80,14 +79,14 @@ public class MarkdownBuilder
      * llamadas.
      */
     public MarkdownBuilder tag(String tag) {
-        sb.append(tag);
+        outPrint.append(tag);
         return this;
     }
 
     public MarkdownBuilder toc(DocPackage docPackage) {
         subtitle("Resumen de Clases\n");
-        sb.append("|#|CLASE|DESCRIPCIÓN|\n");
-        sb.append("|---|---|---|\n");
+        outPrint.append("|#|CLASE|DESCRIPCIÓN|\n");
+        outPrint.append("|---|---|---|\n");
         int i = 1;
         for (DocClass docClass : docPackage.getClasses()) {
             docClass.setIndexOrder(i);
@@ -98,7 +97,7 @@ public class MarkdownBuilder
             
             String itemUrl = "[" + item.replaceAll("_", " ") + "](#" + docClass.getIndexOrder() + "-" + item.replaceAll(" ", "-").replaceAll("_", "-").toLowerCase() + ")";
             String cleanDesc = sanitizeDescription(docClass.getDescription());
-            sb.append("|**" + docClass.getIndexOrder() + "**").append("|").append(itemUrl).append("|").append(cleanDesc).append("\n");
+            outPrint.append("|**").append(docClass.getIndexOrder()).append("**").append("|").append(itemUrl).append("|").append(cleanDesc).append("\n");
             i++;
         }        
         return this;
