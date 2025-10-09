@@ -18,7 +18,27 @@ public interface DocExporter
 ```
 ### 🧮 Métodos
 
-- `package-private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+<details open>
+
+<summary>Public</summary>
+
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
 ## #2 📘 Public Class MarkdownExporter
 
 ```java
@@ -44,14 +64,28 @@ implements DocExporter
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PUBLIC`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PRIVATE`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `PROTECTED`
 - `private` Config `config`
+- `private` int `totalMethodsCount`
 - `private` JavaApiLinker `apiLinker`
 ### 🛠️ Constructores
 
 - `public MarkdownExporter(Config config)`
 ### 🧮 Métodos
 
+<details open>
+
+<summary>Public</summary>
+
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private `boolean `isPrintable(String visibility)`
 > Determina si la visibilidad es imprimible según la configuración.
 
@@ -63,6 +97,16 @@ implements DocExporter
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printMethods(DocClass docClass, String text)`
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
 ## #3 📘 Public Class MarkdownBuilder
 
 ```java
@@ -72,6 +116,10 @@ public class MarkdownBuilder
 
 - `private` StringBuilder `outPrint`
 ### 🧮 Métodos
+
+<details open>
+
+<summary>Public</summary>
 
 - `public `MarkdownBuilder `title(String text)`
 - `public `MarkdownBuilder `subtitle(String text)`
@@ -103,7 +151,22 @@ buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
 - `public `MarkdownBuilder `toc(DocPackage docPackage)`
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
 ## #4 📘 Public Class JavaApiLinker
 
 ```java
@@ -129,10 +192,20 @@ public class JavaApiLinker
 
 ### 🧮 Métodos
 
+<details open>
+
+<summary>Public</summary>
+
 - `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfJavaType(String type)`
 > Si el tipo pertenece al paquete estándar de Java (java.* o javax.*),
 > devuelve un enlace Markdown al Javadoc oficial.
 > De lo contrario, devuelve el tipo original sin enlace.
+
+</details>
+
+<details open>
+
+<summary>Private</summary>
 
 - `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
 > Convierte un nombre de clase totalmente calificado en URL al Javadoc.
@@ -144,4 +217,13 @@ public class JavaApiLinker
 - `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `resolveToFQCN(String type)`
 > Intenta mapear un tipo simple (como "List") a su nombre de clase completo.
 > Solo incluye clases comunes de la API estándar.
+
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
 

@@ -26,7 +26,13 @@ public class MarkdownExporter implements DocExporter
      * Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
      */
     private static final int COLLAPSE_THRESHOLD = 4;
+    private static final String VISIBILITY_PUBLIC = "public";
+    private static final String VISIBILITY_PRIVATE = "private";
+    private static final String VISIBILITY_PROTECTED = "protected";
+    
     private final Config config;
+    
+    private int totalMethodsCount = 0;
 
     private final JavaApiLinker apiLinker = new JavaApiLinker();
     
@@ -170,44 +176,17 @@ public class MarkdownExporter implements DocExporter
             // 🧮 Métodos
             if (!docClass.getMethods().isEmpty()) {
                 builder.h3("🧮 Métodos");
-                int count = 0;
-                for (DocMethod method : docClass.getMethods()) {
-                    if (isPrintable(method.getVisibility())) {
-                        String returnType = formatCodeOrLink(method.getReturnType());
-                        String signatureMeth = " `" + method.getVisibility() + " "
-                                + (method.isStatic() ? " static`" : "`")
-                                + (method.isVoid() ? " **void**" : returnType)
-                                + " `" + method.getName()
-                                + "(" + String.join(", ", method.getParameters()) + ")`";
-                        builder.listItem(signatureMeth.trim());
-
-                        if (method.getDescription() != null && !method.getDescription().isEmpty()) {
-                            String desc = JavadocUtils.normalizeImages(method.getDescription());
-                            builder.blockquote(desc);
-                        }
-
-                        for (DocParameter param : method.getDocParameters()) {
-                            builder.tag("> ");
-                            builder.listItem("*@param* **" + param.getName() + "** " + param.getDescription());
-                        }
-
-                        if (method.getReturnDescription() != null) {
-                            builder.tag("> ");
-                            builder.listItem("*@return* " + method.getReturnDescription());
-                        }
-
-                        for (DocException ex : method.getExceptions()) {
-                            builder.tag("> ");
-                            builder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
-                        }
-                        count++;
-
-                    }
-                }
-                if (count == 0) {
+                // imprimir métodos en grupo
+                builder.tag( printMethods(docClass, VISIBILITY_PUBLIC) );
+                builder.tag( printMethods(docClass, VISIBILITY_PRIVATE) );
+                builder.tag( printMethods(docClass, VISIBILITY_PROTECTED) );
+                // sino hay métodos imprimir notificación de lista vacía
+                if (totalMethodsCount == 0) {
                     builder.tag("> _No hay métodos visibles_\n");
                 }
             }
+            
+            // Fin Clase
             if (collapseClasses) {
                 builder.tag("\n</details>\n");
             }
@@ -268,4 +247,55 @@ public class MarkdownExporter implements DocExporter
             case RECORD -> "📒";
         };
     }
+        
+    private String printMethods(DocClass docClass, String text) {
+        MarkdownBuilder methodBuilder = new MarkdownBuilder();
+        int methodCount = 0;
+        methodBuilder.tag("<details open>\n\n").tag("<summary>"+ capitalize(text) +"</summary>\n\n");
+        for (DocMethod method : docClass.getMethods()) {
+
+            if (method.getVisibility().equals(text)) {
+                if (isPrintable(method.getVisibility())) {
+                    String returnType = formatCodeOrLink(method.getReturnType());
+                    String signatureMeth = " `" + method.getVisibility() + " "
+                            + (method.isStatic() ? " static`" : "`")
+                            + (method.isVoid() ? " **void**" : returnType)
+                            + " `" + method.getName()
+                            + "(" + String.join(", ", method.getParameters()) + ")`";
+                    methodBuilder.listItem(signatureMeth.trim());
+
+                    if (method.getDescription() != null && !method.getDescription().isEmpty()) {
+                        String desc = JavadocUtils.normalizeImages(method.getDescription());
+                        methodBuilder.blockquote(desc);
+                    }
+
+                    for (DocParameter param : method.getDocParameters()) {
+                        methodBuilder.tag("> ");
+                        methodBuilder.listItem("*@param* **" + param.getName() + "** " + param.getDescription());
+                    }
+
+                    if (method.getReturnDescription() != null) {
+                        methodBuilder.tag("> ");
+                        methodBuilder.listItem("*@return* " + method.getReturnDescription());
+                    }
+
+                    for (DocException ex : method.getExceptions()) {
+                        methodBuilder.tag("> ");
+                        methodBuilder.listItem("*@throws* **" + ex.getName() + "** " + ex.getDescription());
+                    }
+                    methodCount++;
+                    totalMethodsCount++;
+                }
+            }
+            
+        }
+        if (methodCount == 0) {
+            methodBuilder.tag("> _No hay métodos " + text + " visibles_\n");
+        }
+        
+        methodBuilder.tag("</details>\n\n");
+        
+        return methodBuilder.build();
+    }
+    
 }

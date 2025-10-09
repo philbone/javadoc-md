@@ -29,9 +29,19 @@ extends VoidVisitorAdapter
 
 ### 🧮 Métodos
 
+<details open>
+
+<summary>Public</summary>
+
 - `public ` **void** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
 - `public ` **void** `visit(EnumDeclaration n, DocPackage docPackage)`
 - `public ` **void** `visit(RecordDeclaration n, DocPackage docPackage)`
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private ` **void** `visitMethod(MethodDeclaration n, DocClass docClass)`
 - `private ` **void** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
 - `private ` **void** `visitField(FieldDeclaration n, DocClass docClass)`
@@ -48,6 +58,15 @@ extends VoidVisitorAdapter
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
 - `private `boolean `extractIsVoid(MethodDeclaration n)`
 - `private ` **void** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
 ## #2 📘 Public Class JavadocUtils
 
 ```java
@@ -68,7 +87,10 @@ public class JavadocUtils
 - `private static` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `TECHNICAL_TAGS`
 ### 🧮 Métodos
 
-- `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+<details open>
+
+<summary>Public</summary>
+
 - `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractDescription(Optional<JavadocComment> maybeComment)`
 > Extrae la descripción "preferida" desde un JavadocComment.
 > <p>
@@ -99,3 +121,19 @@ public class JavadocUtils
 
 > - *@param* **description** Texto a procesar (puede ser null)
 > - *@return* descripción con imágenes convertidas a sintaxis Markdown.
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
+- `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+

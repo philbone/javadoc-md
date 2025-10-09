@@ -21,8 +21,28 @@ public class ConfigLoader
 
 ### 🧮 Métodos
 
+<details open>
+
+<summary>Public</summary>
+
 - `public  static`Config `loadConfig()`
 > - *@return* un objeto con los datos de configuracion iniciales.
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
 ## #2 📘 Public Class Config
 
 ```java
@@ -57,6 +77,10 @@ public class Config
 - `public Config()`
 ### 🧮 Métodos
 
+<details open>
+
+<summary>Public</summary>
+
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
 > Obtiene la ruta del código fuente a documentar.
 
@@ -87,3 +111,19 @@ public class Config
 - `public ` **void** `setIncludePublic(boolean includePublic)`
 - `public `boolean `isTableOfContent()`
 - `public ` **void** `setTableOfContent(boolean tableOfContent)`
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
