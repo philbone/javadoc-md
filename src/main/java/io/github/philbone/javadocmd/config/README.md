@@ -50,6 +50,24 @@ public class Config
 ```
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
 > Directorio de entrada donde se encuentran las clases a documentar. *
 
@@ -72,6 +90,8 @@ public class Config
 - `private` boolean `includeProtected`
 - `private` boolean `includePublic`
 - `private` boolean `tableOfContent`
+</details>
+
 ### 🛠️ Constructores
 
 - `public Config()`

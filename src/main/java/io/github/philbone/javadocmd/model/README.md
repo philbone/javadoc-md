@@ -28,6 +28,24 @@ public class DocConstructor
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
@@ -35,6 +53,8 @@ public class DocConstructor
 - `private` boolean `isStatic`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
@@ -97,6 +117,24 @@ public class DocClass
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` int `indexOrder`
 > El número que tomará en la tabla de contenido
 
@@ -129,6 +167,8 @@ public class DocClass
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 > Descripción principal tomada del comentario Javadoc asociado.
+
+</details>
 
 ### 🛠️ Constructores
 
@@ -218,6 +258,24 @@ public class DocMethod
 ```
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnType`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
@@ -228,6 +286,8 @@ public class DocMethod
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnDescription`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid)`
@@ -278,8 +338,28 @@ public class DocParameter
 ```
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocParameter(String name, String description)`
@@ -344,6 +424,24 @@ public class DocPackage
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 > Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
 
@@ -351,6 +449,8 @@ public class DocPackage
 > Conjunto de clases, interfaces, enums y records pertenecientes al paquete.
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `projectName`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocPackage(String name)`
@@ -420,8 +520,28 @@ public class DocException
 ```
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocException(String name, String description)`
@@ -464,11 +584,31 @@ public class DocField
 
 ### 📦 Campos
 
+<details open>
+
+<summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open>
+
+<summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open>
+
+<summary>Private</summary>
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `type`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
 - `private` boolean `isStatic`
+</details>
+
 ### 🛠️ Constructores
 
 - `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
