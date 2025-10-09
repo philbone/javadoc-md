@@ -26,6 +26,9 @@ import java.util.List;
  * @see Kind
  */
 public class DocClass {
+    
+    /** El número que tomará en la tabla de contenido */
+    private int indexOrder;
 
     /** Nombre simple de la clase, interfaz, enum o record. */
     private final String name;   
@@ -150,4 +153,12 @@ public class DocClass {
     public void addInterface(String iface) { this.interfaces.add(iface); }
 
     public void setDescription(String description) { this.description = description; }
+
+    public int getIndexOrder() {
+        return indexOrder;
+    }
+
+    public void setIndexOrder(int indexOrder) {
+        this.indexOrder = indexOrder;
+    }
 }

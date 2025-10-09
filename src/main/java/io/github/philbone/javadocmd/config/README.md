@@ -5,11 +5,11 @@
 ## Resumen de Clases
 
 
-|CLASE|DESCRIPCIÓN|
-|---|---|
-|[public class ConfigLoader](#-public-class-configloader)|Esta clase se encarga de detectar el fichero de configuración y cargar los datos si son encontrados.
-|[public class Config](#-public-class-config)|
-## 📘 Public Class ConfigLoader
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public class ConfigLoader](#1-public-class-configloader)|Esta clase se encarga de detectar el fichero de configuración y cargar los datos si son encontrados.
+|**2**|[public class Config](#2-public-class-config)|
+## #1 📘 Public Class ConfigLoader
 
 ```java
 public class ConfigLoader
@@ -23,7 +23,7 @@ public class ConfigLoader
 
 - `public  static`Config `loadConfig()`
 > - *@return* un objeto con los datos de configuracion iniciales.
-## 📘 Public Class Config
+## #2 📘 Public Class Config
 
 ```java
 public class Config

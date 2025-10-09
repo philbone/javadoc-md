@@ -5,10 +5,10 @@
 ## Resumen de Clases
 
 
-|CLASE|DESCRIPCIÓN|
-|---|---|
-|[public abstract_class JavadocMd](#-public-abstract_class-javadocmd)|Punto de entrada principal del programa javadoc-md .
-## 📕 Public Abstract Class JavadocMd
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public abstract class JavadocMd](#1-public-abstract-class-javadocmd)|Punto de entrada principal del programa javadoc-md .
+## #1 📕 Public Abstract Class JavadocMd
 
 ```java
 public abstract class JavadocMd

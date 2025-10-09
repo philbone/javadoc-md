@@ -5,20 +5,20 @@
 ## Resumen de Clases
 
 
-|CLASE|DESCRIPCIÓN|
-|---|---|
-|[public class DocConstructor](#-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
-|[public class DocClass](#-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
-|[public class DocMethod](#-public-class-docmethod)|
-|[public class DocParameter](#-public-class-docparameter)|
-|[public class DocPackage](#-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
-|[public enum Kind](#-public-enum-kind)|
-|[public class DocException](#-public-class-docexception)|
-|[public class DocField](#-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public class DocConstructor](#1-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
+|**2**|[public class DocClass](#2-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
+|**3**|[public class DocMethod](#3-public-class-docmethod)|
+|**4**|[public class DocParameter](#4-public-class-docparameter)|
+|**5**|[public class DocPackage](#5-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
+|**6**|[public enum Kind](#6-public-enum-kind)|
+|**7**|[public class DocException](#7-public-class-docexception)|
+|**8**|[public class DocField](#8-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
 <details>
-<summary> <strong>📘 Public Class DocConstructor</strong> </summary>
+<summary> <strong>1 📘 Public Class DocConstructor</strong> </summary>
 
-## 📘 Public Class DocConstructor
+## #1 📘 Public Class DocConstructor
 
 ```java
 public class DocConstructor
@@ -52,9 +52,9 @@ public class DocConstructor
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocClass</strong> </summary>
+<summary> <strong>2 📘 Public Class DocClass</strong> </summary>
 
-## 📘 Public Class DocClass
+## #2 📘 Public Class DocClass
 
 ```java
 public class DocClass
@@ -76,6 +76,9 @@ public class DocClass
 > </p>
 
 ### 📦 Campos
+
+- `private` int `indexOrder`
+> El número que tomará en la tabla de contenido
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 > Nombre simple de la clase, interfaz, enum o record.
@@ -161,12 +164,14 @@ public class DocClass
 
 > - *@param* **iface** nombre de la interfaz
 - `public ` **void** `setDescription(String description)`
+- `public `int `getIndexOrder()`
+- `public ` **void** `setIndexOrder(int indexOrder)`
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocMethod</strong> </summary>
+<summary> <strong>3 📘 Public Class DocMethod</strong> </summary>
 
-## 📘 Public Class DocMethod
+## #3 📘 Public Class DocMethod
 
 ```java
 public class DocMethod
@@ -204,9 +209,9 @@ public class DocMethod
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocParameter</strong> </summary>
+<summary> <strong>4 📘 Public Class DocParameter</strong> </summary>
 
-## 📘 Public Class DocParameter
+## #4 📘 Public Class DocParameter
 
 ```java
 public class DocParameter
@@ -225,9 +230,9 @@ public class DocParameter
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocPackage</strong> </summary>
+<summary> <strong>5 📘 Public Class DocPackage</strong> </summary>
 
-## 📘 Public Class DocPackage
+## #5 📘 Public Class DocPackage
 
 ```java
 public class DocPackage
@@ -296,9 +301,9 @@ public class DocPackage
 
 </details>
 <details>
-<summary> <strong>📙 Public Enum Kind</strong> </summary>
+<summary> <strong>6 📙 Public Enum Kind</strong> </summary>
 
-## 📙 Public Enum Kind
+## #6 📙 Public Enum Kind
 
 ```java
 public enum Kind
@@ -306,9 +311,9 @@ public enum Kind
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocException</strong> </summary>
+<summary> <strong>7 📘 Public Class DocException</strong> </summary>
 
-## 📘 Public Class DocException
+## #7 📘 Public Class DocException
 
 ```java
 public class DocException
@@ -327,9 +332,9 @@ public class DocException
 
 </details>
 <details>
-<summary> <strong>📘 Public Class DocField</strong> </summary>
+<summary> <strong>8 📘 Public Class DocField</strong> </summary>
 
-## 📘 Public Class DocField
+## #8 📘 Public Class DocField
 
 ```java
 public class DocField

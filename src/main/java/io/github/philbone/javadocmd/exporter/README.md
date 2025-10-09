@@ -5,13 +5,13 @@
 ## Resumen de Clases
 
 
-|CLASE|DESCRIPCIÓN|
-|---|---|
-|[public interface DocExporter](#-public-interface-docexporter)|
-|[public class MarkdownExporter](#-public-class-markdownexporter)|Exportador que genera documentación en formato Markdown a partir del modelo intermedio construido con {@link io.
-|[public class MarkdownBuilder](#-public-class-markdownbuilder)|
-|[public class JavaApiLinker](#-public-class-javaapilinker)|Utilidad para convertir nombres de tipos de Java en enlaces a la documentación oficial de la API de Java SE.
-## 📗 Public Interface DocExporter
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public interface DocExporter](#1-public-interface-docexporter)|
+|**2**|[public class MarkdownExporter](#2-public-class-markdownexporter)|Exportador que genera documentación en formato Markdown a partir del modelo intermedio construido con {@link io.
+|**3**|[public class MarkdownBuilder](#3-public-class-markdownbuilder)|
+|**4**|[public class JavaApiLinker](#4-public-class-javaapilinker)|Utilidad para convertir nombres de tipos de Java en enlaces a la documentación oficial de la API de Java SE.
+## #1 📗 Public Interface DocExporter
 
 ```java
 public interface DocExporter
@@ -19,7 +19,7 @@ public interface DocExporter
 ### 🧮 Métodos
 
 - `package-private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
-## 📘 Public Class MarkdownExporter
+## #2 📘 Public Class MarkdownExporter
 
 ```java
 public class MarkdownExporter
@@ -45,7 +45,6 @@ implements DocExporter
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
 - `private` Config `config`
-- `private` JavaApiLinker `apiLinker`
 ### 🛠️ Constructores
 
 - `public MarkdownExporter(Config config)`
@@ -63,7 +62,7 @@ implements DocExporter
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
-## 📘 Public Class MarkdownBuilder
+## #3 📘 Public Class MarkdownBuilder
 
 ```java
 public class MarkdownBuilder
@@ -104,7 +103,7 @@ buffer).
 llamadas.
 - `public `MarkdownBuilder `toc(DocPackage docPackage)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
-## 📘 Public Class JavaApiLinker
+## #4 📘 Public Class JavaApiLinker
 
 ```java
 public class JavaApiLinker

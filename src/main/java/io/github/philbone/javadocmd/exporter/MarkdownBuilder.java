@@ -86,18 +86,21 @@ public class MarkdownBuilder
 
     public MarkdownBuilder toc(DocPackage docPackage) {
         subtitle("Resumen de Clases\n");
-        sb.append("|CLASE|DESCRIPCIÓN|\n");
-        sb.append("|---|---|\n");
-        for (DocClass docClass : docPackage.getClasses()) {            
+        sb.append("|#|CLASE|DESCRIPCIÓN|\n");
+        sb.append("|---|---|---|\n");
+        int i = 1;
+        for (DocClass docClass : docPackage.getClasses()) {
+            docClass.setIndexOrder(i);
             String item = docClass.getVisibility()
                     + (docClass.isStatic() ? " static " : " ")
                     + docClass.getKind().toString().toLowerCase()
                     + " " + docClass.getName();
             
-            String itemUrl = "[" + item + "](#-" + item.replaceAll(" ", "-").toLowerCase() + ")";
+            String itemUrl = "[" + item.replaceAll("_", " ") + "](#" + docClass.getIndexOrder() + "-" + item.replaceAll(" ", "-").replaceAll("_", "-").toLowerCase() + ")";
             String cleanDesc = sanitizeDescription(docClass.getDescription());
-            sb.append("|").append(itemUrl).append("|").append(cleanDesc).append("\n");
-        }
+            sb.append("|**" + docClass.getIndexOrder() + "**").append("|").append(itemUrl).append("|").append(cleanDesc).append("\n");
+            i++;
+        }        
         return this;
     }
     

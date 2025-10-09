@@ -5,11 +5,11 @@
 ## Resumen de Clases
 
 
-|CLASE|DESCRIPCIÓN|
-|---|---|
-|[public class JavadocExtractorVisitor](#-public-class-javadocextractorvisitor)|Visitor encargado de recorrer los nodos del AST de JavaParser y construir el modelo intermedio para la documentación en Markdown.
-|[public class JavadocUtils](#-public-class-javadocutils)|Utilidades para trabajar con JavadocComment de JavaParser.
-## 📘 Public Class JavadocExtractorVisitor
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public class JavadocExtractorVisitor](#1-public-class-javadocextractorvisitor)|Visitor encargado de recorrer los nodos del AST de JavaParser y construir el modelo intermedio para la documentación en Markdown.
+|**2**|[public class JavadocUtils](#2-public-class-javadocutils)|Utilidades para trabajar con JavadocComment de JavaParser.
+## #1 📘 Public Class JavadocExtractorVisitor
 
 ```java
 public class JavadocExtractorVisitor
@@ -48,7 +48,7 @@ extends VoidVisitorAdapter
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
 - `private `boolean `extractIsVoid(MethodDeclaration n)`
 - `private ` **void** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
-## 📘 Public Class JavadocUtils
+## #2 📘 Public Class JavadocUtils
 
 ```java
 public class JavadocUtils

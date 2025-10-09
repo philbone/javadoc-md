@@ -61,13 +61,13 @@ public class MarkdownExporter implements DocExporter
                     + (docClass.isStatic() ? " static " : " ")
                     + formatKind(docClass.getKind())
                     + " " + docClass.getName();
-
+            
             if (collapseClasses) {
-                builder.tag("<details>\n");
-                builder.tag("<summary> <strong>" + header.trim() + "</strong> </summary>\n\n");
+                builder.tag("<details>\n");                
+                builder.tag("<summary> <strong>" + String.valueOf(docClass.getIndexOrder()) + " " + header.trim() + "</strong> </summary>\n\n");
             }
 
-            builder.subtitle(header.trim());
+            builder.subtitle( "#" + String.valueOf(docClass.getIndexOrder()) + " " + header.trim() );
 
             // ========== Firma en bloque de código ==========
             StringBuilder signature = new StringBuilder();
