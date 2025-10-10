@@ -54,23 +54,17 @@ implements DocExporter
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private static` int `COLLAPSE_THRESHOLD`
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
@@ -124,23 +118,17 @@ public class MarkdownBuilder
 ```
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` StringBuilder `outPrint`
 </details>
@@ -209,23 +197,17 @@ public class JavaApiLinker
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `BASE_URL`
 > Versión base de la documentación de Java.

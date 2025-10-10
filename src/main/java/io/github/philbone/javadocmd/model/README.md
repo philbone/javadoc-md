@@ -28,23 +28,17 @@ public class DocConstructor
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
@@ -111,23 +105,17 @@ public class DocClass
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` int `indexOrder`
 > El número que tomará en la tabla de contenido
@@ -246,23 +234,17 @@ public class DocMethod
 ```
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnType`
@@ -320,23 +302,17 @@ public class DocParameter
 ```
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
@@ -400,23 +376,17 @@ public class DocPackage
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 > Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
@@ -490,23 +460,17 @@ public class DocException
 ```
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
@@ -548,23 +512,17 @@ public class DocField
 
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `type`
