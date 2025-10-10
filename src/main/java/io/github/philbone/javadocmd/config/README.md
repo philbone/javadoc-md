@@ -21,24 +21,18 @@ public class ConfigLoader
 
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public  static`Config `loadConfig()`
 > - *@return* un objeto con los datos de configuracion iniciales.
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>
@@ -50,23 +44,17 @@ public class Config
 ```
 ### 📦 Campos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 > _No hay campos public visibles_
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay campos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
 > Directorio de entrada donde se encuentran las clases a documentar. *
@@ -90,6 +78,7 @@ public class Config
 - `private` boolean `includeProtected`
 - `private` boolean `includePublic`
 - `private` boolean `tableOfContent`
+- `private` boolean `printEmptyNotify`
 </details>
 
 ### 🛠️ Constructores
@@ -97,9 +86,7 @@ public class Config
 - `public Config()`
 ### 🧮 Métodos
 
-<details open>
-
-<summary>Public</summary>
+<details open><summary>Public</summary>
 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
 > Obtiene la ruta del código fuente a documentar.
@@ -131,18 +118,16 @@ public class Config
 - `public ` **void** `setIncludePublic(boolean includePublic)`
 - `public `boolean `isTableOfContent()`
 - `public ` **void** `setTableOfContent(boolean tableOfContent)`
+- `public `boolean `isPrintEmptyNotify()`
+- `public ` **void** `setPrintEmptyNotify(boolean printEmptyNotify)`
 </details>
 
-<details open>
-
-<summary>Protected</summary>
+<details open><summary>Protected</summary>
 
 > _No hay métodos protected visibles_
 </details>
 
-<details open>
-
-<summary>Private</summary>
+<details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
 </details>

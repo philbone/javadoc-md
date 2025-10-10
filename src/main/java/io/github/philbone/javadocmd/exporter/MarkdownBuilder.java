@@ -125,4 +125,9 @@ public class MarkdownBuilder
         return clean;
     }
 
+    public MarkdownBuilder insertAt(int index, String text) {
+         outPrint.insert(index, text);
+         return this;
+    }
+
 }

@@ -41,6 +41,8 @@ public class Config
     
     private boolean tableOfContent;
     
+    private boolean printEmptyNotify;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "/src";
@@ -49,6 +51,7 @@ public class Config
         this.debugMode = false;
         this.combinePackagesMode = false;
         this.tableOfContent = true;
+        this.printEmptyNotify = true;
     }
 
     /**
@@ -161,6 +164,14 @@ public class Config
 
     public void setTableOfContent(boolean tableOfContent) {
         this.tableOfContent = tableOfContent;
+    }
+
+    public boolean isPrintEmptyNotify() {
+        return printEmptyNotify;
+    }
+
+    public void setPrintEmptyNotify(boolean printEmptyNotify) {
+        this.printEmptyNotify = printEmptyNotify;
     }
     
 }

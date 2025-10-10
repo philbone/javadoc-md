@@ -25,4 +25,8 @@ includePublic: true
 # true/false: activa/desactiva el modo de depuración
 debugMode: false
 
+# true imprime la tabla de contenido
 tableOfContent: true
+
+# true imprimirá un aviso de lista vacía si no hay métodos o campos visibles para imprimir
+printEmptyNotify: true

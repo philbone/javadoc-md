@@ -240,7 +240,7 @@ public class MarkdownExporter implements DocExporter
     private String printFields(DocClass docClass, String text) {
         MarkdownBuilder fieldBuilder = new MarkdownBuilder();
         int fieldCount = 0;
-        fieldBuilder.tag("<details open>\n\n").tag("<summary>" + capitalize(text) + "</summary>\n\n");
+                
         for (DocField field : docClass.getFields()) {
             
             if (field.getVisibility().equals(text)) {
@@ -261,11 +261,17 @@ public class MarkdownExporter implements DocExporter
                 }
             }
         }
-        if (fieldCount == 0) {
-            fieldBuilder.tag("> _No hay campos " + text + " visibles_\n");
+        // si no hay campos, pero la configuración de usuario dice imprimir notificación de lista vacía
+        if (fieldCount == 0 && config.isPrintEmptyNotify()) {
+            fieldBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")
+                    .tag("> _No hay campos " + text + " visibles_\n")
+                    .tag("</details>\n\n");
         }
-        
-        fieldBuilder.tag("</details>\n\n");
+        // si hay campos
+        if (fieldCount >= 1) {
+            fieldBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")
+                    .tag("</details>\n\n");
+        }// en cualquier otro caso ignora la impresión
         
         return fieldBuilder.build();
     }
@@ -273,7 +279,7 @@ public class MarkdownExporter implements DocExporter
     private String printMethods(DocClass docClass, String text) {
         MarkdownBuilder methodBuilder = new MarkdownBuilder();
         int methodCount = 0;
-        methodBuilder.tag("<details open>\n\n").tag("<summary>"+ capitalize(text) +"</summary>\n\n");
+        
         for (DocMethod method : docClass.getMethods()) {
 
             if (method.getVisibility().equals(text)) {
@@ -309,13 +315,19 @@ public class MarkdownExporter implements DocExporter
                     totalMethodsCount++;
                 }
             }
-            
+
         }
-        if (methodCount == 0) {
-            methodBuilder.tag("> _No hay métodos " + text + " visibles_\n");
+        // si no hay métodos, pero la configuración de usuario dice imprimir notificación de lista vacía
+        if (methodCount == 0 && config.isPrintEmptyNotify()) {
+            methodBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")                    
+                    .tag("> _No hay métodos " + text + " visibles_\n")
+                    .tag("</details>\n\n");
         }
-        
-        methodBuilder.tag("</details>\n\n");
+        // si hay métodos
+        if (methodCount >= 1) {
+            methodBuilder.insertAt(0, "<details open><summary>" + capitalize(text) + "</summary>\n\n")
+                    .tag("</details>\n\n");
+        }// en cualquier otro caso ignora la impresión
         
         return methodBuilder.build();
     }
