@@ -79,6 +79,10 @@ public class Config
 - `private` boolean `includePublic`
 - `private` boolean `tableOfContent`
 - `private` boolean `printEmptyNotify`
+- `private` boolean `printClassIndex`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
+- `private` boolean `foreSignClassIndexOnDetails`
+- `private` boolean `foreSignClassIndexOnSubtitle`
 </details>
 
 ### 🛠️ Constructores
@@ -120,6 +124,14 @@ public class Config
 - `public ` **void** `setTableOfContent(boolean tableOfContent)`
 - `public `boolean `isPrintEmptyNotify()`
 - `public ` **void** `setPrintEmptyNotify(boolean printEmptyNotify)`
+- `public `boolean `isPrintClassIndex()`
+- `public ` **void** `setPrintClassIndex(boolean printClassIndex)`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getForeSignClassIndex()`
+- `public ` **void** `setForeSignClassIndex(String foreSignClassIndex)`
+- `public `boolean `isForeSignClassIndexOnDetails()`
+- `public ` **void** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
+- `public `boolean `isForeSignClassIndexOnSubtitle()`
+- `public ` **void** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
 </details>
 
 <details open><summary>Protected</summary>

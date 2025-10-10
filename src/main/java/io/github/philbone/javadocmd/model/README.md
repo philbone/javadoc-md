@@ -16,7 +16,7 @@
 |**7**|[public class DocException](#7-public-class-docexception)|
 |**8**|[public class DocField](#8-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
 <details>
-<summary> <strong>1 📘 Public Class DocConstructor</strong> </summary>
+<summary> <strong> 📘 Public Class DocConstructor</strong> </summary>
 
 ## #1 📘 Public Class DocConstructor
 
@@ -80,7 +80,7 @@ public class DocConstructor
 
 </details>
 <details>
-<summary> <strong>2 📘 Public Class DocClass</strong> </summary>
+<summary> <strong> 📘 Public Class DocClass</strong> </summary>
 
 ## #2 📘 Public Class DocClass
 
@@ -225,7 +225,7 @@ public class DocClass
 
 </details>
 <details>
-<summary> <strong>3 📘 Public Class DocMethod</strong> </summary>
+<summary> <strong> 📘 Public Class DocMethod</strong> </summary>
 
 ## #3 📘 Public Class DocMethod
 
@@ -293,7 +293,7 @@ public class DocMethod
 
 </details>
 <details>
-<summary> <strong>4 📘 Public Class DocParameter</strong> </summary>
+<summary> <strong> 📘 Public Class DocParameter</strong> </summary>
 
 ## #4 📘 Public Class DocParameter
 
@@ -342,7 +342,7 @@ public class DocParameter
 
 </details>
 <details>
-<summary> <strong>5 📘 Public Class DocPackage</strong> </summary>
+<summary> <strong> 📘 Public Class DocPackage</strong> </summary>
 
 ## #5 📘 Public Class DocPackage
 
@@ -441,7 +441,7 @@ public class DocPackage
 
 </details>
 <details>
-<summary> <strong>6 📙 Public Enum Kind</strong> </summary>
+<summary> <strong> 📙 Public Enum Kind</strong> </summary>
 
 ## #6 📙 Public Enum Kind
 
@@ -451,7 +451,7 @@ public enum Kind
 
 </details>
 <details>
-<summary> <strong>7 📘 Public Class DocException</strong> </summary>
+<summary> <strong> 📘 Public Class DocException</strong> </summary>
 
 ## #7 📘 Public Class DocException
 
@@ -500,7 +500,7 @@ public class DocException
 
 </details>
 <details>
-<summary> <strong>8 📘 Public Class DocField</strong> </summary>
+<summary> <strong> 📘 Public Class DocField</strong> </summary>
 
 ## #8 📘 Public Class DocField
 
