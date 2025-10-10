@@ -30,3 +30,8 @@ tableOfContent: true
 
 # true imprimirá un aviso de lista vacía si no hay métodos o campos visibles para imprimir
 printEmptyNotify: true
+
+printClassIndex: true
+foreSignClassIndex: "#"
+foreSignClassIndexOnDetails: false
+foreSignClassIndexOnSubtitle: true

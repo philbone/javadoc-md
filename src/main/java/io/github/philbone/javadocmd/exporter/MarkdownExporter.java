@@ -71,10 +71,13 @@ public class MarkdownExporter implements DocExporter
             
             if (collapseClasses) {
                 builder.tag("<details>\n");                
-                builder.tag("<summary> <strong>" + String.valueOf(docClass.getIndexOrder()) + " " + header.trim() + "</strong> </summary>\n\n");
+                builder.tag("<summary> <strong>" + 
+                        // imprime el numero index en el detalle si está activa la opción
+                        printIndexNumber(docClass.getIndexOrder(), config.isForeSignClassIndexOnDetails()) + " " + 
+                        header.trim() + "</strong> </summary>\n\n");
             }
 
-            builder.subtitle( "#" + String.valueOf(docClass.getIndexOrder()) + " " + header.trim() );
+            builder.subtitle( printIndexNumber(docClass.getIndexOrder(), config.isForeSignClassIndexOnSubtitle()) + " " + header.trim() );
 
             // ========== Firma en bloque de código ==========
             StringBuilder signature = new StringBuilder();
@@ -330,6 +333,21 @@ public class MarkdownExporter implements DocExporter
         }// en cualquier otro caso ignora la impresión
         
         return methodBuilder.build();
+    }
+
+    // no es el flujo óptimo
+    private String printIndexNumber(int indexOrder, boolean foreSign) {
+        String r = "";// si la conf no require usar index el método retoranrá una cadena de texto vacía
+        if (foreSign) {// si evalua la conf requiere usar el foresign 
+            if (config.isPrintClassIndex()) {// evalua si la config requiete imprimir index
+                // evalua si el existe foresign declarado en la config
+                if (!config.getForeSignClassIndex().isBlank() && !config.getForeSignClassIndex().isEmpty()) {
+                    r += config.getForeSignClassIndex();// lo agrega al string
+                }
+                r += String.valueOf(indexOrder);//agrega el index al string
+            }
+        }
+        return r;
     }
     
 }

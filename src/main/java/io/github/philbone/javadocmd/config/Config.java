@@ -43,6 +43,13 @@ public class Config
     
     private boolean printEmptyNotify;
     
+    private boolean printClassIndex;
+    
+    private String foreSignClassIndex;
+    
+    private boolean foreSignClassIndexOnDetails;
+    private boolean foreSignClassIndexOnSubtitle;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "/src";
@@ -52,6 +59,10 @@ public class Config
         this.combinePackagesMode = false;
         this.tableOfContent = true;
         this.printEmptyNotify = true;
+        this.printClassIndex = true;
+        this.foreSignClassIndex = "";
+        this.foreSignClassIndexOnDetails = false;
+        this.foreSignClassIndexOnSubtitle = true;
     }
 
     /**
@@ -173,5 +184,38 @@ public class Config
     public void setPrintEmptyNotify(boolean printEmptyNotify) {
         this.printEmptyNotify = printEmptyNotify;
     }
+
+    public boolean isPrintClassIndex() {
+        return printClassIndex;
+    }
+
+    public void setPrintClassIndex(boolean printClassIndex) {
+        this.printClassIndex = printClassIndex;
+    }   
+
+    public String getForeSignClassIndex() {
+        return foreSignClassIndex;
+    }
+
+    public void setForeSignClassIndex(String foreSignClassIndex) {
+        this.foreSignClassIndex = foreSignClassIndex;
+    }
+
+    public boolean isForeSignClassIndexOnDetails() {
+        return foreSignClassIndexOnDetails;
+    }
+
+    public void setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails) {
+        this.foreSignClassIndexOnDetails = foreSignClassIndexOnDetails;
+    }
+
+    public boolean isForeSignClassIndexOnSubtitle() {
+        return foreSignClassIndexOnSubtitle;
+    }
+
+    public void setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle) {
+        this.foreSignClassIndexOnSubtitle = foreSignClassIndexOnSubtitle;
+    }
+      
     
 }
