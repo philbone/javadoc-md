@@ -53,42 +53,42 @@ public class Config
 > Obtiene la ruta del código fuente a documentar.
 
 > - *@return* el directorio donde se encuentran el código fuente.
-- `public ` **void** `setSourcePath(String sourcePath)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSourcePath(String sourcePath)`
 > - *@param* **sourcePath** 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
 > - *@return* 
-- `public ` **void** `setOutputPath(String outputPath)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutputPath(String outputPath)`
 > - *@param* **outputPath** 
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
 > - *@return* 
-- `public ` **void** `setOutFileName(String outFileName)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutFileName(String outFileName)`
 > - *@param* **outFileName** 
-- `public `boolean `isDebugMode()`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isDebugMode()`
 > - *@return* 
-- `public ` **void** `setDebugMode(boolean debugMode)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDebugMode(boolean debugMode)`
 > - *@param* **debugMode** 
-- `public `boolean `isCombinePackagesMode()`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isCombinePackagesMode()`
 > - *@return* 
-- `public ` **void** `setCombinePackagesMode(boolean combinePackages)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setCombinePackagesMode(boolean combinePackages)`
 > - *@param* **combinePackages** 
-- `public `boolean `isIncludePrivate()`
-- `public ` **void** `setIncludePrivate(boolean includePrivate)`
-- `public `boolean `isIncludeProtected()`
-- `public ` **void** `setIncludeProtected(boolean includeProtected)`
-- `public `boolean `isIncludePublic()`
-- `public ` **void** `setIncludePublic(boolean includePublic)`
-- `public `boolean `isTableOfContent()`
-- `public ` **void** `setTableOfContent(boolean tableOfContent)`
-- `public `boolean `isPrintEmptyNotify()`
-- `public ` **void** `setPrintEmptyNotify(boolean printEmptyNotify)`
-- `public `boolean `isPrintClassIndex()`
-- `public ` **void** `setPrintClassIndex(boolean printClassIndex)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePrivate()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePrivate(boolean includePrivate)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludeProtected()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludeProtected(boolean includeProtected)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePublic()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePublic(boolean includePublic)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isTableOfContent()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setTableOfContent(boolean tableOfContent)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintEmptyNotify()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintEmptyNotify(boolean printEmptyNotify)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintClassIndex()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintClassIndex(boolean printClassIndex)`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getForeSignClassIndex()`
-- `public ` **void** `setForeSignClassIndex(String foreSignClassIndex)`
-- `public `boolean `isForeSignClassIndexOnDetails()`
-- `public ` **void** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
-- `public `boolean `isForeSignClassIndexOnSubtitle()`
-- `public ` **void** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndex(String foreSignClassIndex)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnDetails()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnSubtitle()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -128,22 +128,22 @@ public class Config
 > Nombre del archivo de salida que contendrá la documentación en cada
 > paquete.
 
-- `private` boolean `debugMode`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `debugMode`
 > Bandera de depuración para imprimir trazas adicionales.
 
-- `private` boolean `combinePackagesMode`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `combinePackagesMode`
 > Bandera para definir el modo de exportación
 > false exportar un fichero por cada paquete
 > true exportar un fichero de forma global.
 
-- `private` boolean `includePrivate`
-- `private` boolean `includeProtected`
-- `private` boolean `includePublic`
-- `private` boolean `tableOfContent`
-- `private` boolean `printEmptyNotify`
-- `private` boolean `printClassIndex`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `includePrivate`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `includeProtected`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `includePublic`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `tableOfContent`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `printEmptyNotify`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `printClassIndex`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
-- `private` boolean `foreSignClassIndexOnDetails`
-- `private` boolean `foreSignClassIndexOnSubtitle`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `foreSignClassIndexOnDetails`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `foreSignClassIndexOnSubtitle`
 </details>
 

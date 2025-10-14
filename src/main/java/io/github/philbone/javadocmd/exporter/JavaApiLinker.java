@@ -95,6 +95,10 @@ public class JavaApiLinker
      */
     private static String resolveToFQCN(String type) {
         return switch (type) {
+            case "int" -> "java.lang.Integer";
+            case "boolean" -> "java.lang.Boolean";
+            case "Pattern" -> "java.lang.Pattern";
+            case "void" -> "java.lang.Void";
             case "String" -> "java.lang.String";
             case "Object" -> "java.lang.Object";
             case "List" -> "java.util.List";

@@ -75,7 +75,7 @@ implements DocExporter
 
 <details open><summary>Private</summary>
 
-- `private `boolean `isPrintable(String visibility)`
+- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintable(String visibility)`
 > Determina si la visibilidad es imprimible según la configuración.
 
 > - *@param* **visibility** la visiblidad a evaluar
@@ -108,7 +108,7 @@ implements DocExporter
 
 <details open><summary>Private</summary>
 
-- `private static` int `COLLAPSE_THRESHOLD`
+- `private static` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `COLLAPSE_THRESHOLD`
 > Número mínimo de clases dentro de un paquete para activar el modo colapsable.
 > Si el paquete tiene más de este número, cada clase se renderiza dentro de un bloque `<details>`.
 
@@ -116,8 +116,8 @@ implements DocExporter
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PRIVATE`
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PROTECTED`
 - `private` [Config](Config.md) `config`
-- `private` int `totalMethodsCount`
-- `private` int `totalFieldsCount`
+- `private` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `totalMethodsCount`
+- `private` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `totalFieldsCount`
 - `private` [JavaApiLinker](JavaApiLinker.md) `apiLinker`
 - `private` [InternalLinker](InternalLinker.md) `internalLinker`
 - `private` [DocPackage](DocPackage.md) `docPackage`
@@ -144,7 +144,7 @@ public class MarkdownBuilder
 - `public `[MarkdownBuilder](MarkdownBuilder.md) `paragraph(String text)`
 - `public `[MarkdownBuilder](MarkdownBuilder.md) `listItem(String text)`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
-- `public ` **void** `codeBlock(String content, String codeLang)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `codeBlock(String content, String codeLang)`
 - `public `[MarkdownBuilder](MarkdownBuilder.md) `blockquote(String text)`
 - `public `[MarkdownBuilder](MarkdownBuilder.md) `tag(String tag)`
 > Inyecta una etiqueta arbitraria directamente en el flujo del Markdown.
@@ -223,7 +223,7 @@ public class InternalLinker
 > Devuelve un enlace Markdown si el tipo pertenece al proyecto JavadocMd.
 > Si no hay coincidencia, retorna null.
 
-- `public `int `size()`
+- `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `size()`
 </details>
 
 <details open><summary>Protected</summary>
@@ -259,7 +259,7 @@ public class InternalLinker
 - `private` [Set](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html)<String> `internalClasses`
 - `private` [Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String,List<String>> `simpleToFqns`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extension`
-- `private` boolean `debug`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `debug`
 </details>
 
 
@@ -291,8 +291,6 @@ public class JavaApiLinker
 > devuelve un enlace Markdown al Javadoc oficial.
 > De lo contrario, devuelve el tipo original sin enlace.
 
-> - *@param* **type** 
-> - *@return* 
 </details>
 
 <details open><summary>Protected</summary>
@@ -332,7 +330,7 @@ public class JavaApiLinker
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `BASE_URL`
 > Versión base de la documentación de Java.
 
-- `private static` Pattern `GENERIC_PATTERN`
+- `private static` [Pattern](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Pattern.html) `GENERIC_PATTERN`
 > Patrón para detectar tipos genéricos (por ejemplo, List<String>)
 
 </details>

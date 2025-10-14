@@ -34,10 +34,10 @@ public class DocConstructor
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `boolean `isStatic()`
-- `public ` **void** `addDocParameter(DocParameter param)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
-- `public ` **void** `addException(DocException exception)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
 </details>
 
@@ -72,7 +72,7 @@ public class DocConstructor
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-- `private` boolean `isStatic`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
 </details>
@@ -115,7 +115,7 @@ public class DocClass
 > - *@return* el tipo de elemento representado.
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
 > - *@return* la visibilidad del tipo (public, protected, etc.).
-- `public `boolean `isStatic()`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
 > - *@return* {@code true} si la clase fue declarada como estática.
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `getFields()`
 > - *@return* lista inmutable de campos de la clase.
@@ -123,33 +123,33 @@ public class DocClass
 > - *@return* lista inmutable de métodos de la clase.
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocConstructor> `getConstructors()`
 > - *@return* lista inmutable de constructores de la clase.
-- `public ` **void** `addField(DocField field)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addField(DocField field)`
 > Agrega un campo al modelo de la clase.
 
 > - *@param* **field** definición del campo
-- `public ` **void** `addMethod(DocMethod method)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addMethod(DocMethod method)`
 > Agrega un método al modelo de la clase.
 
 > - *@param* **method** definición del método
-- `public ` **void** `addConstructor(DocConstructor constructor)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addConstructor(DocConstructor constructor)`
 > Agrega un constructor al modelo de la clase.
 
 > - *@param* **constructor** definición del constructor
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuperClass()`
 > - *@return* el nombre de la superclase, o {@code null} si no tiene.
-- `public ` **void** `setSuperClass(String superClass)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSuperClass(String superClass)`
 > Define la superclase de este tipo.
 
 > - *@param* **superClass** nombre de la clase padre
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getInterfaces()`
 > - *@return* lista de interfaces implementadas (clases) o extendidas (interfaces).
-- `public ` **void** `addInterface(String iface)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addInterface(String iface)`
 > Agrega una interfaz implementada o extendida.
 
 > - *@param* **iface** nombre de la interfaz
-- `public ` **void** `setDescription(String description)`
-- `public `int `getIndexOrder()`
-- `public ` **void** `setIndexOrder(int indexOrder)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDescription(String description)`
+- `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `getIndexOrder()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIndexOrder(int indexOrder)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -187,7 +187,7 @@ public class DocClass
 
 <details open><summary>Private</summary>
 
-- `private` int `indexOrder`
+- `private` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `indexOrder`
 > El número que tomará en la tabla de contenido
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
@@ -199,7 +199,7 @@ public class DocClass
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
 > Nivel de visibilidad del tipo (public, protected, package-private, private).
 
-- `private` boolean `isStatic`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic`
 > Indica si el tipo ha sido declarado como {@code static}.
 
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `fields`
@@ -241,13 +241,13 @@ public class DocMethod
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `boolean `isStatic()`
-- `public `boolean `isVoid()`
-- `public ` **void** `setReturnDescription(String returnDescription)`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isVoid()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setReturnDescription(String returnDescription)`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnDescription()`
-- `public ` **void** `addDocParameter(DocParameter param)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
-- `public ` **void** `addException(DocException exception)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
 - `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
 </details>
 
@@ -283,8 +283,8 @@ public class DocMethod
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-- `private` boolean `isStatic`
-- `private` boolean `isVoid`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isVoid`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnDescription`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
@@ -393,11 +393,11 @@ public class DocPackage
 > </p>
 
 > - *@return* lista de clases del paquete.
-- `public ` **void** `addClass(DocClass docClass)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addClass(DocClass docClass)`
 > Agrega una nueva clase, interfaz, enum o record al paquete.
 
 > - *@param* **docClass** instancia de {@link DocClass} a agregar.
-- `public ` **void** `setProjectName(String projectName)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setProjectName(String projectName)`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProjectName()`
 </details>
 
@@ -521,7 +521,7 @@ public class DocField
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getType()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `boolean `isStatic()`
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
 </details>
 
 <details open><summary>Protected</summary>
@@ -555,7 +555,7 @@ public class DocField
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `type`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-- `private` boolean `isStatic`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic`
 </details>
 
 

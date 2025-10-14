@@ -305,7 +305,7 @@ public class MarkdownExporter implements DocExporter
                     String returnType = formatCodeOrLink(method.getReturnType());
                     String signatureMeth = " `" + method.getVisibility() + " "
                             + (method.isStatic() ? " static`" : "`")
-                            + (method.isVoid() ? " **void**" : returnType)
+                            + (method.isVoid() ? " **"+ returnType +"**" : returnType)
                             + " `" + method.getName()
                             + "(" + String.join(", ", method.getParameters()) + ")`";
                     methodBuilder.listItem(signatureMeth.trim());

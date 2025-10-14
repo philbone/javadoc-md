@@ -31,9 +31,9 @@ extends VoidVisitorAdapter
 
 <details open><summary>Public</summary>
 
-- `public ` **void** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
-- `public ` **void** `visit(EnumDeclaration n, DocPackage docPackage)`
-- `public ` **void** `visit(RecordDeclaration n, DocPackage docPackage)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(EnumDeclaration n, DocPackage docPackage)`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(RecordDeclaration n, DocPackage docPackage)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -43,22 +43,22 @@ extends VoidVisitorAdapter
 
 <details open><summary>Private</summary>
 
-- `private ` **void** `visitMethod(MethodDeclaration n, DocClass docClass)`
-- `private ` **void** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
-- `private ` **void** `visitField(FieldDeclaration n, DocClass docClass)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitMethod(MethodDeclaration n, DocClass docClass)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitField(FieldDeclaration n, DocClass docClass)`
 - `private `Javadoc `extractJavadoc(BodyDeclaration<?> n)`
 - `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractVisibility(BodyDeclaration<?> n)`
 > Extrae la visibilidad de un nodo que posea modificadores.
 
 > - *@param* **n** nodo del AST.
 > - *@return* "public", "protected", "private" o "package-private".
-- `private `boolean `extractIsStatic(BodyDeclaration<?> n)`
+- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsStatic(BodyDeclaration<?> n)`
 > Verifica si un nodo tiene el modificador {@code static}.
 
 > - *@param* **n** nodo del AST.
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
-- `private `boolean `extractIsVoid(MethodDeclaration n)`
-- `private ` **void** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
+- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsVoid(MethodDeclaration n)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
 </details>
 
 ## #2 📘 Public Class JavadocUtils
