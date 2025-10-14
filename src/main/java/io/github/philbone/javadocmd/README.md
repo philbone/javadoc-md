@@ -30,34 +30,6 @@ public abstract class JavadocMd
 > Actualmente soporta la exportación de documentación hacia un archivo
 > <code>README.md</code> por cada paquete encontrado en el proyecto.</p>
 
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private static` int `executionCount`
-> Contador global de ejecuciones del generador de documentación.
-
-</details>
-
-### 🛠️ Constructores
-
-- `protected JavadocMd()`
-> **Descripción:**
-> Constructor protegido por defecto.
-> <p>
-> Inicializa valores de configuración básicos.
-
-> - *@throws* **IllegalStateException** si la configuración inicial es inválida.
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -81,5 +53,33 @@ en futuras versiones aceptar <code>sourcePath</code> y
 <details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `protected JavadocMd()`
+> **Descripción:**
+> Constructor protegido por defecto.
+> <p>
+> Inicializa valores de configuración básicos.
+
+> - *@throws* **IllegalStateException** si la configuración inicial es inválida.
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private static` int `executionCount`
+> Contador global de ejecuciones del generador de documentación.
+
 </details>
 

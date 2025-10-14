@@ -8,7 +8,7 @@
 |#|CLASE|DESCRIPCIÓN|
 |---|---|---|
 |**1**|[public class ConfigLoader](#1-public-class-configloader)|Esta clase se encarga de detectar el fichero de configuración y cargar los datos si son encontrados.
-|**2**|[public class Config](#2-public-class-config)|
+|**2**|[public class Config](#2-public-class-config)|@author Felipe M.
 ## #1 📘 Public Class ConfigLoader
 
 ```java
@@ -23,7 +23,7 @@ public class ConfigLoader
 
 <details open><summary>Public</summary>
 
-- `public  static`Config `loadConfig()`
+- `public  static`[Config](Config.md) `loadConfig()`
 > - *@return* un objeto con los datos de configuracion iniciales.
 </details>
 
@@ -42,52 +42,9 @@ public class ConfigLoader
 ```java
 public class Config
 ```
-### 📦 Campos
+> **Descripción:**
+> @author Felipe M. <philbone@focused.cl>
 
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
-> Directorio de entrada donde se encuentran las clases a documentar. *
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
-> Directorio base donde se escribirá la documentación generada.
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
-> Nombre del archivo de salida que contendrá la documentación en cada
-> paquete.
-
-- `private` boolean `debugMode`
-> Bandera de depuración para imprimir trazas adicionales.
-
-- `private` boolean `combinePackagesMode`
-> Bandera para definir el modo de exportación
-> false exportar un fichero por cada paquete
-> true exportar un fichero de forma global.
-
-- `private` boolean `includePrivate`
-- `private` boolean `includeProtected`
-- `private` boolean `includePublic`
-- `private` boolean `tableOfContent`
-- `private` boolean `printEmptyNotify`
-- `private` boolean `printClassIndex`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
-- `private` boolean `foreSignClassIndexOnDetails`
-- `private` boolean `foreSignClassIndexOnSubtitle`
-</details>
-
-### 🛠️ Constructores
-
-- `public Config()`
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -142,5 +99,51 @@ public class Config
 <details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public Config()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
+> Directorio de entrada donde se encuentran las clases a documentar. *
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
+> Directorio base donde se escribirá la documentación generada.
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
+> Nombre del archivo de salida que contendrá la documentación en cada
+> paquete.
+
+- `private` boolean `debugMode`
+> Bandera de depuración para imprimir trazas adicionales.
+
+- `private` boolean `combinePackagesMode`
+> Bandera para definir el modo de exportación
+> false exportar un fichero por cada paquete
+> true exportar un fichero de forma global.
+
+- `private` boolean `includePrivate`
+- `private` boolean `includeProtected`
+- `private` boolean `includePublic`
+- `private` boolean `tableOfContent`
+- `private` boolean `printEmptyNotify`
+- `private` boolean `printClassIndex`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
+- `private` boolean `foreSignClassIndexOnDetails`
+- `private` boolean `foreSignClassIndexOnSubtitle`
 </details>
 

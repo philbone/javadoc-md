@@ -76,23 +76,6 @@ public class JavadocUtils
 >   <li>obtener una "descripción completa" que incluye los block tags (útil para debugging / fallback).</li>
 > </ul>
 
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private static` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `TECHNICAL_TAGS`
-</details>
-
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -137,5 +120,22 @@ public class JavadocUtils
 <details open><summary>Private</summary>
 
 - `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+</details>
+
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private static` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `TECHNICAL_TAGS`
 </details>
 

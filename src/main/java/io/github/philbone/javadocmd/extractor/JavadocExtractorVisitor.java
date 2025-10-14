@@ -261,9 +261,10 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         boolean isStatic = extractIsStatic(n);
 
         n.getVariables().forEach(var -> {
+            String type = n.getElementType().asString().trim(); // 👈 aseguramos el formato limpio
             DocField docField = new DocField(
                     var.getNameAsString(),
-                    n.getElementType().toString(),
+                    type,
                     description,
                     visibility,
                     isStatic
@@ -351,7 +352,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         //    como último recurso (opcional). Aquí lo dejamos como no obligatorio.
         if (description == null || description.isEmpty()) {
             // opcional: comentar o activar según prefieras
-            // description = JavadocUtils.extractFullDescription(maybe);
+            description = JavadocUtils.extractFullDescription(maybe);
         }
 
         if (description != null && !description.isEmpty()) {
