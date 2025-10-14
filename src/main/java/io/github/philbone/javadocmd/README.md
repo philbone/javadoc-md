@@ -34,15 +34,15 @@ public abstract class JavadocMd
 
 <details open><summary>Public</summary>
 
-- `public  static` **void** `main(String[] args)`
+- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `main(String[] args)`
 > Método principal que inicia el proceso de generación de documentación.
 
 > - *@param* **args** argumentos opcionales (no utilizados actualmente). Se planea
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
-- `public  static` **void** `generatePackageDocs(Config config)`
-- `public  static` **void** `generateCombinedDocs(Config config)`
-- `public  static` **void** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
+- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generatePackageDocs(Config config)`
+- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generateCombinedDocs(Config config)`
+- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -78,7 +78,7 @@ en futuras versiones aceptar <code>sourcePath</code> y
 
 <details open><summary>Private</summary>
 
-- `private static` int `executionCount`
+- `private static` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `executionCount`
 > Contador global de ejecuciones del generador de documentación.
 
 </details>
