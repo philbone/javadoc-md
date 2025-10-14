@@ -10,7 +10,7 @@
 |**1**|[public class DocConstructor](#1-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
 |**2**|[public class DocClass](#2-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
 |**3**|[public class DocMethod](#3-public-class-docmethod)|
-|**4**|[public class DocParameter](#4-public-class-docparameter)|
+|**4**|[public class DocParameter](#4-public-class-docparameter)|@author Felipe M.
 |**5**|[public class DocPackage](#5-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
 |**6**|[public enum Kind](#6-public-enum-kind)|
 |**7**|[public class DocException](#7-public-class-docexception)|
@@ -26,32 +26,6 @@ public class DocConstructor
 > **Descripción:**
 > Representa un constructor documentado dentro de una clase.
 
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-- `private` boolean `isStatic`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
-</details>
-
-### 🛠️ Constructores
-
-- `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -75,6 +49,32 @@ public class DocConstructor
 <details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public DocConstructor(String name, List<String> parameters, String description, String visibility, boolean isStatic)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
+- `private` boolean `isStatic`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
 </details>
 
 
@@ -103,66 +103,6 @@ public class DocClass
 > La información contenida en esta clase es utilizada por los exportadores (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
 > </p>
 
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private` int `indexOrder`
-> El número que tomará en la tabla de contenido
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-> Nombre simple de la clase, interfaz, enum o record.
-
-- `private` Kind `kind`
-> Tipo de elemento representado (clase, interfaz, enum, record, abstracta).
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-> Nivel de visibilidad del tipo (public, protected, package-private, private).
-
-- `private` boolean `isStatic`
-> Indica si el tipo ha sido declarado como {@code static}.
-
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `fields`
-> Campos declarados dentro de la clase.
-
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocMethod> `methods`
-> Métodos declarados dentro de la clase.
-
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocConstructor> `constructors`
-> Constructores declarados dentro de la clase.
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `superClass`
-> Nombre de la clase padre (superclase), si existe.
-
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `interfaces`
-> Interfaces implementadas (clases) o extendidas (interfaces).
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
-> Descripción principal tomada del comentario Javadoc asociado.
-
-</details>
-
-### 🛠️ Constructores
-
-- `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
-> **Descripción:**
-> Crea una nueva representación de clase en el modelo intermedio.
-
-> - *@param* `name` nombre simple de la clase
-> - *@param* `description` descripción principal (desde Javadoc)
-> - *@param* `kind` tipo del elemento (clase, interfaz, enum, record)
-> - *@param* `visibility` nivel de visibilidad (public, protected, package-private, private)
-> - *@param* `isStatic` indica si la clase fue declarada como {@code static}
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -171,7 +111,7 @@ public class DocClass
 > - *@return* el nombre simple de la clase.
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 > - *@return* la descripción tomada del Javadoc.
-- `public `Kind `getKind()`
+- `public `[Kind](Kind.md) `getKind()`
 > - *@return* el tipo de elemento representado.
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
 > - *@return* la visibilidad del tipo (public, protected, etc.).
@@ -222,16 +162,17 @@ public class DocClass
 > _No hay métodos private visibles_
 </details>
 
+### 🛠️ Constructores
 
-</details>
-<details>
-<summary> <strong> 📘 Public Class DocMethod</strong> </summary>
+- `public DocClass(String name, String description, Kind kind, String visibility, boolean isStatic)`
+> **Descripción:**
+> Crea una nueva representación de clase en el modelo intermedio.
 
-## #3 📘 Public Class DocMethod
-
-```java
-public class DocMethod
-```
+> - *@param* `name` nombre simple de la clase
+> - *@param* `description` descripción principal (desde Javadoc)
+> - *@param* `kind` tipo del elemento (clase, interfaz, enum, record)
+> - *@param* `visibility` nivel de visibilidad (public, protected, package-private, private)
+> - *@param* `isStatic` indica si la clase fue declarada como {@code static}
 ### 📦 Campos
 
 <details open><summary>Public</summary>
@@ -246,21 +187,51 @@ public class DocMethod
 
 <details open><summary>Private</summary>
 
+- `private` int `indexOrder`
+> El número que tomará en la tabla de contenido
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnType`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+> Nombre simple de la clase, interfaz, enum o record.
+
+- `private` [Kind](Kind.md) `kind`
+> Tipo de elemento representado (clase, interfaz, enum, record, abstracta).
+
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
+> Nivel de visibilidad del tipo (public, protected, package-private, private).
+
 - `private` boolean `isStatic`
-- `private` boolean `isVoid`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnDescription`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
+> Indica si el tipo ha sido declarado como {@code static}.
+
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `fields`
+> Campos declarados dentro de la clase.
+
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocMethod> `methods`
+> Métodos declarados dentro de la clase.
+
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocConstructor> `constructors`
+> Constructores declarados dentro de la clase.
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `superClass`
+> Nombre de la clase padre (superclase), si existe.
+
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `interfaces`
+> Interfaces implementadas (clases) o extendidas (interfaces).
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+> Descripción principal tomada del comentario Javadoc asociado.
+
 </details>
 
-### 🛠️ Constructores
 
-- `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid)`
+</details>
+<details>
+<summary> <strong> 📘 Public Class DocMethod</strong> </summary>
+
+## #3 📘 Public Class DocMethod
+
+```java
+public class DocMethod
+```
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -290,16 +261,9 @@ public class DocMethod
 > _No hay métodos private visibles_
 </details>
 
+### 🛠️ Constructores
 
-</details>
-<details>
-<summary> <strong> 📘 Public Class DocParameter</strong> </summary>
-
-## #4 📘 Public Class DocParameter
-
-```java
-public class DocParameter
-```
+- `public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid)`
 ### 📦 Campos
 
 <details open><summary>Public</summary>
@@ -315,12 +279,30 @@ public class DocParameter
 <details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnType`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `parameters`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
+- `private` boolean `isStatic`
+- `private` boolean `isVoid`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnDescription`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
 </details>
 
-### 🛠️ Constructores
 
-- `public DocParameter(String name, String description)`
+</details>
+<details>
+<summary> <strong> 📘 Public Class DocParameter</strong> </summary>
+
+## #4 📘 Public Class DocParameter
+
+```java
+public class DocParameter
+```
+> **Descripción:**
+> @author Felipe M. philbone@focused.cl
+
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -337,6 +319,27 @@ public class DocParameter
 <details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public DocParameter(String name, String description)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 </details>
 
 
@@ -374,36 +377,6 @@ public class DocPackage
 > pkg.addClass(new DocClass("MarkdownExporter", "...", Kind.CLASS, "public", false));
 > }</pre>
 
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-> Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
-
-- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocClass> `classes`
-> Conjunto de clases, interfaces, enums y records pertenecientes al paquete.
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `projectName`
-</details>
-
-### 🛠️ Constructores
-
-- `public DocPackage(String name)`
-> **Descripción:**
-> Crea un nuevo descriptor de paquete.
-
-> - *@param* `name` nombre del paquete en notación estándar de Java.
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -438,6 +411,36 @@ public class DocPackage
 > _No hay métodos private visibles_
 </details>
 
+### 🛠️ Constructores
+
+- `public DocPackage(String name)`
+> **Descripción:**
+> Crea un nuevo descriptor de paquete.
+
+> - *@param* `name` nombre del paquete en notación estándar de Java.
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+> Nombre completo del paquete (ejemplo: {@code io.github.philbone.javadocmd.exporter}).
+
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocClass> `classes`
+> Conjunto de clases, interfaces, enums y records pertenecientes al paquete.
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `projectName`
+</details>
+
 
 </details>
 <details>
@@ -458,27 +461,6 @@ public enum Kind
 ```java
 public class DocException
 ```
-### 📦 Campos
-
-<details open><summary>Public</summary>
-
-> _No hay campos public visibles_
-</details>
-
-<details open><summary>Protected</summary>
-
-> _No hay campos protected visibles_
-</details>
-
-<details open><summary>Private</summary>
-
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
-</details>
-
-### 🛠️ Constructores
-
-- `public DocException(String name, String description)`
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -497,19 +479,9 @@ public class DocException
 > _No hay métodos private visibles_
 </details>
 
+### 🛠️ Constructores
 
-</details>
-<details>
-<summary> <strong> 📘 Public Class DocField</strong> </summary>
-
-## #8 📘 Public Class DocField
-
-```java
-public class DocField
-```
-> **Descripción:**
-> Representa un campo (atributo) documentado dentro de una clase.
-
+- `public DocException(String name, String description)`
 ### 📦 Campos
 
 <details open><summary>Public</summary>
@@ -525,15 +497,22 @@ public class DocField
 <details open><summary>Private</summary>
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `type`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
-- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
-- `private` boolean `isStatic`
 </details>
 
-### 🛠️ Constructores
 
-- `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
+</details>
+<details>
+<summary> <strong> 📘 Public Class DocField</strong> </summary>
+
+## #8 📘 Public Class DocField
+
+```java
+public class DocField
+```
+> **Descripción:**
+> Representa un campo (atributo) documentado dentro de una clase.
+
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
@@ -553,6 +532,30 @@ public class DocField
 <details open><summary>Private</summary>
 
 > _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public DocField(String name, String type, String description, String visibility, boolean isStatic)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `type`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
+- `private` boolean `isStatic`
 </details>
 
 

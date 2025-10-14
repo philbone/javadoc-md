@@ -20,13 +20,16 @@ import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
 import io.github.philbone.javadocmd.model.DocPackage;
 import io.github.philbone.javadocmd.exporter.DocExporter;
+import io.github.philbone.javadocmd.exporter.InternalLinker;
 import io.github.philbone.javadocmd.exporter.MarkdownExporter;
 import io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor;
+import io.github.philbone.javadocmd.model.DocClass;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Punto de entrada principal del programa <b>javadoc-md</b>.
@@ -146,10 +149,16 @@ public abstract class JavadocMd
                     });
 
             // 6. Exportar cada paquete
-            DocExporter exporter = new MarkdownExporter(config);
+             // Reunir todas las clases del proyecto
+            Set<String> allClasses = packages.values().stream()
+                    .flatMap(pkg -> pkg.getClasses().stream())
+                    .map(DocClass::getName)
+                    .collect(Collectors.toSet());
+            // Crear linker global
+            InternalLinker internalLinker = new InternalLinker(allClasses, ".md");
+            DocExporter exporter = new MarkdownExporter(config, internalLinker);
             for (DocPackage docPackage : packages.values()) {
                 String markdown = exporter.export(docPackage);
-
                 if ( config.getOutputPath() == null || config.getOutputPath().isEmpty() ) {
                     // Mostrar en consola
                     System.out.println(markdown);
@@ -202,7 +211,14 @@ public abstract class JavadocMd
                     });
 
             // 6. Exportar todos los paquetes en un solo archivo unificado
-            DocExporter exporter = new MarkdownExporter(config);
+            // Reunir todas las clases del proyecto
+            Set<String> allClasses = packages.values().stream()
+                    .flatMap(pkg -> pkg.getClasses().stream())
+                    .map(DocClass::getName)
+                    .collect(Collectors.toSet());
+            // Crear linker global
+            InternalLinker internalLinker = new InternalLinker(allClasses, ".md");
+            DocExporter exporter = new MarkdownExporter(config, internalLinker);
             StringBuilder combined = new StringBuilder();
 
             for (DocPackage docPackage : packages.values()) {

@@ -36,32 +36,38 @@ public class MarkdownExporter implements DocExporter
     private int totalFieldsCount = 0;
 
     private final JavaApiLinker apiLinker = new JavaApiLinker();
+    private final InternalLinker internalLinker;
     
-    public MarkdownExporter(Config config) {
-        this.config = config;
+    private DocPackage docPackage;
+
+    
+    public MarkdownExporter(Config config, InternalLinker internalLinker) {
+        this.config = config;        
+        this.internalLinker = internalLinker;
     }
 
     @Override
     public String export(DocPackage docPackage) {
         MarkdownBuilder builder = new MarkdownBuilder();
-
+        this.docPackage = docPackage;
+        
         // Encabezado principal
-        if (docPackage.getProjectName() != null && !docPackage.getProjectName().isEmpty()) {
-            builder.title(docPackage.getProjectName());
+        if (this.docPackage.getProjectName() != null && !this.docPackage.getProjectName().isEmpty()) {
+            builder.title(this.docPackage.getProjectName());
         }
 
-        builder.subtitle(docPackage.getName());
+        builder.subtitle(this.docPackage.getName());
 
         // TOC
         if (config.isTableOfContent()) {
-            builder.toc(docPackage);
+            builder.toc(this.docPackage);
         }
 
         // Determinar si se deben colapsar las clases
-        boolean collapseClasses = docPackage.getClasses().size() > COLLAPSE_THRESHOLD;
+        boolean collapseClasses = this.docPackage.getClasses().size() > COLLAPSE_THRESHOLD;
 
         // Recorrer clases / interfaces / enums / records
-        for (DocClass docClass : docPackage.getClasses()) {
+        for (DocClass docClass : this.docPackage.getClasses()) {
             String emoji = formatEmoji(docClass.getKind());
             String header = emoji + " "
                     + capitalize(docClass.getVisibility())
@@ -116,16 +122,16 @@ public class MarkdownExporter implements DocExporter
                 builder.blockquote("**Descripción:**\n" + desc);
             }
 
-            // 📦 Campos
-            if (!docClass.getFields().isEmpty()) {
-                builder.h3("📦 Campos");
-                // imprimir campos en grupo
-                builder.tag( printFields(docClass, VISIBILITY_PUBLIC) );
-                builder.tag( printFields(docClass, VISIBILITY_PROTECTED) );
-                builder.tag( printFields(docClass, VISIBILITY_PRIVATE) );
-                //si no hay campos imprimir notificación de lista vacía
-                if (totalFieldsCount == 0) {
-                    builder.tag("> _No hay campos visibles_\n");
+             // 🧮 Métodos
+            if (!docClass.getMethods().isEmpty()) {
+                builder.h3("🧮 Métodos");
+                // imprimir métodos en grupo
+                builder.tag( printMethods(docClass, VISIBILITY_PUBLIC) );
+                builder.tag( printMethods(docClass, VISIBILITY_PROTECTED) );
+                builder.tag( printMethods(docClass, VISIBILITY_PRIVATE) );                
+                // sino hay métodos imprimir notificación de lista vacía
+                if (totalMethodsCount == 0) {
+                    builder.tag("> _No hay métodos visibles_\n");
                 }
             }
 
@@ -164,16 +170,16 @@ public class MarkdownExporter implements DocExporter
                 }
             }
 
-            // 🧮 Métodos
-            if (!docClass.getMethods().isEmpty()) {
-                builder.h3("🧮 Métodos");
-                // imprimir métodos en grupo
-                builder.tag( printMethods(docClass, VISIBILITY_PUBLIC) );
-                builder.tag( printMethods(docClass, VISIBILITY_PROTECTED) );
-                builder.tag( printMethods(docClass, VISIBILITY_PRIVATE) );                
-                // sino hay métodos imprimir notificación de lista vacía
-                if (totalMethodsCount == 0) {
-                    builder.tag("> _No hay métodos visibles_\n");
+            // 📦 Campos
+            if (!docClass.getFields().isEmpty()) {
+                builder.h3("📦 Campos");
+                // imprimir campos en grupo
+                builder.tag( printFields(docClass, VISIBILITY_PUBLIC) );
+                builder.tag( printFields(docClass, VISIBILITY_PROTECTED) );
+                builder.tag( printFields(docClass, VISIBILITY_PRIVATE) );
+                //si no hay campos imprimir notificación de lista vacía
+                if (totalFieldsCount == 0) {
+                    builder.tag("> _No hay campos visibles_\n");
                 }
             }
             
@@ -206,11 +212,20 @@ public class MarkdownExporter implements DocExporter
     }
 
     /** Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`. */
-    private String formatCodeOrLink(String type) {
+    private String formatCodeOrLink(String type) {        
         if (type == null || type.isBlank()) return "";
-        String url = apiLinker.linkIfJavaType(type);
-        if (url != null) {
-            return url; // ya viene como [String](https://...) etc.
+
+        // 1. Intentar con clases internas del mismo proyecto
+        String internalUrl = internalLinker.linkIfInternalType(type);
+        if (internalUrl != null) {
+            return internalUrl;
+        }
+        
+        // 2. Intentar con clases Java estándar
+        @SuppressWarnings("static-access")
+        String javaUrl = apiLinker.linkIfJavaType(type);
+        if (javaUrl != null) {
+            return javaUrl; // ya viene como [String](https://...) etc.
         }
         return "`" + type + "`";
     }
@@ -243,11 +258,11 @@ public class MarkdownExporter implements DocExporter
     private String printFields(DocClass docClass, String text) {
         MarkdownBuilder fieldBuilder = new MarkdownBuilder();
         int fieldCount = 0;
-                
+        
         for (DocField field : docClass.getFields()) {
             
             if (field.getVisibility().equals(text)) {
-                if (isPrintable(field.getVisibility())) {
+                if (isPrintable(field.getVisibility())) {                    
                     String typeLinked = formatCodeOrLink(field.getType());
                     String signatureField = " `" + field.getVisibility()
                             + (field.isStatic() ? " static`" : "`")
@@ -284,7 +299,7 @@ public class MarkdownExporter implements DocExporter
         int methodCount = 0;
         
         for (DocMethod method : docClass.getMethods()) {
-
+            
             if (method.getVisibility().equals(text)) {
                 if (isPrintable(method.getVisibility())) {
                     String returnType = formatCodeOrLink(method.getReturnType());
