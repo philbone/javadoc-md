@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>io.github.philbone.javadocmd.Javadocmd</mainClass>
+                  <mainClass>io.github.philbone.javadocmd.JavadocMd</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -11,7 +11,7 @@ outFileName: "README.md"
 
 # true: imprimirá un(1) solo documento en el outputPath con cada paquete Java encontrado.
 # false: imprimrá 1 documento por cada paquete Java encontrado.
-combinePackagesMode: false
+combinePackagesMode: true
 
 # true/false: incluye/exluye los miembros privados
 includePrivate: true
