@@ -15,7 +15,8 @@ import java.util.concurrent.Callable;
         resourceBundle = "messages",
         subcommands = {
             InitCommand.class,
-            ShowCommand.class
+            ShowCommand.class,
+            GetCommand.class
         }
 )
 public class JavadocmdCLI implements Callable<Integer>
