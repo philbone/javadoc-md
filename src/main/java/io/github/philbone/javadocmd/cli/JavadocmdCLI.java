@@ -14,7 +14,8 @@ import java.util.concurrent.Callable;
         description = "JavaDoc to Markdown documentation tool",
         resourceBundle = "messages",
         subcommands = {
-            InitCommand.class
+            InitCommand.class,
+            ShowCommand.class
         }
 )
 public class JavadocmdCLI implements Callable<Integer>
