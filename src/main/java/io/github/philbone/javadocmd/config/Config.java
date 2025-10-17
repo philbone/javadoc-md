@@ -54,13 +54,13 @@ public class Config
     public Config() {
         this.sourcePath = "./src";
         this.outputPath = "./doc";
-        //this.outFileName = "README.md";
+        this.outFileName = "README.md";
         this.debugMode = false;
         this.combinePackagesMode = false;
         this.tableOfContent = true;
         this.printEmptyNotify = true;
         this.printClassIndex = true;
-        this.foreSignClassIndex = "";
+        this.foreSignClassIndex = "#";
         this.foreSignClassIndexOnDetails = false;
         this.foreSignClassIndexOnSubtitle = true;
     }
