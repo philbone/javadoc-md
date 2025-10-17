@@ -122,7 +122,11 @@ public class ConfigurationService
 
             if (mustExist) {
                 if (!Files.exists(path)) {
-                    System.err.println("❌ " + String.format(messages.getString("validate.issue.path.notExists"), input));
+                    // Usar mensajes existentes específicos
+                    String errorMsg = fieldName.toLowerCase().contains("source")
+                            ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
+                            : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
+                    System.err.println("❌ " + errorMsg);
 
                     // Ofrecer crear el directorio
                     System.out.print("¿Deseas crear este directorio y agregarlo como el " + fieldName + "? [s/N]: ");
@@ -131,26 +135,29 @@ public class ConfigurationService
                     if (createResponse.equals("s") || createResponse.equals("si")) {
                         try {
                             Files.createDirectories(path);
-                            System.out.println("✅ " + String.format(messages.getString("validate.message.directoryCreated"), input));
+                            System.out.println("✅ Directorio creado: " + input);
                             return input;
                         } catch (IOException e) {
-                            System.err.println("❌ " + String.format(messages.getString("validate.message.creationFailed"), e.getMessage()));
-                            // Continuar el loop para pedir otra ruta
+                            System.err.println("❌ No se pudo crear el directorio: " + e.getMessage());
                         }
                     }
-                    // Si no quiere crear, continuar el loop
                     continue;
                 }
 
                 if (!Files.isDirectory(path)) {
-                    System.err.println("❌ " + String.format(messages.getString("validate.issue.path.notDirectory"), input));
+                    // Usar mensajes existentes específicos
+                    String errorMsg = fieldName.toLowerCase().contains("source")
+                            ? String.format(messages.getString("validate.issue.sourcePath.notDirectory"), input)
+                            : String.format(messages.getString("validate.issue.outputPath.notDirectory"), input);
+                    System.err.println("❌ " + errorMsg);
                     continue;
                 }
             } else {
                 // Para output path, verificar que se pueda crear
                 Path parent = path.getParent();
                 if (parent != null && !Files.exists(parent) && !parent.toString().equals(".")) {
-                    System.err.println("❌ " + String.format(messages.getString("validate.issue.parentNotExists"), parent));
+                    // Mensaje directo para directorio padre
+                    System.err.println("❌ El directorio padre no existe: " + parent);
 
                     // Ofrecer crear el directorio padre
                     System.out.print("¿Deseas crear el directorio padre? [s/N]: ");
@@ -159,14 +166,13 @@ public class ConfigurationService
                     if (createResponse.equals("s") || createResponse.equals("si")) {
                         try {
                             Files.createDirectories(parent);
-                            System.out.println("✅ " + String.format(messages.getString("validate.message.parentCreated"), parent));
+                            System.out.println("✅ Directorio padre creado: " + parent);
                             return input;
                         } catch (IOException e) {
-                            System.err.println("❌ " + String.format(messages.getString("validate.message.creationFailed"), e.getMessage()));
+                            System.err.println("❌ No se pudo crear el directorio padre: " + e.getMessage());
                             continue;
                         }
                     }
-                    // Si no quiere crear, continuar el loop
                     continue;
                 }
             }
