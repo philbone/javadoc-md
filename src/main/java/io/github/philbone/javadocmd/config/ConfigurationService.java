@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
  */
 public class ConfigurationService
 {
-
     private final ResourceBundle messages;
 
     public ConfigurationService() {
@@ -194,9 +193,9 @@ public class ConfigurationService
     /**
      * Detecta si una configuración está usando valores por defecto
      */
-    public boolean isUsingDefaultValues(Config config) {
+    public boolean isUsingDefaultValues(Config config) {        
         Config defaults = new Config();
-        return config.getSourcePath().equals(defaults.getSourcePath())
-                && config.getOutputPath().equals(defaults.getOutputPath());
+        boolean result = config.getSourcePath().equals(defaults.getSourcePath()) && config.getOutputPath().equals(defaults.getOutputPath());
+        return result;
     }
 }

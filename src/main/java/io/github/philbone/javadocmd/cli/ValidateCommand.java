@@ -58,20 +58,27 @@ public class ValidateCommand implements Callable<Integer>
                 // Cargar configuración existente
                 config = ConfigLoader.loadConfig(configFile);
 
-                // Verificar si está usando valores por defecto (archivo vacío/corrupto)
-                if (configService.isUsingDefaultValues(config)) {
+                // PRIMERO verificar si es válida
+                if (configService.isValid(config)) {
+                    // ✅ Configuración válida - mostrar éxito y salir
+                    System.out.println("✅ Configuración válida: " + configFile);
+                    System.out.println(" - Source: " + config.getSourcePath());
+                    System.out.println(" - Output : " + config.getOutputPath());
+                return 0;
+                } // SI NO es válida, entonces verificar si está usando valores por defecto
+                else if (configService.isUsingDefaultValues(config)) {
                     System.out.println("❌ Configuración corrupta o vacía");
                     if (interactive) {
                         config = fixConfigurationInteractively(config);
                     } else {
                         return 1;
                     }
-                } // Validar configuración existente
-                else if (!configService.isValid(config)) {
+                } // Configuración existe pero tiene problemas específicos
+                else {
+                    System.out.println("❌ Configuración inválida - problemas detectados");
                     if (interactive) {
                         config = fixConfigurationInteractively(config);
                     } else {
-                        System.err.println("❌ Configuración inválida");
                         return 1;
                     }
                 }
@@ -85,7 +92,7 @@ public class ValidateCommand implements Callable<Integer>
                 }
             }
 
-            // Si llegamos aquí, tenemos una configuración válida
+            // Si llegamos aquí, tenemos una configuración válida después de correcciones
             System.out.println("✅ Configuración válida: " + configFile);
             System.out.println("  - Source: " + config.getSourcePath());
             System.out.println("  - Output: " + config.getOutputPath());
@@ -122,7 +129,7 @@ public class ValidateCommand implements Callable<Integer>
                 "Output Path",
                 config.getOutputPath(),
                 "./docs",
-                false
+                true
         );
         config.setOutputPath(outputPath);
 
