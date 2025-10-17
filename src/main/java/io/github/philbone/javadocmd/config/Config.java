@@ -50,6 +50,8 @@ public class Config
     private boolean foreSignClassIndexOnDetails;
     private boolean foreSignClassIndexOnSubtitle;
     
+    private String markdownLanguage;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "./src";
@@ -63,6 +65,7 @@ public class Config
         this.foreSignClassIndex = "#";
         this.foreSignClassIndexOnDetails = false;
         this.foreSignClassIndexOnSubtitle = true;
+        this.markdownLanguage = "en";
     }
 
     /**
@@ -216,6 +219,13 @@ public class Config
     public void setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle) {
         this.foreSignClassIndexOnSubtitle = foreSignClassIndexOnSubtitle;
     }
-      
+
+    public String getMarkdownLanguage() {
+        return markdownLanguage;
+    }
+
+    public void setMarkdownLanguage(String markdownLanguage) {
+        this.markdownLanguage = markdownLanguage;
+    }
     
 }

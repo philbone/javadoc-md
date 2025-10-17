@@ -129,6 +129,8 @@ public class GetCommand implements Callable<Integer>
                 return String.valueOf(config.isForeSignClassIndexOnDetails());
             case "foresignclassindexonsubtitle":
                 return String.valueOf(config.isForeSignClassIndexOnSubtitle());
+            case "markdownlanguage":
+                return String.valueOf(config.getMarkdownLanguage());
             default:
                 return null;
         }

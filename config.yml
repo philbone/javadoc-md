@@ -35,3 +35,5 @@ printClassIndex: true
 foreSignClassIndex: "#"
 foreSignClassIndexOnDetails: false
 foreSignClassIndexOnSubtitle: true
+
+markdownLanguage: en

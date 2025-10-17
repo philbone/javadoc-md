@@ -24,6 +24,7 @@ import io.github.philbone.javadocmd.exporter.DocExporter;
 import io.github.philbone.javadocmd.exporter.InternalLinker;
 import io.github.philbone.javadocmd.exporter.MarkdownExporter;
 import io.github.philbone.javadocmd.extractor.JavadocExtractorVisitor;
+import io.github.philbone.javadocmd.i18n.LanguageManager;
 import io.github.philbone.javadocmd.model.DocClass;
 
 import java.io.File;
@@ -90,6 +91,7 @@ public abstract class JavadocMd
         
         // carga la configuración externa 
         Config config = ConfigLoader.loadConfig();
+        LanguageManager lang = new LanguageManager(config.getMarkdownLanguage(), Path.of("."));        
         
         // Generar documentación
         if (config.isCombinePackagesMode()) { // true genera una documentación unificada
