@@ -115,12 +115,12 @@ implements DocExporter
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PUBLIC`
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PRIVATE`
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `VISIBILITY_PROTECTED`
-- `private` [Config](Config.md) `config`
+- `private` **Config** `config`
 - `private` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `totalMethodsCount`
 - `private` [int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `totalFieldsCount`
-- `private` [JavaApiLinker](JavaApiLinker.md) `apiLinker`
-- `private` [InternalLinker](InternalLinker.md) `internalLinker`
-- `private` [DocPackage](DocPackage.md) `docPackage`
+- `private` **JavaApiLinker** `apiLinker`
+- `private` **InternalLinker** `internalLinker`
+- `private` **DocPackage** `docPackage`
 </details>
 
 
@@ -137,16 +137,16 @@ public class MarkdownBuilder
 
 <details open><summary>Public</summary>
 
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `title(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `subtitle(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `h3(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `h4(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `paragraph(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `listItem(String text)`
+- `public `**MarkdownBuilder** `title(String text)`
+- `public `**MarkdownBuilder** `subtitle(String text)`
+- `public `**MarkdownBuilder** `h3(String text)`
+- `public `**MarkdownBuilder** `h4(String text)`
+- `public `**MarkdownBuilder** `paragraph(String text)`
+- `public `**MarkdownBuilder** `listItem(String text)`
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
 - `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `codeBlock(String content, String codeLang)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `blockquote(String text)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `tag(String tag)`
+- `public `**MarkdownBuilder** `blockquote(String text)`
+- `public `**MarkdownBuilder** `tag(String tag)`
 > Inyecta una etiqueta arbitraria directamente en el flujo del Markdown.
 > <p>
 > Se utiliza principalmente como auxiliar para aplicar prefijos en las
@@ -166,8 +166,8 @@ public class MarkdownBuilder
 buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `toc(DocPackage docPackage)`
-- `public `[MarkdownBuilder](MarkdownBuilder.md) `insertAt(int index, String text)`
+- `public `**MarkdownBuilder** `toc(DocPackage docPackage)`
+- `public `**MarkdownBuilder** `insertAt(int index, String text)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -599,7 +599,7 @@ public class DocClass
 > - *@return* el nombre simple de la clase.
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
 > - *@return* la descripción tomada del Javadoc.
-- `public `[Kind](Kind.md) `getKind()`
+- `public `**Kind** `getKind()`
 > - *@return* el tipo de elemento representado.
 - `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
 > - *@return* la visibilidad del tipo (public, protected, etc.).
@@ -681,7 +681,7 @@ public class DocClass
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
 > Nombre simple de la clase, interfaz, enum o record.
 
-- `private` [Kind](Kind.md) `kind`
+- `private` **Kind** `kind`
 > Tipo de elemento representado (clase, interfaz, enum, record, abstracta).
 
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `visibility`
@@ -1062,7 +1062,8 @@ public class DocField
 |#|CLASE|DESCRIPCIÓN|
 |---|---|---|
 |**1**|[public class ConfigLoader](#1-public-class-configloader)|Esta clase se encarga de detectar el fichero de configuración y cargar los datos si son encontrados.
-|**2**|[public class Config](#2-public-class-config)|@author Felipe M.
+|**2**|[public class ConfigurationService](#2-public-class-configurationservice)|Servicio para gestionar la creación, validación y corrección de configuración
+|**3**|[public class Config](#3-public-class-config)|@author Felipe M.
 ## #1 📘 Public Class ConfigLoader
 
 ```java
@@ -1077,11 +1078,11 @@ public class ConfigLoader
 
 <details open><summary>Public</summary>
 
-- `public  static`[Config](Config.md) `loadConfig()`
+- `public  static`**Config** `loadConfig()`
 > Carga la configuración desde el archivo config.yml por defecto
 
 > - *@return* un objeto con los datos de configuración iniciales.
-- `public  static`[Config](Config.md) `loadConfig(String filePath)`
+- `public  static`**Config** `loadConfig(String filePath)`
 > Carga la configuración desde un archivo específico
 
 > - *@param* **filePath** ruta del archivo de configuración
@@ -1097,13 +1098,13 @@ public class ConfigLoader
 
 > - *@param* **config** objeto Config a guardar
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static`[Config](Config.md) `createDefaultConfig(String filePath)`
+- `public  static`**Config** `createDefaultConfig(String filePath)`
 > Crea una configuración por defecto y la guarda en un archivo
 
 > - *@param* **filePath** ruta del archivo destino
 > - *@return* objeto Config creado
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static`[Config](Config.md) `createDefaultConfig()`
+- `public  static`**Config** `createDefaultConfig()`
 > Crea una configuración por defecto y la guarda en config.yml
 
 > - *@return* objeto Config creado
@@ -1149,7 +1150,69 @@ public class ConfigLoader
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_CONFIG_FILE`
 </details>
 
-## #2 📘 Public Class Config
+## #2 📘 Public Class ConfigurationService
+
+```java
+public class ConfigurationService
+```
+> **Descripción:**
+> Servicio para gestionar la creación, validación y corrección de configuración
+
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `**Config** `createWithParameters(String sourcePath, String outputPath, String outFileName)`
+> Crea una configuración con parámetros específicos (modo no-interactivo)
+
+- `public `**Config** `createInteractively(Scanner scanner)`
+> Crea una configuración interactivamente (modo asistido)
+
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isValid(Config config)`
+> Valida si una configuración es válida
+
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getValidPathFromUser(Scanner scanner, String fieldName, String currentValue, String defaultValue, boolean mustExist)`
+> Obtiene una ruta válida del usuario de manera interactiva
+
+- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isUsingDefaultValues(Config config)`
+> Detecta si una configuración está usando valores por defecto
+
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `expandHomeDirectory(String path)`
+> Expande el directorio home del usuario (~)
+
+</details>
+
+### 🛠️ Constructores
+
+- `public ConfigurationService()`
+- `public ConfigurationService(ResourceBundle messages)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `messages`
+</details>
+
+## #3 📘 Public Class Config
 
 ```java
 public class Config
@@ -1270,9 +1333,72 @@ public class Config
 
 |#|CLASE|DESCRIPCIÓN|
 |---|---|---|
-|**1**|[public class JavadocmdCLI](#1-public-class-javadocmdcli)|
-|**2**|[public class InitCommand](#2-public-class-initcommand)|
-## #1 📘 Public Class JavadocmdCLI
+|**1**|[public class ValidationIssue](#1-public-class-validationissue)|Representa un problema de validación con su corrección asociada
+|**2**|[public class JavadocmdCLI](#2-public-class-javadocmdcli)|
+|**3**|[public class ValidateCommand](#3-public-class-validatecommand)|
+|**4**|[public class SetCommand](#4-public-class-setcommand)|
+|**5**|[public class GetCommand](#5-public-class-getcommand)|
+|**6**|[public class InitCommand](#6-public-class-initcommand)|
+|**7**|[public class ShowCommand](#7-public-class-showcommand)|
+<details>
+<summary> <strong> 📘 Public Class ValidationIssue</strong> </summary>
+
+## #1 📘 Public Class ValidationIssue
+
+```java
+public class ValidationIssue
+```
+> **Descripción:**
+> Representa un problema de validación con su corrección asociada
+
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProblem()`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuggestion()`
+- `public `Runnable `getCorrection()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `applyCorrection()`
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public ValidationIssue(String problem, String suggestion, Runnable correction)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `problem`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `suggestion`
+- `private` Runnable `correction`
+</details>
+
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class JavadocmdCLI</strong> </summary>
+
+## #2 📘 Public Class JavadocmdCLI
 
 ```java
 public class JavadocmdCLI
@@ -1296,7 +1422,182 @@ implements Callable
 > _No hay métodos private visibles_
 </details>
 
-## #2 📘 Public Class InitCommand
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class ValidateCommand</strong> </summary>
+
+## #3 📘 Public Class ValidateCommand
+
+```java
+public class ValidateCommand
+implements Callable
+```
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `Integer `call()`
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private `**Config** `fixConfigurationInteractively(Config existingConfig)`
+</details>
+
+### 🛠️ Constructores
+
+- `public ValidateCommand()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `messages`
+- `private` **ConfigurationService** `configService`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `interactive`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
+</details>
+
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class SetCommand</strong> </summary>
+
+## #4 📘 Public Class SetCommand
+
+```java
+public class SetCommand
+implements Callable
+```
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `Integer `call()`
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `applyChanges(Config config)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showChangesSummary(List<String> changes)`
+</details>
+
+### 🛠️ Constructores
+
+- `public SetCommand()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `appMessages`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
+- `private` Boolean `combinePackagesMode`
+- `private` Boolean `includePrivate`
+- `private` Boolean `includeProtected`
+- `private` Boolean `includePublic`
+- `private` Boolean `debugMode`
+- `private` Boolean `tableOfContent`
+- `private` Boolean `printEmptyNotify`
+- `private` Boolean `printClassIndex`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
+- `private` Boolean `foreSignClassIndexOnDetails`
+- `private` Boolean `foreSignClassIndexOnSubtitle`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `forceCreate`
+</details>
+
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class GetCommand</strong> </summary>
+
+## #5 📘 Public Class GetCommand
+
+```java
+public class GetCommand
+implements Callable
+```
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `Integer `call()`
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getConfigValue(Config config, String key)`
+</details>
+
+### 🛠️ Constructores
+
+- `public GetCommand()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `appMessages`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `quietMode`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `key`
+</details>
+
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class InitCommand</strong> </summary>
+
+## #6 📘 Public Class InitCommand
 
 ```java
 public class InitCommand
@@ -1319,6 +1620,9 @@ implements Callable
 > _No hay métodos private visibles_
 </details>
 
+### 🛠️ Constructores
+
+- `public InitCommand()`
 ### 📦 Campos
 
 <details open><summary>Public</summary>
@@ -1333,11 +1637,70 @@ implements Callable
 
 <details open><summary>Private</summary>
 
+- `private` ResourceBundle `messages`
+- `private` **ConfigurationService** `configService`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sourcePath`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `interactive`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
 </details>
 
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class ShowCommand</strong> </summary>
+
+## #7 📘 Public Class ShowCommand
+
+```java
+public class ShowCommand
+implements Callable
+```
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `Integer `call()`
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showConfiguration(Config config)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, Object value)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, boolean value)`
+</details>
+
+### 🛠️ Constructores
+
+- `public ShowCommand()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `appMessages`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
+</details>
+
+
+</details>
 
 
 ---

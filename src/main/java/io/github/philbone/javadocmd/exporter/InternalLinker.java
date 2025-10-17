@@ -106,7 +106,9 @@ public class InternalLinker {
         }
         String simpleName = extractSimpleName(fqn);
         if (debug) System.err.println(">> buildLink: fqn=" + fqn + " -> path=" + path);
-        return String.format("[%s](%s)", simpleName, path);
+        // desactiva temporalmente la generación de enlaces internos
+        //return String.format("[%s](%s)", simpleName, path);
+        return String.format("**%s**", simpleName);
     }
 
     public int size() {
