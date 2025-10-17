@@ -16,6 +16,7 @@ package io.github.philbone.javadocmd;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import io.github.philbone.javadocmd.cli.JavadocmdCLI;
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
 import io.github.philbone.javadocmd.model.DocPackage;
@@ -77,6 +78,13 @@ public abstract class JavadocMd
      * <code>outputPath</code> como parámetros desde consola.
      */
     public static void main(String[] args) {
+        
+        // Si hay argumentos CLI, usar el sistema de comandos
+        if (args.length > 0) {
+            JavadocmdCLI.main(args);
+            return;
+        }
+        
         // Forzar Java 21
         forceJavaLevel(ParserConfiguration.LanguageLevel.JAVA_21);
         
