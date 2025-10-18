@@ -7,7 +7,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 @Command(
@@ -61,17 +60,16 @@ public class InitCommand implements Callable<Integer>
                 return 1;
             }
 
-            Config config;
-
             // Modo con parámetros completos
             if (sourcePath != null && outputPath != null) {
-                config = configService.createWithParameters(sourcePath, outputPath, outFileName);
-                System.out.println("✅ Configuración creada con parámetros proporcionados");
-            } // Modo interactivo (fallback)
+                return createWithParameters();
+            } // Modo interactivo - delegar en ValidateCommand
             else if (interactive) {
                 System.out.println("💡 Iniciando configuración interactiva...");
-                Scanner scanner = new Scanner(System.in);
-                config = configService.createInteractively(scanner);
+                ValidateCommand validate = new ValidateCommand();
+                validate.setConfigFile(configFile);
+                validate.setInteractive(true);
+                return validate.call();
             } // Modo no interactivo sin parámetros suficientes
             else {
                 System.err.println("❌ Parámetros insuficientes. Se requieren --sourcePath y --outputPath");
@@ -79,17 +77,24 @@ public class InitCommand implements Callable<Integer>
                 return 1;
             }
 
-            // Guardar configuración
+        } catch (Exception e) {
+            System.err.println("❌ Error creando configuración: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private Integer createWithParameters() {
+        try {
+            Config config = configService.createWithParameters(sourcePath, outputPath, outFileName);
             ConfigLoader.saveConfig(config, configFile);
+            System.out.println("✅ Configuración creada con parámetros proporcionados");
             System.out.println("✅ Configuración guardada: " + configFile);
             System.out.println("  - Source: " + config.getSourcePath());
             System.out.println("  - Output: " + config.getOutputPath());
             if (config.getOutFileName() != null) {
                 System.out.println("  - Output File: " + config.getOutFileName());
             }
-
             return 0;
-
         } catch (Exception e) {
             System.err.println("❌ Error creando configuración: " + e.getMessage());
             return 1;
