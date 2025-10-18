@@ -407,6 +407,7 @@ public class LanguageManager
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_LANG`
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `LANG_DIR`
 - `private` [Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String,String> `labels`
+- `private` ResourceBundle `appMessages`
 </details>
 
 

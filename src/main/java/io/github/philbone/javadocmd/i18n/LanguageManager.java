@@ -8,6 +8,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Gestiona la carga y acceso a textos traducidos para la documentación.
@@ -30,8 +31,11 @@ public class LanguageManager
     //private static String langCode;
     
     private final Map<String, String> labels;
+    
+    private ResourceBundle appMessages;
 
     public LanguageManager(String langCode, Path basePath) {
+        this.appMessages = ResourceBundle.getBundle("app_messages");
         this.labels = loadLanguage(langCode, basePath);
     }
 
@@ -44,17 +48,17 @@ public class LanguageManager
         File langFile = langPath.toFile();
 
         if (!langFile.exists()) {
-            System.err.println("⚠️  No se encontró archivo de idioma: " + langPath + ". Usando inglés por defecto.");
+            System.err.println(appMessages.getString("message.lang.noFile") + ": " + langPath + ". " + appMessages.getString("message.lang.noFile") + ".");
             return loadDefaultLanguage(mapper, basePath);
         }
 
         try {
             Map<String, Object> yaml = mapper.readValue(langFile, Map.class);
             Map<String, String> labelsMap = (Map<String, String>) yaml.getOrDefault("labels", Collections.emptyMap());
-            System.out.println("✅ Idioma cargado: " + langCode);
+            System.out.println( appMessages.getString("message.lang.loaded") + ": " + langCode);
             return labelsMap;
         } catch (Exception e) {
-            System.err.println("❌ Error leyendo " + langPath + ": " + e.getMessage());
+            System.err.println(appMessages.getString("message.lang.readError")+ " " + langPath + ": " + e.getMessage());
             return loadDefaultLanguage(mapper, basePath);
         }
     }
@@ -65,7 +69,7 @@ public class LanguageManager
         File defaultFile = defaultPath.toFile();
 
         if (!defaultFile.exists()) {
-            System.err.println("⚠️  No se encontró el archivo de idioma por defecto: " + defaultPath);
+            System.err.println( appMessages.getString("message.lang.noDefaultFile") + ": " + defaultPath );
             return Collections.emptyMap();
         }
 
@@ -73,7 +77,7 @@ public class LanguageManager
             Map<String, Object> yaml = mapper.readValue(defaultFile, Map.class);
             return (Map<String, String>) yaml.getOrDefault("labels", Collections.emptyMap());
         } catch (Exception e) {
-            System.err.println("❌ Error leyendo idioma por defecto: " + e.getMessage());
+            System.err.println( appMessages.getString("message.lang.readErrorDefault") + ": " + e.getMessage());
             return Collections.emptyMap();
         }
     }
