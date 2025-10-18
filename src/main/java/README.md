@@ -341,6 +341,79 @@ public class JavaApiLinker
 
 ---
 
+## io.github.philbone.javadocmd.i18n
+
+## Resumen de Clases
+
+
+|#|CLASE|DESCRIPCIÓN|
+|---|---|---|
+|**1**|[public class LanguageManager](#1-public-class-languagemanager)|Gestiona la carga y acceso a textos traducidos para la documentación.
+## #1 📘 Public Class LanguageManager
+
+```java
+public class LanguageManager
+```
+> **Descripción:**
+> Gestiona la carga y acceso a textos traducidos para la documentación.
+> Usa archivos YAML externos ubicados en la carpeta "langs/".
+> 
+> Si no se encuentra el idioma solicitado, carga inglés por defecto.
+> Si falta alguna clave, devuelve la clave original como fallback.
+> 
+> Ejemplo de uso:
+> LanguageManager lang = new LanguageManager("es", Paths.get("."));
+> System.out.println(lang.get("classes")); // → "Clases"
+
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `get(String key)`
+> Obtiene el texto traducido asociado a una clave.
+> Si no existe, devuelve la propia clave.
+
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadLanguage(String langCode, Path basePath)`
+- `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadDefaultLanguage(ObjectMapper mapper, Path basePath)`
+- `private `ObjectMapper `createObjectMapper()`
+</details>
+
+### 🛠️ Constructores
+
+- `public LanguageManager(String langCode, Path basePath)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_LANG`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `LANG_DIR`
+- `private` [Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String,String> `labels`
+- `private` ResourceBundle `appMessages`
+</details>
+
+
+
+---
+
 # JavadocMd
 
 ## io.github.philbone.javadocmd.extractor
@@ -1264,6 +1337,8 @@ public class Config
 - `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
 - `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnSubtitle()`
 - `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
+- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getMarkdownLanguage()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setMarkdownLanguage(String markdownLanguage)`
 </details>
 
 <details open><summary>Protected</summary>
@@ -1320,6 +1395,7 @@ public class Config
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `foreSignClassIndexOnDetails`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `foreSignClassIndexOnSubtitle`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `markdownLanguage`
 </details>
 
 
