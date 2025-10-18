@@ -253,4 +253,18 @@ public class ValidateCommand implements Callable<Integer>
         """;
     }
     
+    /**
+     * Permite configurar el archivo de configuración desde fuera
+     */
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
+    }
+
+    /**
+     * Permite configurar el modo interactivo desde fuera
+     */
+    public void setInteractive(boolean interactive) {
+        this.interactive = interactive;
+    }
+    
 }
