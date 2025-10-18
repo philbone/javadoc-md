@@ -1524,6 +1524,10 @@ implements Callable
 <details open><summary>Private</summary>
 
 - `private `**Config** `fixConfigurationInteractively(Config existingConfig)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setupInternationalization(Scanner scanner)`
+- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `createDefaultLanguageFiles(Path langsPath, Scanner scanner)`
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultSpanishContent()`
+- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultEnglishContent()`
 </details>
 
 ### 🛠️ Constructores
