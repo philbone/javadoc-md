@@ -1514,6 +1514,12 @@ implements Callable
 <details open><summary>Public</summary>
 
 - `public `Integer `call()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+> Permite configurar el archivo de configuración desde fuera
+
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setInteractive(boolean interactive)`
+> Permite configurar el modo interactivo desde fuera
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1697,7 +1703,7 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-> _No hay métodos private visibles_
+- `private `Integer `createWithParameters()`
 </details>
 
 ### 🛠️ Constructores

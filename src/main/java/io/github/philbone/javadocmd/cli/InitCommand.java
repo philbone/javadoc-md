@@ -55,8 +55,8 @@ public class InitCommand implements Callable<Integer>
         try {
             // Verificar si el archivo ya existe
             if (ConfigLoader.configExists(configFile)) {
-                System.err.println("❌ El archivo de configuración ya existe: " + configFile);
-                System.out.println("💡 Usa 'validate' para corregir o 'set' para modificar la configuración existente");
+                System.err.println(messages.getString("init.message.configFileAlreadyExist")  + ": " + configFile);
+                System.out.println(messages.getString("init.message.configFileAlreadyExist.help"));
                 return 1;
             }
 
@@ -65,20 +65,20 @@ public class InitCommand implements Callable<Integer>
                 return createWithParameters();
             } // Modo interactivo - delegar en ValidateCommand
             else if (interactive) {
-                System.out.println("💡 Iniciando configuración interactiva...");
+                System.out.println( messages.getString("init.message.interactiveStart") );
                 ValidateCommand validate = new ValidateCommand();
                 validate.setConfigFile(configFile);
                 validate.setInteractive(true);
                 return validate.call();
             } // Modo no interactivo sin parámetros suficientes
             else {
-                System.err.println("❌ Parámetros insuficientes. Se requieren --sourcePath y --outputPath");
-                System.out.println("💡 Ejecuta con --help para ver todas las opciones");
+                System.err.println( messages.getString("init.message.insufficientParameters") );
+                System.out.println( messages.getString("usage.helpTip") );
                 return 1;
             }
 
         } catch (Exception e) {
-            System.err.println("❌ Error creando configuración: " + e.getMessage());
+            System.err.println( messages.getString("init.message.createError") + ": " + e.getMessage());
             return 1;
         }
     }
@@ -87,8 +87,8 @@ public class InitCommand implements Callable<Integer>
         try {
             Config config = configService.createWithParameters(sourcePath, outputPath, outFileName);
             ConfigLoader.saveConfig(config, configFile);
-            System.out.println("✅ Configuración creada con parámetros proporcionados");
-            System.out.println("✅ Configuración guardada: " + configFile);
+            System.out.println( messages.getString("init.message.createdWithParameters") );
+            System.out.println( messages.getString("init.message.configSaved") + ": " + configFile);
             System.out.println("  - Source: " + config.getSourcePath());
             System.out.println("  - Output: " + config.getOutputPath());
             if (config.getOutFileName() != null) {
@@ -96,7 +96,7 @@ public class InitCommand implements Callable<Integer>
             }
             return 0;
         } catch (Exception e) {
-            System.err.println("❌ Error creando configuración: " + e.getMessage());
+            System.err.println( messages.getString("init.message.createError") + e.getMessage());
             return 1;
         }
     }
