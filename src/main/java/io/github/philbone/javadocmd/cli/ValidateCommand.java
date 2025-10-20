@@ -23,10 +23,15 @@ public class ValidateCommand implements Callable<Integer>
 
     private final ResourceBundle messages;
     private final ConfigurationService configService;
+    
+    private String shortPositive;
+    private String longPositive;
 
     public ValidateCommand() {
         this.messages = ResourceBundle.getBundle("messages");
         this.configService = new ConfigurationService(messages);
+        this.shortPositive = messages.getString("param.short.positive");
+        this.longPositive = messages.getString("param.long.positive");
     }
 
     @Option(
@@ -64,13 +69,13 @@ public class ValidateCommand implements Callable<Integer>
                 // PRIMERO verificar si es válida
                 if (configService.isValid(config)) {
                     // ✅ Configuración válida - mostrar éxito y salir
-                    System.out.println("✅ Configuración válida: " + configFile);
-                    System.out.println(" - Source: " + config.getSourcePath());
-                    System.out.println(" - Output : " + config.getOutputPath());
+                    System.out.println( messages.getString("validate.message.validConfiguration") + ": " + configFile);
+                    System.out.println( messages.getString("validate.message.source") + ": " + config.getSourcePath());
+                    System.out.println( messages.getString("validate.message.output") + ": " + config.getOutputPath());
                     return 0;
                 } // SI NO es válida, entonces verificar si está usando valores por defecto
                 else if (configService.isUsingDefaultValues(config)) {
-                    System.out.println("❌ Configuración corrupta o vacía");
+                    System.out.println( messages.getString("validate.message.corruptedConfiguration") );
                     if (interactive) {
                         config = fixConfigurationInteractively(config);
                     } else {
@@ -78,7 +83,7 @@ public class ValidateCommand implements Callable<Integer>
                     }
                 } // Configuración existe pero tiene problemas específicos
                 else {
-                    System.out.println("❌ Configuración inválida - problemas detectados");
+                    System.out.println( messages.getString("validate.message.invalidConfiguration") );
                     if (interactive) {
                         config = fixConfigurationInteractively(config);
                     } else {
@@ -87,7 +92,7 @@ public class ValidateCommand implements Callable<Integer>
                 }
             } else {
                 // No existe configuración
-                System.out.println("❌ No se encontró archivo de configuración");
+                System.out.println( messages.getString("validate.message.noConfig") );
                 if (interactive) {
                     config = fixConfigurationInteractively(null);
                 } else {
@@ -96,9 +101,9 @@ public class ValidateCommand implements Callable<Integer>
             }
 
             // Si llegamos aquí, tenemos una configuración válida después de correcciones
-            System.out.println("✅ Configuración válida: " + configFile);
-            System.out.println("  - Source: " + config.getSourcePath());
-            System.out.println("  - Output: " + config.getOutputPath());
+            System.out.println( messages.getString("validate.message.validConfiguration") + ": " + configFile);
+            System.out.println( messages.getString("validate.message.source") + ": " + config.getSourcePath());
+            System.out.println( messages.getString("validate.message.output") + ": " + config.getOutputPath());
 
             return 0;
 
@@ -139,9 +144,9 @@ public class ValidateCommand implements Callable<Integer>
         // Guardar configuración PRIMERO
         try {
             ConfigLoader.saveConfig(config, configFile);
-            System.out.println("✅ Configuración guardada: " + configFile);
+            System.out.println( messages.getString("init.message.configSaved") + ": " + configFile);
         } catch (Exception e) {
-            System.err.println("❌ Error guardando configuración: " + e.getMessage());
+            System.err.println( messages.getString("validate.message.saveError") + ": " + e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -155,29 +160,29 @@ public class ValidateCommand implements Callable<Integer>
         Path basePath = Paths.get(".");
         Path langsPath = basePath.resolve("langs");
 
-        System.out.println("\n🌍 Configurando internacionalización...");
+        System.out.println("\n"+ messages.getString("validate.message.langConfig") );
 
         // Crear directorio langs si no existe
         if (!Files.exists(langsPath)) {
-            System.out.print("¿Crear directorio de idiomas (/langs)? [S/n]: ");
+            System.out.print( messages.getString("validate.message.ask.createDir") + ": ");
             String response = scanner.nextLine().trim().toLowerCase();
 
-            if (response.isEmpty() || response.equals("s") || response.equals("si")) {
+            if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
                     Files.createDirectories(langsPath);
-                    System.out.println("✅ Directorio creado: " + langsPath);
+                    System.out.println( messages.getString("validate.message.langDirCreated") + ": " + langsPath);
 
                     // Crear archivos de idioma después de crear el directorio
                     createDefaultLanguageFiles(langsPath, scanner);
                 } catch (Exception e) {
-                    System.err.println("❌ Error creando directorio: " + e.getMessage());
+                    System.err.println( messages.getString("validate.message.error.createDir") + ": " + e.getMessage());
                 }
             } else {
-                System.out.println("ℹ️  Saltando creación de directorio de idiomas");
+                System.out.println( messages.getString("validate.message.skip.createDir") );
             }
         } else {
             // Directorio ya existe, verificar archivos
-            System.out.println("✅ Directorio ya existe: " + langsPath);
+            System.out.println( messages.getString("validate.message.langDirExist") + ": " + langsPath);
             createDefaultLanguageFiles(langsPath, scanner);
         }
     }
@@ -190,44 +195,44 @@ public class ValidateCommand implements Callable<Integer>
 
         // Español - solo crear si no existe
         if (!Files.exists(esFile)) {
-            System.out.print("¿Crear archivo de idioma español (es.yml)? [S/n]: ");
-            String response = scanner.nextLine().trim().toLowerCase();
+            System.out.print( messages.getString("validate.message.ask.createLangEs") + ": ");
+            String response = scanner.nextLine().trim().toLowerCase();            
 
-            if (response.isEmpty() || response.equals("s") || response.equals("si")) {
+            if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
                     String esContent = getDefaultSpanishContent();
                     Files.writeString(esFile, esContent, java.nio.charset.StandardCharsets.UTF_8);
-                    System.out.println("✅ Archivo creado: " + esFile);
+                    System.out.println( messages.getString("validate.message.langFileCreated") + ": " + esFile);
                     createdAny = true;
                 } catch (Exception e) {
-                    System.err.println("❌ Error creando es.yml: " + e.getMessage());
+                    System.err.println( messages.getString("validate.message.error.createFile") + ": " + e.getMessage());
                 }
             }
         } else {
-            System.out.println("✅ Archivo ya existe: " + esFile);
+            System.out.println( messages.getString("validate.message.langFileExist") + ": " + esFile);
         }
 
         // Inglés - solo crear si no existe
         if (!Files.exists(enFile)) {
-            System.out.print("¿Crear archivo de idioma inglés (en.yml)? [S/n]: ");
+            System.out.print( messages.getString("validate.message.ask.createLangEn") + ": ");
             String response = scanner.nextLine().trim().toLowerCase();
 
-            if (response.isEmpty() || response.equals("s") || response.equals("si")) {
+            if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
                     String enContent = getDefaultEnglishContent();
                     Files.writeString(enFile, enContent, java.nio.charset.StandardCharsets.UTF_8);
-                    System.out.println("✅ Archivo creado: " + enFile);
+                    System.out.println( messages.getString("validate.message.langFileCreated") + ": " + enFile);
                     createdAny = true;
                 } catch (Exception e) {
-                    System.err.println("❌ Error creando en.yml: " + e.getMessage());
+                    System.err.println( messages.getString("validate.message.error.createFile") + ": " + e.getMessage());
                 }
             }
         } else {
-            System.out.println("✅ Archivo ya existe: " + enFile);
+            System.out.println( messages.getString("validate.message.langFileExist") + ": " + enFile);
         }
 
         if (createdAny) {
-            System.out.println("✅ Internacionalización configurada correctamente");
+            System.out.println( messages.getString("validate.message.success") );
         }
     }
 

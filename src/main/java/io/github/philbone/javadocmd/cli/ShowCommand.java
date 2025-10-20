@@ -6,7 +6,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.util.ResourceBundle;
-import java.util.Locale;
 import java.util.concurrent.Callable;
 
 @Command(

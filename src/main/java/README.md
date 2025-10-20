@@ -373,6 +373,7 @@ public class LanguageManager
 > Obtiene el texto traducido asociado a una clave.
 > Si no existe, devuelve la propia clave.
 
+- `public `ResourceBundle `getAppMessages()`
 </details>
 
 <details open><summary>Protected</summary>
@@ -1221,6 +1222,7 @@ public class ConfigLoader
 <details open><summary>Private</summary>
 
 - `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_CONFIG_FILE`
+- `private static` ResourceBundle `appMessages`
 </details>
 
 ## #2 📘 Public Class ConfigurationService
@@ -1283,6 +1285,8 @@ public class ConfigurationService
 <details open><summary>Private</summary>
 
 - `private` ResourceBundle `messages`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `shortPositive`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `longPositive`
 </details>
 
 ## #3 📘 Public Class Config
@@ -1514,6 +1518,12 @@ implements Callable
 <details open><summary>Public</summary>
 
 - `public `Integer `call()`
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+> Permite configurar el archivo de configuración desde fuera
+
+- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setInteractive(boolean interactive)`
+> Permite configurar el modo interactivo desde fuera
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1549,6 +1559,8 @@ implements Callable
 
 - `private` ResourceBundle `messages`
 - `private` **ConfigurationService** `configService`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `shortPositive`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `longPositive`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `interactive`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
@@ -1697,7 +1709,7 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-> _No hay métodos private visibles_
+- `private `Integer `createWithParameters()`
 </details>
 
 ### 🛠️ Constructores
@@ -1828,7 +1840,7 @@ public abstract class JavadocMd
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
 - `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generatePackageDocs(Config config)`
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generateCombinedDocs(Config config)`
+- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generateCombinedDocs(Config config, LanguageManager lang)`
 - `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
 </details>
 

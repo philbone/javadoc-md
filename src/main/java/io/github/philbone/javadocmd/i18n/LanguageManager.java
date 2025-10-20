@@ -98,4 +98,9 @@ public class LanguageManager
     public String get(String key) {
         return labels.getOrDefault(key, key);
     }
+
+    public ResourceBundle getAppMessages() {
+        return appMessages;
+    }
+    
 }

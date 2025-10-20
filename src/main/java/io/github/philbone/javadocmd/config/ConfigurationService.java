@@ -13,13 +13,20 @@ import java.util.ResourceBundle;
 public class ConfigurationService
 {
     private final ResourceBundle messages;
+    
+    private String shortPositive;
+    private String longPositive;
 
     public ConfigurationService() {
         this.messages = ResourceBundle.getBundle("messages");
+        this.shortPositive = messages.getString("param.short.positive");
+        this.longPositive = messages.getString("param.long.positive");
     }
 
     public ConfigurationService(ResourceBundle messages) {
         this.messages = messages;
+        this.shortPositive = messages.getString("param.short.positive");
+        this.longPositive = messages.getString("param.long.positive");
     }
 
     /**
@@ -125,19 +132,19 @@ public class ConfigurationService
                     String errorMsg = fieldName.toLowerCase().contains("source")
                             ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
                             : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
-                    System.err.println("❌ " + errorMsg);
+                    System.err.println( "❌ Error " + errorMsg);
 
-                    // Ofrecer crear el directorio
-                    System.out.print("¿Deseas crear este directorio y agregarlo como el " + fieldName + "? [s/N]: ");
+                    // Ofrecer crear el directorio                    
+                    System.out.print( String.format(messages.getString("validate.issue.ask.createDir"), fieldName) );
                     String createResponse = scanner.nextLine().trim().toLowerCase();
 
-                    if (createResponse.equals("s") || createResponse.equals("si")) {
+                    if (createResponse.equals(shortPositive) || createResponse.equals(longPositive)) {
                         try {
                             Files.createDirectories(path);
-                            System.out.println("✅ Directorio creado: " + input);
+                            System.out.println( messages.getString("validate.message.directoryCreated") + ": " + input);
                             return input;
                         } catch (IOException e) {
-                            System.err.println("❌ No se pudo crear el directorio: " + e.getMessage());
+                            System.err.println( messages.getString("config.message.error.createDir") + ": " + e.getMessage());
                         }
                     }
                     continue;
@@ -148,7 +155,7 @@ public class ConfigurationService
                     String errorMsg = fieldName.toLowerCase().contains("source")
                             ? String.format(messages.getString("validate.issue.sourcePath.notDirectory"), input)
                             : String.format(messages.getString("validate.issue.outputPath.notDirectory"), input);
-                    System.err.println("❌ " + errorMsg);
+                    System.err.println("❌ Error " + errorMsg);
                     continue;
                 }
             } else {
@@ -156,19 +163,21 @@ public class ConfigurationService
                 Path parent = path.getParent();
                 if (parent != null && !Files.exists(parent) && !parent.toString().equals(".")) {
                     // Mensaje directo para directorio padre
-                    System.err.println("❌ El directorio padre no existe: " + parent);
+                    System.err.println( messages.getString("config.message.error.parentDir") + ": " + parent);
 
                     // Ofrecer crear el directorio padre
-                    System.out.print("¿Deseas crear el directorio padre? [s/N]: ");
+                    System.out.print( messages.getString("config.message.ask.createDir") + ": ");
                     String createResponse = scanner.nextLine().trim().toLowerCase();
 
-                    if (createResponse.equals("s") || createResponse.equals("si")) {
+                    if (createResponse.equals(shortPositive) || createResponse.equals(longPositive)) {
                         try {
                             Files.createDirectories(parent);
-                            System.out.println("✅ Directorio padre creado: " + parent);
+                            //System.out.println("✅ Directorio padre creado: " + parent);
+                            System.out.println( String.format(messages.getString("validate.message.parentCreated"), parent) );
                             return input;
                         } catch (IOException e) {
-                            System.err.println("❌ No se pudo crear el directorio padre: " + e.getMessage());
+                            //System.err.println("❌ No se pudo crear el directorio padre: " + e.getMessage());
+                            System.err.println( messages.getString("config.message.error.createParentDir") + ": " + e.getMessage());
                             continue;
                         }
                     }

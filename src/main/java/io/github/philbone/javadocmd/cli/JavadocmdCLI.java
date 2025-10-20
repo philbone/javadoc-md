@@ -10,8 +10,8 @@ import java.util.concurrent.Callable;
 @Command(
         name = "javadocmd",
         mixinStandardHelpOptions = true,
-        version = "1.0",
-        description = "JavaDoc to Markdown documentation tool",
+        version = "1.0.0",
+        description = "${description.app}",
         resourceBundle = "messages",
         subcommands = {
             InitCommand.class,
