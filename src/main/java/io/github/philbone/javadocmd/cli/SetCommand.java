@@ -72,6 +72,9 @@ public class SetCommand implements Callable<Integer>
 
     @Option(names = {"--foreSignClassIndexOnSubtitle"}, descriptionKey = "set.foreSignClassIndexOnSubtitle", arity = "0..1")
     private Boolean foreSignClassIndexOnSubtitle;
+    
+    @Option(names = {"--markdownLanguage"}, descriptionKey = "set.markdownLanguage")
+    private String markdownLanguage = "en";
 
     @Option(
             names = {"--configFile"},
@@ -205,6 +208,11 @@ public class SetCommand implements Callable<Integer>
         if (foreSignClassIndexOnSubtitle != null && foreSignClassIndexOnSubtitle != config.isForeSignClassIndexOnSubtitle()) {
             config.setForeSignClassIndexOnSubtitle(foreSignClassIndexOnSubtitle);
             changes.add(messages.getString("set.foreSignClassIndexOnSubtitle") + ": " + foreSignClassIndexOnSubtitle);
+        }
+        
+        if (markdownLanguage != null && !markdownLanguage.isBlank() && !markdownLanguage.isEmpty()) {
+            config.setMarkdownLanguage(markdownLanguage);
+            changes.add(messages.getString("set.markdownLanguage") + ": " + markdownLanguage);
         }
 
         return changes;
