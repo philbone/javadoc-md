@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
 /**
  * Esta clase se encarga de detectar el fichero de configuración
@@ -21,6 +22,8 @@ import java.nio.file.Paths;
 public class ConfigLoader
 {
     private static final String DEFAULT_CONFIG_FILE = "config.yml";
+    
+    private static ResourceBundle appMessages = ResourceBundle.getBundle("app_messages");
     
     /**
      * Carga la configuración desde el archivo config.yml por defecto
@@ -40,17 +43,24 @@ public class ConfigLoader
 
         File yamlFile = new File(filePath);
         if (!yamlFile.exists()) {
-            System.out.println("ℹ️  No se encontró " + filePath + ", usando valores por defecto");
+            String outln = String.format(appMessages.getString("config.message.filePathNotFound"), filePath);
+            System.out.println(outln);
             return defaultConfig;
         }
 
         try {
             ObjectMapper mapper = createObjectMapper();
             Config fileConfig = mapper.readValue(yamlFile, Config.class);
-            System.out.println("✅ Configuración cargada desde " + filePath);
+            System.out.println( appMessages.getString("config.message.configLoadedFrom") + ": " + filePath);
             return fileConfig;
         } catch (Exception e) {
-            System.err.println("❌ Error leyendo " + filePath + ": " + e.getMessage() + ", usando valores por defecto");
+            String outln = String.format(
+                    appMessages.getString("config.message.usingDefault"),
+                    filePath,
+                    e.getMessage(),
+                    "usando valores por defecto"
+            );
+            System.err.println(outln);
             return defaultConfig;
         }
     }
@@ -73,7 +83,7 @@ public class ConfigLoader
         
         try (FileWriter writer = new FileWriter(filePath)) {
             mapper.writeValue(writer, config);
-            System.out.println("✅ Configuración guardada en: " + filePath);
+            System.out.println( appMessages.getString("config.message.saveSuccess") + ": " + filePath);
         }
     }
     

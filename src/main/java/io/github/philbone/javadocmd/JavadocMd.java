@@ -95,7 +95,7 @@ public abstract class JavadocMd
         
         // Generar documentación
         if (config.isCombinePackagesMode()) { // true genera una documentación unificada
-            generateCombinedDocs(config);
+            generateCombinedDocs(config, lang);
         } else { // false genera documentación por cada paquete
             //generatePackageDocs(config.getSourcePath(), config.getOutputPath(), config.getOutFileName());
             generatePackageDocs(config);
@@ -187,7 +187,7 @@ public abstract class JavadocMd
         }
     }
 
-    public static void generateCombinedDocs(Config config) {
+    public static void generateCombinedDocs(Config config, LanguageManager lang) {
         try {
             // 1. Mapear paquetes → DocPackage
             Map<String, DocPackage> packages = new HashMap<>();
@@ -243,7 +243,7 @@ public abstract class JavadocMd
                 Files.createDirectories(outDir);
                 Path outFile = outDir.resolve( config.getOutFileName() );
                 Files.writeString(outFile, combined.toString());
-                System.out.println("✅ Documentación combinada generada en: " + outFile);
+                System.out.println( lang.getAppMessages().getString("message.success.combinedPackage") + ": " + outFile);
             }
 
         } catch (IOException e) {
