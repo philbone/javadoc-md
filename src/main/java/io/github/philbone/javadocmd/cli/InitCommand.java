@@ -21,8 +21,8 @@ public class InitCommand implements Callable<Integer>
     private final ConfigurationService configService;
 
     public InitCommand() {
-        this.messages = ResourceBundle.getBundle("messages");
-        this.configService = new ConfigurationService(messages);
+        this.messages = getResourceBundle();
+        this.configService = getConfigurationService(messages);
     }
 
     @Option(names = {"-h", "--help"}, usageHelp = true, descriptionKey = "init.help")
@@ -99,5 +99,14 @@ public class InitCommand implements Callable<Integer>
             System.err.println( messages.getString("init.message.createError") + e.getMessage());
             return 1;
         }
+    }
+    
+     // Métodos para testing - package private
+    ResourceBundle getResourceBundle() {
+        return ResourceBundle.getBundle("messages");
+    }
+    
+     ConfigurationService getConfigurationService(ResourceBundle messages) {
+        return new ConfigurationService(messages);
     }
 }
