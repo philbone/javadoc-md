@@ -11,6 +11,7 @@ import java.util.concurrent.Callable;
 
 @Command(
         name = "init",
+        aliases = {"install", "instalar"},
         description = "${usage.init}",
         resourceBundle = "messages"
 )
