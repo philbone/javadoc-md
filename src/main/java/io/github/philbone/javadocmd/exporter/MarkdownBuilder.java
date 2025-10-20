@@ -84,6 +84,7 @@ public class MarkdownBuilder
     }
 
     public MarkdownBuilder toc(DocPackage docPackage) {
+        // estos textos deben ser cargados desde la configuración de idioma de usuario(.langs/es-en.yml)
         subtitle("Resumen de Clases\n");
         outPrint.append("|#|CLASE|DESCRIPCIÓN|\n");
         outPrint.append("|---|---|---|\n");
