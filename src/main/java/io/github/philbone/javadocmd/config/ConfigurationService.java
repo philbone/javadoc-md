@@ -141,7 +141,7 @@ public class ConfigurationService
                     if (createResponse.equals(shortPositive) || createResponse.equals(longPositive)) {
                         try {
                             Files.createDirectories(path);
-                            System.out.println( messages.getString("validate.message.directoryCreated") + ": " + input);
+                            System.out.println( String.format(messages.getString("validate.message.directoryCreated"), input) );
                             return input;
                         } catch (IOException e) {
                             System.err.println( messages.getString("config.message.error.createDir") + ": " + e.getMessage());
