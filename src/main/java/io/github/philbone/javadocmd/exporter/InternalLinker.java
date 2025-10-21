@@ -16,9 +16,10 @@ public class InternalLinker {
     private final Map<String, List<String>> simpleToFqns;
     private final String extension;
     private final boolean debug;
+    private ResourceBundle appMessages;
 
     public InternalLinker(Set<String> internalClasses, String extension) {
-        this(internalClasses, extension, false);
+        this(internalClasses, extension, true);
     }
 
     public InternalLinker(Set<String> internalClasses, String extension, boolean debug) {
@@ -26,6 +27,7 @@ public class InternalLinker {
         this.simpleToFqns = new HashMap<>();
         this.extension = extension.startsWith(".") ? extension : "." + extension;
         this.debug = debug;
+        this.appMessages = ResourceBundle.getBundle("app_messages");
 
         // Normalizar el set recibido y construir mapa simpleName -> fqn(s).
         for (String raw : internalClasses) {
@@ -37,7 +39,8 @@ public class InternalLinker {
             simpleToFqns.computeIfAbsent(simple, k -> new ArrayList<>()).add(s);
 
             if (debug) {
-                System.err.println(">> InternalLinker registered: [" + s + "] as simpleName [" + simple + "]");
+                //System.err.println(">> InternalLinker registered: [" + s + "] as simpleName [" + simple + "]");
+                System.err.println(String.format(appMessages.getString("debug.error.registeredAs"), s, simple));
             }
         }
     }
@@ -52,20 +55,20 @@ public class InternalLinker {
         }
 
         if (debug) {
-            System.err.println(">> [linkIfInternalType] buscando coincidencia exacta para: " + typeName);
+            System.err.println( appMessages.getString("debug.message.linkIfInternalType") + ": " + typeName);
         }
 
         for (String internal : internalClasses) {
             if (internal.equals(typeName) || internal.endsWith("." + typeName)) {
                 if (debug) {
-                    System.err.println(">> [linkIfInternalType] MATCH encontrado: " + internal);
+                    System.err.println( appMessages.getString("debug.message.linkIfInternalTypeMatch") + ": " + internal);
                 }
                 return buildLink(internal);
             }
         }
 
         if (debug) {
-            System.err.println(">> [linkIfInternalType] sin coincidencia: " + typeName);
+            System.err.println( appMessages.getString("debug.message.linkIfInternalTypeNoMatch") + ": " + typeName);
         }
         return null;
         // Nota técnica:
@@ -74,7 +77,8 @@ public class InternalLinker {
         // simple o por sufijo. Además, la versión anterior causaba falsos negativos
         // cuando el InternalLinker se instanciaba por paquete.
     }
-
+    
+    @Deprecated
     private String normalizeTypeName(String raw) {
         String s = raw.trim();
         // eliminar genéricos complejos (usa reluctant)
@@ -105,7 +109,8 @@ public class InternalLinker {
             path = fqn + extension;
         }
         String simpleName = extractSimpleName(fqn);
-        if (debug) System.err.println(">> buildLink: fqn=" + fqn + " -> path=" + path);
+        //if (debug) System.err.println(">> buildLink: fqn=" + fqn + " -> path=" + path);
+        if (debug) System.err.println(String.format("debug.message.buildLinkFqn", fqn, path));
         // desactiva temporalmente la generación de enlaces internos
         //return String.format("[%s](%s)", simpleName, path);
         return String.format("**%s**", simpleName);

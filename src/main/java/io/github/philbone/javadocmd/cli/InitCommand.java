@@ -40,7 +40,7 @@ public class InitCommand implements Callable<Integer>
 
     @Option(
             names = {"-i", "--interactive"},
-            description = "Modo interactivo si no se proporcionan todos los parámetros"
+            description = "${init.interactive}"
     )
     private boolean interactive = true;
 

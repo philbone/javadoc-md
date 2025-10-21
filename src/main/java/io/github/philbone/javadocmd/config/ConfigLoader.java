@@ -55,10 +55,10 @@ public class ConfigLoader
             return fileConfig;
         } catch (Exception e) {
             String outln = String.format(
-                    appMessages.getString("config.message.usingDefault"),
+                    appMessages.getString("config.error.usingDefault"),
                     filePath,
                     e.getMessage(),
-                    "usando valores por defecto"
+                    appMessages.getString("config.message.usingDefault")
             );
             System.err.println(outln);
             return defaultConfig;

@@ -260,6 +260,7 @@ public class InternalLinker
 - `private` [Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String,List<String>> `simpleToFqns`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extension`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `debug`
+- `private` ResourceBundle `appMessages`
 </details>
 
 
@@ -1628,6 +1629,7 @@ implements Callable
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `foreSignClassIndex`
 - `private` Boolean `foreSignClassIndexOnDetails`
 - `private` Boolean `foreSignClassIndexOnSubtitle`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `markdownLanguage`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `forceCreate`
 </details>
