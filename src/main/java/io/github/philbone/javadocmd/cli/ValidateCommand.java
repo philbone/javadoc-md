@@ -46,6 +46,12 @@ public class ValidateCommand implements Callable<Integer>
             descriptionKey = "validate.interactive"
     )
     private boolean interactive = true;
+    
+    @Option(
+            names = {"-m", "--mute"},
+            descriptionKey = "${init.muteMode}"
+    )
+    private boolean mute = false;
 
     @Option(
             names = {"--configFile"},
@@ -92,7 +98,7 @@ public class ValidateCommand implements Callable<Integer>
                 }
             } else {
                 // No existe configuración
-                System.out.println( messages.getString("validate.message.noConfig") );
+                if(!mute) System.out.println( messages.getString("validate.message.noConfig") );
                 if (interactive) {
                     config = fixConfigurationInteractively(null);
                 } else {
@@ -128,18 +134,21 @@ public class ValidateCommand implements Callable<Integer>
                 "Source Path",
                 config.getSourcePath(),
                 "./src",
-                true
+                true,
+                mute
         );
-        config.setSourcePath(sourcePath);
 
         String outputPath = configService.getValidPathFromUser(
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
                 "./docs",
-                true
+                true,
+                mute
         );
-        config.setOutputPath(outputPath);
+
+        config.setSourcePath(sourcePath);
+        config.setOutputPath(outputPath);        
 
         // Guardar configuración PRIMERO
         try {
@@ -164,9 +173,12 @@ public class ValidateCommand implements Callable<Integer>
 
         // Crear directorio langs si no existe
         if (!Files.exists(langsPath)) {
-            System.out.print( messages.getString("validate.message.ask.createDir") + ": ");
-            String response = scanner.nextLine().trim().toLowerCase();
-
+            String response = shortPositive;
+            if(!mute){
+                System.out.print( messages.getString("validate.message.ask.createDir") + ": ");
+                response = scanner.nextLine().trim().toLowerCase();
+            }  
+            
             if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
                     Files.createDirectories(langsPath);
@@ -195,8 +207,11 @@ public class ValidateCommand implements Callable<Integer>
 
         // Español - solo crear si no existe
         if (!Files.exists(esFile)) {
-            System.out.print( messages.getString("validate.message.ask.createLangEs") + ": ");
-            String response = scanner.nextLine().trim().toLowerCase();            
+            String response = shortPositive;
+            if(!mute){
+                System.out.print(messages.getString("validate.message.ask.createLangEs") + ": ");
+                response = scanner.nextLine().trim().toLowerCase();
+            }
 
             if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
@@ -214,8 +229,11 @@ public class ValidateCommand implements Callable<Integer>
 
         // Inglés - solo crear si no existe
         if (!Files.exists(enFile)) {
-            System.out.print( messages.getString("validate.message.ask.createLangEn") + ": ");
-            String response = scanner.nextLine().trim().toLowerCase();
+            String response = shortPositive;
+            if(!mute){
+                System.out.print(messages.getString("validate.message.ask.createLangEn") + ": ");
+                response = scanner.nextLine().trim().toLowerCase();
+            }
 
             if (response.isEmpty() || response.equals(shortPositive) || response.equals(longPositive)) {
                 try {
@@ -270,6 +288,10 @@ public class ValidateCommand implements Callable<Integer>
      */
     public void setInteractive(boolean interactive) {
         this.interactive = interactive;
+    }
+    
+    public void setMuteMode(boolean mode){
+        this.mute = mode;
     }
     
 }

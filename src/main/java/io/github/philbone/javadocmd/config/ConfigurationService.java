@@ -56,7 +56,8 @@ public class ConfigurationService
                 "Source Path",
                 config.getSourcePath(),
                 "./src",
-                true // debe existir
+                true, // debe existir
+                false
         );
         config.setSourcePath(sourcePath);
 
@@ -66,7 +67,8 @@ public class ConfigurationService
                 "Output Path",
                 config.getOutputPath(),
                 "./docs",
-                true // debe existir
+                true, // debe existir
+                false
         );
         config.setOutputPath(outputPath);
 
@@ -104,13 +106,16 @@ public class ConfigurationService
      */
     public String getValidPathFromUser(Scanner scanner, String fieldName,
             String currentValue, String defaultValue,
-            boolean mustExist) {
+            boolean mustExist, boolean muteMode) {
         String prompt = String.format("%s (%s): ", fieldName,
                 (currentValue != null && !currentValue.trim().isEmpty()) ? currentValue : defaultValue);
 
         while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
+            String input = "";
+            if (!muteMode) {
+                System.out.print(prompt);
+                input = scanner.nextLine().trim();
+            }
 
             // Usar default si no se ingresa nada
             if (input.isEmpty()) {
@@ -128,15 +133,22 @@ public class ConfigurationService
 
             if (mustExist) {
                 if (!Files.exists(path)) {
-                    // Usar mensajes existentes específicos
-                    String errorMsg = fieldName.toLowerCase().contains("source")
-                            ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
-                            : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
-                    System.err.println( "❌ Error " + errorMsg);
+                    
+                    if (!muteMode) {
+                        // Usar mensajes existentes específicos
+                        String errorMsg = fieldName.toLowerCase().contains("source")
+                                ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
+                                : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
+                        System.err.println("❌ Error " + errorMsg);
+                    }
 
-                    // Ofrecer crear el directorio                    
-                    System.out.print( String.format(messages.getString("validate.issue.ask.createDir"), fieldName) );
-                    String createResponse = scanner.nextLine().trim().toLowerCase();
+                    String createResponse = shortPositive;
+                    
+                    if (!muteMode) {
+                        // Ofrecer crear el directorio                    
+                        System.out.print(String.format(messages.getString("validate.issue.ask.createDir"), fieldName));
+                        createResponse = scanner.nextLine().trim().toLowerCase();
+                    }
 
                     if (createResponse.equals(shortPositive) || createResponse.equals(longPositive)) {
                         try {
