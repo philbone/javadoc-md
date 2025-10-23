@@ -55,7 +55,7 @@ public class ConfigurationService
                 scanner,
                 "Source Path",
                 config.getSourcePath(),
-                "./src",
+                "../src",
                 true, // debe existir
                 false
         );
@@ -66,7 +66,7 @@ public class ConfigurationService
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
-                "./docs",
+                "../docs",
                 true, // debe existir
                 false
         );
@@ -112,10 +112,10 @@ public class ConfigurationService
 
         while (true) {
             String input = "";
-            if (!muteMode) {
+            //if (!muteMode) {
                 System.out.print(prompt);
                 input = scanner.nextLine().trim();
-            }
+            //}
 
             // Usar default si no se ingresa nada
             if (input.isEmpty()) {
@@ -133,30 +133,24 @@ public class ConfigurationService
 
             if (mustExist) {
                 if (!Files.exists(path)) {
-                    
-                    if (!muteMode) {
-                        // Usar mensajes existentes específicos
-                        String errorMsg = fieldName.toLowerCase().contains("source")
-                                ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
-                                : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
-                        System.err.println("❌ Error " + errorMsg);
-                    }
 
-                    String createResponse = shortPositive;
-                    
-                    if (!muteMode) {
-                        // Ofrecer crear el directorio                    
-                        System.out.print(String.format(messages.getString("validate.issue.ask.createDir"), fieldName));
-                        createResponse = scanner.nextLine().trim().toLowerCase();
-                    }
+                    // Usar mensajes existentes específicos
+                    String errorMsg = fieldName.toLowerCase().contains("source")
+                            ? String.format(messages.getString("validate.issue.sourcePath.notExists"), input)
+                            : String.format(messages.getString("validate.issue.outputPath.notExists"), input);
+                    System.err.println("❌ Error " + errorMsg);
+
+                    // Ofrecer crear el directorio                    
+                    System.out.print(String.format(messages.getString("validate.issue.ask.createDir"), fieldName));
+                    String createResponse = scanner.nextLine().trim().toLowerCase();
 
                     if (createResponse.equals(shortPositive) || createResponse.equals(longPositive)) {
                         try {
                             Files.createDirectories(path);
-                            System.out.println( String.format(messages.getString("validate.message.directoryCreated"), input) );
+                            System.out.println(String.format(messages.getString("validate.message.directoryCreated"), input));
                             return input;
                         } catch (IOException e) {
-                            System.err.println( messages.getString("config.message.error.createDir") + ": " + e.getMessage());
+                            System.err.println(messages.getString("config.message.error.createDir") + ": " + e.getMessage());
                         }
                     }
                     continue;
