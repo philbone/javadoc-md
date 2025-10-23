@@ -133,7 +133,7 @@ public class ValidateCommand implements Callable<Integer>
                 scanner,
                 "Source Path",
                 config.getSourcePath(),
-                "./src",
+                "../src",
                 true,
                 mute
         );
@@ -142,7 +142,7 @@ public class ValidateCommand implements Callable<Integer>
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
-                "./docs",
+                "../docs",
                 true,
                 mute
         );

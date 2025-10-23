@@ -54,8 +54,8 @@ public class Config
     
     // Constructor con valores por defecto
     public Config() {
-        this.sourcePath = "./src";
-        this.outputPath = "./doc";
+        this.sourcePath = "../src";
+        this.outputPath = "../doc";
         this.outFileName = "README.md";
         this.debugMode = false;
         this.combinePackagesMode = false;
