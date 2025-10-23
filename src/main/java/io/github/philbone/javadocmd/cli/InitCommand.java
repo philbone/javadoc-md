@@ -43,6 +43,12 @@ public class InitCommand implements Callable<Integer>
             description = "${init.interactive}"
     )
     private boolean interactive = true;
+    
+    @Option(
+            names = {"-m", "--mute"},
+            descriptionKey = "${init.muteMode}"
+    )
+    private boolean mute = false;
 
     @Option(
             names = {"--configFile"},
@@ -66,10 +72,11 @@ public class InitCommand implements Callable<Integer>
                 return createWithParameters();
             } // Modo interactivo - delegar en ValidateCommand
             else if (interactive) {
-                System.out.println( messages.getString("init.message.interactiveStart") );
-                ValidateCommand validate = new ValidateCommand();
+                if (!mute) System.out.println( messages.getString("init.message.interactiveStart") );
+                ValidateCommand validate = new ValidateCommand();                
                 validate.setConfigFile(configFile);
-                validate.setInteractive(true);
+                validate.setInteractive(true);                
+                validate.setMuteMode(mute);
                 return validate.call();
             } // Modo no interactivo sin parámetros suficientes
             else {
