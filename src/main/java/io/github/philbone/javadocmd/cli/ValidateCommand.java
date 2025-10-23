@@ -98,7 +98,7 @@ public class ValidateCommand implements Callable<Integer>
                 }
             } else {
                 // No existe configuración
-                System.out.println( messages.getString("validate.message.noConfig") );
+                if(!mute) System.out.println( messages.getString("validate.message.noConfig") );
                 if (interactive) {
                     config = fixConfigurationInteractively(null);
                 } else {
@@ -134,18 +134,21 @@ public class ValidateCommand implements Callable<Integer>
                 "Source Path",
                 config.getSourcePath(),
                 "./src",
-                true
+                true,
+                mute
         );
-        config.setSourcePath(sourcePath);
 
         String outputPath = configService.getValidPathFromUser(
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
                 "./docs",
-                true
+                true,
+                mute
         );
-        config.setOutputPath(outputPath);
+
+        config.setSourcePath(sourcePath);
+        config.setOutputPath(outputPath);        
 
         // Guardar configuración PRIMERO
         try {
