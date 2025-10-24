@@ -2,6 +2,7 @@ package io.github.philbone.javadocmd.cli;
 
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
+import io.github.philbone.javadocmd.config.ConfigManager;
 import io.github.philbone.javadocmd.config.ConfigurationService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -60,43 +61,58 @@ public class InitCommand implements Callable<Integer>
     @Override
     public Integer call() {
         try {
-            // Verificar si el archivo ya existe
-            if (ConfigLoader.configExists(configFile)) {
-                System.err.println(messages.getString("init.message.configFileAlreadyExist")  + ": " + configFile);
+            ConfigManager configManager = new ConfigManager();
+
+            // ✅ PRIMERO: Crear directorio .javadocmd si no existe
+            if (!configManager.configDirExists()) {
+                configManager.ensureConfigDir();
+                if (!mute) {
+                    System.out.println(messages.getString("init.message.configDirCreated") + ": " + configManager.getConfigDir());
+                }
+            }
+
+            // ✅ Usar la ruta del config manager en lugar del archivo directo
+            String configFilePath = configManager.getConfigFilePath().toString();
+
+            // Verificar si el archivo ya existe (ahora dentro de .javadocmd)
+            if (ConfigLoader.configExists(configFilePath)) {
+                System.err.println(messages.getString("init.message.configFileAlreadyExist") + ": " + configFilePath);
                 System.out.println(messages.getString("init.message.configFileAlreadyExist.help"));
                 return 1;
             }
 
             // Modo con parámetros completos
             if (sourcePath != null && outputPath != null) {
-                return createWithParameters();
+                return createWithParameters(configFilePath); // ← Pasar la nueva ruta
             } // Modo interactivo - delegar en ValidateCommand
             else if (interactive) {
-                if (!mute) System.out.println( messages.getString("init.message.interactiveStart") );
-                ValidateCommand validate = new ValidateCommand();                
-                validate.setConfigFile(configFile);
-                validate.setInteractive(true);                
+                if (!mute) {
+                    System.out.println(messages.getString("init.message.interactiveStart"));
+                }
+                ValidateCommand validate = new ValidateCommand();
+                validate.setConfigFile(configFilePath); // ← Usar la nueva ruta
+                validate.setInteractive(true);
                 validate.setMuteMode(mute);
                 return validate.call();
             } // Modo no interactivo sin parámetros suficientes
             else {
-                System.err.println( messages.getString("init.message.insufficientParameters") );
-                System.out.println( messages.getString("usage.helpTip") );
+                System.err.println(messages.getString("init.message.insufficientParameters"));
+                System.out.println(messages.getString("usage.helpTip"));
                 return 1;
             }
 
         } catch (Exception e) {
-            System.err.println( messages.getString("init.message.createError") + ": " + e.getMessage());
+            System.err.println(messages.getString("init.message.createError") + ": " + e.getMessage());
             return 1;
         }
     }
 
-    private Integer createWithParameters() {
+    private Integer createWithParameters(String configFilePath) {
         try {
             Config config = configService.createWithParameters(sourcePath, outputPath, outFileName);
-            ConfigLoader.saveConfig(config, configFile);
-            System.out.println( messages.getString("init.message.createdWithParameters") );
-            System.out.println( messages.getString("init.message.configSaved") + ": " + configFile);
+            ConfigLoader.saveConfig(config, configFilePath); // ← Guardar en nueva ubicación
+            System.out.println(messages.getString("init.message.createdWithParameters"));
+            System.out.println(messages.getString("init.message.configSaved") + ": " + configFilePath);
             System.out.println("  - Source: " + config.getSourcePath());
             System.out.println("  - Output: " + config.getOutputPath());
             if (config.getOutFileName() != null) {
@@ -104,7 +120,7 @@ public class InitCommand implements Callable<Integer>
             }
             return 0;
         } catch (Exception e) {
-            System.err.println( messages.getString("init.message.createError") + e.getMessage());
+            System.err.println(messages.getString("init.message.createError") + e.getMessage());
             return 1;
         }
     }

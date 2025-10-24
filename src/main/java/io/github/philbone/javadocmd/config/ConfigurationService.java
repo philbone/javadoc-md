@@ -55,7 +55,7 @@ public class ConfigurationService
                 scanner,
                 "Source Path",
                 config.getSourcePath(),
-                "../src",
+                "./src",
                 true, // debe existir
                 false
         );
@@ -66,7 +66,7 @@ public class ConfigurationService
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
-                "../docs",
+                "./docs",
                 true, // debe existir
                 false
         );

@@ -2,6 +2,7 @@ package io.github.philbone.javadocmd.cli;
 
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
+import io.github.philbone.javadocmd.config.ConfigManager;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.Callable;
 )
 public class SetCommand implements Callable<Integer>
 {
+
     private final ResourceBundle appMessages;
 
     public SetCommand() {
@@ -72,16 +74,16 @@ public class SetCommand implements Callable<Integer>
 
     @Option(names = {"--foreSignClassIndexOnSubtitle"}, descriptionKey = "set.foreSignClassIndexOnSubtitle", arity = "0..1")
     private Boolean foreSignClassIndexOnSubtitle;
-    
+
     @Option(names = {"--markdownLanguage"}, descriptionKey = "set.markdownLanguage")
-    private String markdownLanguage = "en";
+    private String markdownLanguage;
 
     @Option(
             names = {"--configFile"},
             descriptionKey = "set.configFile",
             paramLabel = "CONFIG_FILE"
     )
-    private String configFile = "config.yml";
+    private String configFile; // ← Sin valor por defecto, lo manejaremos en el método
 
     @Option(
             names = {"-f", "--force"},
@@ -89,21 +91,25 @@ public class SetCommand implements Callable<Integer>
     )
     private boolean forceCreate = false;
 
-    // ... el resto del código se mantiene igual
     @Override
     public Integer call() {
         try {
+            // ✅ Obtener la ruta real del archivo de configuración
+            String actualConfigFile = getActualConfigFilePath();
+
             Config config;
-            boolean configExists = ConfigLoader.configExists(configFile);
+            boolean configExists = ConfigLoader.configExists(actualConfigFile);
 
             if (configExists) {
                 System.out.println(appMessages.getString("message.set.loading"));
-                config = ConfigLoader.loadConfig(configFile);
+                config = ConfigLoader.loadConfig(actualConfigFile);
             } else if (forceCreate) {
                 System.out.println(appMessages.getString("message.set.creating"));
                 config = new Config();
             } else {
                 System.err.println(appMessages.getString("message.set.noConfig"));
+                System.out.println("  " + appMessages.getString("message.set.expectedPath") + ": " + actualConfigFile);
+                System.out.println("  " + appMessages.getString("message.set.useForce"));
                 return 1;
             }
 
@@ -118,10 +124,10 @@ public class SetCommand implements Callable<Integer>
             System.out.println(appMessages.getString("message.set.updating"));
 
             // Guardar configuración
-            ConfigLoader.saveConfig(config, configFile);
+            ConfigLoader.saveConfig(config, actualConfigFile);
 
             // Mostrar resumen
-            showChangesSummary(changes);
+            showChangesSummary(changes, actualConfigFile);
 
             System.out.println(appMessages.getString("message.set.success"));
 
@@ -134,6 +140,19 @@ public class SetCommand implements Callable<Integer>
             ));
             return 1;
         }
+    }
+
+    /**
+     * Obtiene la ruta real del archivo de configuración - Si el usuario
+     * proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+     * en .javadocmd/
+     */
+    private String getActualConfigFilePath() {
+        if (configFile != null && !configFile.trim().isEmpty()) {
+            return configFile; // Usuario proporcionó ruta específica
+        }
+        // Ruta por defecto en .javadocmd/
+        return new ConfigManager().getConfigFilePath().toString();
     }
 
     private List<String> applyChanges(Config config) {
@@ -209,8 +228,8 @@ public class SetCommand implements Callable<Integer>
             config.setForeSignClassIndexOnSubtitle(foreSignClassIndexOnSubtitle);
             changes.add(messages.getString("set.foreSignClassIndexOnSubtitle") + ": " + foreSignClassIndexOnSubtitle);
         }
-        
-        if (markdownLanguage != null && !markdownLanguage.isBlank() && !markdownLanguage.isEmpty()) {
+
+        if (markdownLanguage != null && !markdownLanguage.isBlank() && !markdownLanguage.equals(config.getMarkdownLanguage())) {
             config.setMarkdownLanguage(markdownLanguage);
             changes.add(messages.getString("set.markdownLanguage") + ": " + markdownLanguage);
         }
@@ -218,11 +237,19 @@ public class SetCommand implements Callable<Integer>
         return changes;
     }
 
-    private void showChangesSummary(List<String> changes) {
+    private void showChangesSummary(List<String> changes, String configFilePath) {
         System.out.println("\n" + appMessages.getString("message.set.summary"));
+        System.out.println("  " + appMessages.getString("message.set.configFile") + ": " + configFilePath);
         for (String change : changes) {
             System.out.println("  • " + change);
         }
         System.out.println();
+    }
+
+    /**
+     * Permite configurar el archivo de configuración desde fuera
+     */
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
     }
 }
