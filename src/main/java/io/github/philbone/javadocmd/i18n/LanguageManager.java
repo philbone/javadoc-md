@@ -3,6 +3,7 @@ package io.github.philbone.javadocmd.i18n;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
+import io.github.philbone.javadocmd.config.ConfigManager;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 public class LanguageManager
 {
     private static final String DEFAULT_LANG = "en";
-    private static final String LANG_DIR = "langs";
+    private static final String LANG_DIR = new ConfigManager().getLangsDir().toString();
     //private static String langCode;
     
     private final Map<String, String> labels;
