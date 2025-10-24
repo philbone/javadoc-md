@@ -2,6 +2,7 @@ package io.github.philbone.javadocmd.cli;
 
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
+import io.github.philbone.javadocmd.config.ConfigManager;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -40,7 +41,7 @@ public class GetCommand implements Callable<Integer>
             descriptionKey = "get.configFile",
             paramLabel = "CONFIG_FILE"
     )
-    private String configFile = "config.yml";
+    private String configFile; // ← Sin valor por defecto, lo manejaremos en el método
 
     @Parameters(
             index = "0",
@@ -52,18 +53,24 @@ public class GetCommand implements Callable<Integer>
     @Override
     public Integer call() {
         try {
+            // ✅ Obtener la ruta real del archivo de configuración
+            String actualConfigFile = getActualConfigFilePath();
+
             if (!quietMode) {
                 System.out.println(appMessages.getString("message.get.loading"));
             }
 
             // Verificar si existe el archivo de configuración
-            if (!ConfigLoader.configExists(configFile)) {
+            if (!ConfigLoader.configExists(actualConfigFile)) {
                 System.err.println(appMessages.getString("message.get.noConfig"));
+                if (!quietMode) {
+                    System.out.println("  " + appMessages.getString("message.get.expectedPath") + ": " + actualConfigFile);
+                }
                 return 1;
             }
 
             // Cargar configuración
-            Config config = ConfigLoader.loadConfig(configFile);
+            Config config = ConfigLoader.loadConfig(actualConfigFile);
 
             // Obtener y mostrar el valor
             String value = getConfigValue(config, key);
@@ -73,7 +80,9 @@ public class GetCommand implements Callable<Integer>
                         messages.getString("get.error.invalidKey"),
                         key
                 ));
-                System.err.println(messages.getString("get.error.availableKeys"));
+                if (!quietMode) {
+                    System.err.println(messages.getString("get.error.availableKeys"));
+                }
                 return 1;
             }
 
@@ -86,6 +95,7 @@ public class GetCommand implements Callable<Integer>
                         appMessages.getString("message.get.value"),
                         key, value
                 ));
+                System.out.println("  " + appMessages.getString("message.get.configFile") + ": " + actualConfigFile);
             }
 
             return 0;
@@ -97,6 +107,19 @@ public class GetCommand implements Callable<Integer>
             ));
             return 1;
         }
+    }
+
+    /**
+     * Obtiene la ruta real del archivo de configuración - Si el usuario
+     * proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+     * en .javadocmd/
+     */
+    private String getActualConfigFilePath() {
+        if (configFile != null && !configFile.trim().isEmpty()) {
+            return configFile; // Usuario proporcionó ruta específica
+        }
+        // Ruta por defecto en .javadocmd/
+        return new ConfigManager().getConfigFilePath().toString();
     }
 
     private String getConfigValue(Config config, String key) {
@@ -134,5 +157,12 @@ public class GetCommand implements Callable<Integer>
             default:
                 return null;
         }
+    }
+
+    /**
+     * Permite configurar el archivo de configuración desde fuera
+     */
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
     }
 }

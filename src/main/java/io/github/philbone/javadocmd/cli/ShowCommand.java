@@ -2,6 +2,7 @@ package io.github.philbone.javadocmd.cli;
 
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
+import io.github.philbone.javadocmd.config.ConfigManager;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -34,24 +35,28 @@ public class ShowCommand implements Callable<Integer>
             descriptionKey = "init.configFile", // Reutilizamos la misma descripción
             paramLabel = "CONFIG_FILE"
     )
-    private String configFile = "config.yml";
+    private String configFile; // ← Sin valor por defecto, lo manejaremos en el método
 
     @Override
     public Integer call() {
         try {
+            // ✅ Obtener la ruta real del archivo de configuración
+            String actualConfigFile = getActualConfigFilePath();
+
             System.out.println(appMessages.getString("message.show.loading"));
 
             // Verificar si existe el archivo de configuración
-            if (!ConfigLoader.configExists(configFile)) {
+            if (!ConfigLoader.configExists(actualConfigFile)) {
                 System.err.println(appMessages.getString("message.show.noConfig"));
+                System.out.println("  " + appMessages.getString("message.show.expectedPath") + ": " + actualConfigFile);
                 return 1;
             }
 
             // Cargar configuración
-            Config config = ConfigLoader.loadConfig(configFile);
+            Config config = ConfigLoader.loadConfig(actualConfigFile);
 
             // Mostrar configuración formateada
-            showConfiguration(config);
+            showConfiguration(config, actualConfigFile);
 
             return 0;
 
@@ -64,11 +69,27 @@ public class ShowCommand implements Callable<Integer>
         }
     }
 
-    private void showConfiguration(Config config) {
+    /**
+     * Obtiene la ruta real del archivo de configuración - Si el usuario
+     * proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+     * en .javadocmd/
+     */
+    private String getActualConfigFilePath() {
+        if (configFile != null && !configFile.trim().isEmpty()) {
+            return configFile; // Usuario proporcionó ruta específica
+        }
+        // Ruta por defecto en .javadocmd/
+        return new ConfigManager().getConfigFilePath().toString();
+    }
+
+    private void showConfiguration(Config config, String configFilePath) {
         ResourceBundle messages = ResourceBundle.getBundle("messages");
 
         System.out.println("\n" + messages.getString("show.header"));
         System.out.println("═".repeat(50));
+
+        // Mostrar la ruta del archivo de configuración
+        printField(messages.getString("show.configFilePath"), configFilePath);
 
         // Mostrar cada campo con formato consistente
         printField(messages.getString("show.sourcePath"), config.getSourcePath());
@@ -88,6 +109,7 @@ public class ShowCommand implements Callable<Integer>
                 config.isForeSignClassIndexOnDetails());
         printField(messages.getString("show.foreSignClassIndexOnSubtitle"),
                 config.isForeSignClassIndexOnSubtitle());
+        printField(messages.getString("show.markdownLanguage"), config.getMarkdownLanguage());
 
         System.out.println("═".repeat(50));
     }
@@ -99,5 +121,12 @@ public class ShowCommand implements Callable<Integer>
     private void printField(String label, boolean value) {
         String formattedValue = value ? "✅ true" : "❌ false";
         System.out.printf("  %-35s : %s%n", label, formattedValue);
+    }
+
+    /**
+     * Permite configurar el archivo de configuración desde fuera
+     */
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
     }
 }

@@ -21,27 +21,31 @@ import java.util.ResourceBundle;
  */
 public class ConfigLoader
 {
-    private static final String DEFAULT_CONFIG_FILE = "config.yml";
-    
+    // Eliminamos DEFAULT_CONFIG_FILE de aquí
+
     private static ResourceBundle appMessages = ResourceBundle.getBundle("app_messages");
-    
+
     /**
-     * Carga la configuración desde el archivo config.yml por defecto
+     * Carga la configuración usando ConfigManager para obtener la ruta por
+     * defecto
+     *
      * @return un objeto con los datos de configuración iniciales.
      */
     public static Config loadConfig() {
-        return loadConfig(DEFAULT_CONFIG_FILE);
+        ConfigManager configManager = new ConfigManager();
+        return loadConfig(configManager.getConfigFilePath().toString());
     }
-    
+
     /**
      * Carga la configuración desde un archivo específico
+     *
      * @param filePath ruta del archivo de configuración
      * @return objeto Config con los datos cargados
      */
     public static Config loadConfig(String filePath) {
         Config defaultConfig = new Config();
-
         File yamlFile = new File(filePath);
+
         if (!yamlFile.exists()) {
             String outln = String.format(appMessages.getString("config.message.filePathNotFound"), filePath);
             System.out.println(outln);
@@ -51,7 +55,7 @@ public class ConfigLoader
         try {
             ObjectMapper mapper = createObjectMapper();
             Config fileConfig = mapper.readValue(yamlFile, Config.class);
-            System.out.println( appMessages.getString("config.message.configLoadedFrom") + ": " + filePath);
+            System.out.println(appMessages.getString("config.message.configLoadedFrom") + ": " + filePath);
             return fileConfig;
         } catch (Exception e) {
             String outln = String.format(
@@ -64,40 +68,45 @@ public class ConfigLoader
             return defaultConfig;
         }
     }
-    
+
     /**
      * Guarda la configuración en un archivo YAML
+     *
      * @param config objeto Config a guardar
      * @param filePath ruta del archivo destino
      * @throws IOException si ocurre error de escritura
      */
     public static void saveConfig(Config config, String filePath) throws IOException {
         ObjectMapper mapper = createObjectMapper();
-        
+
         // Crear directorio padre si no existe
         Path path = Paths.get(filePath);
         Path parentDir = path.getParent();
         if (parentDir != null && !Files.exists(parentDir)) {
             Files.createDirectories(parentDir);
         }
-        
+
         try (FileWriter writer = new FileWriter(filePath)) {
             mapper.writeValue(writer, config);
-            System.out.println( appMessages.getString("config.message.saveSuccess") + ": " + filePath);
+            System.out.println(appMessages.getString("config.message.saveSuccess") + ": " + filePath);
         }
     }
-    
+
     /**
-     * Guarda la configuración en el archivo por defecto config.yml
+     * Guarda la configuración usando ConfigManager para obtener la ruta por
+     * defecto
+     *
      * @param config objeto Config a guardar
      * @throws IOException si ocurre error de escritura
      */
     public static void saveConfig(Config config) throws IOException {
-        saveConfig(config, DEFAULT_CONFIG_FILE);
+        ConfigManager configManager = new ConfigManager();
+        saveConfig(config, configManager.getConfigFilePath().toString());
     }
-    
+
     /**
      * Crea una configuración por defecto y la guarda en un archivo
+     *
      * @param filePath ruta del archivo destino
      * @return objeto Config creado
      * @throws IOException si ocurre error de escritura
@@ -107,43 +116,51 @@ public class ConfigLoader
         saveConfig(defaultConfig, filePath);
         return defaultConfig;
     }
-    
+
     /**
-     * Crea una configuración por defecto y la guarda en config.yml
+     * Crea una configuración por defecto y la guarda en la ruta por defecto
+     * usando ConfigManager
+     *
      * @return objeto Config creado
      * @throws IOException si ocurre error de escritura
      */
     public static Config createDefaultConfig() throws IOException {
-        return createDefaultConfig(DEFAULT_CONFIG_FILE);
+        ConfigManager configManager = new ConfigManager();
+        return createDefaultConfig(configManager.getConfigFilePath().toString());
     }
-    
+
     /**
      * Verifica si existe el archivo de configuración
+     *
      * @param filePath ruta a verificar
      * @return true si el archivo existe
      */
     public static boolean configExists(String filePath) {
         return new File(filePath).exists();
     }
-    
+
     /**
-     * Verifica si existe el archivo de configuración por defecto
-     * @return true si config.yml existe
+     * Verifica si existe el archivo de configuración por defecto usando
+     * ConfigManager
+     *
+     * @return true si el archivo de configuración por defecto existe
      */
     public static boolean configExists() {
-        return configExists(DEFAULT_CONFIG_FILE);
+        ConfigManager configManager = new ConfigManager();
+        return configExists(configManager.getConfigFilePath().toString());
     }
-    
+
     /**
      * Crea un ObjectMapper configurado para YAML con formato legible
+     *
      * @return ObjectMapper configurado
      */
     private static ObjectMapper createObjectMapper() {
         YAMLFactory yamlFactory = new YAMLFactory()
-            .enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
-            .enable(YAMLGenerator.Feature.INDENT_ARRAYS)
-            .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
-        
+                .enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
+                .enable(YAMLGenerator.Feature.INDENT_ARRAYS)
+                .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
+
         ObjectMapper mapper = new ObjectMapper(yamlFactory);
         return mapper;
     }

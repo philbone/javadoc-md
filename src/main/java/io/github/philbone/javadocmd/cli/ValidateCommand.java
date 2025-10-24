@@ -2,6 +2,7 @@ package io.github.philbone.javadocmd.cli;
 
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
+import io.github.philbone.javadocmd.config.ConfigManager;
 import io.github.philbone.javadocmd.config.ConfigurationService;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,7 +21,6 @@ import java.util.concurrent.Callable;
 )
 public class ValidateCommand implements Callable<Integer>
 {
-
     private final ResourceBundle messages;
     private final ConfigurationService configService;
     
@@ -58,24 +58,27 @@ public class ValidateCommand implements Callable<Integer>
             descriptionKey = "validate.configFile",
             paramLabel = "CONFIG_FILE"
     )
-    private String configFile = "config.yml";
+    private String configFile; // ← Sin valor por defecto, lo manejaremos en el método
 
     @Override
     public Integer call() {
         try {
+            // ✅ Obtener la ruta real del archivo de configuración
+            String actualConfigFile = getActualConfigFilePath();
+            
             System.out.println(messages.getString("validate.message.loading"));
 
             Config config;
-            boolean configExists = ConfigLoader.configExists(configFile);
+            boolean configExists = ConfigLoader.configExists(actualConfigFile);
 
             if (configExists) {
                 // Cargar configuración existente
-                config = ConfigLoader.loadConfig(configFile);
+                config = ConfigLoader.loadConfig(actualConfigFile);
 
                 // PRIMERO verificar si es válida
                 if (configService.isValid(config)) {
                     // ✅ Configuración válida - mostrar éxito y salir
-                    System.out.println( messages.getString("validate.message.validConfiguration") + ": " + configFile);
+                    System.out.println( messages.getString("validate.message.validConfiguration") + ": " + actualConfigFile);
                     System.out.println( messages.getString("validate.message.source") + ": " + config.getSourcePath());
                     System.out.println( messages.getString("validate.message.output") + ": " + config.getOutputPath());
                     return 0;
@@ -83,7 +86,7 @@ public class ValidateCommand implements Callable<Integer>
                 else if (configService.isUsingDefaultValues(config)) {
                     System.out.println( messages.getString("validate.message.corruptedConfiguration") );
                     if (interactive) {
-                        config = fixConfigurationInteractively(config);
+                        config = fixConfigurationInteractively(config, actualConfigFile);
                     } else {
                         return 1;
                     }
@@ -91,7 +94,7 @@ public class ValidateCommand implements Callable<Integer>
                 else {
                     System.out.println( messages.getString("validate.message.invalidConfiguration") );
                     if (interactive) {
-                        config = fixConfigurationInteractively(config);
+                        config = fixConfigurationInteractively(config, actualConfigFile);
                     } else {
                         return 1;
                     }
@@ -100,14 +103,14 @@ public class ValidateCommand implements Callable<Integer>
                 // No existe configuración
                 if(!mute) System.out.println( messages.getString("validate.message.noConfig") );
                 if (interactive) {
-                    config = fixConfigurationInteractively(null);
+                    config = fixConfigurationInteractively(null, actualConfigFile);
                 } else {
                     return 1;
                 }
             }
 
             // Si llegamos aquí, tenemos una configuración válida después de correcciones
-            System.out.println( messages.getString("validate.message.validConfiguration") + ": " + configFile);
+            System.out.println( messages.getString("validate.message.validConfiguration") + ": " + actualConfigFile);
             System.out.println( messages.getString("validate.message.source") + ": " + config.getSourcePath());
             System.out.println( messages.getString("validate.message.output") + ": " + config.getOutputPath());
 
@@ -122,7 +125,20 @@ public class ValidateCommand implements Callable<Integer>
         }
     }
 
-    private Config fixConfigurationInteractively(Config existingConfig) {
+    /**
+     * Obtiene la ruta real del archivo de configuración
+     * - Si el usuario proporcionó --configFile, usa esa ruta
+     * - Si no, usa la ruta por defecto en .javadocmd/
+     */
+    private String getActualConfigFilePath() {
+        if (configFile != null && !configFile.trim().isEmpty()) {
+            return configFile; // Usuario proporcionó ruta específica
+        }
+        // Ruta por defecto en .javadocmd/
+        return new ConfigManager().getConfigFilePath().toString();
+    }
+
+    private Config fixConfigurationInteractively(Config existingConfig, String actualConfigFile) {
         Scanner scanner = new Scanner(System.in);
         Config config = (existingConfig != null) ? existingConfig : new Config();
 
@@ -133,7 +149,7 @@ public class ValidateCommand implements Callable<Integer>
                 scanner,
                 "Source Path",
                 config.getSourcePath(),
-                "../src",
+                "./src",
                 true,
                 mute
         );
@@ -142,7 +158,7 @@ public class ValidateCommand implements Callable<Integer>
                 scanner,
                 "Output Path",
                 config.getOutputPath(),
-                "../docs",
+                "./docs",
                 true,
                 mute
         );
@@ -152,8 +168,8 @@ public class ValidateCommand implements Callable<Integer>
 
         // Guardar configuración PRIMERO
         try {
-            ConfigLoader.saveConfig(config, configFile);
-            System.out.println( messages.getString("init.message.configSaved") + ": " + configFile);
+            ConfigLoader.saveConfig(config, actualConfigFile); // ← Usar la ruta real
+            System.out.println( messages.getString("init.message.configSaved") + ": " + actualConfigFile);
         } catch (Exception e) {
             System.err.println( messages.getString("validate.message.saveError") + ": " + e.getMessage());
             throw new RuntimeException(e);
@@ -166,8 +182,8 @@ public class ValidateCommand implements Callable<Integer>
     }
     
     private void setupInternationalization(Scanner scanner) {
-        Path basePath = Paths.get(".");
-        Path langsPath = basePath.resolve("langs");
+        ConfigManager configManager = new ConfigManager();
+        Path langsPath = configManager.getLangsDir();
 
         System.out.println("\n"+ messages.getString("validate.message.langConfig") );
 
@@ -293,5 +309,4 @@ public class ValidateCommand implements Callable<Integer>
     public void setMuteMode(boolean mode){
         this.mute = mode;
     }
-    
 }
