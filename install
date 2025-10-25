@@ -1,0 +1,12 @@
+#!/bin/bash
+# Este script detecta el SO y ejecuta el script correspondiente
+
+OS="$(uname -s)"
+
+case "${OS}" in
+    Linux*)     ./install.sh ;;
+    Darwin*)    ./install.sh ;;
+    CYGWIN*)    ./install.bat ;;
+    MINGW*)     ./install.bat ;;
+    *)          echo "Sistema operativo no soportado: ${OS}"; exit 1 ;;
+esac
