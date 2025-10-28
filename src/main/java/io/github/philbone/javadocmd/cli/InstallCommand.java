@@ -1,22 +1,31 @@
 package io.github.philbone.javadocmd.cli;
 
-import picocli.CommandLine;
+import io.github.philbone.javadocmd.config.ConfigurationService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 @Command(
         name = "install",
         aliases = {"instalar"},
-        description = "Crea un alias permanente para JavaDocMd",
+        description = "${usage.install}",
         mixinStandardHelpOptions = true,
-        version = "1.0.0"
+        resourceBundle = "messages"
 )
 public class InstallCommand implements Callable<Integer>
 {
+    private final ResourceBundle messages;
+    private final ConfigurationService configService;
+
+    public InstallCommand() {
+        this.messages = ResourceBundle.getBundle("messages");
+        this.configService = new ConfigurationService(messages);
+    }
+    
     @Option(
             names = {"--jar-path", "-p"},
             description = "Ruta donde está javadocmd-1.0.0.jar (por defecto: ~/.javadocmd)",
