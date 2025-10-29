@@ -94,7 +94,7 @@ public class InstallCommand implements Callable<Integer>
             File bashrc = new File(homeDir + "/.bashrc");
 
             FileWriter fw = new FileWriter(bashrc, true);
-            fw.write("\n# Alias para JavaDocMd (creado automáticamente)\n");
+            fw.write(messages.getString("install.message.alias.wrout"));
             fw.write("alias " + aliasName + "='java -jar " + jarPath + "/javadocmd-1.0.0.jar'\n");
             fw.close();
 
