@@ -48,25 +48,25 @@ public class InstallCommand implements Callable<Integer>
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("🚀 Configurando alias para JavaDocMd...");
+        System.out.println(messages.getString("install.message.alias.config"));
 
         // Verificar si el alias ya existe
-        if (!force && aliasExists(aliasName)) {
-            System.err.println("❌ El alias '" + aliasName + "' ya existe en ~/.bashrc");
-            System.err.println("   Usa --force para sobrescribir");
+        if (!force && aliasExists(aliasName)) {            
+            System.err.println( String.format(messages.getString("install.message.alias.alreadyExist"), aliasName) ); // ❌ El alias '" + aliasName + "' ya existe en ~/.bashrc
+            System.err.println(messages.getString("install.message.alias.forceTip"));
             return 1;
         }
 
         // Crear el alias
         if (createAlias()) {
-            System.out.println("✅ Alias creado exitosamente: " + aliasName);
-            System.out.println("📁 Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar");
-            System.out.println("\n📝 Para usar el alias ejecuta:");
+            System.out.println(messages.getString("install.message.alias.success") + ": " + aliasName);
+            System.out.println( String.format(messages.getString("install.message.alias.jarRoute"), jarPath)); //Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar
+            System.out.println(messages.getString("install.message.alias.useTip"));
             System.out.println("   source ~/.bashrc");
             System.out.println("   " + aliasName + " --help");
             return 0;
         } else {
-            System.err.println("❌ Error al crear el alias");
+            System.err.println(messages.getString("install.message.alias.error"));
             return 1;
         }
     }
