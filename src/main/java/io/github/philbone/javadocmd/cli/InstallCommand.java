@@ -28,7 +28,7 @@ public class InstallCommand implements Callable<Integer>
     
     @Option(
             names = {"--jar-path", "-p"},
-            description = "Ruta donde está javadocmd-1.0.0.jar (por defecto: ~/.javadocmd)",
+            descriptionKey = "install.jarPath",
             defaultValue = "~/.javadocmd"
     )
     private String jarPath;
