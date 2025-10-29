@@ -1,63 +1,72 @@
 package io.github.philbone.javadocmd.cli;
 
-import picocli.CommandLine;
+import io.github.philbone.javadocmd.config.ConfigurationService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 @Command(
         name = "install",
         aliases = {"instalar"},
-        description = "Crea un alias permanente para JavaDocMd",
+        description = "${usage.install}",
         mixinStandardHelpOptions = true,
-        version = "1.0.0"
+        resourceBundle = "messages"
 )
 public class InstallCommand implements Callable<Integer>
 {
+    private final ResourceBundle messages;
+    private final ConfigurationService configService;
+
+    public InstallCommand() {
+        this.messages = ResourceBundle.getBundle("messages");
+        this.configService = new ConfigurationService(messages);
+    }
+    
     @Option(
             names = {"--jar-path", "-p"},
-            description = "Ruta donde está javadocmd-1.0.0.jar (por defecto: ~/.javadocmd)",
+            descriptionKey = "install.jarPath",
             defaultValue = "~/.javadocmd"
     )
     private String jarPath;
 
     @Option(
             names = {"--alias-name", "-a"},
-            description = "Nombre del alias (por defecto: javadocmd)",
+            descriptionKey = "install.aliasName",
             defaultValue = "javadocmd"
     )
     private String aliasName;
 
     @Option(
             names = {"--force", "-f"},
-            description = "Forzar creación aunque el alias ya exista"
+            descriptionKey = "install.force"
     )
     private boolean force;
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("🚀 Configurando alias para JavaDocMd...");
+        System.out.println(messages.getString("install.message.alias.config"));
 
         // Verificar si el alias ya existe
-        if (!force && aliasExists(aliasName)) {
-            System.err.println("❌ El alias '" + aliasName + "' ya existe en ~/.bashrc");
-            System.err.println("   Usa --force para sobrescribir");
+        if (!force && aliasExists(aliasName)) {            
+            System.err.println( String.format(messages.getString("install.message.alias.alreadyExist"), aliasName) ); // ❌ El alias '" + aliasName + "' ya existe en ~/.bashrc
+            System.err.println(messages.getString("install.message.alias.forceTip"));
             return 1;
         }
 
         // Crear el alias
         if (createAlias()) {
-            System.out.println("✅ Alias creado exitosamente: " + aliasName);
-            System.out.println("📁 Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar");
-            System.out.println("\n📝 Para usar el alias ejecuta:");
+            System.out.println(messages.getString("install.message.alias.success") + ": " + aliasName);
+            System.out.println( String.format(messages.getString("install.message.alias.jarRoute"), jarPath)); //Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar
+            System.out.println(messages.getString("install.message.alias.useTip"));
             System.out.println("   source ~/.bashrc");
             System.out.println("   " + aliasName + " --help");
             return 0;
         } else {
-            System.err.println("❌ Error al crear el alias");
+            System.err.println(messages.getString("install.message.alias.error"));
             return 1;
         }
     }
@@ -85,7 +94,7 @@ public class InstallCommand implements Callable<Integer>
             File bashrc = new File(homeDir + "/.bashrc");
 
             FileWriter fw = new FileWriter(bashrc, true);
-            fw.write("\n# Alias para JavaDocMd (creado automáticamente)\n");
+            fw.write(messages.getString("install.message.alias.wrout"));
             fw.write("alias " + aliasName + "='java -jar " + jarPath + "/javadocmd-1.0.0.jar'\n");
             fw.close();
 
