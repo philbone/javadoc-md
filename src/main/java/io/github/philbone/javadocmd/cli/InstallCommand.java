@@ -42,7 +42,7 @@ public class InstallCommand implements Callable<Integer>
 
     @Option(
             names = {"--force", "-f"},
-            description = "Forzar creación aunque el alias ya exista"
+            descriptionKey = "install.force"
     )
     private boolean force;
 
