@@ -35,7 +35,7 @@ public class InstallCommand implements Callable<Integer>
 
     @Option(
             names = {"--alias-name", "-a"},
-            description = "Nombre del alias (por defecto: javadocmd)",
+            descriptionKey = "install.aliasName",
             defaultValue = "javadocmd"
     )
     private String aliasName;
