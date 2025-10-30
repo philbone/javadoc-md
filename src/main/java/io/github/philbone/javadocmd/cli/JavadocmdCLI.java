@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
             GetCommand.class,
             SetCommand.class,
             ValidateCommand.class,
-            InstallCommand.class
+            AliasCommand.class
         }
 )
 public class JavadocmdCLI implements Callable<Integer>

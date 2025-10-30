@@ -10,63 +10,63 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 @Command(
-        name = "install",
-        aliases = {"instalar"},
-        description = "${usage.install}",
+        name = "alias",
+        aliases = {"make-alias"},
+        description = "${usage.alias}",
         mixinStandardHelpOptions = true,
         resourceBundle = "messages"
 )
-public class InstallCommand implements Callable<Integer>
+public class AliasCommand implements Callable<Integer>
 {
     private final ResourceBundle messages;
     private final ConfigurationService configService;
 
-    public InstallCommand() {
+    public AliasCommand() {
         this.messages = ResourceBundle.getBundle("messages");
         this.configService = new ConfigurationService(messages);
     }
     
     @Option(
             names = {"--jar-path", "-p"},
-            descriptionKey = "install.jarPath",
+            descriptionKey = "alias.jarPath",
             defaultValue = "~/.javadocmd"
     )
     private String jarPath;
 
     @Option(
             names = {"--alias-name", "-a"},
-            descriptionKey = "install.aliasName",
+            descriptionKey = "alias.name",
             defaultValue = "javadocmd"
     )
     private String aliasName;
 
     @Option(
             names = {"--force", "-f"},
-            descriptionKey = "install.force"
+            descriptionKey = "alias.force"
     )
     private boolean force;
 
     @Override
     public Integer call() throws Exception {
-        System.out.println(messages.getString("install.message.alias.config"));
+        System.out.println(messages.getString("alias.message.config"));
 
         // Verificar si el alias ya existe
         if (!force && aliasExists(aliasName)) {            
-            System.err.println( String.format(messages.getString("install.message.alias.alreadyExist"), aliasName) ); // ❌ El alias '" + aliasName + "' ya existe en ~/.bashrc
-            System.err.println(messages.getString("install.message.alias.forceTip"));
+            System.err.println( String.format(messages.getString("alias.message.alreadyExist"), aliasName) ); // ❌ El alias '" + aliasName + "' ya existe en ~/.bashrc
+            System.err.println(messages.getString("alias.message.forceTip"));
             return 1;
         }
 
         // Crear el alias
         if (createAlias()) {
-            System.out.println(messages.getString("install.message.alias.success") + ": " + aliasName);
-            System.out.println( String.format(messages.getString("install.message.alias.jarRoute"), jarPath)); //Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar
-            System.out.println(messages.getString("install.message.alias.useTip"));
+            System.out.println(messages.getString("alias.message.success") + ": " + aliasName);
+            System.out.println( String.format(messages.getString("alias.message.jarRoute"), jarPath)); //Ruta del JAR: " + jarPath + "/javadocmd-1.0.0.jar
+            System.out.println(messages.getString("alias.message.useTip"));
             System.out.println("   source ~/.bashrc");
             System.out.println("   " + aliasName + " --help");
             return 0;
         } else {
-            System.err.println(messages.getString("install.message.alias.error"));
+            System.err.println(messages.getString("alias.message.error"));
             return 1;
         }
     }
@@ -94,7 +94,7 @@ public class InstallCommand implements Callable<Integer>
             File bashrc = new File(homeDir + "/.bashrc");
 
             FileWriter fw = new FileWriter(bashrc, true);
-            fw.write(messages.getString("install.message.alias.wrout"));
+            fw.write(messages.getString("alias.message.wrout"));
             fw.write("alias " + aliasName + "='java -jar " + jarPath + "/javadocmd-1.0.0.jar'\n");
             fw.close();
 
@@ -106,7 +106,7 @@ public class InstallCommand implements Callable<Integer>
     }
 
 //    public static void main(String[] args) {
-//        int exitCode = new CommandLine(new InstallCommand()).execute(args);
+//        int exitCode = new CommandLine(new AliasCommand()).execute(args);
 //        System.exit(exitCode);
 //    }
 }
