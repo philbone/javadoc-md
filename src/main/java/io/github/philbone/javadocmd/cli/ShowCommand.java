@@ -3,6 +3,9 @@ package io.github.philbone.javadocmd.cli;
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.config.ConfigLoader;
 import io.github.philbone.javadocmd.config.ConfigManager;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -36,6 +39,13 @@ public class ShowCommand implements Callable<Integer>
             paramLabel = "CONFIG_FILE"
     )
     private String configFile; // ← Sin valor por defecto, lo manejaremos en el método
+    
+    @Option(
+            names = {"--raw"},
+            descriptionKey =  "${show.raw}",
+            paramLabel = "BOOL_TYPE"
+    )
+    private boolean raw = false;
 
     @Override
     public Integer call() {
@@ -55,8 +65,13 @@ public class ShowCommand implements Callable<Integer>
             // Cargar configuración
             Config config = ConfigLoader.loadConfig(actualConfigFile);
 
-            // Mostrar configuración formateada
-            showConfiguration(config, actualConfigFile);
+            if (raw){
+                // Mostrar configuración raw
+                showRawFile(actualConfigFile);
+            } else {
+                // Mostrar configuración formateada
+                showConfiguration(config, actualConfigFile);
+            }
 
             return 0;
 
@@ -128,5 +143,18 @@ public class ShowCommand implements Callable<Integer>
      */
     public void setConfigFile(String configFile) {
         this.configFile = configFile;
+    }
+
+    private void showRawFile(String actualConfigFile) throws IOException {        
+        ResourceBundle messages = ResourceBundle.getBundle("messages");
+
+        System.out.println("\n" + messages.getString("show.header") + " (RAW)");
+        System.out.println("═".repeat(50));
+        
+        {
+            byte[] encoded = Files.readAllBytes(Paths.get(actualConfigFile));
+            String out = new String(encoded);
+            System.out.println(out);
+        }        
     }
 }
