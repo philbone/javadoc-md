@@ -33,7 +33,7 @@ public class ConfigLoader
      */
     public static Config loadConfig() {
         ConfigManager configManager = new ConfigManager();
-        return loadConfig(configManager.getConfigFilePath().toString());
+        return loadConfig(configManager.getConfigFilePath().toString(), false);
     }
 
     /**
@@ -42,7 +42,7 @@ public class ConfigLoader
      * @param filePath ruta del archivo de configuración
      * @return objeto Config con los datos cargados
      */
-    public static Config loadConfig(String filePath) {
+    public static Config loadConfig(String filePath, boolean quietMode) {
         Config defaultConfig = new Config();
         File yamlFile = new File(filePath);
 
@@ -55,7 +55,7 @@ public class ConfigLoader
         try {
             ObjectMapper mapper = createObjectMapper();
             Config fileConfig = mapper.readValue(yamlFile, Config.class);
-            System.out.println(appMessages.getString("config.message.configLoadedFrom") + ": " + filePath);
+            if(!quietMode) System.out.println(appMessages.getString("config.message.configLoadedFrom") + ": " + filePath);
             return fileConfig;
         } catch (Exception e) {
             String outln = String.format(
