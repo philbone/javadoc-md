@@ -44,11 +44,11 @@ public class InitCommand implements Callable<Integer>
     )
     private boolean interactive = true;
     
-    @Option(
-            names = {"-m", "--mute"},
-            descriptionKey = "${init.muteMode}"
-    )
-    private boolean mute = false;
+//    @Option(
+//            names = {"-m", "--mute"},
+//            descriptionKey = "${init.muteMode}"
+//    )
+    private boolean mute = true;
 
     @Option(
             names = {"--configFile"},
