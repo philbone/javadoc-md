@@ -70,7 +70,7 @@ public class GetCommand implements Callable<Integer>
             }
 
             // Cargar configuración
-            Config config = ConfigLoader.loadConfig(actualConfigFile);
+            Config config = ConfigLoader.loadConfig(actualConfigFile, quietMode);
 
             // Obtener y mostrar el valor
             String value = getConfigValue(config, key);
@@ -86,17 +86,7 @@ public class GetCommand implements Callable<Integer>
                 return 1;
             }
 
-            if (quietMode) {
-                // Solo el valor, ideal para scripting
-                System.out.print(value);
-            } else {
-                // Valor con mensaje descriptivo
-                System.out.println(String.format(
-                        appMessages.getString("message.get.value"),
-                        key, value
-                ));
-                System.out.println("  " + appMessages.getString("message.get.configFile") + ": " + actualConfigFile);
-            }
+            System.out.println(key+ ": " + value);
 
             return 0;
 

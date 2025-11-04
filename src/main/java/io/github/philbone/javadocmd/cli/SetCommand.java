@@ -102,7 +102,7 @@ public class SetCommand implements Callable<Integer>
 
             if (configExists) {
                 System.out.println(appMessages.getString("message.set.loading"));
-                config = ConfigLoader.loadConfig(actualConfigFile);
+                config = ConfigLoader.loadConfig(actualConfigFile, false);
             } else if (forceCreate) {
                 System.out.println(appMessages.getString("message.set.creating"));
                 config = new Config();

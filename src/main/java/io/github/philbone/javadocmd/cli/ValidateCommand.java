@@ -73,7 +73,7 @@ public class ValidateCommand implements Callable<Integer>
 
             if (configExists) {
                 // Cargar configuración existente
-                config = ConfigLoader.loadConfig(actualConfigFile);
+                config = ConfigLoader.loadConfig(actualConfigFile, false);
 
                 // PRIMERO verificar si es válida
                 if (configService.isValid(config)) {

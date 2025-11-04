@@ -63,7 +63,7 @@ public class ShowCommand implements Callable<Integer>
             }
 
             // Cargar configuración
-            Config config = ConfigLoader.loadConfig(actualConfigFile);
+            Config config = ConfigLoader.loadConfig(actualConfigFile, false);
 
             if (raw){
                 // Mostrar configuración raw
