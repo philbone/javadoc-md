@@ -74,6 +74,17 @@ javadocmd
 ```
 
 ---
+## Flujo de Uso Típico
+
+- Inicializar/crear config.yml en el proyecto: `javadocmd init --sourcePath ./src --outputPath ./docs`
+- Validar la configuración: `javadocmd validate`
+- Mostrar la configuración activa: `javadocmd show`
+- Obtener un parámetro específico: `javadocmd get sourcePath`
+- Modificar un parámetro: `javadocmd set outputPath ./docs/generated`
+- Gestionar alias de comandos (ver ayuda para detalles): `javadocmd alias --help`
+
+Consejo: añade `--help` a cualquier comando para ver sus opciones concretas: `javadocmd init --help`
+---
 
 ## 📖 Ejemplo de uso
 
