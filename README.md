@@ -75,54 +75,6 @@ javadocmd
 
 ---
 
-## 🧠 Arquitectura interna
-
-La arquitectura de **JavadocMd** está diseñada bajo principios de **bajo acoplamiento y alta cohesión**, inspirada en el patrón **Visitor + Facade**.  
-El objetivo: mantener un flujo claro desde el análisis del código Java hasta la exportación del Markdown final.
-
-```mermaid
-flowchart TD
-    A[Entrada: Código Java] --> B[JavadocExtractorVisitor]
-    B --> C[Modelo de dominio (DocClass, DocMethod, DocField)]
-    C --> D[MarkdownExporter]
-    D --> E[MarkdownBuilder]
-    E --> F[Archivos .md generados]
-
-    subgraph Configuración
-        G[ConfigLoader] --> H[ConfigurationService]
-        H --> D
-    end
-
-    subgraph CLI
-        I[InitCommand]
-        J[ValidateCommand]
-        K[Show/Get/Set Commands]
-        I --> G
-        J --> H
-        K --> H
-    end
-
-    subgraph Internacionalización
-        L[LanguageManager] --> CLI
-    end
-```
-
-### 🧩 Módulos principales
-
-| Módulo | Responsabilidad |
-|--------|------------------|
-| **Visitor** | Analiza el código fuente y extrae estructuras Javadoc. |
-| **Model** | Representa entidades como clases, métodos, campos y sus metadatos. |
-| **Exporter** | Genera el contenido Markdown con formato y estructura. |
-| **Builder** | Ofrece una API fluida para construir Markdown (encabezados, tablas, listas, bloques). |
-| **CLI** | Interfaz de usuario en consola (basada en Picocli). |
-| **Config / Service** | Manejo de configuración, validación y persistencia. |
-| **i18n** | Gestión de idiomas, mensajes y etiquetas localizadas. |
-
-Esta separación permite añadir nuevas salidas (por ejemplo, **HTML o MDX**) sin modificar el núcleo de análisis.
-
----
-
 ## 📖 Ejemplo de uso
 
 Dado el archivo `MathUtils.java`:
