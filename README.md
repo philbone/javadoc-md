@@ -19,6 +19,30 @@
 - Genera documentación legible por humanos a partir de los Javadoc de tus clases, métodos y constructores.
 - Soporta exportación por paquete o en archivos combinados, índices y enlaces automáticos a la API estándar de Java y a clases internas.
 
+## Instalación Rápida 🚀
+
+### Opción 1: Automática (Recomendada)
+```bash
+./install.sh        # Linux/macOS
+install.bat         # Windows
+```
+
+### Opción 2: Manual
+```
+mkdir -p ~/.javadocmd
+mv javadocmd-1.0.0.jar ~/.javadocmd/
+echo "alias javadocmd='java -jar ~/.javadocmd/javadocmd-1.0.0.jar'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Opción 3: Instalar a nivel de proyecto
+Mueves el fichero javadocmd-1.0.0.jar al directorio raíz de tu proyecto, y luego usas:
+```
+java -jar javadocmd-1.0.0.jar
+```
+
+[ver instrucciones de instalación completas](INSTALL.md)
+
 ---
 
 ## ✨ Características principales
@@ -135,7 +159,7 @@ Salida generada:
 | Estado | Funcionalidad |
 |:-------:|----------------|
 | ✅ | Generación por paquete o combinada |
-| ✅ | CLI completo (`init`, `validate`, `get`, `set`, `show`) |
+| ✅ | CLI completo (`init`, `validate`, `get`, `set`, `show`, `alias) |
 | ✅ | Configuración YAML avanzada |
 | ✅ | Internacionalización (es/en) |
 | ✅ | Enlaces automáticos a API de Java y clases internas |
