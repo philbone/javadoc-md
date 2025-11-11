@@ -14,9 +14,10 @@
 
 # 📘 JavadocMd
 
-**JavadocMd** es un exportador de **Javadoc a Markdown** que genera documentación elegante, navegable y lista para integrarse directamente en repositorios de **GitHub** o **GitLab**.
+**JavadocMd** convierte los comentarios Javadoc de tu código Java en documentación en formato Markdown lista para usarse en repositorios (GitHub/GitLab). Diseñado para ser simple, configurable y ejecutable desde CLI.
 
-Convierte los comentarios Javadoc de tu código Java en documentación Markdown perfectamente formateada —con soporte multilenguaje, configuración avanzada y CLI interactiva.
+- Genera documentación legible por humanos a partir de los Javadoc de tus clases, métodos y constructores.
+- Soporta exportación por paquete o en archivos combinados, índices y enlaces automáticos a la API estándar de Java y a clases internas.
 
 ---
 
