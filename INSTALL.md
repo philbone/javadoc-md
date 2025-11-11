@@ -54,4 +54,9 @@ Puedes hacer doble clic sobre el fichero `install.bat`
 install.bat
 ```
 
+### ¿Qué hace el script automático?
 
+- Crea el directorio ~/.javadocmd/ (Linux/macOS) o %USERPROFILE%\.javadocmd\ (Windows)
+- Mueve el archivo JAR al directorio de instalación
+- Configura un alias/comando global javadocmd
+- Proporciona instrucciones para usar la herramienta
