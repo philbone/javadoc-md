@@ -55,21 +55,22 @@ locale: es                    # Idioma de salida (auto, es, en)
 - Soporte actual: **Español 🇪🇸** e **Inglés 🇬🇧**.
 
 ### 💻 CLI interactivo
-CLI moderno basado en **Picocli**, con soporte para modos **interactivo y parametrizado**.
+CLI moderno con soporte para modos **interactivo y parametrizado**.
 
 | Comando | Descripción |
 |----------|--------------|
 | `javadocmd init` | Crea o inicializa el archivo `config.yml`. |
-| `javadocmd validate` | Verifica y corrige configuraciones inválidas. |
 | `javadocmd show` | Muestra la configuración activa. |
 | `javadocmd get` | Obtiene valores específicos de configuración. |
 | `javadocmd set` | Modifica parámetros individuales en `config.yml`. |
+| `javadocmd validate` | Verifica y corrige configuraciones inválidas. |
+| `javadocmd alias` | Crea un alias permanente para usar desde la terminal |
 
 Ejemplo rápido:
 ```bash
 javadocmd init --sourcePath ./src --outputPath ./docs
 javadocmd validate
-javadocmd export
+javadocmd
 ```
 
 ---
