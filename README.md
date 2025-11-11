@@ -84,6 +84,13 @@ javadocmd
 - Gestionar alias de comandos (ver ayuda para detalles): `javadocmd alias --help`
 
 Consejo: añade `--help` a cualquier comando para ver sus opciones concretas: `javadocmd init --help`
+
+## Flujo de Uso Típico (ejemplo compacto)
+
+Inicializar: `javadocmd init --sourcePath ./src --outputPath ./docs`
+Validar: `javadocmd validate`
+Ejecutar `javadocmd` para generar documentación. Revisa el comando de exportación disponible en tu versión o usa el flujo definido en tu proyecto.
+
 ---
 
 ## 📖 Ejemplo de uso
