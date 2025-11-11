@@ -16,9 +16,9 @@ Elige el método que mejor se adapte a tus necesidades:
 
 |Método|	Dificultad	|Recomendado para
 |---         |---         |---         |
-|Automática	|🟢 Fácil	|Usuarios que quieren empezar rápido|
+|Automática	|🟢 Muy Fácil	|Usuarios que quieren empezar rápido|
 |Manual en Home	|🟡 Media	|Usuarios que prefieren control total|
-|Directo en Proyecto	|🟡 Media	|Proyectos específicos o CI/CD|
+|Directo en Proyecto	|🔵 Fácil	|Proyectos específicos o CI/CD|
 
 ## 🎯 Opción 1: Instalación Automática (Recomendada)
 Es la opción recomendada. Tienes dos scripts para correr a elección:
