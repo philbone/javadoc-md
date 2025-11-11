@@ -14,9 +14,34 @@
 
 # 📘 JavadocMd
 
-**JavadocMd** es un exportador de **Javadoc a Markdown** que genera documentación elegante, navegable y lista para integrarse directamente en repositorios de **GitHub** o **GitLab**.
+**JavadocMd** convierte los comentarios Javadoc de tu código Java en documentación en formato Markdown lista para usarse en repositorios (GitHub/GitLab). Diseñado para ser simple, configurable y ejecutable desde CLI.
 
-Convierte los comentarios Javadoc de tu código Java en documentación Markdown perfectamente formateada —con soporte multilenguaje, configuración avanzada y CLI interactiva.
+- Genera documentación legible por humanos a partir de los Javadoc de tus clases, métodos y constructores.
+- Soporta exportación por paquete o en archivos combinados, índices y enlaces automáticos a la API estándar de Java y a clases internas.
+
+## Instalación Rápida 🚀
+
+### Opción 1: Automática (Recomendada)
+```bash
+./install.sh        # Linux/macOS
+install.bat         # Windows
+```
+
+### Opción 2: Manual
+```
+mkdir -p ~/.javadocmd
+mv javadocmd-1.0.0.jar ~/.javadocmd/
+echo "alias javadocmd='java -jar ~/.javadocmd/javadocmd-1.0.0.jar'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Opción 3: Instalar a nivel de proyecto
+Mueves el fichero javadocmd-1.0.0.jar al directorio raíz de tu proyecto, y luego usas:
+```
+java -jar javadocmd-1.0.0.jar
+```
+
+[ver instrucciones de instalación completas](INSTALL.md)
 
 ---
 
@@ -54,70 +79,41 @@ locale: es                    # Idioma de salida (auto, es, en)
 - Soporte actual: **Español 🇪🇸** e **Inglés 🇬🇧**.
 
 ### 💻 CLI interactivo
-CLI moderno basado en **Picocli**, con soporte para modos **interactivo y parametrizado**.
+CLI moderno con soporte para modos **interactivo y parametrizado**.
 
 | Comando | Descripción |
 |----------|--------------|
 | `javadocmd init` | Crea o inicializa el archivo `config.yml`. |
-| `javadocmd validate` | Verifica y corrige configuraciones inválidas. |
 | `javadocmd show` | Muestra la configuración activa. |
 | `javadocmd get` | Obtiene valores específicos de configuración. |
 | `javadocmd set` | Modifica parámetros individuales en `config.yml`. |
+| `javadocmd validate` | Verifica y corrige configuraciones inválidas. |
+| `javadocmd alias` | Crea un alias permanente para usar desde la terminal |
 
 Ejemplo rápido:
 ```bash
 javadocmd init --sourcePath ./src --outputPath ./docs
 javadocmd validate
-javadocmd export
+javadocmd
 ```
 
 ---
+## Flujo de Uso Típico
 
-## 🧠 Arquitectura interna
+- Inicializar/crear config.yml en el proyecto: `javadocmd init --sourcePath ./src --outputPath ./docs`
+- Validar la configuración: `javadocmd validate`
+- Mostrar la configuración activa: `javadocmd show`
+- Obtener un parámetro específico: `javadocmd get sourcePath`
+- Modificar un parámetro: `javadocmd set outputPath ./docs/generated`
+- Gestionar alias de comandos (ver ayuda para detalles): `javadocmd alias --help`
 
-La arquitectura de **JavadocMd** está diseñada bajo principios de **bajo acoplamiento y alta cohesión**, inspirada en el patrón **Visitor + Facade**.  
-El objetivo: mantener un flujo claro desde el análisis del código Java hasta la exportación del Markdown final.
+Consejo: añade `--help` a cualquier comando para ver sus opciones concretas: `javadocmd init --help`
 
-```mermaid
-flowchart TD
-    A[Entrada: Código Java] --> B[JavadocExtractorVisitor]
-    B --> C[Modelo de dominio (DocClass, DocMethod, DocField)]
-    C --> D[MarkdownExporter]
-    D --> E[MarkdownBuilder]
-    E --> F[Archivos .md generados]
+## Flujo de Uso Típico (ejemplo compacto)
 
-    subgraph Configuración
-        G[ConfigLoader] --> H[ConfigurationService]
-        H --> D
-    end
-
-    subgraph CLI
-        I[InitCommand]
-        J[ValidateCommand]
-        K[Show/Get/Set Commands]
-        I --> G
-        J --> H
-        K --> H
-    end
-
-    subgraph Internacionalización
-        L[LanguageManager] --> CLI
-    end
-```
-
-### 🧩 Módulos principales
-
-| Módulo | Responsabilidad |
-|--------|------------------|
-| **Visitor** | Analiza el código fuente y extrae estructuras Javadoc. |
-| **Model** | Representa entidades como clases, métodos, campos y sus metadatos. |
-| **Exporter** | Genera el contenido Markdown con formato y estructura. |
-| **Builder** | Ofrece una API fluida para construir Markdown (encabezados, tablas, listas, bloques). |
-| **CLI** | Interfaz de usuario en consola (basada en Picocli). |
-| **Config / Service** | Manejo de configuración, validación y persistencia. |
-| **i18n** | Gestión de idiomas, mensajes y etiquetas localizadas. |
-
-Esta separación permite añadir nuevas salidas (por ejemplo, **HTML o MDX**) sin modificar el núcleo de análisis.
+Inicializar: `javadocmd init --sourcePath ./src --outputPath ./docs`
+Validar: `javadocmd validate`
+Ejecutar `javadocmd` para generar documentación. Revisa el comando de exportación disponible en tu versión o usa el flujo definido en tu proyecto.
 
 ---
 
@@ -163,7 +159,7 @@ Salida generada:
 | Estado | Funcionalidad |
 |:-------:|----------------|
 | ✅ | Generación por paquete o combinada |
-| ✅ | CLI completo (`init`, `validate`, `get`, `set`, `show`) |
+| ✅ | CLI completo (`init`, `validate`, `get`, `set`, `show`, `alias) |
 | ✅ | Configuración YAML avanzada |
 | ✅ | Internacionalización (es/en) |
 | ✅ | Enlaces automáticos a API de Java y clases internas |
