@@ -158,3 +158,14 @@ echo "✅ Documentación generada en $OUTPUT_DIR"
   }
 }
 ```
+
+## ✅ Verificación de la Instalación
+Independientemente del método elegido, verifica que la instalación fue exitosa:
+```
+# Para Opciones 1 y 2
+javadocmd --help
+
+# Para Opción 3
+java -jar javadocmd-1.0.0.jar --help
+```
+Deberías ver la ayuda de JavadocMd con todas las opciones disponibles.
