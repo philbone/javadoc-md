@@ -244,3 +244,10 @@ Sí, usa los métodos para Linux.
 
 ### ¿Necesito permisos de administrador?
 No, todas las instalaciones son en el directorio de usuario.
+
+## 📞 Soporte
+Si encuentras problemas:
+
+1. Revisa esta guía nuevamente
+1. Verifica que Java esté instalado correctamente
+1. Ejecuta el comando con --help para ver las opciones disponibles
