@@ -169,3 +169,44 @@ javadocmd --help
 java -jar javadocmd-1.0.0.jar --help
 ```
 Deberías ver la ayuda de JavadocMd con todas las opciones disponibles.
+
+## 🔧 Solución de Problemas
+Solución a problemas típicos.
+
+### Problema típico 1: "Comando no encontrado" después de la instalación
+Es probable que luego de instalar JavadocMD o de crear el alias, no hayas recargado el shell.
+```
+# Solución: Recargar el shell
+source ~/.bashrc   # Para Bash
+source ~/.zshrc    # Para Zsh
+
+# O cerrar y abrir una nueva terminal
+```
+
+### Problema típico 2: Permisos denegados en Linux/macOS
+Antes de ejecutar en Linux/mac es necesario que otorges permiso de ejecución al(los) script(s) de instalación.
+```
+# Dar permisos de ejecución al script
+chmod +x install.sh
+
+# Luego ejecutar
+./install.sh
+```
+
+### Problema típico 3: El alias no persiste después de reiniciar la terminal
+- Verifica que agregaste el alias al archivo correcto (.bashrc o .zshrc)
+- Confirma que el archivo existe en tu home directory
+
+### Problema típico 4: Java no está instalado
+Comprueba si Java está instalado en tu sistema.
+```
+# Verificar instalación de Java
+java -version
+```
+Si no está instalado, instálalo [según tu sistema operativo](https://www.java.com/en/download/help/download_options.html).
+
+### Problema típico 5: Los scripts de instalación fallaron
+Si los scripts nativos install.sh o install.bat falló, puedes recurrir al comando alias incluido en JavadocMd. El comando alias no es capaz de mover el JAR, pero puede crear el alias por ti.
+```
+java -jar javadocmd-1.0.0.jar install
+```
