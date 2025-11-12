@@ -210,3 +210,24 @@ Si los scripts nativos install.sh o install.bat falló, puedes recurrir al coman
 ```
 java -jar javadocmd-1.0.0.jar install
 ```
+
+## 🗑️ Desinstalación
+Para desinstalar JavadocMD solo debes eliminar el directorio de instalación. O el fichero JAR directamente. Si creaste un alias de comando también deberías removerlo.
+
+### Si instalaste JavadocMd de forma automática o manual:
+```
+# 1. Eliminar el directorio de instalación
+rm -rf ~/.javadocmd
+
+# 2. Remover el alias del archivo de configuración
+# Abrir con un editor ~/.bashrc o ~/.zshrc y eliminar la línea del alias
+
+# 3. Recargar la configuración
+source ~/.bashrc   # o source ~/.zshrc
+```
+
+### Si instalaste JavadocMd dentro de tu proyecto:
+```
+# Simplemente eliminar el JAR del proyecto
+rm javadocmd-1.0.0.jar
+```
