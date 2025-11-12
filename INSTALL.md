@@ -231,3 +231,16 @@ source ~/.bashrc   # o source ~/.zshrc
 # Simplemente eliminar el JAR del proyecto
 rm javadocmd-1.0.0.jar
 ```
+
+## ❓ Preguntas Frecuentes
+### ¿Puedo tener múltiples versiones instaladas?
+Sí, puedes:
+
+- Solo debes renombrar el JAR: `javadocmd-2.0.0.jar`
+- Y crear aliases diferentes: `alias javadocmd2='java -jar ~/.javadocmd/javadocmd-2.0.0.jar'`
+
+### ¿Funciona en Windows Subsystem for Linux (WSL)?
+Sí, usa los métodos para Linux.
+
+### ¿Necesito permisos de administrador?
+No, todas las instalaciones son en el directorio de usuario.
