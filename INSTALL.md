@@ -115,3 +115,46 @@ source ~/.bashrc
 # Para Zsh
 source ~/.zshrc
 ```
+
+## 📁 Opción 3: Uso Directo en Proyecto
+Otra forma rápida de uso es pegar el JAR directamente en el directorio raíz de tu proyecto.
+
+### Método A: JAR en el mismo proyecto
+```
+# Copiar el JAR a tu proyecto
+cp javadocmd-1.0.0.jar /ruta/a/tu/proyecto/
+
+# Usarlo desde cualquier lugar dentro del proyecto
+java -jar javadocmd-1.0.0.jar
+```
+
+### Método B: Ruta absoluta
+```
+# Usar el JAR con ruta absoluta
+java -jar /ruta/completa/a/tu/proyecto/javadocmd-1.0.0.jar
+```
+
+### Ejemplo en script de build
+```
+#!/bin/bash
+# generate-docs.sh
+
+# Configuración
+INPUT_DIR="./src"
+OUTPUT_DIR="./docs"
+JAR_PATH="./javadocmd-1.0.0.jar"
+
+# Generar documentación
+java -jar $JAR_PATH --input $INPUT_DIR --output $OUTPUT_DIR
+
+echo "✅ Documentación generada en $OUTPUT_DIR"
+```
+
+### Ejemplo en package.json (si usas npm)
+```
+{
+  "scripts": {
+    "generate-docs": "java -jar javadocmd-1.0.0.jar --input ./src --output ./docs"
+  }
+}
+```
