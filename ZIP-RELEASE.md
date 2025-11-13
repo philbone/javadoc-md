@@ -28,3 +28,23 @@ Ambos scripts realizan los mismos pasos:
   - `cat.webp`
 
 ---
+
+## Uso en Linux / macOS (zip-release.sh)
+1. Asegúrate de que `zip` esté instalado (por ejemplo `sudo apt install zip` o `brew install zip` en macOS).
+1. Compila el proyecto: `mvn package` (o el comando que uses).
+1. Verifica que el JAR fue creado en el directorio target/ Si estás trabajando con NetBeans deberías tener este directorio, sino, créalo tú mismo y genera el JAR en esta ubicación.
+1. Desde la raíz del repositorio ejecutas zip-release:
+   ```bash
+   # primero otorga permiso de ejecución al script
+   chmod +x zip-release.sh
+
+   # luego puedes ejecutarlo
+   ./zip-release.sh
+   ```
+1. El ZIP resultante será creado en `release/<version>/javadocmd-<version>.zip`.
+
+Problemas comunes:
+- "No se encontraron archivos JAR en el directorio target/": ejecuta el build para generar el JAR.
+- Falta `zip`: instala la utilidad `zip` o usa otra forma para comprimir.
+
+---
