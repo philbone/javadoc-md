@@ -29,7 +29,7 @@ Ambos scripts realizan los mismos pasos:
 
 ---
 
-## Uso en Linux / macOS (zip-release.sh)
+## Uso en Linux/macOS (zip-release.sh)
 1. Asegúrate de que `zip` esté instalado (por ejemplo `sudo apt install zip` o `brew install zip` en macOS).
 1. Compila el proyecto: `mvn package` (o el comando que uses).
 1. Verifica que el JAR fue creado en el directorio target/ Si estás trabajando con NetBeans deberías tener este directorio, sino, créalo tú mismo y genera el JAR en esta ubicación.
@@ -48,3 +48,21 @@ Problemas comunes:
 - Falta `zip`: instala la utilidad `zip` o usa otra forma para comprimir.
 
 ---
+
+## Uso en Windows (zip-release.bat)
+Al igual que la versión para Linux/macOS, el script zip-release.bat intentará usar la mejor herramienta disponible en tu sistema para crear el ZIP.
+Asegúrate de tener al menos una de estas herramientas instaladas:
+
+- Compress-Archive (PowerShell 5+)
+- 7-Zip (`7z.exe`)
+- tar (Windows 10+ que incluya tar)
+- zip.exe
+
+Luego:
+1. Compila el proyecto desde NetBeans, `mvn package`, o el comando que uses.
+1. Verifica que el JAR fue creado en el directorio target/ Si estás trabajando con NetBeans deberías tener este directorio, sino, créalo tú mismo y genera el JAR en esta ubicación.
+1. Desde la raíz del repositorio ejecutas zip-release:
+   ```
+   zip-release.bat
+   ```
+1. El ZIP resultante será creado en `release\<version>\javadocmd-<version>.zip`.
