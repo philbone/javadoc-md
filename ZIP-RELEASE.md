@@ -66,3 +66,11 @@ Luego:
    zip-release.bat
    ```
 1. El ZIP resultante será creado en `release\<version>\javadocmd-<version>.zip`.
+
+Si el script no encuentra ninguna herramienta para crear ZIP aparecerá una instrucción para instalar PowerShell 5+, 7-Zip o utilidades tar/zip.
+
+Notas para Windows antiguos:
+- En máquinas muy antiguas que no tengan PowerShell ni 7-Zip, instala 7-Zip y asegúrate de que `7z.exe` esté en el PATH.
+- Alternativamente usa la versión PowerShell (`zip-release.ps1`) si PowerShell está disponible.
+
+---
