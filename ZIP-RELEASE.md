@@ -74,3 +74,20 @@ Notas para Windows antiguos:
 - Alternativamente usa la versión PowerShell (`zip-release.ps1`) si PowerShell está disponible.
 
 ---
+
+## Qué se incluye en el ZIP
+- `javadocmd-X.X.X.jar`
+- `README.md`
+- `install`
+- `install.sh`
+- `install.bat`
+- `cat.webp`
+
+---
+
+## Solución de problemas
+- No se encuentra el JAR: asegúrate de compilar de que el JAR tenga el formato `javadocmd-X.X.X.jar` y de que este se encuentre en el directorio target/.
+- Error al crear ZIP: revisa permisos en `release/<version>` y el espacio disponible en disco.
+- El script Batch no lista el contenido del ZIP: si no está disponible una utilidad de listado, instala 7-Zip o usa PowerShell para inspeccionar el contenido.
+
+---
