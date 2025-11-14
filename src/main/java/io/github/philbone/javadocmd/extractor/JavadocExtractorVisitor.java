@@ -208,6 +208,10 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 isStatic,
                 isVoid
         );
+        
+        for (AnnotationExpr ae : n.getAnnotations()) {
+            docMethod.addAnnotation(toDocAnnotation(ae));
+        }
 
         docParams.forEach(docMethod::addDocParameter);
         if (returnDescription != null) docMethod.setReturnDescription(returnDescription);
