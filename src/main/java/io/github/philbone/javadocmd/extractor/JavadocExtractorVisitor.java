@@ -7,12 +7,22 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.ast.comments.JavadocComment;
 import io.github.philbone.javadocmd.model.*;
-import io.github.philbone.javadocmd.extractor.JavadocUtils;
+
+import com.github.javaparser.ast.expr.AnnotationExpr;
+import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
+import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
+import com.github.javaparser.ast.expr.NormalAnnotationExpr;
+import com.github.javaparser.ast.expr.ArrayInitializerExpr;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.MemberValuePair;
 
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 /**
  * Visitor encargado de recorrer los nodos del AST de JavaParser y construir el
@@ -55,6 +65,10 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                 visibility,
                 isStatic
         );
+        
+        for (AnnotationExpr ae : n.getAnnotations()) {
+            docClass.addAnnotation(toDocAnnotation(ae));
+        }
 
         // Procesar extends (una sola clase para Class, múltiples para Interface)
         if (!n.getExtendedTypes().isEmpty()) {
@@ -359,4 +373,71 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
             docClass.setDescription(description);
         }
     }    
+    
+    /**
+     * Helper, ayuda a convertir AnnotationExpr -> DocAnnotation
+     * 
+     * @param a
+     * @return 
+     */
+    private DocAnnotation toDocAnnotation(AnnotationExpr a) {
+        String name = a.getNameAsString();
+        String raw = a.toString();
+        boolean marker = a instanceof MarkerAnnotationExpr;
+        Map<String, String> members = new LinkedHashMap<>();
+        List<String> values = new ArrayList<>();
+
+        if (a instanceof SingleMemberAnnotationExpr) {
+            SingleMemberAnnotationExpr s = (SingleMemberAnnotationExpr) a;
+            values.add(renderExprAsString(s.getMemberValue()));
+        } else if (a instanceof NormalAnnotationExpr) {
+            NormalAnnotationExpr n = (NormalAnnotationExpr) a;
+            for (MemberValuePair pair : n.getPairs()) {
+                Expression v = pair.getValue();
+                // Si el valor es un array inicializador, convertimos cada elemento
+                if (v instanceof ArrayInitializerExpr) {
+                    ArrayInitializerExpr arr = (ArrayInitializerExpr) v;
+                    List<String> items = arr.getValues().stream()
+                            .map(this::renderExprAsString)
+                            .collect(Collectors.toList());
+                    members.put(pair.getNameAsString(), "[" + String.join(", ", items) + "]");
+                } else {
+                    members.put(pair.getNameAsString(), renderExprAsString(v));
+                }
+            }
+        }
+        // Nota: fqName se deja a null por ahora (no resolvemos símbolos)
+        return new DocAnnotation(name, raw, members, values, marker, null);
+    }
+
+// -------------------------------------------------------------
+// Pequeña utilidad para normalizar Expression -> String
+// -------------------------------------------------------------
+    private String renderExprAsString(Expression expr) {
+        if (expr == null) {
+            return "";
+        }
+        // Tratar literales comunes para producir comillas limpias
+        if (expr.isStringLiteralExpr()) {
+            return "\"" + expr.asStringLiteralExpr().getValue() + "\"";
+        } else if (expr.isCharLiteralExpr()) {
+            return "'" + expr.asCharLiteralExpr().getValue() + "'";
+        } else if (expr.isBooleanLiteralExpr()
+                || expr.isIntegerLiteralExpr()
+                || expr.isLongLiteralExpr()
+                || expr.isDoubleLiteralExpr()) {
+            return expr.toString();
+        } else if (expr.isArrayInitializerExpr()) {
+            ArrayInitializerExpr arr = expr.asArrayInitializerExpr();
+            return "[" + arr.getValues().stream()
+                    .map(this::renderExprAsString)
+                    .collect(Collectors.joining(", ")) + "]";
+        } else if (expr.isAnnotationExpr()) {
+            // Renderizar anidada recursivamente (puede devolver @Inner(...))
+            return toDocAnnotation(expr.asAnnotationExpr()).renderCompact();
+        }
+        // fallback: usar toString() para mantener la expresión tal como aparece
+        return expr.toString();
+    }   
+    
 }
