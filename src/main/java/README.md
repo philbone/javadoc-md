@@ -24,7 +24,9 @@ public interface DocExporter
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -65,7 +67,9 @@ implements DocExporter
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+@Override
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `export(DocPackage docPackage)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -75,20 +79,36 @@ implements DocExporter
 
 <details open><summary>Private</summary>
 
-- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintable(String visibility)`
+
+ `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintable(String visibility)`
+
 > Determina si la visibilidad es imprimible según la configuración.
 
 > - *@param* **visibility** la visiblidad a evaluar
 > - *@return* true si la visibilidad es imprimible
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatCodeOrLink(String type)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatCodeOrLink(String type)`
+
 > Si el tipo tiene enlace conocido, devuelve el link Markdown. Si no, lo envuelve en `code`.
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printFields(DocClass docClass, String text)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printMethods(DocClass docClass, String text)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printIndexNumber(int indexOrder, boolean foreSign)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatKind(Kind kind)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `capitalize(String s)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `formatEmoji(Kind kind)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printFields(DocClass docClass, String text)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printMethods(DocClass docClass, String text)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `printIndexNumber(int indexOrder, boolean foreSign)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -137,16 +157,36 @@ public class MarkdownBuilder
 
 <details open><summary>Public</summary>
 
-- `public `**MarkdownBuilder** `title(String text)`
-- `public `**MarkdownBuilder** `subtitle(String text)`
-- `public `**MarkdownBuilder** `h3(String text)`
-- `public `**MarkdownBuilder** `h4(String text)`
-- `public `**MarkdownBuilder** `paragraph(String text)`
-- `public `**MarkdownBuilder** `listItem(String text)`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `codeBlock(String content, String codeLang)`
-- `public `**MarkdownBuilder** `blockquote(String text)`
-- `public `**MarkdownBuilder** `tag(String tag)`
+
+ `public `**MarkdownBuilder** `title(String text)`
+
+
+ `public `**MarkdownBuilder** `subtitle(String text)`
+
+
+ `public `**MarkdownBuilder** `h3(String text)`
+
+
+ `public `**MarkdownBuilder** `h4(String text)`
+
+
+ `public `**MarkdownBuilder** `paragraph(String text)`
+
+
+ `public `**MarkdownBuilder** `listItem(String text)`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `build()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `codeBlock(String content, String codeLang)`
+
+
+ `public `**MarkdownBuilder** `blockquote(String text)`
+
+
+ `public `**MarkdownBuilder** `tag(String tag)`
+
 > Inyecta una etiqueta arbitraria directamente en el flujo del Markdown.
 > <p>
 > Se utiliza principalmente como auxiliar para aplicar prefijos en las
@@ -166,8 +206,12 @@ public class MarkdownBuilder
 buffer).
 > - *@return* la instancia actual de {@code MarkdownBuilder}, para encadenar
 llamadas.
-- `public `**MarkdownBuilder** `toc(DocPackage docPackage)`
-- `public `**MarkdownBuilder** `insertAt(int index, String text)`
+
+ `public `**MarkdownBuilder** `toc(DocPackage docPackage)`
+
+
+ `public `**MarkdownBuilder** `insertAt(int index, String text)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -177,7 +221,9 @@ llamadas.
 
 <details open><summary>Private</summary>
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `sanitizeDescription(String raw)`
+
 </details>
 
 ### 📦 Campos
@@ -219,11 +265,15 @@ public class InternalLinker
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfInternalType(String typeName)`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfInternalType(String typeName)`
+
 > Devuelve un enlace Markdown si el tipo pertenece al proyecto JavadocMd.
 > Si no hay coincidencia, retorna null.
 
-- `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `size()`
+
+ `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `size()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -233,9 +283,15 @@ public class InternalLinker
 
 <details open><summary>Private</summary>
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `normalizeTypeName(String raw)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractSimpleName(String fqnOrSimple)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `buildLink(String fqn)`
+@Deprecated
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `normalizeTypeName(String raw)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractSimpleName(String fqnOrSimple)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `buildLink(String fqn)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -287,7 +343,9 @@ public class JavaApiLinker
 
 <details open><summary>Public</summary>
 
-- `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfJavaType(String type)`
+
+ `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `linkIfJavaType(String type)`
+
 > Si el tipo pertenece al paquete estándar de Java (java.* o javax.*),
 > devuelve un enlace Markdown al Javadoc oficial.
 > De lo contrario, devuelve el tipo original sin enlace.
@@ -301,14 +359,20 @@ public class JavaApiLinker
 
 <details open><summary>Private</summary>
 
-- `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
+
+ `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqcnToUrl(String fqcn)`
+
 > Convierte un nombre de clase totalmente calificado en URL al Javadoc.
 
-- `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `determineModule(String pkg)`
+
+ `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `determineModule(String pkg)`
+
 > Determina el módulo de Java donde reside un paquete.
 > Esto cubre los módulos más usados en Java SE 17.
 
-- `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `resolveToFQCN(String type)`
+
+ `private  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `resolveToFQCN(String type)`
+
 > Intenta mapear un tipo simple (como "List") a su nombre de clase completo.
 > Solo incluye clases comunes de la API estándar.
 
@@ -370,11 +434,15 @@ public class LanguageManager
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `get(String key)`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `get(String key)`
+
 > Obtiene el texto traducido asociado a una clave.
 > Si no existe, devuelve la propia clave.
 
-- `public `ResourceBundle `getAppMessages()`
+
+ `public `ResourceBundle `getAppMessages()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -384,9 +452,15 @@ public class LanguageManager
 
 <details open><summary>Private</summary>
 
-- `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadLanguage(String langCode, Path basePath)`
-- `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadDefaultLanguage(ObjectMapper mapper, Path basePath)`
-- `private `ObjectMapper `createObjectMapper()`
+@SuppressWarnings("unchecked")
+ `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadLanguage(String langCode, Path basePath)`
+
+@SuppressWarnings("unchecked")
+ `private `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `loadDefaultLanguage(ObjectMapper mapper, Path basePath)`
+
+
+ `private `ObjectMapper `createObjectMapper()`
+
 </details>
 
 ### 🛠️ Constructores
@@ -449,9 +523,15 @@ extends VoidVisitorAdapter
 
 <details open><summary>Public</summary>
 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(EnumDeclaration n, DocPackage docPackage)`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(RecordDeclaration n, DocPackage docPackage)`
+@Override
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(ClassOrInterfaceDeclaration n, DocPackage docPackage)`
+
+@Override
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(EnumDeclaration n, DocPackage docPackage)`
+
+@Override
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visit(RecordDeclaration n, DocPackage docPackage)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -461,22 +541,48 @@ extends VoidVisitorAdapter
 
 <details open><summary>Private</summary>
 
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitMethod(MethodDeclaration n, DocClass docClass)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitField(FieldDeclaration n, DocClass docClass)`
-- `private `Javadoc `extractJavadoc(BodyDeclaration<?> n)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractVisibility(BodyDeclaration<?> n)`
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitMethod(MethodDeclaration n, DocClass docClass)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitConstructor(ConstructorDeclaration n, DocClass docClass)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `visitField(FieldDeclaration n, DocClass docClass)`
+
+
+ `private `Javadoc `extractJavadoc(BodyDeclaration<?> n)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractVisibility(BodyDeclaration<?> n)`
+
 > Extrae la visibilidad de un nodo que posea modificadores.
 
 > - *@param* **n** nodo del AST.
 > - *@return* "public", "protected", "private" o "package-private".
-- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsStatic(BodyDeclaration<?> n)`
+
+ `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsStatic(BodyDeclaration<?> n)`
+
 > Verifica si un nodo tiene el modificador {@code static}.
 
 > - *@param* **n** nodo del AST.
 > - *@return* {@code true} si el nodo es estático, {@code false} en caso contrario.
-- `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsVoid(MethodDeclaration n)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
+
+ `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `extractIsVoid(MethodDeclaration n)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `extractProjectNameAndDescription(ClassOrInterfaceDeclaration n, DocPackage docPackage, DocClass docClass)`
+
+
+ `private `**DocAnnotation** `toDocAnnotation(AnnotationExpr a)`
+
+> Helper, ayuda a convertir AnnotationExpr -> DocAnnotation
+
+> - *@param* **a** 
+> - *@return* 
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `renderExprAsString(Expression expr)`
+
 </details>
 
 ## #2 📘 Public Class JavadocUtils
@@ -498,7 +604,9 @@ public class JavadocUtils
 
 <details open><summary>Public</summary>
 
-- `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractDescription(Optional<JavadocComment> maybeComment)`
+
+ `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractDescription(Optional<JavadocComment> maybeComment)`
+
 > Extrae la descripción "preferida" desde un JavadocComment.
 > <p>
 >  - Si existe texto libre en la parte de descripción (antes de las etiquetas), lo devuelve.
@@ -506,15 +614,21 @@ public class JavadocUtils
 >    (por ejemplo: @since, @note, etc., siempre que no esté en TECHNICAL_TAGS).
 >  - Si no encuentra nada, devuelve cadena vacía.
 
-- `public  static`[Optional](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)<String> `extractProjectTag(Optional<JavadocComment> maybeComment)`
+
+ `public  static`[Optional](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)<String> `extractProjectTag(Optional<JavadocComment> maybeComment)`
+
 > Extrae el contenido del primer tag {@code @project} (si existe).
 > Devuelve Optional.empty() si no está presente.
 
-- `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractFullDescription(Optional<JavadocComment> maybeComment)`
+
+ `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `extractFullDescription(Optional<JavadocComment> maybeComment)`
+
 > Devuelve la "descripción completa" del Javadoc, incluyendo los block tags
 > en forma textual, pero ignorando {@code @project}.
 
-- `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `normalizeImages(String description)`
+
+ `public  static`[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `normalizeImages(String description)`
+
 > Normaliza etiquetas HTML de imagen dentro de una descripción Javadoc.
 > <p>
 > Convierte etiquetas <img> en sintaxis Markdown:
@@ -537,7 +651,9 @@ public class JavadocUtils
 
 <details open><summary>Private</summary>
 
-- `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+
+ `private  static`Javadoc `parseCleaning(JavadocComment comment)`
+
 </details>
 
 ### 📦 Campos
@@ -570,18 +686,111 @@ public class JavadocUtils
 
 |#|CLASE|DESCRIPCIÓN|
 |---|---|---|
-|**1**|[public class DocConstructor](#1-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
-|**2**|[public class DocClass](#2-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
-|**3**|[public class DocMethod](#3-public-class-docmethod)|
-|**4**|[public class DocParameter](#4-public-class-docparameter)|@author Felipe M.
-|**5**|[public class DocPackage](#5-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
-|**6**|[public enum Kind](#6-public-enum-kind)|
-|**7**|[public class DocException](#7-public-class-docexception)|
-|**8**|[public class DocField](#8-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
+|**1**|[public class DocAnnotation](#1-public-class-docannotation)|Representación ligera de una anotación Java extraída del AST.
+|**2**|[public class DocConstructor](#2-public-class-docconstructor)|Representa un constructor documentado dentro de una clase.
+|**3**|[public class DocClass](#3-public-class-docclass)|Representa la definición de una clase, interfaz, enum o record dentro del modelo intermedio de documentación.
+|**4**|[public class DocMethod](#4-public-class-docmethod)|Representa un método en el modelo intermedio de documentación.
+|**5**|[public class DocParameter](#5-public-class-docparameter)|@author Felipe M.
+|**6**|[public class DocPackage](#6-public-class-docpackage)|Representa un paquete de Java dentro del modelo intermedio de documentación.
+|**7**|[public enum Kind](#7-public-enum-kind)|
+|**8**|[public class DocException](#8-public-class-docexception)|
+|**9**|[public class DocField](#9-public-class-docfield)|Representa un campo (atributo) documentado dentro de una clase.
+<details>
+<summary> <strong> 📘 Public Class DocAnnotation</strong> </summary>
+
+## #1 📘 Public Class DocAnnotation
+
+```java
+public class DocAnnotation
+```
+> **Descripción:**
+> Representación ligera de una anotación Java extraída del AST.
+> Se guarda la información mínima necesaria para renderizar y para
+> posibles mejoras futuras (resolución de FQNs, etc).
+> 
+> Diseñada para integrarse en DocClass, DocMethod, DocField, ...
+> (para la primera entrega se añadirá en DocClass y DocMethod).
+
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getRaw()`
+
+
+ `public `[Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String, String> `getMembers()`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getValues()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isMarker()`
+
+
+ `public `[Optional](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)<String> `getFqName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `renderCompact()`
+
+> Render compacto (inline) por defecto, ej:
+
+@Override
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `toString()`
+
+@Override
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `equals(Object o)`
+
+@Override
+ `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `hashCode()`
+
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public DocAnnotation(String name, String raw, Map<String,String> members, List<String> values, boolean marker, String fqName)`
+- `public DocAnnotation(String name, String raw)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `name`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `raw`
+- `private` [Map](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html)<String,String> `members`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `values`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `marker`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `fqName`
+</details>
+
+
+</details>
 <details>
 <summary> <strong> 📘 Public Class DocConstructor</strong> </summary>
 
-## #1 📘 Public Class DocConstructor
+## #2 📘 Public Class DocConstructor
 
 ```java
 public class DocConstructor
@@ -593,15 +802,33 @@ public class DocConstructor
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -645,7 +872,7 @@ public class DocConstructor
 <details>
 <summary> <strong> 📘 Public Class DocClass</strong> </summary>
 
-## #2 📘 Public Class DocClass
+## #3 📘 Public Class DocClass
 
 ```java
 public class DocClass
@@ -670,49 +897,95 @@ public class DocClass
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
 > - *@return* el nombre simple de la clase.
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
 > - *@return* la descripción tomada del Javadoc.
-- `public `**Kind** `getKind()`
+
+ `public `**Kind** `getKind()`
+
 > - *@return* el tipo de elemento representado.
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
+
 > - *@return* la visibilidad del tipo (public, protected, etc.).
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
 > - *@return* {@code true} si la clase fue declarada como estática.
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `getFields()`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocField> `getFields()`
+
 > - *@return* lista inmutable de campos de la clase.
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocMethod> `getMethods()`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocMethod> `getMethods()`
+
 > - *@return* lista inmutable de métodos de la clase.
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocConstructor> `getConstructors()`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocConstructor> `getConstructors()`
+
 > - *@return* lista inmutable de constructores de la clase.
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addField(DocField field)`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocAnnotation> `getAnnotations()`
+
+> - *@return* lista de anotaciones aplicadas sobre la clase.
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addAnnotation(DocAnnotation annotation)`
+
+> Agrega una anotación al modelo de la clase.
+
+> - *@param* **annotation** anotación a añadir
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addField(DocField field)`
+
 > Agrega un campo al modelo de la clase.
 
 > - *@param* **field** definición del campo
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addMethod(DocMethod method)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addMethod(DocMethod method)`
+
 > Agrega un método al modelo de la clase.
 
 > - *@param* **method** definición del método
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addConstructor(DocConstructor constructor)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addConstructor(DocConstructor constructor)`
+
 > Agrega un constructor al modelo de la clase.
 
 > - *@param* **constructor** definición del constructor
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuperClass()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuperClass()`
+
 > - *@return* el nombre de la superclase, o {@code null} si no tiene.
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSuperClass(String superClass)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSuperClass(String superClass)`
+
 > Define la superclase de este tipo.
 
 > - *@param* **superClass** nombre de la clase padre
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getInterfaces()`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getInterfaces()`
+
 > - *@return* lista de interfaces implementadas (clases) o extendidas (interfaces).
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addInterface(String iface)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addInterface(String iface)`
+
 > Agrega una interfaz implementada o extendida.
 
 > - *@param* **iface** nombre de la interfaz
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDescription(String description)`
-- `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `getIndexOrder()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIndexOrder(int indexOrder)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDescription(String description)`
+
+
+ `public `[int](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html) `getIndexOrder()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIndexOrder(int indexOrder)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -783,6 +1056,9 @@ public class DocClass
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `description`
 > Descripción principal tomada del comentario Javadoc asociado.
 
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocAnnotation> `annotations`
+> Anotaciones aplicadas directamente a la clase (p. ej. @Deprecated, @RequestMapping).
+
 </details>
 
 
@@ -790,28 +1066,67 @@ public class DocClass
 <details>
 <summary> <strong> 📘 Public Class DocMethod</strong> </summary>
 
-## #3 📘 Public Class DocMethod
+## #4 📘 Public Class DocMethod
 
 ```java
 public class DocMethod
 ```
+> **Descripción:**
+> Representa un método en el modelo intermedio de documentación.
+
 ### 🧮 Métodos
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnType()`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isVoid()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setReturnDescription(String returnDescription)`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnDescription()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnType()`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `getParameters()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isVoid()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setReturnDescription(String returnDescription)`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getReturnDescription()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addDocParameter(DocParameter param)`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `getDocParameters()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addException(DocException exception)`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `getExceptions()`
+
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocAnnotation> `getAnnotations()`
+
+> - *@return* lista de anotaciones aplicadas sobre el método.
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addAnnotation(DocAnnotation annotation)`
+
+> Agrega una anotación al método.
+
+> - *@param* **annotation** anotación a añadir
 </details>
 
 <details open><summary>Protected</summary>
@@ -851,6 +1166,9 @@ public class DocMethod
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `returnDescription`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocParameter> `docParameters`
 - `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocException> `exceptions`
+- `private` [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocAnnotation> `annotations`
+> Anotaciones aplicadas directamente al método.
+
 </details>
 
 
@@ -858,7 +1176,7 @@ public class DocMethod
 <details>
 <summary> <strong> 📘 Public Class DocParameter</strong> </summary>
 
-## #4 📘 Public Class DocParameter
+## #5 📘 Public Class DocParameter
 
 ```java
 public class DocParameter
@@ -870,8 +1188,12 @@ public class DocParameter
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -910,7 +1232,7 @@ public class DocParameter
 <details>
 <summary> <strong> 📘 Public Class DocPackage</strong> </summary>
 
-## #5 📘 Public Class DocPackage
+## #6 📘 Public Class DocPackage
 
 ```java
 public class DocPackage
@@ -944,11 +1266,15 @@ public class DocPackage
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
 > Obtiene el nombre del paquete.
 
 > - *@return* nombre completo del paquete.
-- `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocClass> `getClasses()`
+
+ `public `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<DocClass> `getClasses()`
+
 > Devuelve la lista de clases, interfaces, enums y records que pertenecen al paquete.
 > <p>
 > La lista devuelta es la instancia interna; se recomienda usar
@@ -956,12 +1282,18 @@ public class DocPackage
 > </p>
 
 > - *@return* lista de clases del paquete.
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addClass(DocClass docClass)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `addClass(DocClass docClass)`
+
 > Agrega una nueva clase, interfaz, enum o record al paquete.
 
 > - *@param* **docClass** instancia de {@link DocClass} a agregar.
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setProjectName(String projectName)`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProjectName()`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setProjectName(String projectName)`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProjectName()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1009,7 +1341,7 @@ public class DocPackage
 <details>
 <summary> <strong> 📙 Public Enum Kind</strong> </summary>
 
-## #6 📙 Public Enum Kind
+## #7 📙 Public Enum Kind
 
 ```java
 public enum Kind
@@ -1019,7 +1351,7 @@ public enum Kind
 <details>
 <summary> <strong> 📘 Public Class DocException</strong> </summary>
 
-## #7 📘 Public Class DocException
+## #8 📘 Public Class DocException
 
 ```java
 public class DocException
@@ -1028,8 +1360,12 @@ public class DocException
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1068,7 +1404,7 @@ public class DocException
 <details>
 <summary> <strong> 📘 Public Class DocField</strong> </summary>
 
-## #8 📘 Public Class DocField
+## #9 📘 Public Class DocField
 
 ```java
 public class DocField
@@ -1080,11 +1416,21 @@ public class DocField
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getType()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getName()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getType()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDescription()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getVisibility()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isStatic()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1137,8 +1483,9 @@ public class DocField
 |#|CLASE|DESCRIPCIÓN|
 |---|---|---|
 |**1**|[public class ConfigLoader](#1-public-class-configloader)|Esta clase se encarga de detectar el fichero de configuración y cargar los datos si son encontrados.
-|**2**|[public class ConfigurationService](#2-public-class-configurationservice)|Servicio para gestionar la creación, validación y corrección de configuración
-|**3**|[public class Config](#3-public-class-config)|@author Felipe M.
+|**2**|[public class ConfigManager](#2-public-class-configmanager)|Gestiona las rutas y directorios de configuración
+|**3**|[public class ConfigurationService](#3-public-class-configurationservice)|Servicio para gestionar la creación, validación y corrección de configuración
+|**4**|[public class Config](#4-public-class-config)|@author Felipe M.
 ## #1 📘 Public Class ConfigLoader
 
 ```java
@@ -1153,46 +1500,66 @@ public class ConfigLoader
 
 <details open><summary>Public</summary>
 
-- `public  static`**Config** `loadConfig()`
-> Carga la configuración desde el archivo config.yml por defecto
+
+ `public  static`**Config** `loadConfig()`
+
+> Carga la configuración usando ConfigManager para obtener la ruta por
+> defecto
 
 > - *@return* un objeto con los datos de configuración iniciales.
-- `public  static`**Config** `loadConfig(String filePath)`
+
+ `public  static`**Config** `loadConfig(String filePath, boolean quietMode)`
+
 > Carga la configuración desde un archivo específico
 
 > - *@param* **filePath** ruta del archivo de configuración
 > - *@return* objeto Config con los datos cargados
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `saveConfig(Config config, String filePath)`
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `saveConfig(Config config, String filePath)`
+
 > Guarda la configuración en un archivo YAML
 
 > - *@param* **config** objeto Config a guardar
 > - *@param* **filePath** ruta del archivo destino
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `saveConfig(Config config)`
-> Guarda la configuración en el archivo por defecto config.yml
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `saveConfig(Config config)`
+
+> Guarda la configuración usando ConfigManager para obtener la ruta por
+> defecto
 
 > - *@param* **config** objeto Config a guardar
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static`**Config** `createDefaultConfig(String filePath)`
+
+ `public  static`**Config** `createDefaultConfig(String filePath)`
+
 > Crea una configuración por defecto y la guarda en un archivo
 
 > - *@param* **filePath** ruta del archivo destino
 > - *@return* objeto Config creado
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static`**Config** `createDefaultConfig()`
-> Crea una configuración por defecto y la guarda en config.yml
+
+ `public  static`**Config** `createDefaultConfig()`
+
+> Crea una configuración por defecto y la guarda en la ruta por defecto
+> usando ConfigManager
 
 > - *@return* objeto Config creado
 > - *@throws* **IOException** si ocurre error de escritura
-- `public  static`[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configExists(String filePath)`
+
+ `public  static`[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configExists(String filePath)`
+
 > Verifica si existe el archivo de configuración
 
 > - *@param* **filePath** ruta a verificar
 > - *@return* true si el archivo existe
-- `public  static`[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configExists()`
-> Verifica si existe el archivo de configuración por defecto
 
-> - *@return* true si config.yml existe
+ `public  static`[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configExists()`
+
+> Verifica si existe el archivo de configuración por defecto usando
+> ConfigManager
+
+> - *@return* true si el archivo de configuración por defecto existe
 </details>
 
 <details open><summary>Protected</summary>
@@ -1202,7 +1569,9 @@ public class ConfigLoader
 
 <details open><summary>Private</summary>
 
-- `private  static`ObjectMapper `createObjectMapper()`
+
+ `private  static`ObjectMapper `createObjectMapper()`
+
 > Crea un ObjectMapper configurado para YAML con formato legible
 
 > - *@return* ObjectMapper configurado
@@ -1222,11 +1591,85 @@ public class ConfigLoader
 
 <details open><summary>Private</summary>
 
-- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_CONFIG_FILE`
 - `private static` ResourceBundle `appMessages`
 </details>
 
-## #2 📘 Public Class ConfigurationService
+## #2 📘 Public Class ConfigManager
+
+```java
+public class ConfigManager
+```
+> **Descripción:**
+> Gestiona las rutas y directorios de configuración
+
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+
+ `public `Path `getConfigDir()`
+
+
+ `public `Path `getConfigFilePath()`
+
+
+ `public `Path `getLangsDir()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configDirExists()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `configFileExists()`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `langsDirExists()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `ensureConfigDir()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `ensureLangsDir()`
+
+
+ `public `Path `getBaseDirectory()`
+
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+> _No hay métodos private visibles_
+</details>
+
+### 🛠️ Constructores
+
+- `public ConfigManager()`
+- `public ConfigManager(Path baseDirectory)`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `CONFIG_DIR`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `DEFAULT_CONFIG_FILE`
+- `private static` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `LANGS_DIR`
+- `private` Path `baseDirectory`
+</details>
+
+## #3 📘 Public Class ConfigurationService
 
 ```java
 public class ConfigurationService
@@ -1238,19 +1681,29 @@ public class ConfigurationService
 
 <details open><summary>Public</summary>
 
-- `public `**Config** `createWithParameters(String sourcePath, String outputPath, String outFileName)`
+
+ `public `**Config** `createWithParameters(String sourcePath, String outputPath, String outFileName)`
+
 > Crea una configuración con parámetros específicos (modo no-interactivo)
 
-- `public `**Config** `createInteractively(Scanner scanner)`
+
+ `public `**Config** `createInteractively(Scanner scanner)`
+
 > Crea una configuración interactivamente (modo asistido)
 
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isValid(Config config)`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isValid(Config config)`
+
 > Valida si una configuración es válida
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getValidPathFromUser(Scanner scanner, String fieldName, String currentValue, String defaultValue, boolean mustExist)`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getValidPathFromUser(Scanner scanner, String fieldName, String currentValue, String defaultValue, boolean mustExist, boolean muteMode)`
+
 > Obtiene una ruta válida del usuario de manera interactiva
 
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isUsingDefaultValues(Config config)`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isUsingDefaultValues(Config config)`
+
 > Detecta si una configuración está usando valores por defecto
 
 </details>
@@ -1262,7 +1715,9 @@ public class ConfigurationService
 
 <details open><summary>Private</summary>
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `expandHomeDirectory(String path)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `expandHomeDirectory(String path)`
+
 > Expande el directorio home del usuario (~)
 
 </details>
@@ -1290,7 +1745,7 @@ public class ConfigurationService
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `longPositive`
 </details>
 
-## #3 📘 Public Class Config
+## #4 📘 Public Class Config
 
 ```java
 public class Config
@@ -1302,48 +1757,108 @@ public class Config
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSourcePath()`
+
 > Obtiene la ruta del código fuente a documentar.
 
 > - *@return* el directorio donde se encuentran el código fuente.
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSourcePath(String sourcePath)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setSourcePath(String sourcePath)`
+
 > - *@param* **sourcePath** 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutputPath()`
+
 > - *@return* 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutputPath(String outputPath)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutputPath(String outputPath)`
+
 > - *@param* **outputPath** 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getOutFileName()`
+
 > - *@return* 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutFileName(String outFileName)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setOutFileName(String outFileName)`
+
 > - *@param* **outFileName** 
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isDebugMode()`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isDebugMode()`
+
 > - *@return* 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDebugMode(boolean debugMode)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setDebugMode(boolean debugMode)`
+
 > - *@param* **debugMode** 
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isCombinePackagesMode()`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isCombinePackagesMode()`
+
 > - *@return* 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setCombinePackagesMode(boolean combinePackages)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setCombinePackagesMode(boolean combinePackages)`
+
 > - *@param* **combinePackages** 
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePrivate()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePrivate(boolean includePrivate)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludeProtected()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludeProtected(boolean includeProtected)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePublic()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePublic(boolean includePublic)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isTableOfContent()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setTableOfContent(boolean tableOfContent)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintEmptyNotify()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintEmptyNotify(boolean printEmptyNotify)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintClassIndex()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintClassIndex(boolean printClassIndex)`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getForeSignClassIndex()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndex(String foreSignClassIndex)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnDetails()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
-- `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnSubtitle()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getMarkdownLanguage()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setMarkdownLanguage(String markdownLanguage)`
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePrivate()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePrivate(boolean includePrivate)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludeProtected()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludeProtected(boolean includeProtected)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isIncludePublic()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setIncludePublic(boolean includePublic)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isTableOfContent()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setTableOfContent(boolean tableOfContent)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintEmptyNotify()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintEmptyNotify(boolean printEmptyNotify)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isPrintClassIndex()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setPrintClassIndex(boolean printClassIndex)`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getForeSignClassIndex()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndex(String foreSignClassIndex)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnDetails()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnDetails(boolean foreSignClassIndexOnDetails)`
+
+
+ `public `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `isForeSignClassIndexOnSubtitle()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setForeSignClassIndexOnSubtitle(boolean foreSignClassIndexOnSubtitle)`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getMarkdownLanguage()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setMarkdownLanguage(String markdownLanguage)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1421,6 +1936,7 @@ public class Config
 |**5**|[public class GetCommand](#5-public-class-getcommand)|
 |**6**|[public class InitCommand](#6-public-class-initcommand)|
 |**7**|[public class ShowCommand](#7-public-class-showcommand)|
+|**8**|[public class AliasCommand](#8-public-class-aliascommand)|
 <details>
 <summary> <strong> 📘 Public Class ValidationIssue</strong> </summary>
 
@@ -1436,10 +1952,18 @@ public class ValidationIssue
 
 <details open><summary>Public</summary>
 
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProblem()`
-- `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuggestion()`
-- `public `Runnable `getCorrection()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `applyCorrection()`
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getProblem()`
+
+
+ `public `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getSuggestion()`
+
+
+ `public `Runnable `getCorrection()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `applyCorrection()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1482,6 +2006,7 @@ public class ValidationIssue
 ## #2 📘 Public Class JavadocmdCLI
 
 ```java
+@Command(name = "javadocmd", mixinStandardHelpOptions = true, version = "1.0.0", description = "${description.app}", resourceBundle = "messages", subcommands = [InitCommand.class, ShowCommand.class, GetCommand.class, SetCommand.class, ValidateCommand.class, AliasCommand.class])
 public class JavadocmdCLI
 implements Callable
 ```
@@ -1489,8 +2014,12 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `main(String[] args)`
+@Override
+ `public `Integer `call()`
+
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `main(String[] args)`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1511,6 +2040,7 @@ implements Callable
 ## #3 📘 Public Class ValidateCommand
 
 ```java
+@Command(name = "validate", description = "${usage.validate}", resourceBundle = "messages")
 public class ValidateCommand
 implements Callable
 ```
@@ -1518,12 +2048,21 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+@Override
+ `public `Integer `call()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+
 > Permite configurar el archivo de configuración desde fuera
 
-- `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setInteractive(boolean interactive)`
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setInteractive(boolean interactive)`
+
 > Permite configurar el modo interactivo desde fuera
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setMuteMode(boolean mode)`
 
 </details>
 
@@ -1534,11 +2073,28 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-- `private `**Config** `fixConfigurationInteractively(Config existingConfig)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setupInternationalization(Scanner scanner)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `createDefaultLanguageFiles(Path langsPath, Scanner scanner)`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultSpanishContent()`
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultEnglishContent()`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getActualConfigFilePath()`
+
+> Obtiene la ruta real del archivo de configuración
+> - Si el usuario proporcionó --configFile, usa esa ruta
+> - Si no, usa la ruta por defecto en .javadocmd/
+
+
+ `private `**Config** `fixConfigurationInteractively(Config existingConfig, String actualConfigFile)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setupInternationalization(Scanner scanner)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `createDefaultLanguageFiles(Path langsPath, Scanner scanner)`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultSpanishContent()`
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getDefaultEnglishContent()`
+
 </details>
 
 ### 🛠️ Constructores
@@ -1564,6 +2120,7 @@ implements Callable
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `longPositive`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `interactive`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `mute`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
 </details>
 
@@ -1575,6 +2132,7 @@ implements Callable
 ## #4 📘 Public Class SetCommand
 
 ```java
+@Command(name = "set", description = "${usage.set}", resourceBundle = "messages")
 public class SetCommand
 implements Callable
 ```
@@ -1582,7 +2140,14 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
+@Override
+ `public `Integer `call()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+
+> Permite configurar el archivo de configuración desde fuera
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1592,8 +2157,19 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-- `private `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `applyChanges(Config config)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showChangesSummary(List<String> changes)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getActualConfigFilePath()`
+
+> Obtiene la ruta real del archivo de configuración - Si el usuario
+> proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+> en .javadocmd/
+
+
+ `private `[List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String> `applyChanges(Config config)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showChangesSummary(List<String> changes, String configFilePath)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -1642,6 +2218,7 @@ implements Callable
 ## #5 📘 Public Class GetCommand
 
 ```java
+@Command(name = "get", description = "${usage.get}", resourceBundle = "messages")
 public class GetCommand
 implements Callable
 ```
@@ -1649,7 +2226,14 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
+@Override
+ `public `Integer `call()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+
+> Permite configurar el archivo de configuración desde fuera
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1659,7 +2243,16 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-- `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getConfigValue(Config config, String key)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getActualConfigFilePath()`
+
+> Obtiene la ruta real del archivo de configuración - Si el usuario
+> proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+> en .javadocmd/
+
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getConfigValue(Config config, String key)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -1694,6 +2287,7 @@ implements Callable
 ## #6 📘 Public Class InitCommand
 
 ```java
+@Command(name = "init", description = "${usage.init}", resourceBundle = "messages")
 public class InitCommand
 implements Callable
 ```
@@ -1701,7 +2295,9 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
+@Override
+ `public `Integer `call()`
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1711,7 +2307,9 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-- `private `Integer `createWithParameters()`
+
+ `private `Integer `createWithParameters(String configFilePath)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -1738,6 +2336,7 @@ implements Callable
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outputPath`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `outFileName`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `interactive`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `mute`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
 </details>
 
@@ -1749,6 +2348,7 @@ implements Callable
 ## #7 📘 Public Class ShowCommand
 
 ```java
+@Command(name = "show", description = "${usage.show}", resourceBundle = "messages")
 public class ShowCommand
 implements Callable
 ```
@@ -1756,7 +2356,14 @@ implements Callable
 
 <details open><summary>Public</summary>
 
-- `public `Integer `call()`
+@Override
+ `public `Integer `call()`
+
+
+ `public ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `setConfigFile(String configFile)`
+
+> Permite configurar el archivo de configuración desde fuera
+
 </details>
 
 <details open><summary>Protected</summary>
@@ -1766,9 +2373,25 @@ implements Callable
 
 <details open><summary>Private</summary>
 
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showConfiguration(Config config)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, Object value)`
-- `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, boolean value)`
+
+ `private `[String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `getActualConfigFilePath()`
+
+> Obtiene la ruta real del archivo de configuración - Si el usuario
+> proporcionó --configFile, usa esa ruta - Si no, usa la ruta por defecto
+> en .javadocmd/
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showConfiguration(Config config, String configFilePath)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, Object value)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `printField(String label, boolean value)`
+
+
+ `private ` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `showRawFile(String actualConfigFile)`
+
 </details>
 
 ### 🛠️ Constructores
@@ -1791,6 +2414,67 @@ implements Callable
 - `private` ResourceBundle `appMessages`
 - `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `helpRequested`
 - `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `configFile`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `raw`
+</details>
+
+
+</details>
+<details>
+<summary> <strong> 📘 Public Class AliasCommand</strong> </summary>
+
+## #8 📘 Public Class AliasCommand
+
+```java
+@Command(name = "alias", aliases = ["make-alias"], description = "${usage.alias}", mixinStandardHelpOptions = true, resourceBundle = "messages")
+public class AliasCommand
+implements Callable
+```
+### 🧮 Métodos
+
+<details open><summary>Public</summary>
+
+@Override
+ `public `Integer `call()`
+
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay métodos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+
+ `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `aliasExists(String aliasName)`
+
+
+ `private `[boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `createAlias()`
+
+</details>
+
+### 🛠️ Constructores
+
+- `public AliasCommand()`
+### 📦 Campos
+
+<details open><summary>Public</summary>
+
+> _No hay campos public visibles_
+</details>
+
+<details open><summary>Protected</summary>
+
+> _No hay campos protected visibles_
+</details>
+
+<details open><summary>Private</summary>
+
+- `private` ResourceBundle `messages`
+- `private` **ConfigurationService** `configService`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `jarPath`
+- `private` [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) `aliasName`
+- `private` [boolean](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html) `force`
 </details>
 
 
@@ -1835,15 +2519,23 @@ public abstract class JavadocMd
 
 <details open><summary>Public</summary>
 
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `main(String[] args)`
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `main(String[] args)`
+
 > Método principal que inicia el proceso de generación de documentación.
 
 > - *@param* **args** argumentos opcionales (no utilizados actualmente). Se planea
 en futuras versiones aceptar <code>sourcePath</code> y
 <code>outputPath</code> como parámetros desde consola.
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generatePackageDocs(Config config)`
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generateCombinedDocs(Config config, LanguageManager lang)`
-- `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generatePackageDocs(Config config)`
+
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `generateCombinedDocs(Config config, LanguageManager lang)`
+
+
+ `public  static` **[void](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html)** `forceJavaLevel(ParserConfiguration.LanguageLevel languageLevel)`
+
 </details>
 
 <details open><summary>Protected</summary>

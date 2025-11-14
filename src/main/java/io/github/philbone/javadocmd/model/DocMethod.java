@@ -3,6 +3,11 @@ package io.github.philbone.javadocmd.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representa un método en el modelo intermedio de documentación.
+ *
+ * @author Felipe M. <philbone@focused.cl>
+ */
 public class DocMethod 
 {
     private final String name;
@@ -15,6 +20,9 @@ public class DocMethod
     private String returnDescription;
     private final List<DocParameter> docParameters = new ArrayList<>();
     private final List<DocException> exceptions = new ArrayList<>();
+
+    /** Anotaciones aplicadas directamente al método. */
+    private final List<DocAnnotation> annotations = new ArrayList<>();
 
     public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid) {
         this.name = name;
@@ -42,4 +50,20 @@ public class DocMethod
 
     public void addException(DocException exception) { exceptions.add(exception); }
     public List<DocException> getExceptions() { return exceptions; }
+
+    /**
+     * @return lista de anotaciones aplicadas sobre el método.
+     */
+    public List<DocAnnotation> getAnnotations() {
+        return annotations;
+    }
+
+    /**
+     * Agrega una anotación al método.
+     *
+     * @param annotation anotación a añadir
+     */
+    public void addAnnotation(DocAnnotation annotation) {
+        annotations.add(annotation);
+    }
 }

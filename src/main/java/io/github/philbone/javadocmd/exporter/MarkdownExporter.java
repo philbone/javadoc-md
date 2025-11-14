@@ -85,8 +85,17 @@ public class MarkdownExporter implements DocExporter
 
             builder.subtitle( printIndexNumber(docClass.getIndexOrder(), config.isForeSignClassIndexOnSubtitle()) + " " + header.trim() );
 
-            // ========== Firma en bloque de código ==========
+            // ========== Firma en bloque de código ==========            
             StringBuilder signature = new StringBuilder();
+            
+            if(!docClass.getAnnotations().isEmpty()){
+                StringBuilder annotations = new StringBuilder();
+                for (DocAnnotation da : docClass.getAnnotations()) {
+                    annotations.append(da + "\n");
+                }
+                signature.append(annotations);
+            }
+            
             signature.append(docClass.getVisibility()).append(" ");
             if (docClass.isStatic()) {
                 signature.append("static ");
@@ -124,7 +133,7 @@ public class MarkdownExporter implements DocExporter
 
              // 🧮 Métodos
             if (!docClass.getMethods().isEmpty()) {
-                builder.h3("🧮 Métodos");
+                builder.h3("🧮 Métodos");                
                 // imprimir métodos en grupo
                 builder.tag( printMethods(docClass, VISIBILITY_PUBLIC) );
                 builder.tag( printMethods(docClass, VISIBILITY_PROTECTED) );
@@ -300,6 +309,13 @@ public class MarkdownExporter implements DocExporter
         
         for (DocMethod method : docClass.getMethods()) {
             
+            StringBuilder annotations = new StringBuilder();
+            if (!method.getAnnotations().isEmpty()) {                
+                for (DocAnnotation da : method.getAnnotations()) {
+                    annotations.append(da);
+                }                
+            }
+            
             if (method.getVisibility().equals(text)) {
                 if (isPrintable(method.getVisibility())) {
                     String returnType = formatCodeOrLink(method.getReturnType());
@@ -308,7 +324,9 @@ public class MarkdownExporter implements DocExporter
                             + (method.isVoid() ? " **"+ returnType +"**" : returnType)
                             + " `" + method.getName()
                             + "(" + String.join(", ", method.getParameters()) + ")`";
-                    methodBuilder.listItem(signatureMeth.trim());
+                    
+                    methodBuilder
+                            .paragraph(annotations.toString()+ "\n" +signatureMeth.trim());
 
                     if (method.getDescription() != null && !method.getDescription().isEmpty()) {
                         String desc = JavadocUtils.normalizeImages(method.getDescription());
