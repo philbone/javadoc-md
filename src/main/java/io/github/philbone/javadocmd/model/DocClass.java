@@ -60,6 +60,9 @@ public class DocClass {
     /** Descripción principal tomada del comentario Javadoc asociado. */
     private String description;
 
+    /** Anotaciones aplicadas directamente a la clase (p. ej. @Deprecated, @RequestMapping). */
+    private final List<DocAnnotation> annotations = new ArrayList<>();
+
     /**
      * Crea una nueva representación de clase en el modelo intermedio.
      *
@@ -102,6 +105,16 @@ public class DocClass {
 
     /** @return lista inmutable de constructores de la clase. */
     public List<DocConstructor> getConstructors() { return constructors; }
+
+    /** @return lista de anotaciones aplicadas sobre la clase. */
+    public List<DocAnnotation> getAnnotations() { return annotations; }
+
+    /**
+     * Agrega una anotación al modelo de la clase.
+     *
+     * @param annotation anotación a añadir
+     */
+    public void addAnnotation(DocAnnotation annotation) { annotations.add(annotation); }
 
     // --- Manejo de campos, métodos y constructores ---
 
