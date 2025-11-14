@@ -53,7 +53,6 @@ import java.util.stream.Collectors;
  * @author Felipe M
  * @project JavadocMD
  */
-@Deprecated
 public abstract class JavadocMd
 {
     /**
