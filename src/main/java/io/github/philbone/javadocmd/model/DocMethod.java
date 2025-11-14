@@ -19,9 +19,7 @@ public class DocMethod
     private final boolean isVoid;
     private String returnDescription;
     private final List<DocParameter> docParameters = new ArrayList<>();
-    private final List<DocException> exceptions = new ArrayList<>();
-
-    /** Anotaciones aplicadas directamente al método. */
+    private final List<DocException> exceptions = new ArrayList<>();   
     private final List<DocAnnotation> annotations = new ArrayList<>();
 
     public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid) {

@@ -3,6 +3,7 @@ package io.github.philbone.javadocmd.exporter;
 import io.github.philbone.javadocmd.config.Config;
 import io.github.philbone.javadocmd.extractor.JavadocUtils;
 import io.github.philbone.javadocmd.model.*;
+import java.util.stream.Collectors;
 
 /**
  * Exportador que genera documentación en formato Markdown
@@ -88,10 +89,11 @@ public class MarkdownExporter implements DocExporter
             // ========== Firma en bloque de código ==========            
             StringBuilder signature = new StringBuilder();
             
+            // arma una lista de anotaciones correspondiente a la clase
             if(!docClass.getAnnotations().isEmpty()){
                 StringBuilder annotations = new StringBuilder();
                 for (DocAnnotation da : docClass.getAnnotations()) {
-                    annotations.append(da + "\n");
+                    annotations.append(da);
                 }
                 signature.append(annotations);
             }
@@ -309,11 +311,23 @@ public class MarkdownExporter implements DocExporter
         
         for (DocMethod method : docClass.getMethods()) {
             
+            // arma un listado compacto con las anotaciones
             StringBuilder annotations = new StringBuilder();
-            if (!method.getAnnotations().isEmpty()) {                
-                for (DocAnnotation da : method.getAnnotations()) {
-                    annotations.append(da);
-                }                
+            boolean compact = false;// true:la lista se arma com lista compacta, false: la lista se arma en una linea
+            if (!method.getAnnotations().isEmpty()) {
+                if (compact) {
+                    annotations.append(
+                            method.getAnnotations().stream()
+                                    .map(da -> "<sub>" + da + "</sub>")
+                                    .collect(Collectors.joining("<br>"))
+                    );
+                } else {
+                    annotations.append(
+                            method.getAnnotations().stream()
+                                    .map(da -> "<sub>" + da + "</sub>")
+                                    .collect(Collectors.joining("<sub>,</sub> "))
+                    );
+                }
             }
             
             if (method.getVisibility().equals(text)) {
@@ -325,8 +339,10 @@ public class MarkdownExporter implements DocExporter
                             + " `" + method.getName()
                             + "(" + String.join(", ", method.getParameters()) + ")`";
                     
-                    methodBuilder
-                            .paragraph(annotations.toString()+ "\n" +signatureMeth.trim());
+                    //methodBuilder.paragraph(annotations.toString()+ "\n" +signatureMeth.trim());
+                    methodBuilder.tag("- " + signatureMeth.trim())
+                            .tag("<br>")
+                            .tag(annotations.toString()+"\n");
 
                     if (method.getDescription() != null && !method.getDescription().isEmpty()) {
                         String desc = JavadocUtils.normalizeImages(method.getDescription());

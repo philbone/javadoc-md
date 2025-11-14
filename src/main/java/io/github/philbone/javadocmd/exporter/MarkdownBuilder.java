@@ -57,6 +57,11 @@ public class MarkdownBuilder
         return this;
     }
     
+    public MarkdownBuilder sub(String text){
+        outPrint.append("<sub>").append(text).append("</sub>");
+        return this;
+    }
+    
     /**
      * Inyecta una etiqueta arbitraria directamente en el flujo del Markdown.
      * <p>
