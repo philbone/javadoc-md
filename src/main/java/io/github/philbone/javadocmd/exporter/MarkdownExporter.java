@@ -85,8 +85,17 @@ public class MarkdownExporter implements DocExporter
 
             builder.subtitle( printIndexNumber(docClass.getIndexOrder(), config.isForeSignClassIndexOnSubtitle()) + " " + header.trim() );
 
-            // ========== Firma en bloque de código ==========
+            // ========== Firma en bloque de código ==========            
             StringBuilder signature = new StringBuilder();
+            
+            if(!docClass.getAnnotations().isEmpty()){
+                StringBuilder annotations = new StringBuilder();
+                for (DocAnnotation da : docClass.getAnnotations()) {
+                    annotations.append(da + "\n");
+                }
+                signature.append(annotations);
+            }
+            
             signature.append(docClass.getVisibility()).append(" ");
             if (docClass.isStatic()) {
                 signature.append("static ");
