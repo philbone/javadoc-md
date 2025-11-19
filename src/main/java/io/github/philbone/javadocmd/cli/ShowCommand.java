@@ -125,6 +125,7 @@ public class ShowCommand implements Callable<Integer>
         printField(messages.getString("show.foreSignClassIndexOnSubtitle"),
                 config.isForeSignClassIndexOnSubtitle());
         printField(messages.getString("show.markdownLanguage"), config.getMarkdownLanguage());
+        printField(messages.getString("show.methodAnnotations"), config.isMethodAnnotations());
 
         System.out.println("═".repeat(50));
     }
