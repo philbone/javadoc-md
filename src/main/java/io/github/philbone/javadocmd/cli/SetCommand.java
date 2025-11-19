@@ -77,6 +77,9 @@ public class SetCommand implements Callable<Integer>
 
     @Option(names = {"--markdownLanguage"}, descriptionKey = "set.markdownLanguage")
     private String markdownLanguage;
+    
+    @Option(names = {"--methodAnnotations"}, descriptionKey = "set.methodAnnotations")
+    private Boolean methodAnnotations;
 
     @Option(
             names = {"--configFile"},
@@ -232,6 +235,11 @@ public class SetCommand implements Callable<Integer>
         if (markdownLanguage != null && !markdownLanguage.isBlank() && !markdownLanguage.equals(config.getMarkdownLanguage())) {
             config.setMarkdownLanguage(markdownLanguage);
             changes.add(messages.getString("set.markdownLanguage") + ": " + markdownLanguage);
+        }
+        
+        if (methodAnnotations != null && methodAnnotations != config.isMethodAnnotations()) {
+            config.setMethodAnnotations(methodAnnotations);
+            changes.add(messages.getString("set.methodAnnotations") + ": " + methodAnnotations);
         }
 
         return changes;
