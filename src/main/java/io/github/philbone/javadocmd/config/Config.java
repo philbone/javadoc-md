@@ -52,6 +52,8 @@ public class Config
     
     private String markdownLanguage;
     
+    private boolean methodAnnotations;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "./src";
@@ -66,6 +68,7 @@ public class Config
         this.foreSignClassIndexOnDetails = false;
         this.foreSignClassIndexOnSubtitle = true;
         this.markdownLanguage = "en";
+        this.methodAnnotations = true;
     }
 
     /**
@@ -227,5 +230,12 @@ public class Config
     public void setMarkdownLanguage(String markdownLanguage) {
         this.markdownLanguage = markdownLanguage;
     }
-    
+
+    public boolean isMethodAnnotations() {
+        return methodAnnotations;
+    }
+
+    public void setMethodAnnotations(boolean methodAnnotations) {
+        this.methodAnnotations = methodAnnotations;
+    }
 }
