@@ -111,7 +111,8 @@ public class GetCommand implements Callable<Integer>
         // Ruta por defecto en .javadocmd/
         return new ConfigManager().getConfigFilePath().toString();
     }
-
+    
+    // Mejorar este método para que carge dinámicamente las opciones disponibles
     private String getConfigValue(Config config, String key) {
         switch (key.toLowerCase()) {
             case "sourcepath":
@@ -144,6 +145,8 @@ public class GetCommand implements Callable<Integer>
                 return String.valueOf(config.isForeSignClassIndexOnSubtitle());
             case "markdownlanguage":
                 return String.valueOf(config.getMarkdownLanguage());
+            case "methodannotations":
+                return String.valueOf(config.isMethodAnnotations());
             default:
                 return null;
         }
