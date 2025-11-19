@@ -61,16 +61,22 @@ java -jar javadocmd-1.0.0.jar
 Control total mediante `config.yml`:
 
 ```yaml
-sourcePath: ./src
-outputPath: ./docs
-combinePackages: false       # Un único .md o uno por paquete
-tableOfContent: true          # Mostrar índice
-includePublic: true
-includeProtected: false
-includePrivate: false
-printEmptyNotify: true
-printClassIndex: true
-locale: es                    # Idioma de salida (auto, es, en)
+sourcePath: ./src                   # Establece el directorio del código fuente
+outputPath: ./doc                   # Establece el directorio de salida
+outFileName: README.md              # Establece el nombre del fichero de salida
+debugMode: false                    # Activa/Desactiva el modo depuración
+combinePackagesMode: false          # Combina/Separa la documentación
+includePrivate: false               # Muestra/Oculta miembros privados
+includeProtected: false             # Muestra/Oculta miembros protegidos
+includePublic: false                # Muestra/Oculta miembros publicos
+tableOfContent: true                # Muestra/Oculta la tabla de contenido
+printEmptyNotify: true              # Imprime listas de miembros aun estando vacías
+printClassIndex: true               # Muestra/Oculta índice de las clases en la tabla de contenido
+foreSignClassIndex: '#'             # Establece el signo que aparecerá delante de cada Clase
+foreSignClassIndexOnDetails: false  # Mostrar/Ocultar foreSignClassIndex en la tabla de contenido
+foreSignClassIndexOnSubtitle: true  # Mostrar/Ocultar foreSignClassIndex en los subitulos
+markdownLanguage: en                # Lenguaje de la documentación de salida
+methodAnnotations: true             # Mostrar/Ocultar anotaciones en métodos
 ```
 
 ### 🌐 Internacionalización (i18n)
