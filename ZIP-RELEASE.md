@@ -1,5 +1,29 @@
+```
+   d8b                                 888                                          888 
+   Y8P                                 888                                          888 
+                                       888                                          888 
+  8888  8888b.  888  888  8888b.   .d88888  .d88b.   .d8888b     88888b.d88b.   .d88888 
+  "888     "88b 888  888     "88b d88" 888 d88""88b d88P"        888 "888 "88b d88" 888 
+   888 .d888888 Y88  88P .d888888 888  888 888  888 888          888  888  888 888  888 
+   888 888  888  Y8bd8P  888  888 Y88b 888 Y88..88P Y88b.    d8b 888  888  888 Y88b 888 
+   888 "Y888888   Y88P   "Y888888  "Y88888  "Y88P"   "Y8888P Y8P 888  888  888  "Y88888 
+   888                                                                                  
+  d88P                                                                                  
+888P"                                                                                   
+               d8b                        888    d8b 888 d8b 888                        
+               Y8P                        888    Y8P 888 Y8P 888                        
+                                          888        888     888                        
+      88888888 888 88888b.       888  888 888888 888 888 888 888888 888  888            
+         d88P  888 888 "88b      888  888 888    888 888 888 888    888  888            
+        d88P   888 888  888      888  888 888    888 888 888 888    888  888            
+       d88P    888 888 d88P      Y88b 888 Y88b.  888 888 888 Y88b.  Y88b 888            
+      88888888 888 88888P"        "Y88888  "Y888 888 888 888  "Y888  "Y88888            
+                   888                                                   888            
+                   888                                              Y8b d88P            
+                   888                                               "Y88P"             
+```
 
-# Uso: Generar ZIP de instalación (Linux/Mac & Windows)
+# Como usar la utilidad zip-release<br>para generar un ZIP de instalación<br>(Linux/Mac & Windows)
 
 El script zip-release sirve para crear un zip de instalación rápidamente. Este documento explica cómo aprovechar la utilidad zip-release incluida para generar un ZIP de instalación de JavadocMd desde el código compilado.
 
