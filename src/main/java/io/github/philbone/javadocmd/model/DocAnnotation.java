@@ -10,7 +10,7 @@ import java.util.*;
  * Diseñada para integrarse en DocClass, DocMethod, DocField, ...
  * (para la primera entrega se añadirá en DocClass y DocMethod).
  * 
- * @author Felipe M. <philbone@focused.cl>
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  */
 public class DocAnnotation
 {

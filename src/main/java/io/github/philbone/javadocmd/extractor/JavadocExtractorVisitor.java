@@ -15,6 +15,7 @@ import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.expr.ArrayInitializerExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MemberValuePair;
+import com.github.javaparser.javadoc.JavadocBlockTag;
 
 import java.util.Optional;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ import java.util.stream.Collectors;
  *   <li>Registra métodos, constructores y campos de cada clase.</li>
  * </ul>
  *
- * @author Felipe M.
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>.
  * @project JavadocMd
  */
 public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
@@ -68,6 +69,16 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         
         for (AnnotationExpr ae : n.getAnnotations()) {
             docClass.addAnnotation(toDocAnnotation(ae));
+        }
+        
+        // Extrae los tags @ de la clase
+        Javadoc javadoc = extractJavadoc(n);
+        if (javadoc != null) {
+            for (var tag : javadoc.getBlockTags()) {
+                String tagName = tag.getTagName();
+                String tagDesc = tag.getContent().toText();
+                docClass.addTag(new DocTag(tagName, tagDesc));
+            }
         }
 
         // Procesar extends (una sola clase para Class, múltiples para Interface)
@@ -370,7 +381,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         //    como último recurso (opcional). Aquí lo dejamos como no obligatorio.
         if (description == null || description.isEmpty()) {
             // opcional: comentar o activar según prefieras
-            description = JavadocUtils.extractFullDescription(maybe);
+            description = JavadocUtils.extractCleanDescription(maybe);
         }
 
         if (description != null && !description.isEmpty()) {

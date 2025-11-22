@@ -34,7 +34,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Punto de entrada principal del programa <b>javadoc-md</b>.
+ * Punto de entrada principal del programa <b>javadocmd</b>.
  * <p>
  * Esta clase se encarga de:
  * <ul>
@@ -50,8 +50,9 @@ import java.util.stream.Collectors;
  * Actualmente soporta la exportación de documentación hacia un archivo
  * <code>README.md</code> por cada paquete encontrado en el proyecto.</p>
  * 
- * @author Felipe M
+ * @author <a href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  * @project JavadocMD
+ * @see <a href="https://github.com/philbone/javadoc-md/blob/main/README.md">JavadocMd README</a>
  */
 public abstract class JavadocMd
 {

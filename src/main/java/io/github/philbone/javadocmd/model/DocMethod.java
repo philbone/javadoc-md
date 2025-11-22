@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Representa un método en el modelo intermedio de documentación.
  *
- * @author Felipe M. <philbone@focused.cl>
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  */
 public class DocMethod 
 {

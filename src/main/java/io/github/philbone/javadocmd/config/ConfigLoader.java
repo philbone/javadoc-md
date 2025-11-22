@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  * y cargar los datos si son encontrados.
  * De otra manera cargará los valores por defecto.
  * 
- * @author Felipe M. <philbone@focused.cl>
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  */
 public class ConfigLoader
 {
