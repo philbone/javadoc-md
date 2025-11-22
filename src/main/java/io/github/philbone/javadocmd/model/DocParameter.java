@@ -2,7 +2,7 @@ package io.github.philbone.javadocmd.model;
 
 /**
  * 
- * @author Felipe M. philbone@focused.cl
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  */
 public class DocParameter
 {

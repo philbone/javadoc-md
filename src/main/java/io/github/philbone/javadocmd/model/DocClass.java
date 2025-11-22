@@ -19,7 +19,7 @@ import java.util.List;
  * La información contenida en esta clase es utilizada por los exportadores (por ejemplo, {@code MarkdownExporter}) para generar documentación en distintos formatos.
  * </p>
  *
- * @author Felipe M. philbone@focused.cl
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>
  * @see DocField
  * @see DocMethod
  * @see DocConstructor
@@ -62,6 +62,9 @@ public class DocClass {
 
     /** Anotaciones aplicadas directamente a la clase (p. ej. @Deprecated, @RequestMapping). */
     private final List<DocAnnotation> annotations = new ArrayList<>();
+    
+    /** Etiquetas aplicadas directamente a la clase */
+    private final List<DocTag> tags = new ArrayList<>();
 
     /**
      * Crea una nueva representación de clase en el modelo intermedio.
@@ -108,13 +111,23 @@ public class DocClass {
 
     /** @return lista de anotaciones aplicadas sobre la clase. */
     public List<DocAnnotation> getAnnotations() { return annotations; }
+    
+    /** @return lista de tags de la clase. */
+    public List<DocTag> getTags() { return tags; }
 
     /**
      * Agrega una anotación al modelo de la clase.
      *
      * @param annotation anotación a añadir
-     */
+     */    
     public void addAnnotation(DocAnnotation annotation) { annotations.add(annotation); }
+    
+    /**
+     * Agrega un tag a la lista de tags de la clase
+     * 
+     * @param tag el tag a añadir
+     */    
+    public void addTag(DocTag tag) { tags.add(tag); }
 
     // --- Manejo de campos, métodos y constructores ---
 

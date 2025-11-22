@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * JavaApiLinker.linkIfJavaType("List<String>");
  * // → [List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)<String>
  * }</pre>
- * @author Felipe M.
+ * @author <a target="_blank" href="https://github.com/philbone">Felipe M</a> <philbone@focused.cl>.
  */
 public class JavaApiLinker
 {

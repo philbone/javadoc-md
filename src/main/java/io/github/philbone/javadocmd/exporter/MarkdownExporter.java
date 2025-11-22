@@ -126,7 +126,18 @@ public class MarkdownExporter implements DocExporter
             }
 
             builder.codeBlock(signature.toString(), "java");
-
+            builder.tag("\n");
+            
+            // ========== Tags ================= 
+            if(docClass.getTags() != null) {
+                for(DocTag tg : docClass.getTags()){
+                    builder.listItem("`@" + tg.getName() + "` " + tg.getDescription());
+                }
+            }else{
+                builder.tag("> ")
+                       .listItem("no tags!");
+            }
+            
             // ========== Descripción ==========
             if (docClass.getDescription() != null && !docClass.getDescription().isEmpty()) {
                 String desc = JavadocUtils.normalizeImages(docClass.getDescription());
