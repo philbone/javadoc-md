@@ -381,7 +381,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         //    como último recurso (opcional). Aquí lo dejamos como no obligatorio.
         if (description == null || description.isEmpty()) {
             // opcional: comentar o activar según prefieras
-            description = JavadocUtils.extractFullDescription(maybe);
+            description = JavadocUtils.extractCleanDescription(maybe);
         }
 
         if (description != null && !description.isEmpty()) {

@@ -87,7 +87,10 @@ public class JavadocUtils
     /**
      * Devuelve la "descripción completa" del Javadoc, incluyendo los block tags
      * en forma textual, pero ignorando {@code @project}.
+     *      
+     * @deprecated replaced by {@link #extractCleanDescription(java.util.Optional) }
      */
+    @Deprecated
     public static String extractFullDescription(Optional<JavadocComment> maybeComment) {
         if (maybeComment == null || maybeComment.isEmpty()) return "";
 
@@ -115,6 +118,20 @@ public class JavadocUtils
                     }
                 });
 
+        return sb.toString().trim();
+    }
+    
+    public static String extractCleanDescription(Optional<JavadocComment> maybeComment) {
+        if (maybeComment == null || maybeComment.isEmpty()) return "";
+
+        Javadoc javadoc = parseCleaning(maybeComment.get());
+        StringBuilder sb = new StringBuilder();
+
+        String main = javadoc.getDescription().toText().trim();
+        if (!main.isEmpty()) {
+            sb.append(main);
+        }
+        
         return sb.toString().trim();
     }
     
