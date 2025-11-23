@@ -54,6 +54,13 @@ public class Config
     
     private boolean methodAnnotations;
     
+    private boolean authorClassTag;
+    private boolean deprecatedClassTag;
+    private boolean seeClassTag;
+    private boolean serialClassTag;
+    private boolean sinceClassTag;
+    private boolean versionClassTag;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "./src";
@@ -69,6 +76,15 @@ public class Config
         this.foreSignClassIndexOnSubtitle = true;
         this.markdownLanguage = "en";
         this.methodAnnotations = true;
+        
+        //  CLASS TAGS        
+        this.authorClassTag = true;
+        this.deprecatedClassTag = true;
+        this.seeClassTag = true;
+        this.serialClassTag = true;
+        this.sinceClassTag = true;
+        this.versionClassTag = true;
+        
     }
 
     /**
@@ -238,4 +254,54 @@ public class Config
     public void setMethodAnnotations(boolean methodAnnotations) {
         this.methodAnnotations = methodAnnotations;
     }
+
+    public boolean isAuthorClassTag() {
+        return authorClassTag;
+    }
+
+    public void setAuthorClassTag(boolean authorClassTag) {
+        this.authorClassTag = authorClassTag;
+    }
+
+    public boolean isDeprecatedClassTag() {
+        return deprecatedClassTag;
+    }
+
+    public void setDeprecatedClassTag(boolean deprecatedClassTag) {
+        this.deprecatedClassTag = deprecatedClassTag;
+    }
+
+    public boolean isSeeClassTag() {
+        return seeClassTag;
+    }
+
+    public void setSeeClassTag(boolean seeClassTag) {
+        this.seeClassTag = seeClassTag;
+    }
+
+    public boolean isSerialClassTag() {
+        return serialClassTag;
+    }
+
+    public void setSerialClassTag(boolean serialClassTag) {
+        this.serialClassTag = serialClassTag;
+    }
+
+    public boolean isSinceClassTag() {
+        return sinceClassTag;
+    }
+
+    public void setSinceClassTag(boolean sinceClassTag) {
+        this.sinceClassTag = sinceClassTag;
+    }
+
+    public boolean isVersionClassTag() {
+        return versionClassTag;
+    }
+
+    public void setVersionClassTag(boolean versionClassTag) {
+        this.versionClassTag = versionClassTag;
+    }
+    
+    
 }
