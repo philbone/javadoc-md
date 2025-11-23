@@ -147,6 +147,18 @@ public class GetCommand implements Callable<Integer>
                 return String.valueOf(config.getMarkdownLanguage());
             case "methodannotations":
                 return String.valueOf(config.isMethodAnnotations());
+            case "authorclasstag":
+                return String.valueOf(config.isAuthorClassTag());
+            case "deprecatedclasstag":
+                return String.valueOf(config.isDeprecatedClassTag());
+            case "seeclasstag":
+                return String.valueOf(config.isSeeClassTag());
+            case "serialclasstag":
+                return String.valueOf(config.isSerialClassTag());
+            case "sinceclasstag":
+                return String.valueOf(config.isSinceClassTag());
+            case "versionclasstag":
+                return String.valueOf(config.isVersionClassTag());
             default:
                 return null;
         }
@@ -154,6 +166,7 @@ public class GetCommand implements Callable<Integer>
 
     /**
      * Permite configurar el archivo de configuración desde fuera
+     * @param configFile
      */
     public void setConfigFile(String configFile) {
         this.configFile = configFile;
