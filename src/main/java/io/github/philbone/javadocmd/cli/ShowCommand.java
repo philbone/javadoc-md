@@ -58,7 +58,10 @@ public class ShowCommand implements Callable<Integer>
             // Verificar si existe el archivo de configuración
             if (!ConfigLoader.configExists(actualConfigFile)) {
                 System.err.println(appMessages.getString("message.show.noConfig"));
-                System.out.println("  " + appMessages.getString("message.show.expectedPath") + ": " + actualConfigFile);
+                System.out.println("  "
+                        + appMessages.getString("message.show.expectedPath")
+                        + ": " + actualConfigFile);
+                
                 return 1;
             }
 
@@ -126,6 +129,16 @@ public class ShowCommand implements Callable<Integer>
                 config.isForeSignClassIndexOnSubtitle());
         printField(messages.getString("show.markdownLanguage"), config.getMarkdownLanguage());
         printField(messages.getString("show.methodAnnotations"), config.isMethodAnnotations());
+                
+        System.out.println("\n" + messages.getString("show.classTagsHeader") + " ====");
+        System.out.println("═".repeat(50));
+        
+        printField(messages.getString("show.authorClassTag"), config.isAuthorClassTag());
+        printField(messages.getString("show.deprecatedClassTag"), config.isDeprecatedClassTag());
+        printField(messages.getString("show.seeClassTag"), config.isSeeClassTag());
+        printField(messages.getString("show.serialClassTag"), config.isSerialClassTag());
+        printField(messages.getString("show.sinceClassTag"), config.isSinceClassTag());
+        printField(messages.getString("show.versionClassTag"), config.isVersionClassTag());
 
         System.out.println("═".repeat(50));
     }
