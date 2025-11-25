@@ -98,6 +98,9 @@ public class SetCommand implements Callable<Integer>
     
     @Option(names = {"--versionClassTag"}, descriptionKey = "set.versionClassTag")
     private Boolean versionClassTag;
+    
+    @Option(names = {"--projectClassTag"}, descriptionKey = "set.projectClassTag")
+    private Boolean projectClassTag;
 
     @Option(
             names = {"--configFile"},
@@ -289,6 +292,11 @@ public class SetCommand implements Callable<Integer>
         if (versionClassTag != null && versionClassTag != config.isVersionClassTag()) {
             config.setVersionClassTag(versionClassTag);
             changes.add(messages.getString("set.versionClassTag") + ": " + versionClassTag);
+        }
+        
+        if (projectClassTag != null && projectClassTag != config.isProjectClassTag()) {
+            config.setProjectClassTag(projectClassTag);
+            changes.add(messages.getString("set.projectClassTag") + ": " + projectClassTag);
         }
 
         return changes;

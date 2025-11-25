@@ -142,6 +142,7 @@ public class ShowCommand implements Callable<Integer>
         printField(messages.getString("show.serialClassTag"), "serialClassTag", config.isSerialClassTag());
         printField(messages.getString("show.sinceClassTag"), "sinceClassTag", config.isSinceClassTag());
         printField(messages.getString("show.versionClassTag"), "versionClassTag", config.isVersionClassTag());
+        printField(messages.getString("show.projectClassTag"), "projectClassTag", config.isProjectClassTag());
 
         System.out.println("═".repeat(100));
     }

@@ -159,6 +159,8 @@ public class GetCommand implements Callable<Integer>
                 return String.valueOf(config.isSinceClassTag());
             case "versionclasstag":
                 return String.valueOf(config.isVersionClassTag());
+            case "projectclasstag":
+                return String.valueOf(config.isProjectClassTag());                
             default:
                 return null;
         }

@@ -61,6 +61,8 @@ public class Config
     private boolean sinceClassTag;
     private boolean versionClassTag;
     
+    private boolean projectClassTag;
+    
     // Constructor con valores por defecto
     public Config() {
         this.sourcePath = "./src";
@@ -85,6 +87,8 @@ public class Config
         this.sinceClassTag = true;
         this.versionClassTag = true;
         
+        // Custom tagas
+        this.projectClassTag = true;
     }
 
     /**
@@ -302,6 +306,12 @@ public class Config
     public void setVersionClassTag(boolean versionClassTag) {
         this.versionClassTag = versionClassTag;
     }
-    
-    
+
+    public boolean isProjectClassTag() {
+        return projectClassTag;
+    }
+
+    public void setProjectClassTag(boolean projectClassTag) {
+        this.projectClassTag = projectClassTag;
+    }
 }
