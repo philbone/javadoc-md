@@ -131,7 +131,9 @@ public class MarkdownExporter implements DocExporter
             // ========== Tags ================= 
             if(docClass.getTags() != null) {
                 for(DocTag tg : docClass.getTags()){
-                    builder.listItem("`@" + tg.getName() + "` " + tg.getDescription());
+                    if( isTagPrintable(tg.getName()) ){
+                        builder.listItem("`@" + tg.getName() + "` " + tg.getDescription());
+                    }
                 }
             }else{
                 builder.tag("> ")
@@ -228,6 +230,37 @@ public class MarkdownExporter implements DocExporter
             r = false;
         }
         if ( visibility.equals("protected") && !config.isIncludeProtected() ) {
+            r = false;
+        }
+        return r;
+    }
+    
+    /**
+     * Determina si el tag de clase es imprimible
+     * @param tagName el nombre del tag a evaluar
+     * @return true si debe ser imprimido, false si debe ser omitido
+     */
+    private boolean isTagPrintable(String tagName){
+        boolean r = true;        
+        if( tagName.equals("author") && !config.isAuthorClassTag() ){
+            r = false;
+        }
+        if( tagName.equals("deprecated") && !config.isDeprecatedClassTag()){
+            r = false;
+        }
+        if( tagName.equals("see") && !config.isSeeClassTag()){
+            r = false;
+        }
+        if( tagName.equals("serial") && !config.isSerialClassTag()){
+            r = false;
+        }
+        if( tagName.equals("since") && !config.isSinceClassTag()){
+            r = false;
+        }
+        if( tagName.equals("version") && !config.isVersionClassTag() ){
+            r = false;
+        }        
+        if( tagName.equals("project") && !config.isProjectClassTag()){
             r = false;
         }
         return r;

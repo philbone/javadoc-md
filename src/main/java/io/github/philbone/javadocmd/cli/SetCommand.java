@@ -80,6 +80,27 @@ public class SetCommand implements Callable<Integer>
     
     @Option(names = {"--methodAnnotations"}, descriptionKey = "set.methodAnnotations")
     private Boolean methodAnnotations;
+    
+    @Option(names = {"--authorClassTag"}, descriptionKey = "set.authorClassTag")
+    private Boolean authorClassTag;
+    
+    @Option(names = {"--deprecatedClassTag"}, descriptionKey = "set.deprecatedClassTag")
+    private Boolean deprecatedClassTag;
+    
+    @Option(names = {"--seeClassTag"}, descriptionKey = "set.seeClassTag")
+    private Boolean seeClassTag;
+    
+    @Option(names = {"--serialClassTag"}, descriptionKey = "set.serialClassTag")
+    private Boolean serialClassTag;
+    
+    @Option(names = {"--sinceClassTag"}, descriptionKey = "set.sinceClassTag")
+    private Boolean sinceClassTag;
+    
+    @Option(names = {"--versionClassTag"}, descriptionKey = "set.versionClassTag")
+    private Boolean versionClassTag;
+    
+    @Option(names = {"--projectClassTag"}, descriptionKey = "set.projectClassTag")
+    private Boolean projectClassTag;
 
     @Option(
             names = {"--configFile"},
@@ -240,6 +261,42 @@ public class SetCommand implements Callable<Integer>
         if (methodAnnotations != null && methodAnnotations != config.isMethodAnnotations()) {
             config.setMethodAnnotations(methodAnnotations);
             changes.add(messages.getString("set.methodAnnotations") + ": " + methodAnnotations);
+        }
+        
+        // CLASS TAG
+        if (authorClassTag != null && authorClassTag != config.isAuthorClassTag()) {
+            config.setAuthorClassTag(authorClassTag);
+            changes.add(messages.getString("set.authorClassTag") + ": " + authorClassTag);
+        }
+        
+        if (deprecatedClassTag != null && deprecatedClassTag != config.isDeprecatedClassTag()) {
+            config.setDeprecatedClassTag(deprecatedClassTag);
+            changes.add(messages.getString("set.deprecatedClassTag") + ": " + deprecatedClassTag);
+        }
+        
+        if (seeClassTag != null && seeClassTag != config.isSeeClassTag()) {
+            config.setSeeClassTag(seeClassTag);
+            changes.add(messages.getString("set.seeClassTag") + ": " + seeClassTag);
+        }
+        
+        if (serialClassTag != null && serialClassTag != config.isSerialClassTag()) {
+            config.setSerialClassTag(serialClassTag);
+            changes.add(messages.getString("set.serialClassTag") + ": " + serialClassTag);
+        }
+        
+        if (sinceClassTag != null && sinceClassTag != config.isSinceClassTag()) {
+            config.setSinceClassTag(sinceClassTag);
+            changes.add(messages.getString("set.sinceClassTag") + ": " + sinceClassTag);
+        }
+        
+        if (versionClassTag != null && versionClassTag != config.isVersionClassTag()) {
+            config.setVersionClassTag(versionClassTag);
+            changes.add(messages.getString("set.versionClassTag") + ": " + versionClassTag);
+        }
+        
+        if (projectClassTag != null && projectClassTag != config.isProjectClassTag()) {
+            config.setProjectClassTag(projectClassTag);
+            changes.add(messages.getString("set.projectClassTag") + ": " + projectClassTag);
         }
 
         return changes;

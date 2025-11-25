@@ -58,7 +58,10 @@ public class ShowCommand implements Callable<Integer>
             // Verificar si existe el archivo de configuración
             if (!ConfigLoader.configExists(actualConfigFile)) {
                 System.err.println(appMessages.getString("message.show.noConfig"));
-                System.out.println("  " + appMessages.getString("message.show.expectedPath") + ": " + actualConfigFile);
+                System.out.println("  "
+                        + appMessages.getString("message.show.expectedPath")
+                        + ": " + actualConfigFile);
+                
                 return 1;
             }
 
@@ -101,46 +104,61 @@ public class ShowCommand implements Callable<Integer>
         ResourceBundle messages = ResourceBundle.getBundle("messages");
 
         System.out.println("\n" + messages.getString("show.header"));
-        System.out.println("═".repeat(50));
-
+        System.out.println("═".repeat(100));
+        
         // Mostrar la ruta del archivo de configuración
-        printField(messages.getString("show.configFilePath"), configFilePath);
+        System.out.println(String.format("               %-20s|%32s | %s", "USE", "KEY", "VALUE"));
+        System.out.println("─".repeat(100));
+        //System.out.println("-".repeat(50));
+        printField(messages.getString("show.configFilePath"), "configFilePath", configFilePath);
 
         // Mostrar cada campo con formato consistente
-        printField(messages.getString("show.sourcePath"), config.getSourcePath());
-        printField(messages.getString("show.outputPath"), config.getOutputPath());
-        printField(messages.getString("show.outFileName"), config.getOutFileName());
-        printField(messages.getString("show.combinePackagesMode"), config.isCombinePackagesMode());
-        printField(messages.getString("show.includePrivate"), config.isIncludePrivate());
-        printField(messages.getString("show.includeProtected"), config.isIncludeProtected());
-        printField(messages.getString("show.includePublic"), config.isIncludePublic());
-        printField(messages.getString("show.debugMode"), config.isDebugMode());
-        printField(messages.getString("show.tableOfContent"), config.isTableOfContent());
-        printField(messages.getString("show.printEmptyNotify"), config.isPrintEmptyNotify());
-        printField(messages.getString("show.printClassIndex"), config.isPrintClassIndex());
-        printField(messages.getString("show.foreSignClassIndex"),
+        printField(messages.getString("show.sourcePath"), "sourcePath", config.getSourcePath());
+        printField(messages.getString("show.outputPath"), "outputPath", config.getOutputPath());
+        printField(messages.getString("show.outFileName"), "outFileName", config.getOutFileName());
+        printField(messages.getString("show.combinePackagesMode"), "combinePackagesMode", config.isCombinePackagesMode());
+        printField(messages.getString("show.includePrivate"), "includePrivate", config.isIncludePrivate());
+        printField(messages.getString("show.includeProtected"), "includeProtected", config.isIncludeProtected());
+        printField(messages.getString("show.includePublic"), "includePublic", config.isIncludePublic());
+        printField(messages.getString("show.debugMode"), "debugMode", config.isDebugMode());
+        printField(messages.getString("show.tableOfContent"), "tableOfContent", config.isTableOfContent());
+        printField(messages.getString("show.printEmptyNotify"), "printEmptyNotify", config.isPrintEmptyNotify());
+        printField(messages.getString("show.printClassIndex"), "printClassIndex", config.isPrintClassIndex());
+        printField(messages.getString("show.foreSignClassIndex"), "foreSignClassIndex", 
                 "\"" + config.getForeSignClassIndex() + "\"");
-        printField(messages.getString("show.foreSignClassIndexOnDetails"),
+        printField(messages.getString("show.foreSignClassIndexOnDetails"), "foreSignClassIndexOnDetails",
                 config.isForeSignClassIndexOnDetails());
-        printField(messages.getString("show.foreSignClassIndexOnSubtitle"),
+        printField(messages.getString("show.foreSignClassIndexOnSubtitle"), "foreSignClassIndexOnSubtitle",
                 config.isForeSignClassIndexOnSubtitle());
-        printField(messages.getString("show.markdownLanguage"), config.getMarkdownLanguage());
-        printField(messages.getString("show.methodAnnotations"), config.isMethodAnnotations());
+        printField(messages.getString("show.markdownLanguage"),"markdownLanguage", config.getMarkdownLanguage());
+        printField(messages.getString("show.methodAnnotations"), "methodAnnotations", config.isMethodAnnotations());
+                
+        System.out.println("\n" + messages.getString("show.classTagsHeader"));
+        System.out.println("═".repeat(100));
+        
+        printField(messages.getString("show.authorClassTag"), "authorClassTag", config.isAuthorClassTag());
+        printField(messages.getString("show.deprecatedClassTag"), "deprecatedClassTag", config.isDeprecatedClassTag());
+        printField(messages.getString("show.seeClassTag"), "seeClassTag", config.isSeeClassTag());
+        printField(messages.getString("show.serialClassTag"), "serialClassTag", config.isSerialClassTag());
+        printField(messages.getString("show.sinceClassTag"), "sinceClassTag", config.isSinceClassTag());
+        printField(messages.getString("show.versionClassTag"), "versionClassTag", config.isVersionClassTag());
+        printField(messages.getString("show.projectClassTag"), "projectClassTag", config.isProjectClassTag());
 
-        System.out.println("═".repeat(50));
+        System.out.println("═".repeat(100));
     }
 
-    private void printField(String label, Object value) {
-        System.out.printf("  %-35s : %s%n", label, value);
+    private void printField(String label, String key, Object value) {
+        System.out.printf("  %-33s %33s: %s%n", label, key, value);
     }
 
-    private void printField(String label, boolean value) {
+    private void printField(String label, String key , boolean value) {
         String formattedValue = value ? "✅ true" : "❌ false";
-        System.out.printf("  %-35s : %s%n", label, formattedValue);
+        System.out.printf("  %-33s %33s: %s%n", label, key, formattedValue);
     }
 
     /**
      * Permite configurar el archivo de configuración desde fuera
+     * @param configFile
      */
     public void setConfigFile(String configFile) {
         this.configFile = configFile;
