@@ -143,6 +143,22 @@ public class ShowCommand implements Callable<Integer>
         printField(messages.getString("show.sinceClassTag"), "sinceClassTag", config.isSinceClassTag());
         printField(messages.getString("show.versionClassTag"), "versionClassTag", config.isVersionClassTag());
         printField(messages.getString("show.projectClassTag"), "projectClassTag", config.isProjectClassTag());
+        
+        System.out.println("\n" + messages.getString("show.methodTagsHeader"));
+        System.out.println("═".repeat(100));
+        
+        printField(messages.getString("show.paramMethodTag"), "paramMethodTag", config.isParamMethodTag());
+        printField(messages.getString("show.returnMethodTag"), "returnMethodTag", config.isReturnMethodTag());
+        printField(messages.getString("show.throwsMethodTag"), "throwsMethodTag", config.isThrowsMethodTag());
+        printField(messages.getString("show.exceptionMethodTag"), "exceptionMethodTag", config.isExceptionMethodTag());
+        printField(messages.getString("show.serialDataMethodTag"), "serialDataMethodTag", config.isSerialDataMethodTag());
+        
+        printField(messages.getString("show.authorMethodTag"), "authorMethodTag", config.isAuthorMethodTag());
+        printField(messages.getString("show.deprecatedMethodTag"), "deprecatedMethodTag", config.isDeprecatedMethodTag());
+        printField(messages.getString("show.seeMethodTag"), "seeMethodTag", config.isSeeMethodTag());
+        printField(messages.getString("show.serialMethodTag"), "serialMethodTag", config.isSerialMethodTag());
+        printField(messages.getString("show.sinceMethodTag"), "sinceMethodTag", config.isSinceMethodTag());
+        printField(messages.getString("show.versionMethodTag"), "versionMethodTag", config.isVersionMethodTag());
 
         System.out.println("═".repeat(100));
     }
