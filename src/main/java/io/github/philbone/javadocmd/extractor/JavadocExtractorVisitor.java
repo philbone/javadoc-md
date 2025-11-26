@@ -174,7 +174,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         });
     }
 
-    // ========== MÉTODOS PRIVADOS ========== //
+    // ========== MÉTODOS ========== //
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
         String description = JavadocUtils.extractDescription(
                 n.getComment().filter(c -> c instanceof JavadocComment)
@@ -222,6 +222,16 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         
         for (AnnotationExpr ae : n.getAnnotations()) {
             docMethod.addAnnotation(toDocAnnotation(ae));
+        }
+        
+        // Extrae los tags de método
+        //Javadoc javadoc = extractJavadoc(n);
+        if (javadoc != null) {
+            for (var tag : javadoc.getBlockTags()) {
+                String tagName = tag.getTagName();
+                String tagDesc = tag.getContent().toText();
+                docClass.addTag(new DocTag(tagName, tagDesc));
+            }
         }
 
         docParams.forEach(docMethod::addDocParameter);
