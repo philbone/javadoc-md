@@ -52,6 +52,8 @@ public class MarkdownExporter implements DocExporter
         MarkdownBuilder builder = new MarkdownBuilder();
         this.docPackage = docPackage;
         
+        builder.tag("<style>ul {list-style-type: none;}</style>");
+        
         // Encabezado principal
         if (this.docPackage.getProjectName() != null && !this.docPackage.getProjectName().isEmpty()) {
             builder.title(this.docPackage.getProjectName());
@@ -377,11 +379,11 @@ public class MarkdownExporter implements DocExporter
             if (method.getVisibility().equals(text)) {
                 if (isPrintable(method.getVisibility())) {
                     String returnType = formatCodeOrLink(method.getReturnType());
-                    String signatureMeth = " `" + method.getVisibility() + " "
+                    String signatureMeth = "⭐️ **`" + method.getVisibility() + " "
                             + (method.isStatic() ? " static`" : "`")
                             + (method.isVoid() ? " **"+ returnType +"**" : returnType)
                             + " `" + method.getName()
-                            + "(" + String.join(", ", method.getParameters()) + ")`";
+                            + "(" + String.join(", ", method.getParameters()) + ")`**";
                     
                     //methodBuilder.paragraph(annotations.toString()+ "\n" +signatureMeth.trim());
                     methodBuilder.tag("- " + signatureMeth.trim())
@@ -391,6 +393,11 @@ public class MarkdownExporter implements DocExporter
                     if (method.getDescription() != null && !method.getDescription().isEmpty()) {
                         String desc = JavadocUtils.normalizeImages(method.getDescription());
                         methodBuilder.blockquote(desc);
+                    }
+                    
+                    for (DocTag tag : method.getTags()){
+                        methodBuilder.tag("> ");
+                        methodBuilder.listItem("*@" + tag.getName() + "* " + tag.getDescription());
                     }
 
                     for (DocParameter param : method.getDocParameters()) {

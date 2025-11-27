@@ -54,6 +54,7 @@ public class Config
     
     private boolean methodAnnotations;
     
+    // CLASS TAGS
     private boolean authorClassTag;
     private boolean deprecatedClassTag;
     private boolean seeClassTag;
@@ -62,6 +63,20 @@ public class Config
     private boolean versionClassTag;
     
     private boolean projectClassTag;
+    
+    // METHOD TAGS
+    private boolean paramMethodTag;
+    private boolean returnMethodTag;
+    private boolean throwsMethodTag;
+    private boolean exceptionMethodTag;
+    private boolean serialDataMethodTag;
+    
+    private boolean authorMethodTag;
+    private boolean deprecatedMethodTag;
+    private boolean seeMethodTag;
+    private boolean serialMethodTag;
+    private boolean sinceMethodTag;
+    private boolean versionMethodTag;
     
     // Constructor con valores por defecto
     public Config() {
@@ -87,8 +102,22 @@ public class Config
         this.sinceClassTag = true;
         this.versionClassTag = true;
         
-        // Custom tagas
+        // CLASS CUSTOM TAGS
         this.projectClassTag = true;
+        
+        // METHOD TAGS
+        this.paramMethodTag = true;
+        this.returnMethodTag = true;
+        this.throwsMethodTag = true;
+        this.exceptionMethodTag = true;
+        this.serialDataMethodTag = true;
+
+        this.authorMethodTag = true;
+        this.deprecatedMethodTag = true;
+        this.seeMethodTag = true;
+        this.serialMethodTag = true;
+        this.sinceMethodTag = true;
+        this.versionMethodTag = true;
     }
 
     /**
@@ -314,4 +343,94 @@ public class Config
     public void setProjectClassTag(boolean projectClassTag) {
         this.projectClassTag = projectClassTag;
     }
+
+    public boolean isParamMethodTag() {
+        return paramMethodTag;
+    }
+
+    public void setParamMethodTag(boolean paramMethodTag) {
+        this.paramMethodTag = paramMethodTag;
+    }
+
+    public boolean isReturnMethodTag() {
+        return returnMethodTag;
+    }
+
+    public void setReturnMethodTag(boolean returnMethodTag) {
+        this.returnMethodTag = returnMethodTag;
+    }
+
+    public boolean isThrowsMethodTag() {
+        return throwsMethodTag;
+    }
+
+    public void setThrowsMethodTag(boolean throwsMethodTag) {
+        this.throwsMethodTag = throwsMethodTag;
+    }
+
+    public boolean isExceptionMethodTag() {
+        return exceptionMethodTag;
+    }
+
+    public void setExceptionMethodTag(boolean exceptionMethodTag) {
+        this.exceptionMethodTag = exceptionMethodTag;
+    }
+
+    public boolean isSerialDataMethodTag() {
+        return serialDataMethodTag;
+    }
+
+    public void setSerialDataMethodTag(boolean serialDataMethodTag) {
+        this.serialDataMethodTag = serialDataMethodTag;
+    }
+
+    public boolean isAuthorMethodTag() {
+        return authorMethodTag;
+    }
+
+    public void setAuthorMethodTag(boolean authorMethodTag) {
+        this.authorMethodTag = authorMethodTag;
+    }
+
+    public boolean isDeprecatedMethodTag() {
+        return deprecatedMethodTag;
+    }
+
+    public void setDeprecatedMethodTag(boolean deprecatedMethodTag) {
+        this.deprecatedMethodTag = deprecatedMethodTag;
+    }
+
+    public boolean isSeeMethodTag() {
+        return seeMethodTag;
+    }
+
+    public void setSeeMethodTag(boolean seeMethodTag) {
+        this.seeMethodTag = seeMethodTag;
+    }
+
+    public boolean isSerialMethodTag() {
+        return serialMethodTag;
+    }
+
+    public void setSerialMethodTag(boolean serialMethodTag) {
+        this.serialMethodTag = serialMethodTag;
+    }
+
+    public boolean isSinceMethodTag() {
+        return sinceMethodTag;
+    }
+
+    public void setSinceMethodTag(boolean sinceMethodTag) {
+        this.sinceMethodTag = sinceMethodTag;
+    }
+
+    public boolean isVersionMethodTag() {
+        return versionMethodTag;
+    }
+
+    public void setVersionMethodTag(boolean versionMethodTag) {
+        this.versionMethodTag = versionMethodTag;
+    }
+    
+    
 }

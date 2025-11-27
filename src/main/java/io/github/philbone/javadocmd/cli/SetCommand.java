@@ -101,6 +101,39 @@ public class SetCommand implements Callable<Integer>
     
     @Option(names = {"--projectClassTag"}, descriptionKey = "set.projectClassTag")
     private Boolean projectClassTag;
+    
+    @Option(names = {"--paramMethodTag"}, descriptionKey = "set.paramMethodTag" )
+    private Boolean paramMethodTag;
+    
+    @Option(names = {"--returnMethodTag"}, descriptionKey = "set.returnMethodTag" )
+    private Boolean returnMethodTag;
+    
+    @Option(names = {"--throwsMethodTag"}, descriptionKey = "set.throwsMethodTag" )
+    private Boolean throwsMethodTag;
+    
+    @Option(names = {"--exceptionMethodTag"}, descriptionKey = "set.exceptionMethodTag" )
+    private Boolean exceptionMethodTag;
+    
+    @Option(names = {"--serialDataMethodTag"}, descriptionKey = "set.serialDataMethodTag" )
+    private Boolean serialDataMethodTag;
+        
+    @Option(names = {"--authorMethodTag"}, descriptionKey = "set.authorMethodTag" )
+    private Boolean authorMethodTag;
+    
+    @Option(names = {"--deprecatedMethodTag"}, descriptionKey = "set.deprecatedMethodTag" )
+    private Boolean deprecatedMethodTag;
+    
+    @Option(names = {"--seeMethodTag"}, descriptionKey = "set.seeMethodTag" )
+    private Boolean seeMethodTag;
+    
+    @Option(names = {"--serialMethodTag"}, descriptionKey = "set.serialMethodTag" )
+    private Boolean serialMethodTag;
+    
+    @Option(names = {"--sinceMethodTag"}, descriptionKey = "set.sinceMethodTag" )
+    private Boolean sinceMethodTag;
+    
+    @Option(names = {"--versionMethodTag"}, descriptionKey = "set.versionMethodTag" )
+    private Boolean versionMethodTag;
 
     @Option(
             names = {"--configFile"},
@@ -298,7 +331,52 @@ public class SetCommand implements Callable<Integer>
             config.setProjectClassTag(projectClassTag);
             changes.add(messages.getString("set.projectClassTag") + ": " + projectClassTag);
         }
-
+        // METHOD TAGS
+        if (paramMethodTag != null && paramMethodTag != config.isParamMethodTag()) {
+            config.setParamMethodTag(paramMethodTag);
+            changes.add(messages.getString("set.paramMethodTag") + ": " + paramMethodTag);
+        }
+        if (returnMethodTag != null && returnMethodTag != config.isReturnMethodTag()) {
+            config.setReturnMethodTag(returnMethodTag);
+            changes.add(messages.getString("set.returnMethodTag") + ": " + returnMethodTag);
+        }
+        if (throwsMethodTag != null && throwsMethodTag != config.isThrowsMethodTag()) {
+            config.setThrowsMethodTag(throwsMethodTag);
+            changes.add(messages.getString("set.throwsMethodTag") + ": " + throwsMethodTag);
+        }
+        if (exceptionMethodTag != null && exceptionMethodTag != config.isExceptionMethodTag()) {
+            config.setExceptionMethodTag(exceptionMethodTag);
+            changes.add(messages.getString("set.exceptionMethodTag") + ": " + exceptionMethodTag);
+        }
+        if (serialDataMethodTag != null && serialDataMethodTag != config.isSerialDataMethodTag()) {
+            config.setSerialDataMethodTag(serialDataMethodTag);
+            changes.add(messages.getString("set.serialDataMethodTag") + ": " + serialDataMethodTag);
+        }        
+        if (authorMethodTag != null && authorMethodTag != config.isAuthorMethodTag()) {
+            config.setAuthorMethodTag(authorMethodTag);
+            changes.add(messages.getString("set.authorMethodTag") + ": " + authorMethodTag);
+        }
+        if (deprecatedMethodTag != null && deprecatedMethodTag != config.isDeprecatedMethodTag()) {
+            config.setDeprecatedMethodTag(deprecatedMethodTag);
+            changes.add(messages.getString("set.deprecatedMethodTag") + ": " + deprecatedMethodTag);
+        }
+        if (seeMethodTag != null && seeMethodTag != config.isSeeMethodTag()) {
+            config.setSeeMethodTag(seeMethodTag);
+            changes.add(messages.getString("set.seeMethodTag") + ": " + seeMethodTag);
+        }
+        if (serialMethodTag != null && serialMethodTag != config.isSerialMethodTag()) {
+            config.setSerialMethodTag(serialMethodTag);
+            changes.add(messages.getString("set.serialMethodTag") + ": " + serialMethodTag);
+        }
+        if (sinceMethodTag != null && sinceMethodTag != config.isSinceMethodTag()) {
+            config.setSinceMethodTag(sinceMethodTag);
+            changes.add(messages.getString("set.sinceMethodTag") + ": " + sinceMethodTag);
+        }
+        if (versionMethodTag != null && versionMethodTag != config.isVersionMethodTag()) {
+            config.setVersionMethodTag(versionMethodTag);
+            changes.add(messages.getString("set.versionMethodTag") + ": " + versionMethodTag);
+        }
+        
         return changes;
     }
 

@@ -160,7 +160,29 @@ public class GetCommand implements Callable<Integer>
             case "versionclasstag":
                 return String.valueOf(config.isVersionClassTag());
             case "projectclasstag":
-                return String.valueOf(config.isProjectClassTag());                
+                return String.valueOf(config.isProjectClassTag());
+            case "parammethodtag":
+                return String.valueOf(config.isParamMethodTag());
+            case "returnmethodtag":
+                return String.valueOf(config.isReturnMethodTag());
+            case "throwsmethodtag":
+                return String.valueOf(config.isThrowsMethodTag());
+            case "exceptionmethodtag":
+                return String.valueOf(config.isExceptionMethodTag());
+            case "serialdatamethodtag":
+                return String.valueOf(config.isSerialDataMethodTag());
+            case "authormethodtag":
+                return String.valueOf(config.isAuthorMethodTag());
+            case "deprecatedmethodtag":
+                return String.valueOf(config.isDeprecatedMethodTag());
+            case "seemethodtag":
+                return String.valueOf(config.isSeeMethodTag());
+            case "serialmethodtag":
+                return String.valueOf(config.isSerialMethodTag());
+            case "sincemethodtag":
+                return String.valueOf(config.isSinceMethodTag());
+            case "versionmethodtag":
+                return String.valueOf(config.isVersionMethodTag());                
             default:
                 return null;
         }

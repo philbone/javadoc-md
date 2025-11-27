@@ -20,7 +20,9 @@ public class DocMethod
     private String returnDescription;
     private final List<DocParameter> docParameters = new ArrayList<>();
     private final List<DocException> exceptions = new ArrayList<>();   
-    private final List<DocAnnotation> annotations = new ArrayList<>();
+    private final List<DocAnnotation> annotations = new ArrayList<>();    
+    /** Etiquetas aplicadas directamente al método */
+    private final List<DocTag> tags = new ArrayList<>();
 
     public DocMethod(String name, String returnType, List<String> parameters, String description, String visibility, boolean isStatic, boolean isVoid) {
         this.name = name;
@@ -55,13 +57,39 @@ public class DocMethod
     public List<DocAnnotation> getAnnotations() {
         return annotations;
     }
+    
+    /**
+     * @deprecated los tags de método deben usar una lista concreta
+     * @return lista de etiquetas aplicadas sobre el método
+     */
+    @Deprecated
+    public List<DocTag> getTags() {
+        return tags;
+    }
 
     /**
      * Agrega una anotación al método.
-     *
      * @param annotation anotación a añadir
      */
     public void addAnnotation(DocAnnotation annotation) {
         annotations.add(annotation);
     }
+    
+    /**
+     * Agrega una etiqueta al método
+     * @deprecated Usar en su lugar {@link #addDocTag(DocTag) en su lugar }
+     * @param tag la etiqueta a añadir
+     */
+    @Deprecated
+    public void addTag(DocTag tag){
+        tags.add(tag);
+    }
+    
+    /**
+     * @param tag
+     */
+    public void addDocTag(DocTag tag){
+        tags.add(tag);
+    }
+    
 }

@@ -174,7 +174,7 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         });
     }
 
-    // ========== MÉTODOS PRIVADOS ========== //
+    // ========== MÉTODOS ========== //
     private void visitMethod(MethodDeclaration n, DocClass docClass) {
         String description = JavadocUtils.extractDescription(
                 n.getComment().filter(c -> c instanceof JavadocComment)
@@ -184,9 +184,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         List<DocParameter> docParams = new ArrayList<>();
         String returnDescription = null;
         List<DocException> exceptions = new ArrayList<>();
+        List<DocTag> otherTags = new ArrayList<>();
 
         Javadoc javadoc = extractJavadoc(n);
-
+        
+        // extrae los tags del método
         if (javadoc != null) {
             for (var tag : javadoc.getBlockTags()) {
                 switch (tag.getType()) {
@@ -200,6 +202,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
                         String excName = tag.getName().orElse("Exception");
                         String excDesc = tag.getContent().toText();
                         exceptions.add(new DocException(excName, excDesc));
+                    }
+                    case SERIAL_DATA, SERIAL, AUTHOR, DEPRECATED, SEE, SINCE, VERSION  -> {
+                        String tagName = tag.getTagName();
+                        String tagDesc = tag.getContent().toText();
+                        otherTags.add(new DocTag(tagName, tagDesc));
                     }
                     default -> {}
                 }
@@ -223,10 +230,11 @@ public class JavadocExtractorVisitor extends VoidVisitorAdapter<DocPackage>
         for (AnnotationExpr ae : n.getAnnotations()) {
             docMethod.addAnnotation(toDocAnnotation(ae));
         }
-
+                
         docParams.forEach(docMethod::addDocParameter);
         if (returnDescription != null) docMethod.setReturnDescription(returnDescription);
         exceptions.forEach(docMethod::addException);
+        otherTags.forEach(docMethod::addDocTag);
 
         docClass.addMethod(docMethod);
     }
