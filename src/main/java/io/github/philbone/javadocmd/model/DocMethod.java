@@ -59,14 +59,16 @@ public class DocMethod
     }
     
     /**
+     * @deprecated los tags de método deben usar una lista concreta
      * @return lista de etiquetas aplicadas sobre el método
      */
+    @Deprecated
     public List<DocTag> getTags() {
         return tags;
     }
 
     /**
-     * Agrega una anotación al método.     *
+     * Agrega una anotación al método.
      * @param annotation anotación a añadir
      */
     public void addAnnotation(DocAnnotation annotation) {
@@ -75,9 +77,18 @@ public class DocMethod
     
     /**
      * Agrega una etiqueta al método
+     * @deprecated Usar en su lugar {@link #addDocTag(DocTag) en su lugar }
      * @param tag la etiqueta a añadir
      */
+    @Deprecated
     public void addTag(DocTag tag){
+        tags.add(tag);
+    }
+    
+    /**
+     * @param tag
+     */
+    public void addDocTag(DocTag tag){
         tags.add(tag);
     }
     
